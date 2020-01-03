@@ -8,6 +8,8 @@
 \usecolortheme{spruce}
 \setbeamercolor{background canvas}{bg=white}
 
+\usepackage{listings}
+
 %\definecolor{owngreen}{rgb}{.125,.5,.25}
 %\usecolortheme[named=owngreen]{structure}
 %\usecolortheme{wolverine}
@@ -64,9 +66,10 @@
   The formal way to express the upper bound of an algorithm running time.
   
   \begin{itemize}
-    \item Sometimes the constant factor makes a considerable difference.
     \item Ommit lower terms.
+    \item Ommit multiplicative constants.
     \item Start from a particular input size $(n_0)$
+    \item Sometimes the constant factors makes a considerable difference.
   \end{itemize}
 
   \begin{center}
@@ -74,11 +77,6 @@
   \end{center}
 \end{frame}
 
-\begin{frame}{Examples of Time Complexity}
-  \begin{center}
-    \includegraphics[width=.85\linewidth]{../img/bigOchart}
-  \end{center}
-\end{frame}
 
 \begin{frame}{Space Usage vs Running Time}
 
@@ -88,6 +86,75 @@
 
   Fibonnaci Algorithm
 
+\end{frame}
+
+\begin{frame}{Simplification examples}
+
+  \begin{itemize}
+    \item Drop lower terms.
+    \item Drop multiplicative constants.
+  \end{itemize}
+
+  \begin{center}
+
+  $n^3 + n^2 + 1$
+
+  $log(n) + n^2 + 100$
+
+  $0.001*n^3 + 1$
+
+  $ n*log(n) + n^2$
+
+  $ n*log(n) + n + 10^{100}$
+
+  $ n*log(n) + 500*n + 10^{100}$
+
+  $ n*log(n) + n + 2^n$
+
+  \end{center}
+
+\end{frame}
+
+\begin{frame}[fragile]{Examples Linear Algorithm}
+
+  \begin{lstlisting}[language=C++]
+    int main(){
+      int ans=0;
+      for(int i=0;i<100;i++){
+        if(i%2==0)
+          ans+=i;
+      }
+      cout<<ans<<endl;
+      return 0;
+    }
+  \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Examples Quadratic Algorithm}
+
+  \begin{lstlisting}[language=C++]
+    int main(){
+      int ans=0;
+      for(int i=0;i<100;i++){
+        for(int j=0;j<100;j++){
+          if(i*i==j)
+            ans+=i;
+          if(j-i==i)
+            ans-=i;
+        }
+      }
+      cout<<ans<<endl;
+      return 0;
+    }
+  \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}{Examples of Time Complexity}
+  \begin{center}
+    \includegraphics[width=.85\linewidth]{../img/bigOchart}
+  \end{center}
 \end{frame}
 
 \iffalse

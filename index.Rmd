@@ -1,0 +1,16 @@
+---
+title: "UTEC Competitive programming training - Summer 2020"
+---
+
+Here you can find the material developed in this training and a [collection of
+images](./gallery.html)
+
+## **Couches**
+- José Leonidas García Gonzales - jose.garcia@utec.edu.pe
+- Giordano Mitchell Alvitez Falcon - giordano.alvitez@utec.edu.pe
+- Jorge Ignacio Fiestas Lavezzolo - jorge.fiestas@utec.edu.pe
+
+## **Clases**
+
+### *Week 1*
+- [Introduction](./class-01.html)

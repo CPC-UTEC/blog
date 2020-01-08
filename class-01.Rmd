@@ -1,0 +1,131 @@
+---
+title: "Introduction"
+---
+
+> "Art of Thinking"
+
+<div class="topic">What is competitive programming?</div>
+
+<div class="common-text">
+1. It's a sport... **a mind sport**
+2. Participants are given problems and they have to create computer programs to solve them as quickly as they can
+3. There are many type of problems that we will learn **later**...
+</div>
+
+<div class="topic">Topics of the course</div>
+
+<div class="common-text">
+1. Asymptotic Analysis
+2. Standard Template Library (STL)
+3. Brute Force
+4. Divide and Conquer
+5. Searching in Graphs
+6. Single Source Shortest Path (SSSP)
+7. All Pair Shortest Path (ASPSP)
+8. Minimum Spanning Tree (MST)
+</div>
+
+<div class="topic">Virtual Judges</div>
+
+<div class="center-image">
+<a href="https://codeforces.com/" target="_blank">![](./images/class-01/codeforces.png)</a>
+</div>
+
+<div class="center-image">
+<a href="https://atcoder.jp/" target="_blank">![](./images/class-01/atcoder.png)</a>
+</div>
+
+<div class="center-image">
+<a href="https://www.codechef.com/" target="_blank">![](./images/class-01/codechef.png)</a>
+</div>
+
+<div class="center-image">
+<a href="https://www.spoj.com/" target="_blank">![](./images/class-01/spoj.png)</a>
+</div>
+
+<div class="center-image">
+<a href="https://www.hackerearth.com/" target="_blank">![](./images/class-01/hackerearth.png)</a>
+</div>
+
+<div class="topic">Problem structure</div>
+
+<div class="common-text">
+* Title and limitations
+* Description
+* Input and Output (I/O)
+* Examples
+</div>
+
+### Example
+
+<div class="common-text">
+**Problem:** You're given **n** numbers and you'd like to find a pair of numbers with the greatest sum. <br>
+
+**Constrains:** <br>
+- $2 \leq n \leq 10^8$ <br>
+- Time limit: 1 second <br>
+- Memory limit per test: 256 megabytes <br>
+
+**Input:** <br>
+The first line of each input a single integer n denoting the number of values. The next lines containg the n values.
+
+**Output:** <br>
+The greatest sum
+
+**Example:** <br>
+*Input* <br>
+10
+
+3 4 2 30 104 1 35 104 239 -1
+
+2
+
+3 0
+
+*Output* <br>
+343
+
+3
+
+</div>
+
+<div class="topic">Veredicts information</div>
+
+<div class="common-text">
+- <div style="color: green">AC - Accepted</div>
+- <div style="color: red">WA - Wrong Answer</div>
+- <div style="color: blue">TLE - Time Limit Exceeded</div>
+- <div style="color: orange">RE - Runtime Error</div>
+
+[Other veredicts](https://icpcarchive.ecs.baylor.edu/index.php?option=com_content&task=view&id=14&Itemid=30)
+</div>
+
+<div class="topic">Environment setup</div>
+
+<div class="common-text">
+1. Choose a IDE or a text editor
+
+- [CLion](https://www.jetbrains.com/es-es/clion/)
+- [DevC++](https://www.bloodshed.net/dev/)
+- [CodeBlocks](http://www.codeblocks.org/)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Atom](https://atom.io/)
+- [Sublime](https://www.sublimetext.com/)
+- [Vim](https://www.vim.org/)
+- [Emacs](https://www.gnu.org/software/emacs/)
+
+2. Select a programming language allowed in most online judges
+- C++
+- Python
+- Java
+- Kotlin
+
+3. Always prefer C++ for competitive programming
+- Lower Level $\rightarrow$ More control.
+- It's faster.
+- Makes better use of memory.
+- The **STL Library** is extremaly powerful.
+- Almost all learning resources are oriented to C++.
+- It has a strong community.
+
+</div>

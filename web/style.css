@@ -1,0 +1,24 @@
+body {
+  font-size: 18px;
+}
+
+.topic {
+  color: #388e3c;
+  font-size: 24px;
+  background: #b2dfdb;
+  padding: 10px 10px 10px 10px;
+}
+
+.common-text {
+  line-height: 50px;
+  font-size: 20px;
+}
+
+.center-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

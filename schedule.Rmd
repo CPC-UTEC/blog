@@ -1,0 +1,34 @@
+---
+title: "Schedule"
+---
+
+## **Topics**
+  - Asymptotic Analysis
+  - Standard Template Library (STL)
+  - Brute Force
+  - Divide and Conquer
+  - Searching in Graphs
+  - Single Source Shortest Path (SSSP)
+  - All Pair Shortest Path (ASPSP)
+  - Minimum Spanning Tree (MST)
+
+## **Weekly plan**
+
+### *Week 1*
+
+#### **Sesion**
+
+* [**Class 1: Introduction**](./class-01.html)
+  - What is competitive programming?
+  - Topics of the course
+  - Virtual Judges
+  - Problem structure
+  - Veredicts information
+  - Environment setup
+  
+  - **Reading**
+    + [Training Camp Argentina 2019. Nivel Inicial. E/S + Intro](https://tc-arg.tk/pdfs/2019/ipc.pdf)
+    + [Competitive Programming 3, chapter 1](https://cpbook.net/)
+    + [Errichto - How to test your solutions in Competitive Programming, on
+    Linux](https://www.youtube.com/watch?v=JXTVOyQpSGM)
+    + [An awesome list for competitive programming](https://codeforces.com/blog/entry/23054)

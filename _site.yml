@@ -1,0 +1,20 @@
+name: "Competitive Programming UTEC"
+navbar:
+  title: "CP UTEC"
+  left:
+    - text: "Schedule"
+      href: schedule.html
+    - text: "Lessons"
+      menu:
+        - text: Week 1
+        - text: Introduction
+          href: class-01.html
+  right:
+    - text: "Gallery"
+      href: gallery.html
+output_dir: "web"
+output:
+  html_document:
+    theme: yeti
+    highlight: textmate
+    css: style.css

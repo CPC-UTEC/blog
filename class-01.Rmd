@@ -27,25 +27,14 @@ title: "Introduction"
 
 <div class="topic">Virtual Judges</div>
 
-<div class="center-image">
+<div class="virtual-judges">
 <a href="https://codeforces.com/" target="_blank">![](./images/class-01/codeforces.png)</a>
-</div>
-
-<div class="center-image">
 <a href="https://atcoder.jp/" target="_blank">![](./images/class-01/atcoder.png)</a>
-</div>
-
-<div class="center-image">
 <a href="https://www.codechef.com/" target="_blank">![](./images/class-01/codechef.png)</a>
-</div>
-
-<div class="center-image">
 <a href="https://www.spoj.com/" target="_blank">![](./images/class-01/spoj.png)</a>
-</div>
-
-<div class="center-image">
 <a href="https://www.hackerearth.com/" target="_blank">![](./images/class-01/hackerearth.png)</a>
 </div>
+
 
 <div class="topic">Problem structure</div>
 

@@ -22,3 +22,8 @@ body {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+.virtual-judges{
+  display: inline;
+  width: 50%;
+}

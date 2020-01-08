@@ -118,3 +118,114 @@ The greatest sum
 - It has a strong community.
 
 </div>
+
+<div class="topic"><a href="https://vjudge.net/contest/350658">Contest</a></div>
+
+<div class="common-text">
+
+### <a href="https://codeforces.com/problemset/problem/4/A" target="_blank">Problem A: Watermelon</a>
+
+The problem is bassically to find
+
+$a, b \mid 1 \leq a, b \leq n / 2 \land 2a + 2b = n$
+
+The following code use this idea.
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int n;
+  cin >> n;
+  bool ok = false;
+  for (int a = 1; a <= n / 2; a++) {
+    for (int b = 1; b <= n / 2; b++) {
+      if (2 * a + 2 * b == n) ok = true;
+    }
+  }
+  if (ok) cout << "YES\n";
+  else cout << "NO\n";
+  return (0);
+}
+```
+
+But, we can take $b = 1$ (why?) and realize that the problem reduces to find:
+
+$a \leq 1 \leq a \leq n / 2 \land 2a = n - 2$
+
+The following code use this idea.
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int n;
+  cin >> n;
+  bool ok = false;
+  if (n - 2 >= 2 and n % 2 == 0) ok = true;
+  if (ok) cout << "YES\n";
+  else cout << "NO\n";
+  return (0);
+}
+```
+### <a href="https://codeforces.com/problemset/problem/1/A" target="_blank">Problem B: Theatre Square</a>
+
+Basically we need to find $x * y$ where
+
+$x = min\{x \mid x * a \geq n\}$
+
+$y = min\{y \mid y * a \geq m\}$
+
+Then, $$x = \lceil \frac{n}{a} \rceil \land y = \lceil \frac{m}{a} \rceil $$
+
+And there is also the property:
+
+$$\lceil a / b \rceil = \lfloor (a + b - 1) / b \rfloor$$
+
+The following code use this idea.
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  long long n, m, a;
+  cin >> n >> m >> a;
+  long long x = (n + a - 1) / a;
+  long long y = (m + a - 1) / a;
+  cout << x * y << '\n';
+  return (0);
+}
+```
+
+What happen if we use `int` instead of `long long` (try $n = m = 10^9, a = 1$)
+
+### <a href="https://codeforces.com/problemset/problem/71/A" target="_blank">Problem C: Way Too Long Words</a>
+
+Just implement what the problem say.
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int tc;
+  cin >> tc;
+  while (tc--) {
+    string s;
+    cin >> s;
+    if (s.size() > 10) cout << s.front() << s.size() - 2 << s.back() << '\n';
+    else cout << s << '\n';
+  }
+  return (0);
+}
+```
+
+</div>
+

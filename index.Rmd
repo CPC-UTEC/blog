@@ -13,4 +13,5 @@ images](./gallery.html)
 ## **Clases**
 
 ### *Week 1*
-- [Introduction](./class-01.html)
+- [Class 01 - The Art of Thinking](./class-01.html)
+- [Class 02 - Think Big](./class-02.html)

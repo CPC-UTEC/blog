@@ -11,7 +11,7 @@
 
 
 
-<title>UTEC Competitive programming training - Summer 2020</title>
+<title>Introduction</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -302,29 +302,125 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">UTEC Competitive programming training - Summer 2020</h1>
+<h1 class="title toc-ignore">Introduction</h1>
 
 </div>
 
 
-<p>Here you can find the material developed in this training and a <a href="./gallery.html">collection of images</a></p>
-<div id="couches" class="section level2">
-<h2><strong>Couches</strong></h2>
-<ul>
-<li>José Leonidas García Gonzales - <a href="mailto:jose.garcia@utec.edu.pe">jose.garcia@utec.edu.pe</a></li>
-<li>Giordano Mitchell Alvitez Falcon - <a href="mailto:giordano.alvitez@utec.edu.pe">giordano.alvitez@utec.edu.pe</a></li>
-<li>Jorge Ignacio Fiestas Lavezzolo - <a href="mailto:jorge.fiestas@utec.edu.pe">jorge.fiestas@utec.edu.pe</a></li>
-</ul>
+<blockquote>
+<p>“Think Big”</p>
+</blockquote>
+<div class="topic">
+<a href="https://vjudge.net/contest/350901">Contest</a>
 </div>
-<div id="clases" class="section level2">
-<h2><strong>Clases</strong></h2>
-<div id="week-1" class="section level3">
-<h3><em>Week 1</em></h3>
-<ul>
-<li><a href="./class-01.html">Class 01 - The Art of Thinking</a></li>
-<li><a href="./class-02.html">Class 02 - Think Big</a></li>
-</ul>
-</div>
+<div class="common-text">
+<h3 id="problem-a-bit"><a href="https://codeforces.com/problemset/problem/282/A" target="_blank">Problem A: Bit++</a></h3>
+<p>The problem is bassically to see if the input is either “X++”, “++X”, “—X” or “X—”</p>
+<p>The following code use this idea.But we only look in the middle character because that is enough to verificate.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+  int n,x=0;
+  cin&gt;&gt;n;
+  string sta;
+  while(n--){
+    cin&gt;&gt;sta;
+    if(sta[1]==&#39;+&#39;)
+        x++;
+    else
+        x--;
+  }
+  cout&lt;&lt;x&lt;&lt;endl;
+  return (0);
+}</code></pre>
+<h3 id="problem-b-beautiful-matrix"><a href="https://codeforces.com/problemset/problem/263/A" target="_blank">Problem B: Beautiful Matrix</a></h3>
+<p>Here, we look for what is the difference between row position and column position of 1 and the matrix’s center (the matrix’s center is in position 3 in axis x and y.</p>
+<p>So, we just need to subtract in absolute value for each axis and adding them.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+  int num;
+  for(int i=1;i&lt;6;i++){
+    for(int j=1;j&lt;6;j++){
+        cin&gt;&gt;num;
+        if(num){
+            cout&lt;&lt;abs(i-3)+abs(j-3)&lt;&lt;endl;
+            i=j=6;
+        }
+    }
+  }
+  return 0;
+}</code></pre>
+<h3 id="problem-c-tram"><a href="https://codeforces.com/problemset/problem/116/A" target="_blank">Problem C: Tram</a></h3>
+<p>In this problem, we need to keep the maximum value of passengers in each stop. With the maximum value we can ensure the minimum capacity of the tram line.</p>
+<p>Also, the max function is a function from Algorithm package. Do not forget, if anyone includes bits/stdc++.h, this includes a lot of packages inside. Some of them is Algorithm, Vector, Set, Map and another.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+  int n,a,b,temp=0,maxi=0;
+  cin&gt;&gt;n;
+  while(n--){
+    cin&gt;&gt;a&gt;&gt;b;
+    temp+=b-a;
+    maxi=max(maxi,temp);
+  }
+  cout&lt;&lt;max&lt;&lt;endl;
+
+  return 0;
+}</code></pre>
+<h3 id="problem-d-elephant"><a href="https://codeforces.com/problemset/problem/617/A" target="_blank">Problem D: Elephant</a></h3>
+<p>For this problem, the elephant can move in steps with width of 1,2,3,4 or 5. So, it is convenient move with the maximum allowed step if we want to minimize the number of steps to the elephant meet with its friend.</p>
+<p>Here the maximum allowed step if the step less or equal to current distance between the elephant and its friend.</p>
+<p>Also, we work with modular operation to faster calculate to steps.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+ int x;
+ int steps=0;
+ cin&gt;&gt;x;
+ for(int i=5;i&gt;0;i--){
+    if(x&gt;=i){
+        steps+=x/i;
+        x%=i;
+                             
+        }
+ }
+ cout&lt;&lt;steps&lt;&lt;endl;
+
+  return 0;
+}
+</code></pre>
+<h3 id="problem-e-even-odds"><a href="https://codeforces.com/problemset/problem/318/A" target="_blank">Problem E: Even Odds</a></h3>
+<p>Firstly, the problem tells us that the sequence is all odd integers from 1 to n and then all even integers from 1 to n.</p>
+<p>Take care if n is even or odd. In case n is odd, we need to add one element in the odd integers block.</p>
+<p>So, we need to calculate how many odd integers we have. Then we just check that requested position is before or after of odd integers block.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+
+  long long num,k;
+  cin&gt;&gt;num&gt;&gt;k;
+  long long aux=num/2;
+  if(num%2!=0)
+     aux++;
+
+  if(k&gt;aux)
+     cout&lt;&lt;2*(k-aux)&lt;&lt;endl;
+  else
+     cout&lt;&lt;2*(k-1)+1&lt;&lt;endl;
+
+  return 0;
+}</code></pre>
 </div>
 
 

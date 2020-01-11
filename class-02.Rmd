@@ -10,10 +10,10 @@ title: "Introduction"
 
 ### <a href="https://codeforces.com/problemset/problem/282/A" target="_blank">Problem A: Bit++</a>
 
-The problem is bassically to see if the input is either "X++", "++X", "---X" or "X---"
+The problem is bassically to see if the input is either "X++", "++X", "---X" or "X---".
 
 
-The following code use this idea.But we only look in the middle character because that is enough to verificate.
+The following code use this idea. But, we only look in the middle character because that is enough to verificate.
 
 ```c++
 #include <bits/stdc++.h>
@@ -38,7 +38,7 @@ int main () {
 
 ### <a href="https://codeforces.com/problemset/problem/263/A" target="_blank">Problem B: Beautiful Matrix</a>
 
-Here, we look for what is the difference between row position and column position of 1 and the matrix's center (the matrix's center is in position 3 in axis x and y. 
+Here, we look for what is the difference between row position and column position of the 1 and the matrix's center (the matrix's center is in position 3 in axis x and y). 
 
 
 So, we just need to subtract in absolute value for each axis and adding them. 
@@ -69,7 +69,7 @@ int main () {
 
 In this problem, we need to keep the maximum value of passengers in each stop. With the maximum value we can ensure the minimum capacity of the tram line.
 
-Also, the max function is a function from Algorithm package. Do not forget, if anyone includes bits/stdc++.h, this includes a lot of packages inside. Some of them is Algorithm, Vector, Set, Map and another.
+Also, the max function is a function from Algorithm package. Do not forget, if you include bits/stdc++.h, this includes a lot of packages inside. Some of them is Algorithm, Vector, Set, Map, etc. 
 
 ```c++
 #include <bits/stdc++.h>
@@ -92,11 +92,11 @@ int main () {
 
 ### <a href="https://codeforces.com/problemset/problem/617/A" target="_blank">Problem D: Elephant</a>
 
-For this problem, the elephant can move in steps with width of 1,2,3,4 or 5. So, it is convenient move with the maximum allowed step if we want to minimize the number of steps to the elephant meet with its friend.
+For this problem, the elephant can move in steps with width of 1,2,3,4 or 5. So, it is convenient to move with the maximum allowed step if we want to minimize the number of steps to the elephant meet with its friend.
 
 Here the maximum allowed step if the step less or equal to current distance between the elephant and its friend.
 
-Also, we work with modular operation to faster calculate to steps.
+Also, we work with modular operation to calculate faster the steps.
 
 ```c++
 #include <bits/stdc++.h>
@@ -127,7 +127,7 @@ Firstly, the problem tells us that the sequence is all odd integers from 1 to n 
 
 Take care if n is even or odd. In case n is odd, we need to add one element in the odd integers block.
 
-So, we need to calculate how many odd integers we have. Then we just check that requested position is before or after of odd integers block.
+So, we need to calculate how many odd integers we have. Then we just check if the requested position is before or after of odd integers block.
 
 ```c++
 #include <bits/stdc++.h>

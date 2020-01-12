@@ -7,8 +7,12 @@ navbar:
     - text: "Lessons"
       menu:
         - text: Week 1
-        - text: Introduction
+        - text: The Art of Thinking
           href: class-01.html
+        - text: Think Big
+          href: class-02.html
+        - text: Don't reinvent the wheel!
+          href: class-03.html
   right:
     - text: "Gallery"
       href: gallery.html

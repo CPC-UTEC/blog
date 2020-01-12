@@ -15,3 +15,4 @@ images](./gallery.html)
 ### *Week 1*
 - [Class 01 - The Art of Thinking](./class-01.html)
 - [Class 02 - Think Big](./class-02.html)
+- [Class 03 - Don't reinvent the wheel](./class-03.html)

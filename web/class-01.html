@@ -11,7 +11,7 @@
 
 
 
-<title>Introduction</title>
+<title>Class 01: Introduction</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -284,7 +284,13 @@ $(document).ready(function () {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Week 1</li>
     <li>
-      <a href="class-01.html">Introduction</a>
+      <a href="class-01.html">The Art of Thinking</a>
+    </li>
+    <li>
+      <a href="class-02.html">Think Big</a>
+    </li>
+    <li>
+      <a href="class-03.html">Don't reinvent the wheel!</a>
     </li>
   </ul>
 </li>
@@ -302,7 +308,8 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Introduction</h1>
+<h1 class="title toc-ignore">Class 01: Introduction</h1>
+<h4 class="date">06-01-2020</h4>
 
 </div>
 
@@ -313,17 +320,14 @@ $(document).ready(function () {
 <div class="topic">
 What is competitive programming?
 </div>
-<div class="common-text">
 <ol style="list-style-type: decimal">
 <li>It’s a sport… <strong>a mind sport</strong></li>
 <li>Participants are given problems and they have to create computer programs to solve them as quickly as they can</li>
 <li>There are many type of problems that we will learn <strong>later</strong>…</li>
 </ol>
-</div>
 <div class="topic">
 Topics of the course
 </div>
-<div class="common-text">
 <ol style="list-style-type: decimal">
 <li>Asymptotic Analysis</li>
 <li>Standard Template Library (STL)</li>
@@ -334,27 +338,21 @@ Topics of the course
 <li>All Pair Shortest Path (ASPSP)</li>
 <li>Minimum Spanning Tree (MST)</li>
 </ol>
-</div>
 <div class="topic">
 Virtual Judges
 </div>
-<div class="virtual-judges">
 <p><a href="https://codeforces.com/" target="_blank"><img src="images/class-01/codeforces.png" /></a> <a href="https://atcoder.jp/" target="_blank"><img src="images/class-01/atcoder.png" /></a> <a href="https://www.codechef.com/" target="_blank"><img src="images/class-01/codechef.png" /></a> <a href="https://www.spoj.com/" target="_blank"><img src="images/class-01/spoj.png" /></a> <a href="https://www.hackerearth.com/" target="_blank"><img src="images/class-01/hackerearth.png" /></a></p>
-</div>
 <div class="topic">
 Problem structure
 </div>
-<div class="common-text">
 <ul>
 <li>Title and limitations</li>
 <li>Description</li>
 <li>Input and Output (I/O)</li>
 <li>Examples</li>
 </ul>
-</div>
 <div id="example" class="section level3">
 <h3>Example</h3>
-<div class="common-text">
 <p><strong>Problem:</strong> You’re given <strong>n</strong> numbers and you’d like to find a pair of numbers with the greatest sum. <br></p>
 <p><strong>Constrains:</strong> <br> - <span class="math inline">\(2 \leq n \leq 10^8\)</span> <br> - Time limit: 1 second <br> - Memory limit per test: 256 megabytes <br></p>
 <p><strong>Input:</strong> <br> The first line of each input a single integer n denoting the number of values. The next lines containg the n values.</p>
@@ -365,11 +363,9 @@ Problem structure
 <p>3 0</p>
 <p><em>Output</em> <br> 343</p>
 <p>3</p>
-</div>
 <div class="topic">
 Veredicts information
 </div>
-<div class="common-text">
 <ul>
 <li><div style="color: green">
 AC - Accepted
@@ -385,11 +381,9 @@ RE - Runtime Error
 </div></li>
 </ul>
 <p><a href="https://icpcarchive.ecs.baylor.edu/index.php?option=com_content&amp;task=view&amp;id=14&amp;Itemid=30">Other veredicts</a></p>
-</div>
 <div class="topic">
 Environment setup
 </div>
-<div class="common-text">
 <ol style="list-style-type: decimal">
 <li>Choose a IDE or a text editor</li>
 </ol>
@@ -423,12 +417,12 @@ Environment setup
 <li>Almost all learning resources are oriented to C++.</li>
 <li>It has a strong community.</li>
 </ul>
-</div>
 <div class="topic">
 <a href="https://vjudge.net/contest/350658">Contest</a>
 </div>
-<div class="common-text">
-<h3 id="problem-a-watermelon"><a href="https://codeforces.com/problemset/problem/4/A" target="_blank">Problem A: Watermelon</a></h3>
+</div>
+<div id="problem-a-watermelon" class="section level3">
+<h3><a href="https://codeforces.com/problemset/problem/4/A" target="_blank">Problem A: Watermelon</a></h3>
 <p>The problem is bassically to find</p>
 <p><span class="math inline">\(a, b \mid 1 \leq a, b \leq n / 2 \land 2a + 2b = n\)</span></p>
 <p>The following code use this idea.</p>
@@ -465,7 +459,9 @@ int main () {
   else cout &lt;&lt; &quot;NO\n&quot;;
   return (0);
 }</code></pre>
-<h3 id="problem-b-theatre-square"><a href="https://codeforces.com/problemset/problem/1/A" target="_blank">Problem B: Theatre Square</a></h3>
+</div>
+<div id="problem-b-theatre-square" class="section level3">
+<h3><a href="https://codeforces.com/problemset/problem/1/A" target="_blank">Problem B: Theatre Square</a></h3>
 <p>Basically we need to find <span class="math inline">\(x * y\)</span> where</p>
 <p><span class="math inline">\(x = min\{x \mid x * a \geq n\}\)</span></p>
 <p><span class="math inline">\(y = min\{y \mid y * a \geq m\}\)</span></p>
@@ -486,7 +482,9 @@ int main () {
   return (0);
 }</code></pre>
 <p>What happen if we use <code>int</code> instead of <code>long long</code> (try <span class="math inline">\(n = m = 10^9, a = 1\)</span>)</p>
-<h3 id="problem-c-way-too-long-words"><a href="https://codeforces.com/problemset/problem/71/A" target="_blank">Problem C: Way Too Long Words</a></h3>
+</div>
+<div id="problem-c-way-too-long-words" class="section level3">
+<h3><a href="https://codeforces.com/problemset/problem/71/A" target="_blank">Problem C: Way Too Long Words</a></h3>
 <p>Just implement what the problem say.</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
@@ -503,7 +501,6 @@ int main () {
   }
   return (0);
 }</code></pre>
-</div>
 </div>
 
 

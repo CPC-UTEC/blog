@@ -23,6 +23,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -421,12 +423,30 @@ Environment setup
 <div class="topic">
 <a href="https://vjudge.net/contest/350658">Contest</a>
 </div>
+<!-- Begins problem A -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+A: Watermelon
+</p>
 </div>
-<div id="problem-a-watermelon" class="section level3">
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div id="problem-a-watermelon" class="section level3 card-body solution-body">
 <h3><a href="https://codeforces.com/problemset/problem/4/A" target="_blank">Problem A: Watermelon</a></h3>
 <p>The problem is bassically to find</p>
 <p><span class="math inline">\(a, b \mid 1 \leq a, b \leq n / 2 \land 2a + 2b = n\)</span></p>
 <p>The following code use this idea.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA1" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemA1" class="collapse">
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
@@ -444,9 +464,19 @@ int main () {
   else cout &lt;&lt; &quot;NO\n&quot;;
   return (0);
 }</code></pre>
+</div>
+<p><!-- ends code --></p>
 <p>But, we can take <span class="math inline">\(b = 1\)</span> (why?) and realize that the problem reduces to find:</p>
 <p><span class="math inline">\(a \leq 1 \leq a \leq n / 2 \land 2a = n - 2\)</span></p>
 <p>The following code use this idea.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA2" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemA2" class="collapse">
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
@@ -461,7 +491,23 @@ int main () {
   return (0);
 }</code></pre>
 </div>
-<div id="problem-b-theatre-square" class="section level3">
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+<!-- Begins problem B -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+B: Threatre Square
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div id="problem-b-theatre-square" class="section level3 card-body solution-body">
 <h3><a href="https://codeforces.com/problemset/problem/1/A" target="_blank">Problem B: Theatre Square</a></h3>
 <p>Basically we need to find <span class="math inline">\(x * y\)</span> where</p>
 <p><span class="math inline">\(x = min\{x \mid x * a \geq n\}\)</span></p>
@@ -470,6 +516,14 @@ int main () {
 <p>And there is also the property:</p>
 <p><span class="math display">\[\lceil a / b \rceil = \lfloor (a + b - 1) / b \rfloor\]</span></p>
 <p>The following code use this idea.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemB" class="collapse">
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
@@ -482,11 +536,35 @@ int main () {
   cout &lt;&lt; x * y &lt;&lt; &#39;\n&#39;;
   return (0);
 }</code></pre>
+</div>
+<p><!-- ends code --></p>
 <p>What happen if we use <code>int</code> instead of <code>long long</code> (try <span class="math inline">\(n = m = 10^9, a = 1\)</span>)</p>
 </div>
-<div id="problem-c-way-too-long-words" class="section level3">
+</div>
+</div>
+<!-- ends problem B -->
+<!-- Begins problem C -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+C: Way Too Long Words
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div id="problem-c-way-too-long-words" class="section level3 card-body solution-body">
 <h3><a href="https://codeforces.com/problemset/problem/71/A" target="_blank">Problem C: Way Too Long Words</a></h3>
 <p>Just implement what the problem say.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemC" class="collapse">
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
@@ -502,6 +580,12 @@ int main () {
   }
   return (0);
 }</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem C -->
 </div>
 
 <footer>

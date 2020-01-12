@@ -313,20 +313,20 @@ You may also be interested in reading:
 
 <div class=topic><a href="https://vjudge.net/contest/351569">Contest</a></div>
 
-<div class="card">
 
-<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapseTwo">
+<!-- Begins problem A -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
   <i class="fas fa-caret-right"></i> <p class="title">Solutions</p>
 </div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div class="card-body solution-body">
 
-<div id="collapse1" class="collapse">
-  <div class="card-body solution-body">
-  
-  <div>
-  The solution will be posted after the contest.
-  </div>
-
-  </div>
-</div>
+  The solutions will be posted after the contest.
 
 </div>
+</div>
+</div>
+<!-- ends problem A -->

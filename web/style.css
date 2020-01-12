@@ -37,6 +37,12 @@ body {
   cursor: pointer;
 }
 
+.code-title .title {
+  display: inline;
+  cursor: pointer;
+}
+
+
 .solution-body {
   border: 1px solid gray;
   background-color: #def;

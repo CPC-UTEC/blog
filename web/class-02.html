@@ -11,9 +11,10 @@
 
 
 
-<title>Introduction</title>
+<title>Class 01: Asymptotic Analysis</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -284,7 +285,13 @@ $(document).ready(function () {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Week 1</li>
     <li>
-      <a href="class-01.html">Introduction</a>
+      <a href="class-01.html">The Art of Thinking</a>
+    </li>
+    <li>
+      <a href="class-02.html">Think Big</a>
+    </li>
+    <li>
+      <a href="class-03.html">Don't reinvent the wheel!</a>
     </li>
   </ul>
 </li>
@@ -302,7 +309,8 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Introduction</h1>
+<h1 class="title toc-ignore">Class 01: Asymptotic Analysis</h1>
+<h4 class="date">08-01-2020</h4>
 
 </div>
 
@@ -314,9 +322,10 @@ $(document).ready(function () {
 <a href="https://vjudge.net/contest/350901">Contest</a>
 </div>
 <div class="common-text">
-<h3 id="problem-a-bit"><a href="https://codeforces.com/problemset/problem/282/A" target="_blank">Problem A: Bit++</a></h3>
-<p>The problem is bassically to see if the input is either “X++”, “++X”, “—X” or “X—”</p>
-<p>The following code use this idea.But we only look in the middle character because that is enough to verificate.</p>
+<div id="problem-a-bit" class="section level3">
+<h3><a href="https://codeforces.com/problemset/problem/282/A" target="_blank">Problem A: Bit++</a></h3>
+<p>The problem is bassically to see if the input is either “X++”, “++X”, “—X” or “X—”.</p>
+<p>The following code use this idea. But, we only look in the middle character because that is enough to verificate.</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
@@ -335,8 +344,10 @@ int main () {
   cout&lt;&lt;x&lt;&lt;endl;
   return (0);
 }</code></pre>
-<h3 id="problem-b-beautiful-matrix"><a href="https://codeforces.com/problemset/problem/263/A" target="_blank">Problem B: Beautiful Matrix</a></h3>
-<p>Here, we look for what is the difference between row position and column position of 1 and the matrix’s center (the matrix’s center is in position 3 in axis x and y.</p>
+</div>
+<div id="problem-b-beautiful-matrix" class="section level3">
+<h3><a href="https://codeforces.com/problemset/problem/263/A" target="_blank">Problem B: Beautiful Matrix</a></h3>
+<p>Here, we look for what is the difference between row position and column position of the 1 and the matrix’s center (the matrix’s center is in position 3 in axis x and y).</p>
 <p>So, we just need to subtract in absolute value for each axis and adding them.</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
@@ -355,9 +366,11 @@ int main () {
   }
   return 0;
 }</code></pre>
-<h3 id="problem-c-tram"><a href="https://codeforces.com/problemset/problem/116/A" target="_blank">Problem C: Tram</a></h3>
+</div>
+<div id="problem-c-tram" class="section level3">
+<h3><a href="https://codeforces.com/problemset/problem/116/A" target="_blank">Problem C: Tram</a></h3>
 <p>In this problem, we need to keep the maximum value of passengers in each stop. With the maximum value we can ensure the minimum capacity of the tram line.</p>
-<p>Also, the max function is a function from Algorithm package. Do not forget, if anyone includes bits/stdc++.h, this includes a lot of packages inside. Some of them is Algorithm, Vector, Set, Map and another.</p>
+<p>Also, the max function is a function from Algorithm package. Do not forget, if you include bits/stdc++.h, this includes a lot of packages inside. Some of them is Algorithm, Vector, Set, Map, etc.</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
@@ -374,10 +387,12 @@ int main () {
 
   return 0;
 }</code></pre>
-<h3 id="problem-d-elephant"><a href="https://codeforces.com/problemset/problem/617/A" target="_blank">Problem D: Elephant</a></h3>
-<p>For this problem, the elephant can move in steps with width of 1,2,3,4 or 5. So, it is convenient move with the maximum allowed step if we want to minimize the number of steps to the elephant meet with its friend.</p>
+</div>
+<div id="problem-d-elephant" class="section level3">
+<h3><a href="https://codeforces.com/problemset/problem/617/A" target="_blank">Problem D: Elephant</a></h3>
+<p>For this problem, the elephant can move in steps with width of 1,2,3,4 or 5. So, it is convenient to move with the maximum allowed step if we want to minimize the number of steps to the elephant meet with its friend.</p>
 <p>Here the maximum allowed step if the step less or equal to current distance between the elephant and its friend.</p>
-<p>Also, we work with modular operation to faster calculate to steps.</p>
+<p>Also, we work with modular operation to calculate faster the steps.</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
@@ -398,10 +413,12 @@ int main () {
   return 0;
 }
 </code></pre>
-<h3 id="problem-e-even-odds"><a href="https://codeforces.com/problemset/problem/318/A" target="_blank">Problem E: Even Odds</a></h3>
-<p>Firstly, the problem tells us that the sequence is all odd integers from 1 to n and then all even integers from 1 to n.</p>
+</div>
+<div id="problem-e-even-odds" class="section level3">
+<h3><a href="https://codeforces.com/problemset/problem/318/A" target="_blank">Problem E: Even Odds</a></h3>
+<p>Firstly, the problem tells us that the sequence is all odd integers from 1 to n and then all even integers from 1 to n. </p>
 <p>Take care if n is even or odd. In case n is odd, we need to add one element in the odd integers block.</p>
-<p>So, we need to calculate how many odd integers we have. Then we just check that requested position is before or after of odd integers block.</p>
+<p>So, we need to calculate how many odd integers we have. Then we just check if the requested position is before or after of odd integers block.</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
@@ -421,6 +438,7 @@ int main () {
 
   return 0;
 }</code></pre>
+</div>
 </div>
 
 

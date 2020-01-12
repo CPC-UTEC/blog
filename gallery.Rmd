@@ -4,4 +4,4 @@ title: "Images"
 
 ### **First class**
 
-![](./images/first-class.jpg)
+![](./images/gallery/first-class.jpg)

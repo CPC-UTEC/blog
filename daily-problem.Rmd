@@ -6,6 +6,8 @@ title: "Daily Problem"
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
+[Daily Problem - Part I](https://vjudge.net/contest/351983)
+
 <!-- Begins problem Day 1 -->
 <div class="card">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">

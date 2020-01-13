@@ -1,0 +1,286 @@
+---
+title: "Class 02: Asymptotic Analysis"
+date: "08-01-2020"
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+> "Think Big "
+
+<div class="topic"><a href="https://vjudge.net/contest/350901">Contest</a></div>
+
+
+<!-- Begins problem A -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">A: Bit++</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/282/A" target="_blank">Problem A: Bit++</a>
+
+The problem is bassically to see if the input is either "X++", "++X", "---X" or "X---".
+
+The following code use this idea. But, we only look in the middle character because that is enough to verificate.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemA" class="collapse">
+  
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int n,x=0;
+  cin>>n;
+  string sta;
+  while(n--){
+	cin>>sta;
+	if(sta[1]=='+')
+		x++;
+	else
+		x--;
+  }
+  cout<<x<<endl;
+  return (0);
+}
+```
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+
+
+
+
+<!-- Begins problem B -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">B: Beautiful Matrix</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/263/A" target="_blank">Problem B: Beautiful Matrix</a>
+
+Here, we look for what is the difference between row position and column position of the 1 and the matrix's center (the matrix's center is in position 3 in axis x and y). 
+
+
+So, we just need to subtract in absolute value for each axis and adding them. 
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemB" class="collapse">
+  
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int num;
+  for(int i=1;i<6;i++){
+  	for(int j=1;j<6;j++){
+  		cin>>num;
+  		if(num){
+  			cout<<abs(i-3)+abs(j-3)<<endl;
+  			i=j=6;
+  		}
+  	}
+  }
+  return 0;
+}
+```
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+
+
+
+
+<!-- Begins problem C -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">C: Tram</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/116/A" target="_blank">Problem C: Tram</a>
+
+In this problem, we need to keep the maximum value of passengers in each stop. With the maximum value we can ensure the minimum capacity of the tram line.
+
+Also, the max function is a function from Algorithm package. Do not forget, if you include bits/stdc++.h, this includes a lot of packages inside. Some of them is Algorithm, Vector, Set, Map, etc. 
+
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemC" class="collapse">
+  
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int n,a,b,temp=0,maxi=0;
+  cin>>n;
+  while(n--){
+  	cin>>a>>b;
+	temp+=b-a;
+	maxi=max(maxi,temp);
+  }
+  cout<<max<<endl;
+
+  return 0;
+}
+```
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem C -->
+
+
+
+
+<!-- Begins problem D -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">D: Elephant</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemD" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/617/A" target="_blank">Problem D: Elephant</a>
+
+For this problem, the elephant can move in steps with width of 1,2,3,4 or 5. So, it is convenient to move with the maximum allowed step if we want to minimize the number of steps to the elephant meet with its friend.
+
+Here the maximum allowed step if the step less or equal to current distance between the elephant and its friend.
+
+Also, we work with modular operation to calculate faster the steps.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemD" class="collapse">
+  
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+ int x;
+ int steps=0;
+ cin>>x;
+ for(int i=5;i>0;i--){
+	if(x>=i){
+		steps+=x/i;
+		x%=i;
+				             
+    	}
+ }
+ cout<<steps<<endl;
+
+  return 0;
+}
+```
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem D -->
+
+
+
+
+<!-- Begins problem E -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemE" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">E: Even Odds</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemE" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/318/A" target="_blank">Problem E: Even Odds</a>
+
+Firstly, the problem tells us that the sequence is all odd integers from 1 to n and then all even integers from 1 to n. 
+
+Take care if n is even or odd. In case n is odd, we need to add one element in the odd integers block.
+
+So, we need to calculate how many odd integers we have. Then we just check if the requested position is before or after of odd integers block.
+
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemE" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemE" class="collapse">
+  
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+
+  long long num,k;
+  cin>>num>>k;
+  long long aux=num/2;
+  if(num%2!=0)
+     aux++;
+
+  if(k>aux)
+     cout<<2*(k-aux)<<endl;
+  else
+     cout<<2*(k-1)+1<<endl;
+
+  return 0;
+}
+```
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem E -->

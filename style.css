@@ -1,17 +1,54 @@
 body {
-  font-size: 18px;
+  font-size: 1.6rem;
+  line-height: 28px;
+}
+
+.navbar {
+  background: #9e9e9e;
+  font-size: 1.9rem;
+  font-weight: 390;
+  color: black;
+}
+
+.navbar-brand {
+  font-size: 23px;
+  font-weight: bold;
+  color: black;
 }
 
 .topic {
-  color: #388e3c;
+  color: white;
   font-size: 24px;
-  background: #b2dfdb;
+  background: #00a9c6;
   padding: 10px 10px 10px 10px;
 }
 
-.common-text {
-  line-height: 50px;
-  font-size: 20px;
+.topic a:link {
+  color: black;
+}
+
+.topic a:visited {
+  color: black;
+}
+
+.solution-title .title {
+  border-bottom: 1px dashed;
+  display: inline;
+  cursor: pointer;
+}
+
+.code-title .title {
+  display: inline;
+  cursor: pointer;
+}
+
+
+.solution-body {
+  border: 1px solid gray;
+  background-color: #def;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 5px;
 }
 
 .center-image {
@@ -21,4 +58,15 @@ body {
   width: 50%;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.virtual-judges {
+  display: inline;
+  width: 50%;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

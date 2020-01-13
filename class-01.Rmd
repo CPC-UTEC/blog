@@ -1,20 +1,22 @@
 ---
-title: "Introduction"
+title: "Class 01: Introduction"
+date: "06-01-2020"
 ---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
 
 > "Art of Thinking"
 
 <div class="topic">What is competitive programming?</div>
 
-<div class="common-text">
 1. It's a sport... **a mind sport**
 2. Participants are given problems and they have to create computer programs to solve them as quickly as they can
 3. There are many type of problems that we will learn **later**...
-</div>
 
 <div class="topic">Topics of the course</div>
 
-<div class="common-text">
 1. Asymptotic Analysis
 2. Standard Template Library (STL)
 3. Brute Force
@@ -23,42 +25,24 @@ title: "Introduction"
 6. Single Source Shortest Path (SSSP)
 7. All Pair Shortest Path (ASPSP)
 8. Minimum Spanning Tree (MST)
-</div>
 
 <div class="topic">Virtual Judges</div>
 
-<div class="center-image">
 <a href="https://codeforces.com/" target="_blank">![](./images/class-01/codeforces.png)</a>
-</div>
-
-<div class="center-image">
 <a href="https://atcoder.jp/" target="_blank">![](./images/class-01/atcoder.png)</a>
-</div>
-
-<div class="center-image">
 <a href="https://www.codechef.com/" target="_blank">![](./images/class-01/codechef.png)</a>
-</div>
-
-<div class="center-image">
 <a href="https://www.spoj.com/" target="_blank">![](./images/class-01/spoj.png)</a>
-</div>
-
-<div class="center-image">
 <a href="https://www.hackerearth.com/" target="_blank">![](./images/class-01/hackerearth.png)</a>
-</div>
 
 <div class="topic">Problem structure</div>
 
-<div class="common-text">
 * Title and limitations
 * Description
 * Input and Output (I/O)
 * Examples
-</div>
 
 ### Example
 
-<div class="common-text">
 **Problem:** You're given **n** numbers and you'd like to find a pair of numbers with the greatest sum. <br>
 
 **Constrains:** <br>
@@ -87,22 +71,17 @@ The greatest sum
 
 3
 
-</div>
-
 <div class="topic">Veredicts information</div>
 
-<div class="common-text">
 - <div style="color: green">AC - Accepted</div>
 - <div style="color: red">WA - Wrong Answer</div>
 - <div style="color: blue">TLE - Time Limit Exceeded</div>
 - <div style="color: orange">RE - Runtime Error</div>
 
 [Other veredicts](https://icpcarchive.ecs.baylor.edu/index.php?option=com_content&task=view&id=14&Itemid=30)
-</div>
 
 <div class="topic">Environment setup</div>
 
-<div class="common-text">
 1. Choose a IDE or a text editor
 
 - [CLion](https://www.jetbrains.com/es-es/clion/)
@@ -128,4 +107,198 @@ The greatest sum
 - Almost all learning resources are oriented to C++.
 - It has a strong community.
 
+<div class="topic"><a href="https://vjudge.net/contest/350658">Contest</a></div>
+
+<!-- Begins problem A -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">A: Watermelon</p>
 </div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/4/A" target="_blank">Problem A: Watermelon</a>
+
+The problem is bassically to find
+
+$a, b \mid 1 \leq a, b \leq n / 2 \land 2a + 2b = n$
+
+The following code use this idea.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA1" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemA1" class="collapse">
+  
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int n;
+  cin >> n;
+  bool ok = false;
+  for (int a = 1; a <= n / 2; a++) {
+    for (int b = 1; b <= n / 2; b++) {
+      if (2 * a + 2 * b == n) ok = true;
+    }
+  }
+  if (ok) cout << "YES\n";
+  else cout << "NO\n";
+  return (0);
+}
+```
+  </div>
+  <!-- ends code -->
+
+But, we can take $b = 1$ (why?) and realize that the problem reduces to find:
+
+$a \leq 1 \leq a \leq n / 2 \land 2a = n - 2$
+
+The following code use this idea.
+
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA2" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemA2" class="collapse">
+  
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int n;
+  cin >> n;
+  bool ok = false;
+  if (n - 2 >= 2 and n % 2 == 0) ok = true;
+  if (ok) cout << "YES\n";
+  else cout << "NO\n";
+  return (0);
+}
+```
+  </div>
+  <!-- ends code -->
+
+
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+
+
+
+
+<!-- Begins problem B -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">B: Threatre Square</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/1/A" target="_blank">Problem B: Theatre Square</a>
+
+Basically we need to find $x * y$ where
+
+$x = min\{x \mid x * a \geq n\}$
+
+$y = min\{y \mid y * a \geq m\}$
+
+Then, $$x = \lceil \frac{n}{a} \rceil \land y = \lceil \frac{m}{a} \rceil $$
+
+And there is also the property:
+
+$$\lceil a / b \rceil = \lfloor (a + b - 1) / b \rfloor$$
+
+The following code use this idea.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemB" class="collapse">
+  
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  long long n, m, a;
+  cin >> n >> m >> a;
+  long long x = (n + a - 1) / a;
+  long long y = (m + a - 1) / a;
+  cout << x * y << '\n';
+  return (0);
+}
+```
+  </div>
+  <!-- ends code -->
+
+What happen if we use `int` instead of `long long` (try $n = m = 10^9, a = 1$)
+
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+
+
+
+
+<!-- Begins problem C -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">C: Way Too Long Words</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/71/A" target="_blank">Problem C: Way Too Long Words</a>
+
+Just implement what the problem say.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemC" class="collapse">
+  
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int tc;
+  cin >> tc;
+  while (tc--) {
+    string s;
+    cin >> s;
+    if (s.size() > 10) cout << s.front() << s.size() - 2 << s.back() << '\n';
+    else cout << s << '\n';
+  }
+  return (0);
+}
+```
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem C -->

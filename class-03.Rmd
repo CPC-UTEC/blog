@@ -1,0 +1,332 @@
+---
+title: "Clase 03: STL"
+date: "13-01-2020"
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+> "Don't reinvent the wheel!"
+
+
+<div class="topic">Standard Template Library (STL) </div>
+
+STL is a collection of libraries of C++ that we can use in the contests. It
+gives us common data structures (array, stack, set, priority_queue, map, ...), 
+common algorithms (sort, next_permutation, binary_search, lower_bound,
+upper_bound), common functions (input-output (I/O), sqrt, pow, abs, min, max, ...)
+
+First of all, lets understand what happens in a simple hello world program.
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  cout << "Hello World!" << '\n';
+  return 0;
+}
+```
+
+(The explanation will be given in class)
+
+Extra: You can also practice competitive programming in other languages.
+
+Examples:
+
+- [Petr](https://codeforces.com/submissions/Petr/page/3)
+
+- [pajenegod](https://codeforces.com/submissions/pajenegod)
+
+But, as mentioned in the first class, C++ is usually better for its efficiency
+and simplicity.
+
+<div class="topic">Numeric data types and its operations</div>
+
+### Tipos de datos enteros
+- `int` $[-2^{31}, 2^{31}) \approx [-10^9, 10^9]$
+- `long long` $[-2^{63}, 2^{63}) \approx [-10^{18}, 10^{18}]$
+
+### Tipos de datos flotantes
+- float
+- double
+- long double
+
+### Operaciones aritméticas
+- addition: x + y
+- subtraction: x - y
+- multiplication: x * y (what happens if $x = y = 10^9$ and `x` and `y` are `int`)
+- division: x / y (take care if `x`, `y` are `int` and you want the result in `float`)
+- exponenciation: pow(x, y) (the output is in `double`)
+- module: a % b (what happens if `b` is zero? why?)
+
+### Order or precedence
+
+`int < long long < float < double < long double`
+
+Examples:
+
+```c++
+int x = 1;
+long long y = 8;
+auto z = x + y; // long long
+```
+
+```c++
+int x = 1;
+float y = 8;
+auto z = x + y; // float
+```
+
+<div class="topic">String</div>
+
+Another useful data type is `string`.
+
+In [cplusplus.com](http://www.cplusplus.com/reference/string/string/) you will
+find a reference of how to work with strings.
+
+[Example](./code/class-02/string.cpp)
+
+```c++
+string s;
+// input
+cin >> s; // In the same way you can read a int, long long, float, ...
+// You can iterate it in this way
+for (int i = 0; i < s.size(); i++) {
+  // s[i]: get the i-th element
+  cout << s[i] << '\n'; // In the same way you can output a int, long long, float, ...
+}
+s[2] = 'b'; // modify the element in position 2
+// You can also print the whole string
+cout << s << '\n';
+// Yout can also iterate in this way
+for (char elem: s) {
+  cout << elem;
+}
+cout << '\n'; // what happens without this line ?
+s += 'a'; // you can add append a letter or string
+cout << s.substr(2, 2) << '\n'; // what does this function do ?
+// The comparisson is like this (take care of not using just one '=' )
+if (s == "hola") cout << "ok" << '\n';
+```
+
+<div class="topic">Vector</div>
+
+You will need a vector in almost all of your contests, so its very important to
+know how to use it.
+
+In [cplusplus.com](http://www.cplusplus.com/reference/vector/vector/) you will
+find a reference of how to work with vectors.
+
+[Example](./code/class-02/vector.cpp)
+
+```c++
+vector <int> arr;
+// Add a element to the end of the vector - O(1)
+arr.push_back(123);
+arr.push_back(987);
+arr.push_back(343);
+arr.push_back(134);
+arr.push_back(345);
+// Delete the last element - O(1)
+arr.pop_back();
+// Insert a element in the i-th position - O(n)
+int i = 2;
+arr.insert(begin(arr) + i, 234);
+// Delete a element in the i-th position - O(n)
+i = 1;
+arr.erase(begin(arr) + i);
+// Copy the vector - O(n)
+vector <int> arrCopy = arr;
+// We can iterate a vector in this way
+for (int arr_i: arr) {
+  // do something
+}
+// We can also use 'auto'
+for (auto elem: arr) {
+  cout << elem << '\n';
+}
+// We can also iterate in this way
+// arr.size() returns the number of element of the vector - O(1)
+for (int i = 0; i < arr.size(); i++) {
+  // arr[i]: get the i-th element - O(1)
+  cout << arr[i] << '\n';
+}
+// Delete all the elements - O(n)
+arr.clear();
+```
+
+You can find the more common methods of vectors and its complexity in this image.
+
+![](./images/class-02/vector.jpg)
+
+A [deque](http://www.cplusplus.com/reference/deque/deque/) gives us all the
+methods of a vector and two more:
+
+- push_front: Insert a element in the begining O(1)
+
+- pop_front: Erase the first element O(1)
+
+Read what these functions do:
+
+* [`min_element`](http://www.cplusplus.com/reference/algorithm/min_element/)
+* [`sort`](http://www.cplusplus.com/reference/algorithm/sort/)
+* [`fill`](http://www.cplusplus.com/reference/algorithm/fill/)
+* [`reverse`](http://www.cplusplus.com/reference/algorithm/reverse/)
+* [`random_shuffle`](http://www.cplusplus.com/reference/algorithm/random_shuffle/)
+* [`unique`](http://www.cplusplus.com/reference/algorithm/unique/)
+* [`count`](http://www.cplusplus.com/reference/algorithm/count/)
+
+Question: How would you declare a matrix ?
+
+<div class="topic">Set</div>
+In [cplusplus.com](http://www.cplusplus.com/reference/set/set/) you will find
+a reference of how to work with sets.
+
+[Example](./code/class-02/set.cpp)
+
+```c++
+set <int> S;
+// Insert a element - O(log n)
+S.insert(3);
+S.insert(4);
+S.insert(-100);
+S.insert(-345);
+// The elements are stored in ascending order
+for (auto x: S) {
+  cout << x << endl;
+}
+// Check if a element is in the set - O(log n)
+if (S.count(4) > 0) {
+  cout << "4 is in S\n";
+}
+// You can also check that using the method find
+if (S.find(4) != end(S)) {
+  cout << "4 is in S" << endl;
+}
+// Delete a elemento - O(log n)
+S.erase(4);
+// You can also delete in this way
+S.erase(S.find(-100));
+// If we store the iterator - O(log n)
+// auto it = S.find(val) - O(log n)
+// Then we can erase the element - O(1)
+// S.erase(it)
+```
+
+You can find the more common methods of sets and its complexity in this image.
+
+![](./images/class-02/set.jpg)
+
+
+Read about [multisets](http://www.cplusplus.com/reference/set/multiset/).
+
+<div class="topic">Map</div>
+
+In [cplusplus.com](http://www.cplusplus.com/reference/map/map/) you will find
+a reference of how to work with maps.
+
+[Example](./code/class-02/map.cpp)
+
+```c++
+map <string, int> my_map;
+// Insert a element - O(log n)
+my_map["hola"] = 1;
+my_map["mundo"] = 5;
+// The elements are stored in ascending order
+for (auto x: my_map) {
+  cout << x.first << ' ' << x.second << endl;
+}
+// Check if a element is in the map - O(log n)
+if (my_map.count("hola") > 0) {
+  cout << "4 is in my_map\n";
+}
+// You can also check that using the method find
+if (my_map.find("hola") != end(my_map)) {
+  cout << "4 is in my_map" << endl;
+}
+my_map["hola"] = 10;
+for (auto x: my_map) {
+  cout << x.first << ' ' << x.second << '\n';
+}
+// Delete a elemento - O(log n)
+my_map.erase("hola");
+// You can also delete in this way
+my_map.erase(my_map.find("mundo"));
+// If we store the iterator - O(log n)
+// auto it = my_map.find(val) - O(log n)
+// Then we can erase the element - O(1)
+// my_map.erase(it)
+```
+
+The complexity of its operations is the same of a set.
+
+<div class="topic">Struct</div>
+
+With a `struct` we can create our own data type which can encapsulate other
+data type.
+
+[Example](./code/class-02/struct.cpp)
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct MyStructure {
+  // we can declare attributes of different types
+  int var1;
+  double var2;
+  string var3;
+  MyStructure (int var1, double var2, string _var3):
+    var1(var1),
+    var2(var2) { // we can initialize the variables in this way
+      var3 = _var3; // ot in this way
+    }
+  void my_method () {
+    cout << var1 << ' ' << var2 << ' ' << var3 << '\n';
+  }
+};
+
+int main () {
+  MyStructure structure(18, 20.7, "hello world!");
+  structure.my_method(); // cal a method
+  structure.var1 = 19; // access an attribute
+  cout << structure.var3 << '\n';
+  return (0);
+}
+```
+
+Read about [pair](http://www.cplusplus.com/reference/utility/pair/).
+
+Read  [Antti  Laaksonen.Competitive  programmer’s  handbook - chapter
+1 y 4](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf). Section 1.4 will help you understand common practice that you will find in competitive programming (which you eventually will use) and in Chapter 4 you will see more examples of how yo use `vector`, `set`, `map` and much more.
+
+You may also be interested in reading:
+
+- [Competitive C++ Manifesto: A Style Guide](https://codeforces.com/blog/entry/64218)
+
+- [TopCoder - Power up C++ with the Standard Template Library - Part
+  I](https://www.topcoder.com/community/competitive-programming/tutorials/power-up-c-with-the-standard-template-library-part-1/)
+
+<div class=topic><a href="https://vjudge.net/contest/351569">Contest</a></div>
+
+
+<!-- Begins problem A -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Solutions</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div class="card-body solution-body">
+
+  The solutions will be posted after the contest.
+
+</div>
+</div>
+</div>
+<!-- ends problem A -->

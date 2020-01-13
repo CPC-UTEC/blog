@@ -2,6 +2,8 @@
 title: "Schedule"
 ---
 
+[PDF version](./schedule.pdf)
+
 ## **Topics**
   - Asymptotic Analysis
   - Standard Template Library (STL)

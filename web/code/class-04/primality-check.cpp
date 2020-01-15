@@ -23,7 +23,7 @@ bool isPrime2 (int n) {
 
 int main () {
   for (int n: {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13}) {
-    printf("isPrime1(%2d) = %2d ------ isPrime2(%2d) = %2d\n", n, isPrime2(n), n, isPrime2(n));
+    printf("isPrime1(%2d) = %d ------ isPrime2(%2d) = %d\n", n, isPrime2(n), n, isPrime2(n));
   }
   return (0);
 }

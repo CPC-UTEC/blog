@@ -183,4 +183,47 @@ bool isPrime2 (int n) {
 
 <div class="topic">Sieve of Eratosthenes</div>
 
+We want to solve the same problem of the previous section but now we want to
+be able to handle multiples queries in a optimal way. Then, we want to store
+an array where we can get wheter or not a number is prime.
+
+We can use a simple idea to achieve that. We will initiate with an array where
+every element is true (it will represent if the number is prime or not). Then
+we will iterate from $2$ to $n$ and every time we find a prime number, we set
+to false its multiples that are greater than it.
+
+As every prime number have only two divisors (1 and itself), and we are
+iterating from the number 2, then when we are in the number $i$ in the
+iteration if $i$ is a prime number it will be set to true, else $\exists \, p$
+(prime) $: p < i \land p | i$, so the array will already be set to false in
+that position.
+
+We can use this idea and implement an algorithm two obtain such array. The
+special cases (i.e $n = 0 \lor n = 1$) can be handle easily. The complexity of
+this solution is $O(n \log \log n)$.
+
+```c++
+vector <bool> sieve (int n) {
+  vector <bool> is_prime(n + 1, true);
+  is_prime[0] = is_prime[1] = false;
+  for (int i = 2; i <= n; i++) {
+    if (!is_prime[i]) continue;
+    for (int j = 2 * i; j <= n; j += i) {
+      is_prime[j] = false;
+    }
+  }
+  return is_prime;
+}
+```
+
+[Full code](./code/class-04/sieve-of-eratosthenes.cpp)
+
+<div class="topic">Finding the number of divisors of a number</div>
+
+In process...
+
+<div class="topic">$\sigma_{0}(n) = O(\sqrt[3]{n})$ </div>
+
+In process..
+
 <div class=topic><a href="">Contest</a></div>

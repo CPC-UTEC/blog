@@ -438,6 +438,30 @@ Primality Test
 <div class="topic">
 Sieve of Eratosthenes
 </div>
+<p>We want to solve the same problem of the previous section but now we want to be able to handle multiples queries in a optimal way. Then, we want to store an array where we can get wheter or not a number is prime.</p>
+<p>We can use a simple idea to achieve that. We will initiate with an array where every element is true (it will represent if the number is prime or not). Then we will iterate from <span class="math inline">\(2\)</span> to <span class="math inline">\(n\)</span> and every time we find a prime number, we set to false its multiples that are greater than it.</p>
+<p>As every prime number have only two divisors (1 and itself), and we are iterating from the number 2, then when we are in the number <span class="math inline">\(i\)</span> in the iteration if <span class="math inline">\(i\)</span> is a prime number it will be set to true, else <span class="math inline">\(\exists \, p\)</span> (prime) <span class="math inline">\(: p &lt; i \land p | i\)</span>, so the array will already be set to false in that position.</p>
+<p>We can use this idea and implement an algorithm two obtain such array. The special cases (i.e <span class="math inline">\(n = 0 \lor n = 1\)</span>) can be handle easily. The complexity of this solution is <span class="math inline">\(O(n \log \log n)\)</span>.</p>
+<pre class="cpp"><code>vector &lt;bool&gt; sieve (int n) {
+  vector &lt;bool&gt; is_prime(n + 1, true);
+  is_prime[0] = is_prime[1] = false;
+  for (int i = 2; i &lt;= n; i++) {
+    if (!is_prime[i]) continue;
+    for (int j = 2 * i; j &lt;= n; j += i) {
+      is_prime[j] = false;
+    }
+  }
+  return is_prime;
+}</code></pre>
+<p><a href="./code/class-04/sieve-of-eratosthenes.cpp">Full code</a></p>
+<div class="topic">
+Finding the number of divisors of a number
+</div>
+<p>In process…</p>
+<div class="topic">
+<span class="math inline">\(\sigma_{0}(n) = O(\sqrt[3]{n})\)</span>
+</div>
+<p>In process..</p>
 <div class="topic">
 <a href="">Contest</a>
 </div>

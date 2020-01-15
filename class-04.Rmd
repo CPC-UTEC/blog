@@ -1,0 +1,123 @@
+---
+title: "Clase 04: Brute Force"
+date: "13-01-2020"
+---
+
+> "Union make Force"
+
+
+<div class="topic">Force Brute </div>
+
+Likely, "force brute" is the first solution who someone can build for almost all problem.
+
+
+But there exists anothers techniques (Divide and Conquer, Greedy, Dynamic Programming). We will return to talk about theses topics more later.
+
+
+Force brute is an approach that you need to do a complete search for all search space and picking the best one. Here, we talk search space to all feasible solutions or domain through one algorithm searches. Actually, it really simple understand what happend with this technique, but this has got several optimizations depending of the problems.
+
+A little example to apply force brute;
+- CodeChef Problem: [Smiling Queen](https://www.codechef.com/problems/QM6P5A)
+
+```c++
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define REP(i,a,b) for(int i=a;i<b;i++)
+
+int main(){
+
+  int t,s;
+  cin>>t;
+  string line,word,ans;
+  while(t--){
+
+    unordered_map<string,bool> dict;
+
+    cin>>s;
+    //This sentence helps us to ommit the '\n' command and not getting it for getline later
+    cin.ignore();
+
+    //Useful macro
+    vector<string> stringnos;
+
+    int cont=0;
+
+    REP(i,0,s){
+
+      //Get the sentence
+      getline(cin,line);
+      //Get the answer if she smile or not
+      getline(cin,ans);
+
+      //Create a vector to keep the sentences when the answer is "no smile"
+
+      if(ans=="yes"){
+        stringstream s(line);
+        //In first moment, all words make happy to her
+        while(s>>word){
+          //look if the word is already true for no repetition counting
+          if(!dict[word]){
+            dict[word]=1;
+            cont++;
+          }
+        }
+      }
+      else
+        stringnos.push_back(line);
+    }
+
+    //Changing the words when she is not smile
+    for(string &l:stringnos){
+      stringstream s(l);
+      while(s>>word){
+        if(dict[word])
+          cont--;
+        dict[word]=0;
+      }
+    }
+    cout<<cont<<endl;
+
+  }
+
+  return 0;
+}
+```
+
+
+<div class="topic">Pythagorean Triple</div>
+
+A Pythagorean Triple is a set of solutions in form (x,y,z) for the equation x^2 + y^2 = z^2. Each value is inside positive integers.
+
+The smallest and best-known Pythagorean triple is (a,b,c)=(3,4,5).
+
+Properties:
+
+Since x,y and z, positive integers.
+It is possible to change the expressions as to below:
+
+x=2mn, y=m^2-n^2, z=m^2-n^2.
+
+where m and n are relatively-prime positive integers, and m>n.
+
+Also, a pythagorean triple is called primitive, if gcd(x,y,z)=1.
+
+
+
+-------------------FOR CHANGE--------------
+
+Read  [Antti  Laaksonen.Competitive  programmer’s  handbook - chapter
+1 y 4](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf). Section 1.4 will help you understand common practice that you will find in competitive programming (which you eventually will use) and in Chapter 4 you will see more examples of how yo use `vector`, `set`, `map` and much more.
+
+You may also be interested in reading:
+
+- [Competitive C++ Manifesto: A Style Guide](https://codeforces.com/blog/entry/64218)
+
+- [TopCoder - Power up C++ with the Standard Template Library - Part
+  I](https://www.topcoder.com/community/competitive-programming/tutorials/power-up-c-with-the-standard-template-library-part-1/)
+
+<div class=topic><a href="https://vjudge.net/contest/351569">Contest</a></div>
+
+The solutions will be posted after the contest.
+

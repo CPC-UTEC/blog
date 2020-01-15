@@ -18,3 +18,4 @@ images](./gallery.html)
 
 ### *Week 2*
 - [Class 03 - Don't reinvent the wheel](./class-03.html)
+- [Class 04 - Try every possibility](./class-04.html)

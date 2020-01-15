@@ -11,9 +11,10 @@
 
 
 
-<title>Images</title>
+<title>Daily Problem</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -22,6 +23,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -312,14 +315,94 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Images</h1>
+<h1 class="title toc-ignore">Daily Problem</h1>
 
 </div>
 
 
-<div id="first-class" class="section level3">
-<h3><strong>First class</strong></h3>
-<p><img src="images/gallery/first-class.jpg" /></p>
+<div id="daily-problem---part-i" class="section level3">
+<h3><a href="https://vjudge.net/contest/351983">Daily Problem - Part I</a></h3>
+<!-- Begins problem 02 -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem02" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 02: Prime Subtraction
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem02" class="collapse">
+<div id="day-02-prime-subtraction" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/contest/1238/problem/A" target="_blank">Day 02: Prime Subtraction</a></h3>
+<p>First try it by yourself.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem02" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblem02" class="collapse">
+<pre class="cpp"><code>// TO DO</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem 02 -->
+<!-- Begins problem 01 -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem01" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 01: Superhero Transformation
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem01" class="collapse">
+<div id="day-01-superhero-transformation" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1111/A" target="_blank">Day 01: Superhero Transformation</a></h3>
+<p>Let <span class="math inline">\(f(c) = 1\)</span> if <code>c</code> is as vowel and <span class="math inline">\(f(c) = 0\)</span> otherwise. Then, the answer is true iff <span class="math inline">\(|s| = |t| \land f(s[i]) = f(t[i]) \quad \forall i \in [0, n)\)</span>.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem01" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblem01" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int f (char c) {
+  if (c == &#39;a&#39; or c == &#39;e&#39; or c == &#39;i&#39; or c == &#39;o&#39; or c == &#39;u&#39;) return 1;
+  return 0;
+}
+
+int main () {
+  string s, t;
+  cin &gt;&gt; s &gt;&gt; t;
+  if (s.size() != t.size()) {
+    cout &lt;&lt; &quot;No&quot; &lt;&lt; &#39;\n&#39;;
+    return (0);
+  }
+  bool ok = true;
+  for (int i = 0; i &lt; s.size(); i++) {
+    if (f(s[i]) != f(t[i])) ok = false;    
+  }
+  if (ok) cout &lt;&lt; &quot;Yes\n&quot;;
+  else cout &lt;&lt; &quot;No\n&quot;;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem 01 -->
 </div>
 
 <footer>

@@ -1,4 +1,5 @@
 name: "Competitive Programming UTEC"
+exclude: ["*.sh", "*.txt"]
 navbar:
   title: "CP UTEC"
   left:
@@ -11,9 +12,12 @@ navbar:
           href: class-01.html
         - text: Think Big
           href: class-02.html
+        - text: Week 2
         - text: Don't reinvent the wheel!
           href: class-03.html
   right:
+    - text: "Daily Problem"
+      href: daily-problem.html
     - text: "Gallery"
       href: gallery.html
 output_dir: "web"
@@ -22,3 +26,5 @@ output:
     theme: yeti
     highlight: textmate
     css: style.css
+    include:
+      after_body: footer.html

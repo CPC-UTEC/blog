@@ -22,6 +22,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -289,6 +291,7 @@ $(document).ready(function () {
     <li>
       <a href="class-02.html">Think Big</a>
     </li>
+    <li class="dropdown-header">Week 2</li>
     <li>
       <a href="class-03.html">Don't reinvent the wheel!</a>
     </li>
@@ -297,6 +300,9 @@ $(document).ready(function () {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="daily-problem.html">Daily Problem</a>
+</li>
+<li>
   <a href="gallery.html">Gallery</a>
 </li>
       </ul>
@@ -528,6 +534,38 @@ my_map.erase(my_map.find(&quot;mundo&quot;));
 // Then we can erase the element - O(1)
 // my_map.erase(it)</code></pre>
 <p>The complexity of its operations is the same of a set.</p>
+<div class="topic">
+Struct
+</div>
+<p>With a <code>struct</code> we can create our own data type which can encapsulate other data type.</p>
+<p><a href="./code/class-02/struct.cpp">Example</a></p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+struct MyStructure {
+  // we can declare attributes of different types
+  int var1;
+  double var2;
+  string var3;
+  MyStructure (int var1, double var2, string _var3):
+    var1(var1),
+    var2(var2) { // we can initialize the variables in this way
+      var3 = _var3; // ot in this way
+    }
+  void my_method () {
+    cout &lt;&lt; var1 &lt;&lt; &#39; &#39; &lt;&lt; var2 &lt;&lt; &#39; &#39; &lt;&lt; var3 &lt;&lt; &#39;\n&#39;;
+  }
+};
+
+int main () {
+  MyStructure structure(18, 20.7, &quot;hello world!&quot;);
+  structure.my_method(); // cal a method
+  structure.var1 = 19; // access an attribute
+  cout &lt;&lt; structure.var3 &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+<p>Read about <a href="http://www.cplusplus.com/reference/utility/pair/">pair</a>.</p>
 <p>Read <a href="https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf">Antti Laaksonen.Competitive programmer’s handbook - chapter 1 y 4</a>. Section 1.4 will help you understand common practice that you will find in competitive programming (which you eventually will use) and in Chapter 4 you will see more examples of how yo use <code>vector</code>, <code>set</code>, <code>map</code> and much more.</p>
 <p>You may also be interested in reading:</p>
 <ul>
@@ -537,9 +575,28 @@ my_map.erase(my_map.find(&quot;mundo&quot;));
 <div class="topic">
 <a href="https://vjudge.net/contest/351569">Contest</a>
 </div>
+<!-- Begins problem A -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Solutions
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div class="card-body solution-body">
 <p>The solutions will be posted after the contest.</p>
 </div>
+</div>
+</div>
+<!-- ends problem A -->
+</div>
 
+<footer>
+  <p>Copyright &copy; 2020 Competitive Programming UTEC</p>
+</footer>
 
 
 

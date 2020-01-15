@@ -1,11 +1,11 @@
 body {
-  font-size: 18px;
+  font-size: 1.6rem;
   line-height: 28px;
 }
 
 .navbar {
   background: #9e9e9e;
-  font-size: 19px;
+  font-size: 1.9rem;
   font-weight: 390;
   color: black;
 }
@@ -31,6 +31,25 @@ body {
   color: black;
 }
 
+.solution-title .title {
+  border-bottom: 1px dashed;
+  display: inline;
+  cursor: pointer;
+}
+
+.code-title .title {
+  display: inline;
+  cursor: pointer;
+}
+
+
+.solution-body {
+  border: 1px solid gray;
+  background-color: #def;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 5px;
+}
 
 .center-image {
   display: block;
@@ -41,7 +60,13 @@ body {
   padding-bottom: 10px;
 }
 
-.virtual-judges{
+.virtual-judges {
   display: inline;
   width: 50%;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

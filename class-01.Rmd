@@ -3,6 +3,10 @@ title: "Class 01: Introduction"
 date: "06-01-2020"
 ---
 
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
 > "Art of Thinking"
 
 <div class="topic">What is competitive programming?</div>
@@ -105,6 +109,16 @@ The greatest sum
 
 <div class="topic"><a href="https://vjudge.net/contest/350658">Contest</a></div>
 
+<!-- Begins problem A -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">A: Watermelon</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div class="card-body solution-body">
+
 ### <a href="https://codeforces.com/problemset/problem/4/A" target="_blank">Problem A: Watermelon</a>
 
 The problem is bassically to find
@@ -113,6 +127,13 @@ $a, b \mid 1 \leq a, b \leq n / 2 \land 2a + 2b = n$
 
 The following code use this idea.
 
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA1" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemA1" class="collapse">
+  
 ```c++
 #include <bits/stdc++.h>
 
@@ -132,6 +153,8 @@ int main () {
   return (0);
 }
 ```
+  </div>
+  <!-- ends code -->
 
 But, we can take $b = 1$ (why?) and realize that the problem reduces to find:
 
@@ -139,6 +162,14 @@ $a \leq 1 \leq a \leq n / 2 \land 2a = n - 2$
 
 The following code use this idea.
 
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA2" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemA2" class="collapse">
+  
 ```c++
 #include <bits/stdc++.h>
 
@@ -154,6 +185,28 @@ int main () {
   return (0);
 }
 ```
+  </div>
+  <!-- ends code -->
+
+
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+
+
+
+
+<!-- Begins problem B -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">B: Threatre Square</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div class="card-body solution-body">
+
 ### <a href="https://codeforces.com/problemset/problem/1/A" target="_blank">Problem B: Theatre Square</a>
 
 Basically we need to find $x * y$ where
@@ -170,6 +223,13 @@ $$\lceil a / b \rceil = \lfloor (a + b - 1) / b \rfloor$$
 
 The following code use this idea.
 
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemB" class="collapse">
+  
 ```c++
 #include <bits/stdc++.h>
 
@@ -184,13 +244,40 @@ int main () {
   return (0);
 }
 ```
+  </div>
+  <!-- ends code -->
 
 What happen if we use `int` instead of `long long` (try $n = m = 10^9, a = 1$)
+
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+
+
+
+
+<!-- Begins problem C -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">C: Way Too Long Words</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div class="card-body solution-body">
 
 ### <a href="https://codeforces.com/problemset/problem/71/A" target="_blank">Problem C: Way Too Long Words</a>
 
 Just implement what the problem say.
 
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemC" class="collapse">
+  
 ```c++
 #include <bits/stdc++.h>
 
@@ -208,3 +295,10 @@ int main () {
   return (0);
 }
 ```
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem C -->

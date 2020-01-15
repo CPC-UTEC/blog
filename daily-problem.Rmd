@@ -1,0 +1,102 @@
+---
+title: "Daily Problem"
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+### [Daily Problem - Part I](https://vjudge.net/contest/351983)
+
+
+<!-- Begins problem 02 -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem02" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Day 02: Prime Subtraction</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem02" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/contest/1238/problem/A" target="_blank">Day 02: Prime Subtraction</a>
+
+First try it by yourself.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem02" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblem02" class="collapse">
+
+```c++
+// TO DO
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem 02 -->
+
+
+
+
+<!-- Begins problem 01 -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem01" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Day 01: Superhero Transformation</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem01" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/1111/A" target="_blank">Day 01: Superhero Transformation</a>
+
+Let $f(c) = 1$ if `c` is as vowel and $f(c) = 0$ otherwise. Then, the answer is
+true iff $|s| = |t| \land f(s[i]) = f(t[i]) \quad \forall i \in [0, n)$.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem01" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblem01" class="collapse">
+  
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int f (char c) {
+  if (c == 'a' or c == 'e' or c == 'i' or c == 'o' or c == 'u') return 1;
+  return 0;
+}
+
+int main () {
+  string s, t;
+  cin >> s >> t;
+  if (s.size() != t.size()) {
+    cout << "No" << '\n';
+    return (0);
+  }
+  bool ok = true;
+  for (int i = 0; i < s.size(); i++) {
+    if (f(s[i]) != f(t[i])) ok = false;    
+  }
+  if (ok) cout << "Yes\n";
+  else cout << "No\n";
+  return (0);
+}
+```
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem 01 -->

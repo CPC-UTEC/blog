@@ -407,12 +407,40 @@ Pythagorean triples
 <div class="topic">
 Primality Test
 </div>
-<p>Given a number n, check if it is prime or not. A prime number is a natural number greater than 1 that has not got positive divisors other than 1 and itself. First prime numbers are 2,3,5,7,11,13,…</p>
+<p><strong>Problem:</strong> Given a number <span class="math inline">\(n\)</span>, determine if it is prime or not,</p>
+<p><strong>Definition:</strong> A prime number is a natural number that have exactly two divisors. The first prime numbers are <span class="math inline">\(2, 3, 5, 7, 11, 13, \dots\)</span></p>
+<div id="first-solution-1" class="section level4">
+<h4>First solution</h4>
+<p>We can use the given definition and implement a <span class="math inline">\(O(n)\)</span> solution.</p>
+<pre class="cpp"><code>bool isPrime1 (int n) {
+  int n_div = 0;
+  for (int d = 1; d &lt;= n; d++) {
+    if (n % d == 0) n_div++;
+  }
+  return (n_div == 2);
+}</code></pre>
+</div>
+<div id="second-solution-1" class="section level4">
+<h4>Second solution</h4>
+<p>We notice that if <span class="math inline">\(d | n \to (n / d) | n\)</span>. Moreover: <span class="math display">\[\text{If } d \not = \sqrt{n} \to (d &lt; \sqrt{n} &lt; (n / d)) \lor ((n / d) &lt; \sqrt{n} &lt; d)\]</span></p>
+<p>So we can assume <span class="math inline">\(d &lt; (n / d)\)</span> iterate for every <span class="math inline">\(d &lt; \sqrt{n}\)</span> and if <span class="math inline">\(d | n\)</span> count two more divisors (<span class="math inline">\(d, n / d\)</span>) and handle the special case <span class="math inline">\(d = \sqrt{n}\)</span>. In this way we can count the number of divisors of <span class="math inline">\(n\)</span> and check if a number if prime in <span class="math inline">\(O(\sqrt{n})\)</span>.</p>
+<pre class="cpp"><code>bool isPrime2 (int n) {
+  int n_div = 0;
+  for (int d = 1; d * d &lt;= n; d++) {
+    if (n % d == 0) {
+      n_div++;
+      if (n / d != d) n_div++;
+    }
+  }
+  return (n_div == 2);
+}</code></pre>
+<p><a href="./code/class-04/primality-check.cpp">Full code</a></p>
 <div class="topic">
 Sieve of Eratosthenes
 </div>
 <div class="topic">
 <a href="">Contest</a>
+</div>
 </div>
 </div>
 

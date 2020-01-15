@@ -138,8 +138,48 @@ int solution3 (int n) {
 [Full code](./code/class-04/pythagorean-triple.cpp)
 
 <div class="topic">Primality Test</div>
-Given a number n, check if it is prime or not. A prime number is a natural number greater than 1 that has not got positive divisors other than 1 and itself.
-First prime numbers are 2,3,5,7,11,13,...
+
+**Problem:** Given a number $n$, determine if it is prime or not,
+
+**Definition:** A prime number is a natural number that have exactly two divisors. The first prime numbers are $2, 3, 5, 7, 11, 13, \dots$
+
+#### First solution
+
+We can use the given definition and implement a $O(n)$ solution.
+
+```c++
+bool isPrime1 (int n) {
+  int n_div = 0;
+  for (int d = 1; d <= n; d++) {
+    if (n % d == 0) n_div++;
+  }
+  return (n_div == 2);
+}
+```
+
+
+#### Second solution
+We notice that if $d | n \to (n / d) | n$. Moreover: 
+$$\text{If } d \not = \sqrt{n} \to (d < \sqrt{n} < (n / d)) \lor ((n / d) < \sqrt{n} < d)$$
+
+So we can assume $d < (n / d)$ iterate for every $d < \sqrt{n}$ and if $d | n$
+count two more divisors ($d, n / d$) and handle the special case $d
+= \sqrt{n}$. In this way we can count the number of divisors of $n$ and check if a number if prime in $O(\sqrt{n})$.
+
+```c++
+bool isPrime2 (int n) {
+  int n_div = 0;
+  for (int d = 1; d * d <= n; d++) {
+    if (n % d == 0) {
+      n_div++;
+      if (n / d != d) n_div++;
+    }
+  }
+  return (n_div == 2);
+}
+```
+
+[Full code](./code/class-04/primality-check.cpp)
 
 <div class="topic">Sieve of Eratosthenes</div>
 

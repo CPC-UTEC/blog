@@ -58,7 +58,7 @@ First try it by yourself.
 ### <a href="https://codeforces.com/contest/1238/problem/A" target="_blank">Day 02: Prime Subtraction</a>
 
 If $x - y = 1$ then the answer is no, else, by the fundamental theorem of
-arithmetic $\exists \, p$ primo $: p | (x - y)$. So, the answer is yes.
+arithmetic $\exists \, p$ prime $: p | (x - y)$. So, the answer is yes.
 
   <!-- begin code -->
   <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem02" aria-expanded="false" aria-controls="collapseTwo">

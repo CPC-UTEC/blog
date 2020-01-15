@@ -582,17 +582,248 @@ int main () {
 <!-- title -->
 <i class="fas fa-caret-right"></i>
 <p class="title">
-Solutions
+A: Chat Server’s Outgoing Traffic
 </p>
 </div>
 <!-- begin body -->
 <div id="collapseProblemA" class="collapse">
-<div class="card-body solution-body">
-<p>The solutions will be posted after the contest.</p>
+<div id="problem-a-chat-servers-outgoing-traffic" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/contest/5/problem/A" target="_blank">Problem A: Chat Server’s Outgoing Traffic</a></h3>
+<p>Just implement what the problem says.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemA" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int ans = 0;
+  int cur = 0;
+  string s;
+  while (getline(cin, s)) {
+    if (s[0] == &#39;+&#39;) {
+      cur++;
+    } else if (s[0] == &#39;-&#39;) {
+      cur--;
+    } else {
+      int pos = 0;
+      while (s[pos] != &#39;:&#39;) pos++;
+      ans += (sz(s) - pos - 1) * cur;
+    }
+  }
+  cout &lt;&lt; ans &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
 </div>
 </div>
 </div>
 <!-- ends problem A -->
+<!-- Begins problem B -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+B: Counting-out Rhyme
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div id="problem-b-counting-out-rhyme" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/792/B" target="_blank">Problem B: Counting-out Rhyme</a></h3>
+<p>The constraints are small, just simulate what the problem says.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemB" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n, k;
+  cin &gt;&gt; n &gt;&gt; k;
+  vector &lt;int&gt; arr(n);
+  iota(all(arr), 1);
+  int cur = 0;
+  for (int i = 0; i &lt; k; i++) {
+    int a;
+    cin &gt;&gt; a;
+    a %= sz(arr);
+    while (a--) cur = (cur + 1) % sz(arr);
+    cout &lt;&lt; arr[cur] &lt;&lt; &#39; &#39;;
+    arr.erase(begin(arr) + cur);
+    cur %= sz(arr);
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+<!-- Begins problem C -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+C: Shuffle Hashing
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div id="problem-c-shuffle-hashing" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1278/A" target="_blank">Problem C: Shuffle Hashing</a></h3>
+<p>If you can construct <code>h</code> from <code>p</code>, then <span class="math inline">\(\exists s_1, s_2, q \mid h = s_1 + q + s_2\)</span></p>
+<p>Then <span class="math inline">\(h[n:n + m] = q\)</span> where <code>n</code> is the length <span class="math inline">\(s_1\)</span> and <code>m</code> the length of<code>p</code>. Then <span class="math inline">\(sort(h[n:n + m]) = sort(p)\)</span>. So, we just need to check if that is true for some value of <span class="math inline">\(n\)</span>.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemC" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int tc;
+  cin &gt;&gt; tc;
+  while (tc--) {
+    string p, h;
+    cin &gt;&gt; p &gt;&gt; h;
+    bool ok = false;
+    sort(all(p));
+    for (int i = 0; i &lt; sz(h); i++) {
+      string x = h.substr(i, sz(p));
+      sort(all(x));
+      if (x == p) ok = true;
+    }
+    if (ok) cout &lt;&lt; &quot;YES\n&quot;;
+    else cout &lt;&lt; &quot;NO\n&quot;;
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem C -->
+<!-- Begins problem D -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+D: Free spots
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemD" class="collapse">
+<div id="problem-d-free-spots" class="section level3 card-body solution-body">
+<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1644" target="_blank">Problem D: Free spots</a></h3>
+<p>For each test we can create a matrix of booleans initialized of false’s. Then, for each query <span class="math inline">\(x_1, y_1, x_2, y_3\)</span> we set to true every element of the matrix in position <span class="math inline">\((r, c) \mid x_1 \leq r \leq x_2 \land y_1 \leq c \leq y_2\)</span>, assumming <span class="math inline">\(x_1 \leq x_2 \land y_1 \leq y_2\)</span>. So, after processing every query, the answer is the number of elements that are false.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemD" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int w, h, n;
+  while (cin &gt;&gt; w &gt;&gt; h &gt;&gt; n) {
+    if (w == 0 and h == 0 and n == 0) break;
+    vector &lt;vector &lt;bool&gt;&gt; vis(w + 1, vector &lt;bool&gt; (h + 1, false));
+    while (n--) {
+      int x1, y1, x2, y2;
+      cin &gt;&gt; x1 &gt;&gt; y1 &gt;&gt; x2 &gt;&gt; y2;
+      for (int r = min(x1, x2); r &lt;= max(x1, x2); r++) {
+        for (int c = min(y1, y2); c &lt;= max(y1, y2); c++) {
+          vis[r][c] = true;
+        }
+      }
+    }
+    int cnt = 0;
+    for (int r = 1; r &lt;= w; r++) {
+      for (int c = 1; c &lt;= h; c++) {
+        if (!vis[r][c]) cnt++;
+      }
+    }
+    if (cnt == 0) cout &lt;&lt; &quot;There is no empty spots.\n&quot;;
+    else if (cnt == 1) cout &lt;&lt; &quot;There is one empty spot.&quot; &lt;&lt; &#39;\n&#39;;
+    else cout &lt;&lt; &quot;There are &quot; &lt;&lt; cnt &lt;&lt; &quot; empty spots.\n&quot;;
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem D -->
 </div>
 
 <footer>

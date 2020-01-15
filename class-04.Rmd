@@ -257,13 +257,13 @@ problem of this kind in one of your daily problems.
 
 Recommended readings:
 
-- Competitive Programming 3, secci ́on 3.2 y 5.5.1
+- Competitive Programming 3, section 3.2 y 5.5.1
 
 - [Codeforces - How to come up with the solutions: techniques](https://codeforces.com/blog/entry/20548)
 
 - [Codeforces - Amount of divisors of N](https://codeforces.com/blog/entry/13585)
 
-- [Codeforces - Counting Divisors of a Number inO(3√n) - Tutorial](https://codeforces.com/blog/entry/22317)
+- [Codeforces - Counting Divisors of a Number in $O(\sqrt[3]{n})$ - Tutorial](https://codeforces.com/blog/entry/22317)
 
 
 <div class=topic><a href="https://vjudge.net/contest/352372">Contest</a></div>

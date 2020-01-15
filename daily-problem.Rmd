@@ -9,6 +9,42 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ### [Daily Problem - Part I](https://vjudge.net/contest/351983)
 
 
+<!-- Begins problem 03 -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem03" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Day 03: Brick Break</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem03" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://atcoder.jp/contests/abc148/tasks/abc148_d" target="_blank">Day 03: Brick Break</a>
+
+First try it by yourself.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem03" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblem03" class="collapse">
+
+```c++
+// TO DO
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem 03 -->
+
+
+
+
 <!-- Begins problem 02 -->
 <div class="card">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem02" aria-expanded="false" aria-controls="collapseTwo">
@@ -21,7 +57,8 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 ### <a href="https://codeforces.com/contest/1238/problem/A" target="_blank">Day 02: Prime Subtraction</a>
 
-First try it by yourself.
+If $x - y = 1$ then the answer is no, else, by the fundamental theorem of
+arithmetic $\exists \, p$ primo $: p | (x - y)$. So, the answer is yes.
 
   <!-- begin code -->
   <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem02" aria-expanded="false" aria-controls="collapseTwo">
@@ -31,7 +68,21 @@ First try it by yourself.
   <div id="codeProblem02" class="collapse">
 
 ```c++
-// TO DO
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int tc;
+  cin >> tc;
+  while (tc--) {
+    long long x, y;
+    cin >> x >> y;
+    if (x - y == 1) cout << "NO\n";
+    else cout << "YES\n";
+  }
+  return (0);
+}
 ```
 
   </div>

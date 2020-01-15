@@ -1,132 +1,146 @@
 ---
-title: "Clase 04: Brute Force"
+title: "Clase 04: Brute Force I"
 date: "13-01-2020"
 ---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
 
 > "Union make Force"
 
 
-<div class="topic">Force Brute </div>
-
-Likely, "force brute" is the first solution who someone can build for almost all problem.
+<div class="topic">Problem Solving Paradigms </div>
 
 
-But there exists anothers techniques (Divide and Conquer, Greedy, Dynamic Programming). We will return to talk about theses topics more later.
+A programming paradigm is a way to solve problems. The four problem solving
+paradigms commonly used in programming contests are:
+
+<div class="center-image">
+![](./images/class-04/programming-paradigms.png)
+</div>
+
+Complete search is a general method that can be used to solve almost any
+algorithm problem. It basically try to generate all possible solutions to
+a problem in order to do something with them (count number of elements, find
+a particular solution with one property, etc).
+
+You can find complete search solution in two ways: iterative and recursive.
+When it is iterative it may be a single loop, two loops, three or more loops,
+using two pointers, etc. When it is recursive it can be a simple recursive
+function, it can be a recursive function that search different states with
+trial and error (backtracking), it may have some kind of prunning in order to
+not visit every state, etc.
+
+When solving complete search solutions you will follow some combination of
+these structures to solve problems.
+
+When you find complete search in a iterative way it is called a `brute
+force` solution. In the next 4 classes we will study more about this kind of
+solutions. Moreover, mastering this paradigm will help you to understand easily the other
+ones.
+
+<div class="topic">Pythagorean triples</div>
+
+Lets start this paradigm solving a simple problem.
+
+A pythagorean triple is a triplet (x,y,z) that satisfies the equation $x^2 + y^2 = z^2$.
+
+**Problem:** You will receive an integer $n$. Find the number of pythagorean triples such that $1 \leq x, y, z \leq n$.
+
+$$1 \leq n \leq 10^3$$
 
 
-Force brute is an approach that you need to do a complete search for all search space and picking the best one. Here, we talk search space to all feasible solutions or domain through one algorithm searches. Actually, it really simple understand what happend with this technique, but this has got several optimizations depending of the problems.
-
-A little example to apply force brute;
-- CodeChef Problem: [Smiling Queen](https://www.codechef.com/problems/QM6P5A)
+### First solution
+We can fix $x, y, z$ using three loops and verify if the equation holds in $O(n^3)$.
 
 ```c++
-#include<bits/stdc++.h>
-
-using namespace std;
-
-#define REP(i,a,b) for(int i=a;i<b;i++)
-
-int main(){
-
-  int t,s;
-  cin>>t;
-  string line,word,ans;
-  while(t--){
-
-    unordered_map<string,bool> dict;
-
-    cin>>s;
-    //This sentence helps us to ommit the '\n' command and not getting it for getline later
-    cin.ignore();
-
-    //Useful macro
-    vector<string> stringnos;
-
-    int cont=0;
-
-    REP(i,0,s){
-
-      //Get the sentence
-      getline(cin,line);
-      //Get the answer if she smile or not
-      getline(cin,ans);
-
-      //Create a vector to keep the sentences when the answer is "no smile"
-
-      if(ans=="yes"){
-        stringstream s(line);
-        //In first moment, all words make happy to her
-        while(s>>word){
-          //look if the word is already true for no repetition counting
-          if(!dict[word]){
-            dict[word]=1;
-            cont++;
-          }
+int solution1 (int n) {
+  int cnt = 0;
+  for (int x = 1; x <= n; x++) {
+    for (int y = 1; y <= n; y++) {
+      for (int z = 1; z <= n; z++) {
+        if (x * x + y * y == z * z) {
+          cnt++;
         }
       }
-      else
-        stringnos.push_back(line);
     }
-
-    //Changing the words when she is not smile
-    for(string &l:stringnos){
-      stringstream s(l);
-      while(s>>word){
-        if(dict[word])
-          cont--;
-        dict[word]=0;
-      }
-    }
-    cout<<cont<<endl;
-
   }
-
-  return 0;
+  return cnt;
 }
-
 ```
 
+We can fix $x, y$ and determine if $\exists \, 1 \leq z \leq n$ that holds the
+equation in $O(n^2)$.
 
-<div class="topic">Pythagorean Triple</div>
+### Second solution
+```c++
+int solution2 (int n) {
+  vector <bool> is_sq(n * n + 1, false);
+  for (int z = 1; z <= n; z++) {
+    is_sq[z * z] = true;
+  }
+  int cnt = 0;
+  for (int x = 1; x <= n; x++) {
+    for (int y = 1; y <= n; y++) {
+      if (x * x + y * y <= n * n and is_sq[x * x + y * y]) {
+        cnt++;
+      }
+    }
+  }
+  return cnt;
+}
+```
 
-A Pythagorean Triple is a set of solutions in form (x,y,z) for the equation x^2 + y^2 = z^2. Each value is inside positive integers.
+### Third solution
 
-The smallest and best-known Pythagorean triple is (a,b,c)=(3,4,5).
+If $(x, y, z)$ is a pythagorean triple, then $(kx, ky, kz), k \in \mathbb{N}$ is also a pythagorean triple.
 
-Properties:
+So, if we find $(x, y, z) \mid gcd(x, y, z) = 1$, then the number of triples
+$(kx, ky, kz) \mid 1 \leq kx, ky, kz \leq n$ is $\min(\lfloor n / x \rfloor, \lfloor n / y \rfloor, \lfloor n / z \rfloor )$.
 
-Since x,y and z, positive integers.
-It is possible to change the expressions as to below:
+If $(x, y, z)$ is a pythagorean triple and $gcd(x, y, z) = 1$, then $(x, y, z)$
+is called a primite pythagorean triple.
 
-x=2mn, y=m^2-n^2, z=m^2-n^2.
+And there is a property (Euclid's formula) that says that every primite
+pythagorean triple can be represented by a pair $(a, b) \mid 0 < b < a \land
+gcd(a, b) = 1 \land a$ and $b$ are not both odds in the following way:
 
-where m and n are relatively-prime positive integers, and m>n.
+$$x = a^2 - b^2$$
+$$y = 2 * a * b$$
+$$z = a * a + b * b$$
 
-Also, a pythagorean triple is called primitive, if gcd(x,y,z)=1.
+Then we can generate primites $(x, y, z) \land (y, x, z)$ and count how many of
+their multiples hold the condition of the problem in $O(n^2 \log n)$.
 
+**Note:**
+
+$gcd(a, b) =$ greatest common divisor of $a$ and $b = \max(d \mid d | a \land d | b)$ 
+
+```c++
+int solution3 (int n) {
+  int cnt = 0;
+  for (int a = 1; a < n / 2; a++) {
+    for (int b = 1; b < a; b++) {
+      if (__gcd(a, b) != 1) continue;
+      if (a % 2 and b % 2) continue;
+      int x = a * a - b * b;
+      int y = 2 * a * b;
+      int z = a * a + b * b;
+      int add = min({n / x, n / y, n / z});
+      cnt += 2 * add;
+    }
+  }
+  return cnt;
+}
+```
+
+[Full code](./code/class-04/pythagorean-triple.cpp)
 
 <div class="topic">Primality Test</div>
 Given a number n, check if it is prime or not. A prime number is a natural number greater than 1 that has not got positive divisors other than 1 and itself.
 First prime numbers are 2,3,5,7,11,13,...
 
-
 <div class="topic">Sieve of Eratosthenes</div>
-It is an algorithm for finding all the prime numbers between 1 and n. This works with the time complexity 
 
-
--------------------FOR CHANGE--------------
-
-Read  [Antti  Laaksonen.Competitive  programmer’s  handbook - chapter
-1 y 4](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf). Section 1.4 will help you understand common practice that you will find in competitive programming (which you eventually will use) and in Chapter 4 you will see more examples of how yo use `vector`, `set`, `map` and much more.
-
-You may also be interested in reading:
-
-- [Competitive C++ Manifesto: A Style Guide](https://codeforces.com/blog/entry/64218)
-
-- [TopCoder - Power up C++ with the Standard Template Library - Part
-  I](https://www.topcoder.com/community/competitive-programming/tutorials/power-up-c-with-the-standard-template-library-part-1/)
-
-<div class=topic><a href="https://vjudge.net/contest/351569">Contest</a></div>
-
-The solutions will be posted after the contest.
-
+<div class=topic><a href="">Contest</a></div>

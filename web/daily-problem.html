@@ -14,6 +14,7 @@
 <title>Daily Problem</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -321,6 +322,35 @@ $(document).ready(function () {
 
 <div id="daily-problem---part-i" class="section level3">
 <h3><a href="https://vjudge.net/contest/351983">Daily Problem - Part I</a></h3>
+<!-- Begins problem 03 -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem03" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 03: Brick Break
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem03" class="collapse">
+<div id="day-03-brick-break" class="section level3 card-body solution-body">
+<h3><a href="https://atcoder.jp/contests/abc148/tasks/abc148_d" target="_blank">Day 03: Brick Break</a></h3>
+<p>First try it by yourself.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem03" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblem03" class="collapse">
+<pre class="cpp"><code>// TO DO</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem 03 -->
 <!-- Begins problem 02 -->
 <div class="card">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem02" aria-expanded="false" aria-controls="collapseTwo">
@@ -332,9 +362,9 @@ Day 02: Prime Subtraction
 </div>
 <!-- begin body -->
 <div id="collapseProblem02" class="collapse">
-<div class="card-body solution-body">
-<h3 id="day-02-prime-subtraction"><a href="https://codeforces.com/contest/1238/problem/A" target="_blank">Day 02: Prime Subtraction</a></h3>
-<p>First try it by yourself.</p>
+<div id="day-02-prime-subtraction" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/contest/1238/problem/A" target="_blank">Day 02: Prime Subtraction</a></h3>
+<p>If <span class="math inline">\(x - y = 1\)</span> then the answer is no, else, by the fundamental theorem of arithmetic <span class="math inline">\(\exists \, p\)</span> primo <span class="math inline">\(: p | (x - y)\)</span>. So, the answer is yes.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem02" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title --> <i class="fas fa-caret-right"></i>
@@ -343,7 +373,21 @@ Code
 </p>
 </div>
 <div id="codeProblem02" class="collapse">
-<pre class="cpp"><code>// TO DO</code></pre>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+  int tc;
+  cin &gt;&gt; tc;
+  while (tc--) {
+    long long x, y;
+    cin &gt;&gt; x &gt;&gt; y;
+    if (x - y == 1) cout &lt;&lt; &quot;NO\n&quot;;
+    else cout &lt;&lt; &quot;YES\n&quot;;
+  }
+  return (0);
+}</code></pre>
 </div>
 <p><!-- ends code --></p>
 </div>
@@ -361,8 +405,8 @@ Day 01: Superhero Transformation
 </div>
 <!-- begin body -->
 <div id="collapseProblem01" class="collapse">
-<div class="card-body solution-body">
-<h3 id="day-01-superhero-transformation"><a href="https://codeforces.com/problemset/problem/1111/A" target="_blank">Day 01: Superhero Transformation</a></h3>
+<div id="day-01-superhero-transformation" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1111/A" target="_blank">Day 01: Superhero Transformation</a></h3>
 <p>Let <span class="math inline">\(f(c) = 1\)</span> if <code>c</code> is as vowel and <span class="math inline">\(f(c) = 0\)</span> otherwise. Then, the answer is true iff <span class="math inline">\(|s| = |t| \land f(s[i]) = f(t[i]) \quad \forall i \in [0, n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem01" aria-expanded="false" aria-controls="collapseTwo">

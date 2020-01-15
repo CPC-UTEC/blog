@@ -7,7 +7,7 @@ date: "13-01-2020"
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
-> "Union make Force"
+> "Try every possibility"
 
 
 <div class="topic">Problem Solving Paradigms </div>
@@ -220,10 +220,52 @@ vector <bool> sieve (int n) {
 
 <div class="topic">Finding the number of divisors of a number</div>
 
-In process...
+**Note:**
+$$\sigma_{0}(n) = \text{ number of divisors of } n$$
+
+We have already written a program that computes the number of divisors in
+$O(n)$ and in $O(\sqrt{n})$. But, we can use an idea similar to the one we used in the previous
+section.
+
+```c++
+vector <int> nDivisors (int n) {
+  vector <int> n_div(n + 1, 0);
+  for (int i = 1; i <= n; i++) {
+    for (int j = i; j <= n; j += i) {
+      n_div[j] += 1;
+    }
+  }
+  return n_div;
+}
+```
+[Full code](./code/class-04/number-divisors.cpp)
+
+The complexity of the above algorithm is:
+
+$$n + \frac{n}{2} + \frac{n}{3} + \frac{n}{4} + \dots + \frac{n}{n}$$
+$$n \cdot (1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \dots + \frac{1}{n})$$
+$$n \cdot H_{n} < n \log n$$
+
+So, the complexity of our program is $O (n \log n)$.
 
 <div class="topic">$\sigma_{0}(n) = O(\sqrt[3]{n})$ </div>
 
-In process..
+There are some problems that look like a brute force solution would give a Time
+Limit veredict. One common example of this kind of problem are the ones where
+you need to do something with the divisors of a number. You will face one
+problem of this kind in one of your daily problems.
 
-<div class=topic><a href="">Contest</a></div>
+Recommended readings:
+
+- Competitive Programming 3, secci ́on 3.2 y 5.5.1
+
+- [Codeforces - How to come up with the solutions: techniques](https://codeforces.com/blog/entry/20548)
+
+- [Codeforces - Amount of divisors of N](https://codeforces.com/blog/entry/13585)
+
+- [Codeforces - Counting Divisors of a Number inO(3√n) - Tutorial](https://codeforces.com/blog/entry/22317)
+
+
+<div class=topic><a href="https://vjudge.net/contest/352372">Contest</a></div>
+
+The solutions will be uploaded after the contest.

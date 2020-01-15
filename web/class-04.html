@@ -296,6 +296,9 @@ $(document).ready(function () {
     <li>
       <a href="class-03.html">Don't reinvent the wheel!</a>
     </li>
+    <li>
+      <a href="class-04.html">Try every possibility</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -322,7 +325,7 @@ $(document).ready(function () {
 
 
 <blockquote>
-<p>“Union make Force”</p>
+<p>“Try every possibility”</p>
 </blockquote>
 <div class="topic">
 Problem Solving Paradigms
@@ -457,19 +460,41 @@ Sieve of Eratosthenes
 <div class="topic">
 Finding the number of divisors of a number
 </div>
-<p>In process…</p>
+<p><strong>Note:</strong> <span class="math display">\[\sigma_{0}(n) = \text{ number of divisors of } n\]</span></p>
+<p>We have already written a program that computes the number of divisors in <span class="math inline">\(O(n)\)</span> and in <span class="math inline">\(O(\sqrt{n})\)</span>. But, we can use an idea similar to the one we used in the previous section.</p>
+<pre class="cpp"><code>vector &lt;int&gt; nDivisors (int n) {
+  vector &lt;int&gt; n_div(n + 1, 0);
+  for (int i = 1; i &lt;= n; i++) {
+    for (int j = i; j &lt;= n; j += i) {
+      n_div[j] += 1;
+    }
+  }
+  return n_div;
+}</code></pre>
+<p><a href="./code/class-04/number-divisors.cpp">Full code</a></p>
+<p>The complexity of the above algorithm is:</p>
+<p><span class="math display">\[n + \frac{n}{2} + \frac{n}{3} + \frac{n}{4} + \dots + \frac{n}{n}\]</span> <span class="math display">\[n \cdot (1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \dots + \frac{1}{n})\]</span> <span class="math display">\[n \cdot H_{n} &lt; n \log n\]</span></p>
+<p>So, the complexity of our program is <span class="math inline">\(O (n \log n)\)</span>.</p>
 <div class="topic">
 <span class="math inline">\(\sigma_{0}(n) = O(\sqrt[3]{n})\)</span>
 </div>
-<p>In process..</p>
+<p>There are some problems that look like a brute force solution would give a Time Limit veredict. One common example of this kind of problem are the ones where you need to do something with the divisors of a number. You will face one problem of this kind in one of your daily problems.</p>
+<p>Recommended readings:</p>
+<ul>
+<li><p>Competitive Programming 3, secci ́on 3.2 y 5.5.1</p></li>
+<li><p><a href="https://codeforces.com/blog/entry/20548">Codeforces - How to come up with the solutions: techniques</a></p></li>
+<li><p><a href="https://codeforces.com/blog/entry/13585">Codeforces - Amount of divisors of N</a></p></li>
+<li><p><a href="https://codeforces.com/blog/entry/22317">Codeforces - Counting Divisors of a Number inO(3√n) - Tutorial</a></p></li>
+</ul>
 <div class="topic">
-<a href="">Contest</a>
+<a href="https://vjudge.net/contest/352372">Contest</a>
 </div>
+<p>The solutions will be uploaded after the contest.</p>
 </div>
 </div>
 
 <footer>
-  <p>Copyright &copy; 2020 Competitive Programming UTEC</p>
+  <p>Copyright &copy; 2020. Competitive Programming UTEC</p>
 </footer>
 
 

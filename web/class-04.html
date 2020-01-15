@@ -11,7 +11,7 @@
 
 
 
-<title>Clase 03: STL</title>
+<title>Clase 04: Brute Force</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -289,6 +289,7 @@ $(document).ready(function () {
     <li>
       <a href="class-02.html">Think Big</a>
     </li>
+    <li class="dropdown-header">Week 2</li>
     <li>
       <a href="class-03.html">Don't reinvent the wheel!</a>
     </li>
@@ -297,6 +298,9 @@ $(document).ready(function () {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="daily-problem.html">Daily Problem</a>
+</li>
+<li>
   <a href="gallery.html">Gallery</a>
 </li>
       </ul>
@@ -308,226 +312,105 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Clase 03: STL</h1>
+<h1 class="title toc-ignore">Clase 04: Brute Force</h1>
 <h4 class="date">13-01-2020</h4>
 
 </div>
 
 
 <blockquote>
-<p>“Don’t reinvent the wheel!”</p>
+<p>“Union make Force”</p>
 </blockquote>
 <div class="topic">
-Standard Template Library (STL)
+Force Brute
 </div>
-<p>STL is a collection of libraries of C++ that we can use in the contests. It gives us common data structures (array, stack, set, priority_queue, map, …), common algorithms (sort, next_permutation, binary_search, lower_bound, upper_bound), common functions (input-output (I/O), sqrt, pow, abs, min, max, …)</p>
-<p>First of all, lets understand what happens in a simple hello world program.</p>
-<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+<p>Likely, “force brute” is the first solution who someone can build for almost all problem.</p>
+<p>But there exists anothers techniques (Divide and Conquer, Greedy, Dynamic Programming). We will return to talk about theses topics more later.</p>
+<p>Force brute is an approach that you need to do a complete search for all search space and picking the best one. Here, we talk search space to all feasible solutions or domain through one algorithm searches. Actually, it really simple understand what happend with this technique, but this has got several optimizations depending of the problems.</p>
+<p>A little example to apply force brute; - CodeChef Problem: <a href="https://www.codechef.com/problems/QM6P5A">Smiling Queen</a></p>
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
 
 using namespace std;
 
-int main () {
-  cout &lt;&lt; &quot;Hello World!&quot; &lt;&lt; &#39;\n&#39;;
+#define REP(i,a,b) for(int i=a;i&lt;b;i++)
+
+int main(){
+
+  int t,s;
+  cin&gt;&gt;t;
+  string line,word,ans;
+  while(t--){
+
+    unordered_map&lt;string,bool&gt; dict;
+
+    cin&gt;&gt;s;
+    //This sentence helps us to ommit the &#39;\n&#39; command and not getting it for getline later
+    cin.ignore();
+
+    //Useful macro
+    vector&lt;string&gt; stringnos;
+
+    int cont=0;
+
+    REP(i,0,s){
+
+      //Get the sentence
+      getline(cin,line);
+      //Get the answer if she smile or not
+      getline(cin,ans);
+
+      //Create a vector to keep the sentences when the answer is &quot;no smile&quot;
+
+      if(ans==&quot;yes&quot;){
+        stringstream s(line);
+        //In first moment, all words make happy to her
+        while(s&gt;&gt;word){
+          //look if the word is already true for no repetition counting
+          if(!dict[word]){
+            dict[word]=1;
+            cont++;
+          }
+        }
+      }
+      else
+        stringnos.push_back(line);
+    }
+
+    //Changing the words when she is not smile
+    for(string &amp;l:stringnos){
+      stringstream s(l);
+      while(s&gt;&gt;word){
+        if(dict[word])
+          cont--;
+        dict[word]=0;
+      }
+    }
+    cout&lt;&lt;cont&lt;&lt;endl;
+
+  }
+
   return 0;
-}</code></pre>
-<p>(The explanation will be given in class)</p>
-<p>Extra: You can also practice competitive programming in other languages.</p>
-<p>Examples:</p>
-<ul>
-<li><p><a href="https://codeforces.com/submissions/Petr/page/3">Petr</a></p></li>
-<li><p><a href="https://codeforces.com/submissions/pajenegod">pajenegod</a></p></li>
-</ul>
-<p>But, as mentioned in the first class, C++ is usually better for its efficiency and simplicity.</p>
+}
+</code></pre>
 <div class="topic">
-Numeric data types and its operations
+Pythagorean Triple
 </div>
-<div id="tipos-de-datos-enteros" class="section level3">
-<h3>Tipos de datos enteros</h3>
-<ul>
-<li><code>int</code> <span class="math inline">\([-2^{31}, 2^{31}) \approx [-10^9, 10^9]\)</span></li>
-<li><code>long long</code> <span class="math inline">\([-2^{63}, 2^{63}) \approx [-10^{18}, 10^{18}]\)</span></li>
-</ul>
-</div>
-<div id="tipos-de-datos-flotantes" class="section level3">
-<h3>Tipos de datos flotantes</h3>
-<ul>
-<li>float</li>
-<li>double</li>
-<li>long double</li>
-</ul>
-</div>
-<div id="operaciones-aritméticas" class="section level3">
-<h3>Operaciones aritméticas</h3>
-<ul>
-<li>addition: x + y</li>
-<li>subtraction: x - y</li>
-<li>multiplication: x * y (what happens if <span class="math inline">\(x = y = 10^9\)</span> and <code>x</code> and <code>y</code> are <code>int</code>)</li>
-<li>division: x / y (take care if <code>x</code>, <code>y</code> are <code>int</code> and you want the result in <code>float</code>)</li>
-<li>exponenciation: pow(x, y) (the output is in <code>double</code>)</li>
-<li>module: a % b (what happens if <code>b</code> is zero? why?)</li>
-</ul>
-</div>
-<div id="order-or-precedence" class="section level3">
-<h3>Order or precedence</h3>
-<p><code>int &lt; long long &lt; float &lt; double &lt; long double</code></p>
-<p>Examples:</p>
-<pre class="cpp"><code>int x = 1;
-long long y = 8;
-auto z = x + y; // long long</code></pre>
-<pre class="cpp"><code>int x = 1;
-float y = 8;
-auto z = x + y; // float</code></pre>
+<p>A Pythagorean Triple is a set of solutions in form (x,y,z) for the equation x^2 + y^2 = z^2. Each value is inside positive integers.</p>
+<p>The smallest and best-known Pythagorean triple is (a,b,c)=(3,4,5).</p>
+<p>Properties:</p>
+<p>Since x,y and z, positive integers. It is possible to change the expressions as to below:</p>
+<p>x=2mn, y=m<sup>2-n</sup>2, z=m<sup>2-n</sup>2.</p>
+<p>where m and n are relatively-prime positive integers, and m&gt;n.</p>
+<p>Also, a pythagorean triple is called primitive, if gcd(x,y,z)=1.</p>
 <div class="topic">
-String
+Primality Test
 </div>
-<p>Another useful data type is <code>string</code>.</p>
-<p>In <a href="http://www.cplusplus.com/reference/string/string/">cplusplus.com</a> you will find a reference of how to work with strings.</p>
-<p><a href="./code/class-02/string.cpp">Example</a></p>
-<pre class="cpp"><code>string s;
-// input
-cin &gt;&gt; s; // In the same way you can read a int, long long, float, ...
-// You can iterate it in this way
-for (int i = 0; i &lt; s.size(); i++) {
-  // s[i]: get the i-th element
-  cout &lt;&lt; s[i] &lt;&lt; &#39;\n&#39;; // In the same way you can output a int, long long, float, ...
-}
-s[2] = &#39;b&#39;; // modify the element in position 2
-// You can also print the whole string
-cout &lt;&lt; s &lt;&lt; &#39;\n&#39;;
-// Yout can also iterate in this way
-for (char elem: s) {
-  cout &lt;&lt; elem;
-}
-cout &lt;&lt; &#39;\n&#39;; // what happens without this line ?
-s += &#39;a&#39;; // you can add append a letter or string
-cout &lt;&lt; s.substr(2, 2) &lt;&lt; &#39;\n&#39;; // what does this function do ?
-// The comparisson is like this (take care of not using just one &#39;=&#39; )
-if (s == &quot;hola&quot;) cout &lt;&lt; &quot;ok&quot; &lt;&lt; &#39;\n&#39;;</code></pre>
+<p>Given a number n, check if it is prime or not. A prime number is a natural number greater than 1 that has not got positive divisors other than 1 and itself. First prime numbers are 2,3,5,7,11,13,…</p>
 <div class="topic">
-Vector
+Sieve of Eratosthenes
 </div>
-<p>You will need a vector in almost all of your contests, so its very important to know how to use it.</p>
-<p>In <a href="http://www.cplusplus.com/reference/vector/vector/">cplusplus.com</a> you will find a reference of how to work with vectors.</p>
-<p><a href="./code/class-02/vector.cpp">Example</a></p>
-<pre class="cpp"><code>vector &lt;int&gt; arr;
-// Add a element to the end of the vector - O(1)
-arr.push_back(123);
-arr.push_back(987);
-arr.push_back(343);
-arr.push_back(134);
-arr.push_back(345);
-// Delete the last element - O(1)
-arr.pop_back();
-// Insert a element in the i-th position - O(n)
-int i = 2;
-arr.insert(begin(arr) + i, 234);
-// Delete a element in the i-th position - O(n)
-i = 1;
-arr.erase(begin(arr) + i);
-// Copy the vector - O(n)
-vector &lt;int&gt; arrCopy = arr;
-// We can iterate a vector in this way
-for (int arr_i: arr) {
-  // do something
-}
-// We can also use &#39;auto&#39;
-for (auto elem: arr) {
-  cout &lt;&lt; elem &lt;&lt; &#39;\n&#39;;
-}
-// We can also iterate in this way
-// arr.size() returns the number of element of the vector - O(1)
-for (int i = 0; i &lt; arr.size(); i++) {
-  // arr[i]: get the i-th element - O(1)
-  cout &lt;&lt; arr[i] &lt;&lt; &#39;\n&#39;;
-}
-// Delete all the elements - O(n)
-arr.clear();</code></pre>
-<p>You can find the more common methods of vectors and its complexity in this image.</p>
-<p><img src="images/class-02/vector.jpg" /></p>
-<p>A <a href="http://www.cplusplus.com/reference/deque/deque/">deque</a> gives us all the methods of a vector and two more:</p>
-<ul>
-<li><p>push_front: Insert a element in the begining O(1)</p></li>
-<li><p>pop_front: Erase the first element O(1)</p></li>
-</ul>
-<p>Read what these functions do:</p>
-<ul>
-<li><a href="http://www.cplusplus.com/reference/algorithm/min_element/"><code>min_element</code></a></li>
-<li><a href="http://www.cplusplus.com/reference/algorithm/sort/"><code>sort</code></a></li>
-<li><a href="http://www.cplusplus.com/reference/algorithm/fill/"><code>fill</code></a></li>
-<li><a href="http://www.cplusplus.com/reference/algorithm/reverse/"><code>reverse</code></a></li>
-<li><a href="http://www.cplusplus.com/reference/algorithm/random_shuffle/"><code>random_shuffle</code></a></li>
-<li><a href="http://www.cplusplus.com/reference/algorithm/unique/"><code>unique</code></a></li>
-<li><a href="http://www.cplusplus.com/reference/algorithm/count/"><code>count</code></a></li>
-</ul>
-<p>Question: How would you declare a matrix ?</p>
-<div class="topic">
-Set
-</div>
-<p>In <a href="http://www.cplusplus.com/reference/set/set/">cplusplus.com</a> you will find a reference of how to work with sets.</p>
-<p><a href="./code/class-02/set.cpp">Example</a></p>
-<pre class="cpp"><code>set &lt;int&gt; S;
-// Insert a element - O(log n)
-S.insert(3);
-S.insert(4);
-S.insert(-100);
-S.insert(-345);
-// The elements are stored in ascending order
-for (auto x: S) {
-  cout &lt;&lt; x &lt;&lt; endl;
-}
-// Check if a element is in the set - O(log n)
-if (S.count(4) &gt; 0) {
-  cout &lt;&lt; &quot;4 is in S\n&quot;;
-}
-// You can also check that using the method find
-if (S.find(4) != end(S)) {
-  cout &lt;&lt; &quot;4 is in S&quot; &lt;&lt; endl;
-}
-// Delete a elemento - O(log n)
-S.erase(4);
-// You can also delete in this way
-S.erase(S.find(-100));
-// If we store the iterator - O(log n)
-// auto it = S.find(val) - O(log n)
-// Then we can erase the element - O(1)
-// S.erase(it)</code></pre>
-<p>You can find the more common methods of sets and its complexity in this image.</p>
-<p><img src="images/class-02/set.jpg" /></p>
-<p>Read about <a href="http://www.cplusplus.com/reference/set/multiset/">multisets</a>.</p>
-<div class="topic">
-Map
-</div>
-<p>In <a href="http://www.cplusplus.com/reference/map/map/">cplusplus.com</a> you will find a reference of how to work with maps.</p>
-<p><a href="./code/class-02/map.cpp">Example</a></p>
-<pre class="cpp"><code>map &lt;string, int&gt; my_map;
-// Insert a element - O(log n)
-my_map[&quot;hola&quot;] = 1;
-my_map[&quot;mundo&quot;] = 5;
-// The elements are stored in ascending order
-for (auto x: my_map) {
-  cout &lt;&lt; x.first &lt;&lt; &#39; &#39; &lt;&lt; x.second &lt;&lt; endl;
-}
-// Check if a element is in the map - O(log n)
-if (my_map.count(&quot;hola&quot;) &gt; 0) {
-  cout &lt;&lt; &quot;4 is in my_map\n&quot;;
-}
-// You can also check that using the method find
-if (my_map.find(&quot;hola&quot;) != end(my_map)) {
-  cout &lt;&lt; &quot;4 is in my_map&quot; &lt;&lt; endl;
-}
-my_map[&quot;hola&quot;] = 10;
-for (auto x: my_map) {
-  cout &lt;&lt; x.first &lt;&lt; &#39; &#39; &lt;&lt; x.second &lt;&lt; &#39;\n&#39;;
-}
-// Delete a elemento - O(log n)
-my_map.erase(&quot;hola&quot;);
-// You can also delete in this way
-my_map.erase(my_map.find(&quot;mundo&quot;));
-// If we store the iterator - O(log n)
-// auto it = my_map.find(val) - O(log n)
-// Then we can erase the element - O(1)
-// my_map.erase(it)</code></pre>
-<p>The complexity of its operations is the same of a set.</p>
+<p>It is an algorithm for finding all the prime numbers between 1 and n. This works with the time complexity</p>
+<p>——————-FOR CHANGE————–</p>
 <p>Read <a href="https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf">Antti Laaksonen.Competitive programmer’s handbook - chapter 1 y 4</a>. Section 1.4 will help you understand common practice that you will find in competitive programming (which you eventually will use) and in Chapter 4 you will see more examples of how yo use <code>vector</code>, <code>set</code>, <code>map</code> and much more.</p>
 <p>You may also be interested in reading:</p>
 <ul>
@@ -538,8 +421,10 @@ my_map.erase(my_map.find(&quot;mundo&quot;));
 <a href="https://vjudge.net/contest/351569">Contest</a>
 </div>
 <p>The solutions will be posted after the contest.</p>
-</div>
 
+<footer>
+  <p>Copyright &copy; 2020 Competitive Programming UTEC</p>
+</footer>
 
 
 

@@ -83,6 +83,7 @@ int main(){
 
   return 0;
 }
+
 ```
 
 
@@ -103,6 +104,14 @@ where m and n are relatively-prime positive integers, and m>n.
 
 Also, a pythagorean triple is called primitive, if gcd(x,y,z)=1.
 
+
+<div class="topic">Primality Test</div>
+Given a number n, check if it is prime or not. A prime number is a natural number greater than 1 that has not got positive divisors other than 1 and itself.
+First prime numbers are 2,3,5,7,11,13,...
+
+
+<div class="topic">Sieve of Eratosthenes</div>
+It is an algorithm for finding all the prime numbers between 1 and n. This works with the time complexity 
 
 
 -------------------FOR CHANGE--------------

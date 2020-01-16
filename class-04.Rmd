@@ -115,7 +115,7 @@ their multiples hold the condition of the problem in $O(n^2 \log n)$.
 
 **Note:**
 
-$gcd(a, b) =$ greatest common divisor of $a$ and $b = \max(d \mid d | a \land d | b)$ 
+$gcd(a, b) =$ greatest common divisor of $a$ and $b = \max(d: d | a \land d | b)$ 
 
 ```c++
 int solution3 (int n) {

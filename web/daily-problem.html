@@ -325,6 +325,35 @@ $(document).ready(function () {
 
 <div id="daily-problem---part-i" class="section level3">
 <h3><a href="https://vjudge.net/contest/351983">Daily Problem - Part I</a></h3>
+<!-- Begins problem 04 -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem04" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 04: 0 or 1 Swap
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem04" class="collapse">
+<div id="day-04-0-or-1-swap" class="section level3 card-body solution-body">
+<h3><a href="https://atcoder.jp/contests/abc135/tasks/abc135_b" target="_blank">Day 04: 0 or 1 Swap</a></h3>
+<p>First try it by yourself.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem04" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblem04" class="collapse">
+<pre class="cpp"><code>// TO DO</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem 04 -->
 <!-- Begins problem 03 -->
 <div class="card">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem03" aria-expanded="false" aria-controls="collapseTwo">
@@ -338,7 +367,7 @@ Day 03: Brick Break
 <div id="collapseProblem03" class="collapse">
 <div id="day-03-brick-break" class="section level3 card-body solution-body">
 <h3><a href="https://atcoder.jp/contests/abc148/tasks/abc148_d" target="_blank">Day 03: Brick Break</a></h3>
-<p>First try it by yourself.</p>
+<p>The problem is basically to find the largest continuous segment <span class="math inline">\([l, r] \mid a[l + i] = i + 1, 0 \leq i \leq r - l\)</span>. Notice that we can do it in <span class="math inline">\(O(n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem03" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title --> <i class="fas fa-caret-right"></i>
@@ -347,7 +376,35 @@ Code
 </p>
 </div>
 <div id="codeProblem03" class="collapse">
-<pre class="cpp"><code>// TO DO</code></pre>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin &gt;&gt; n;
+  int cnt = 0;
+  int cur = 1;
+  for (int i = 0; i &lt; n; i++) {
+    int elem;
+    cin &gt;&gt; elem;
+    if (elem == cur) cur++, cnt++;
+  }
+  int need = n - cnt;
+  if (need &lt;= n - 1) cout &lt;&lt; need &lt;&lt; &#39;\n&#39;;
+  else cout &lt;&lt; -1 &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
 </div>
 <p><!-- ends code --></p>
 </div>

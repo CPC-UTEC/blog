@@ -9,6 +9,42 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ### [Daily Problem - Part I](https://vjudge.net/contest/351983)
 
 
+<!-- Begins problem 04 -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem04" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Day 04: 0 or 1 Swap</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem04" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://atcoder.jp/contests/abc135/tasks/abc135_b" target="_blank">Day 04: 0 or 1 Swap</a>
+
+First try it by yourself.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem04" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblem04" class="collapse">
+
+```c++
+// TO DO
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem 04 -->
+
+
+
+
 <!-- Begins problem 03 -->
 <div class="card">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem03" aria-expanded="false" aria-controls="collapseTwo">
@@ -21,7 +57,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 ### <a href="https://atcoder.jp/contests/abc148/tasks/abc148_d" target="_blank">Day 03: Brick Break</a>
 
-First try it by yourself.
+The problem is basically to find the largest continuous segment $[l, r] \mid a[l + i] = i + 1, 0 \leq i \leq r - l$. Notice that we can do it in $O(n)$.
 
   <!-- begin code -->
   <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem03" aria-expanded="false" aria-controls="collapseTwo">
@@ -31,7 +67,35 @@ First try it by yourself.
   <div id="codeProblem03" class="collapse">
 
 ```c++
-// TO DO
+#include <bits/stdc++.h>
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair <int, int> pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin >> n;
+  int cnt = 0;
+  int cur = 1;
+  for (int i = 0; i < n; i++) {
+    int elem;
+    cin >> elem;
+    if (elem == cur) cur++, cnt++;
+  }
+  int need = n - cnt;
+  if (need <= n - 1) cout << need << '\n';
+  else cout << -1 << '\n';
+  return (0);
+}
 ```
 
   </div>

@@ -390,7 +390,7 @@ Pythagorean triples
 <p><span class="math display">\[x = a^2 - b^2\]</span> <span class="math display">\[y = 2 * a * b\]</span> <span class="math display">\[z = a * a + b * b\]</span></p>
 <p>Then we can generate primites <span class="math inline">\((x, y, z) \land (y, x, z)\)</span> and count how many of their multiples hold the condition of the problem in <span class="math inline">\(O(n^2 \log n)\)</span>.</p>
 <p><strong>Note:</strong></p>
-<p><span class="math inline">\(gcd(a, b) =\)</span> greatest common divisor of <span class="math inline">\(a\)</span> and <span class="math inline">\(b = \max(d \mid d | a \land d | b)\)</span></p>
+<p><span class="math inline">\(gcd(a, b) =\)</span> greatest common divisor of <span class="math inline">\(a\)</span> and <span class="math inline">\(b = \max(d: d | a \land d | b)\)</span></p>
 <pre class="cpp"><code>int solution3 (int n) {
   int cnt = 0;
   for (int a = 1; a &lt; n / 2; a++) {

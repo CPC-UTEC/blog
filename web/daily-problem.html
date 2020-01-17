@@ -325,6 +325,35 @@ $(document).ready(function () {
 
 <div id="daily-problem---part-i" class="section level3">
 <h3><a href="https://vjudge.net/contest/351983">Daily Problem - Part I</a></h3>
+<!-- Begins problem 05 -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem05" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 05: Competitive Programmer
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem05" class="collapse">
+<div id="day-05-competitive-programmer" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/contest/1266/problem/A" target="_blank">Day 05: Competitive Programmer</a></h3>
+<p>First try it by yourself.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem05" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblem05" class="collapse">
+<pre class="cpp"><code>// TO DO</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem 05 -->
 <!-- Begins problem 04 -->
 <div class="card">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem04" aria-expanded="false" aria-controls="collapseTwo">
@@ -338,7 +367,7 @@ Day 04: 0 or 1 Swap
 <div id="collapseProblem04" class="collapse">
 <div id="day-04-0-or-1-swap" class="section level3 card-body solution-body">
 <h3><a href="https://atcoder.jp/contests/abc135/tasks/abc135_b" target="_blank">Day 04: 0 or 1 Swap</a></h3>
-<p>First try it by yourself.</p>
+<p>Try every <span class="math inline">\(i, j\)</span>. This solution is <span class="math inline">\(O(N^3)\)</span> and as <span class="math inline">\(N \leq 50\)</span> it is enough.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem04" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title --> <i class="fas fa-caret-right"></i>
@@ -347,7 +376,38 @@ Code
 </p>
 </div>
 <div id="codeProblem04" class="collapse">
-<pre class="cpp"><code>// TO DO</code></pre>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin &gt;&gt; n;
+  vector &lt;int&gt; arr(n);
+  for (int i = 0; i &lt; n; i++) cin &gt;&gt; arr[i];
+  vector &lt;int&gt; s = arr;
+  sort(all(s));
+  for (int i = 0; i &lt; n; i++) {
+    for (int j = i; j &lt; n; j++) {
+      swap(arr[i], arr[j]);
+      if (arr == s) {
+        cout &lt;&lt; &quot;YES\n&quot;;
+        return (0);
+      }
+      swap(arr[i], arr[j]);
+    }
+  }
+  cout &lt;&lt; &quot;NO\n&quot;;
+  return (0);
+}</code></pre>
 </div>
 <p><!-- ends code --></p>
 </div>

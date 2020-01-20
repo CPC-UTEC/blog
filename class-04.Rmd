@@ -1,6 +1,6 @@
 ---
 title: "Clase 04: Brute Force I"
-date: "13-01-2020"
+date: "15-01-2020"
 ---
 
 ```{r setup, include=FALSE}
@@ -268,4 +268,293 @@ Recommended readings:
 
 <div class=topic><a href="https://vjudge.net/contest/352372">Contest</a></div>
 
-The solutions will be uploaded after the contest.
+
+<!-- Begins problem A -->
+<div class="card" id="problemA">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">A: Simple Equations</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2612" target="_blank">Simple Equations</a>
+
+$$0 \leq x^2 \quad \forall x \in \mathbb{N}$$
+$$\to x^2 \leq x^2 + y^2 + z^2 = C$$
+$$x^2 \leq C$$
+$$|x| \leq \sqrt{C}$$
+$$-\sqrt{C} \leq x \leq \sqrt{C}$$
+The same hold for $x, y, z$. Moreover if we have fixed $x, y$, then $z = A - x - y$. So, we can fix $x, y$ in $O(\sqrt{C}^2) = O(C)$ and verify if $x, y, z$ holds the equations in $O(1)$. Don't forget $x, y, z$ must be different.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemA" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+void solve (int A, int B, int C) {
+  int lim = sqrt(C) + 1;
+  for (int x = -lim; x <= lim; x++) {
+    for (int y = -lim; y <= lim; y++) {
+      int z = A - x - y;
+      if (x == y or x == z or y == z) continue;
+      if ((x + y + z == A) and
+          (x * y * z == B) and
+          (x * x + y * y + z * z == C)) {
+        cout << x << ' ' << y << ' ' << z << '\n';
+        return;
+      }
+    }
+  }
+  cout << "No solution.\n";
+}
+
+int main () {
+  int tc;
+  cin >> tc;
+  while (tc--) {
+    int A, B, C;
+    cin >> A >> B >> C;
+    solve(A, B, C);
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+
+
+
+
+
+<!-- Begins problem B -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">B: Common Divisors</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/1203/C" target="_blank">Common Divisors</a>
+
+$S = \{x: x | a_i \quad \forall i \in [1, n] \}$
+
+Let $g = \gcd(a_1, a_2, \dots, a_n)$.
+
+**Affirmation:** $S = \{x: x | g \}$. (The proof is left to the reader)
+
+Then, we just need to find $\sigma_0(g)$ and we can do it in $O(\sqrt{n}))$.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemB" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+
+using namespace std;
+
+typedef long long ll;
+typedef pair <int, int> pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin >> n;
+  vector <ll> arr(n);
+  cin >> arr[0];
+  ll g = arr[0];
+  for (int i = 1; i < n; i++) cin >> arr[i], g = __gcd(g, arr[i]);
+  ll ans = 0;
+  for (ll d = 1; d * d <= g; d++) {
+    if (g % d) continue;
+    ans++;
+    ll d2 = g / d;
+    if (d == d2) continue;
+    ans++;
+  }
+  cout << ans << '\n';
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+
+
+
+
+<!-- Begins problem C -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">C: 2Char</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/593/A" target="_blank">2Char</a>
+
+The key of the problem is to notice what the search space is. As every valid
+text would have at most two characters and maximum length, then we can fix what
+would be the two characters and take all the strings that just have these characters.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemC" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int MAX_N = 110;
+
+int n, ans;
+string word[MAX_N];
+
+bool isValid(int id, char ch_1, char ch_2) {
+  for (int pos = 0; pos < word[id].size(); pos++) {
+    if (word[id][pos] != ch_1 and word[id][pos] != ch_2) {
+      return false;
+    }
+  }
+  return true;
+}
+
+int main() {
+  cin >> n;
+  for (int i = 0; i < n; i++) cin >> word[i];
+  for (char ch_1 = 'a'; ch_1 <= 'z'; ch_1++) {
+    for (char ch_2 = ch_1; ch_2 <= 'z'; ch_2++) {
+      int sum = 0;
+      for (int id = 0; id < n; id++) {
+        sum += isValid(id, ch_1, ch_2) * word[id].size();
+      }
+      ans = max(ans, sum);
+    }
+  }
+  cout << ans << endl;
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem C -->
+
+
+
+
+<!-- Begins problem D -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">D: Hyperset</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemD" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/1287/B" target="_blank">Hyperset</a>
+
+If we have fixed two cards, we can compute what card do we need to make a set.
+Take care of your implementation.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemD" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef unsigned long long ll;
+typedef pair <int, int> pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n, k;
+  cin >> n >> k;
+  vector <string> arr(n);
+  map <string, int> mp;
+  for (int i = 0; i < n; i++) {
+    cin >> arr[i], mp[arr[i]]++;
+  }
+  ll ans = 0;
+  for (int i = 0; i < n; i++) {
+    for (int j = i + 1; j < n; j++) {
+      string need = string(k, ' ');
+      for (int t = 0; t < k; t++) {
+        if (arr[i][t] == arr[j][t]) {
+          need[t] = arr[i][t];
+        } else {
+          if ('S' != arr[i][t] and 'S' != arr[j][t]) need[t] = 'S';
+          if ('E' != arr[i][t] and 'E' != arr[j][t]) need[t] = 'E';
+          if ('T' != arr[i][t] and 'T' != arr[j][t]) need[t] = 'T';
+        }
+      }
+      ans += mp[need];
+    }
+  }
+  cout << ans / 3 << '\n';
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem D -->
+
+
+

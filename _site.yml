@@ -17,6 +17,9 @@ navbar:
           href: class-03.html
         - text: Try every possibility
           href: class-04.html
+        - text: Week 3
+        - text: Keep it simple and straightforward
+          href: class-05.html
   right:
     - text: "Daily Problem"
       href: daily-problem.html

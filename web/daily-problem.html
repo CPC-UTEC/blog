@@ -299,6 +299,10 @@ $(document).ready(function () {
     <li>
       <a href="class-04.html">Try every possibility</a>
     </li>
+    <li class="dropdown-header">Week 3</li>
+    <li>
+      <a href="class-05.html">Keep it simple and straightforward</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -325,6 +329,35 @@ $(document).ready(function () {
 
 <div id="daily-problem---part-i" class="section level3">
 <h3><a href="https://vjudge.net/contest/351983">Daily Problem - Part I</a></h3>
+<!-- Begins problem 06 -->
+<div id="06" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem06" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 06: GeT AC
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem06" class="collapse">
+<div id="day-06-get-ac" class="section level3 card-body solution-body">
+<h3><a href="https://atcoder.jp/contests/abc122/tasks/abc122_c" target="_blank">Day 06: GeT AC</a></h3>
+<p>First try it by yourself.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem06" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblem06" class="collapse">
+<pre class="cpp"><code>// TO DO</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem 06 -->
 <!-- Begins problem 05 -->
 <div class="card">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem05" aria-expanded="false" aria-controls="collapseTwo">
@@ -338,16 +371,70 @@ Day 05: Competitive Programmer
 <div id="collapseProblem05" class="collapse">
 <div id="day-05-competitive-programmer" class="section level3 card-body solution-body">
 <h3><a href="https://codeforces.com/contest/1266/problem/A" target="_blank">Day 05: Competitive Programmer</a></h3>
-<p>First try it by yourself.</p>
+<p><span class="math inline">\(60 = 3 * 5 * 2 * 2\)</span></p>
+<p>Now, to verify that we can construct a number multiple of <span class="math inline">\(60\)</span> it is enough to verify:</p>
+<ul>
+<li><p>It is multiple of 3: the sum of digits is multiple of 3</p></li>
+<li><p>It is multiple of 5 and 2: It ends in 0</p></li>
+<li><p>It is multiple of 4: the last two digits are multiple of 4</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem05" aria-expanded="false" aria-controls="collapseTwo">
-<!-- title --> <i class="fas fa-caret-right"></i>
+<!-- title -->
+<i class="fas fa-caret-right"></i>
 <p class="title">
 Code
 </p>
 </div>
 <div id="codeProblem05" class="collapse">
-<pre class="cpp"><code>// TO DO</code></pre>
+</li>
+</ul>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin &gt;&gt; n;
+  while (n--) {
+    string s;
+    cin &gt;&gt; s;
+    if (sz(s) == 1) {
+      if (s[0] == &#39;0&#39;) cout &lt;&lt; &quot;red\n&quot;;
+      else cout &lt;&lt; &quot;cyan\n&quot;;
+      continue;
+    }
+    int zero = 0;
+    int sum = 0;
+    for (auto ch: s) zero += (ch == &#39;0&#39;), sum += (ch - &#39;0&#39;);
+    if (sum % 3 or !zero) {
+      cout &lt;&lt; &quot;cyan\n&quot;;
+      continue;
+    }
+    if (zero &gt; 1) {
+      cout &lt;&lt; &quot;red\n&quot;;
+      continue;
+    }
+    bool ok = false;
+    for (char ch: s) {
+      if (ch == &#39;0&#39;) continue;
+      int num = (ch - &#39;0&#39;) * 10;
+      if (num % 4 == 0) ok = true;
+    }
+    if (ok) cout &lt;&lt; &quot;red\n&quot;;
+    else cout &lt;&lt; &quot;cyan\n&quot;;
+  }
+  return (0);
+}</code></pre>
 </div>
 <p><!-- ends code --></p>
 </div>

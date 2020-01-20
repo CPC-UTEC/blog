@@ -299,6 +299,10 @@ $(document).ready(function () {
     <li>
       <a href="class-04.html">Try every possibility</a>
     </li>
+    <li class="dropdown-header">Week 3</li>
+    <li>
+      <a href="class-05.html">Keep it simple and straightforward</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -319,7 +323,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Clase 04: Brute Force I</h1>
-<h4 class="date">13-01-2020</h4>
+<h4 class="date">15-01-2020</h4>
 
 </div>
 
@@ -489,7 +493,256 @@ Finding the number of divisors of a number
 <div class="topic">
 <a href="https://vjudge.net/contest/352372">Contest</a>
 </div>
-<p>The solutions will be uploaded after the contest.</p>
+<!-- Begins problem A -->
+<div id="problemA" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+A: Simple Equations
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div id="simple-equations" class="section level3 card-body solution-body">
+<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2612" target="_blank">Simple Equations</a></h3>
+<p><span class="math display">\[0 \leq x^2 \quad \forall x \in \mathbb{N}\]</span> <span class="math display">\[\to x^2 \leq x^2 + y^2 + z^2 = C\]</span> <span class="math display">\[x^2 \leq C\]</span> <span class="math display">\[|x| \leq \sqrt{C}\]</span> <span class="math display">\[-\sqrt{C} \leq x \leq \sqrt{C}\]</span> The same hold for <span class="math inline">\(x, y, z\)</span>. Moreover if we have fixed <span class="math inline">\(x, y\)</span>, then <span class="math inline">\(z = A - x - y\)</span>. So, we can fix <span class="math inline">\(x, y\)</span> in <span class="math inline">\(O(\sqrt{C}^2) = O(C)\)</span> and verify if <span class="math inline">\(x, y, z\)</span> holds the equations in <span class="math inline">\(O(1)\)</span>. Don’t forget <span class="math inline">\(x, y, z\)</span> must be different.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemA" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+void solve (int A, int B, int C) {
+  int lim = sqrt(C) + 1;
+  for (int x = -lim; x &lt;= lim; x++) {
+    for (int y = -lim; y &lt;= lim; y++) {
+      int z = A - x - y;
+      if (x == y or x == z or y == z) continue;
+      if ((x + y + z == A) and
+          (x * y * z == B) and
+          (x * x + y * y + z * z == C)) {
+        cout &lt;&lt; x &lt;&lt; &#39; &#39; &lt;&lt; y &lt;&lt; &#39; &#39; &lt;&lt; z &lt;&lt; &#39;\n&#39;;
+        return;
+      }
+    }
+  }
+  cout &lt;&lt; &quot;No solution.\n&quot;;
+}
+
+int main () {
+  int tc;
+  cin &gt;&gt; tc;
+  while (tc--) {
+    int A, B, C;
+    cin &gt;&gt; A &gt;&gt; B &gt;&gt; C;
+    solve(A, B, C);
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+<!-- Begins problem B -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+B: Common Divisors
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div id="common-divisors" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1203/C" target="_blank">Common Divisors</a></h3>
+<p><span class="math inline">\(S = \{x: x | a_i \quad \forall i \in [1, n] \}\)</span></p>
+<p>Let <span class="math inline">\(g = \gcd(a_1, a_2, \dots, a_n)\)</span>.</p>
+<p><strong>Affirmation:</strong> <span class="math inline">\(S = \{x: x | g \}\)</span>. (The proof is left to the reader)</p>
+<p>Then, we just need to find <span class="math inline">\(\sigma_0(g)\)</span> and we can do it in <span class="math inline">\(O(\sqrt{n}))\)</span>.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemB" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin &gt;&gt; n;
+  vector &lt;ll&gt; arr(n);
+  cin &gt;&gt; arr[0];
+  ll g = arr[0];
+  for (int i = 1; i &lt; n; i++) cin &gt;&gt; arr[i], g = __gcd(g, arr[i]);
+  ll ans = 0;
+  for (ll d = 1; d * d &lt;= g; d++) {
+    if (g % d) continue;
+    ans++;
+    ll d2 = g / d;
+    if (d == d2) continue;
+    ans++;
+  }
+  cout &lt;&lt; ans &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+<!-- Begins problem C -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+C: 2Char
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div id="char" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/593/A" target="_blank">2Char</a></h3>
+<p>The key of the problem is to notice what the search space is. As every valid text would have at most two characters and maximum length, then we can fix what would be the two characters and take all the strings that just have these characters.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemC" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int MAX_N = 110;
+
+int n, ans;
+string word[MAX_N];
+
+bool isValid(int id, char ch_1, char ch_2) {
+  for (int pos = 0; pos &lt; word[id].size(); pos++) {
+    if (word[id][pos] != ch_1 and word[id][pos] != ch_2) {
+      return false;
+    }
+  }
+  return true;
+}
+
+int main() {
+  cin &gt;&gt; n;
+  for (int i = 0; i &lt; n; i++) cin &gt;&gt; word[i];
+  for (char ch_1 = &#39;a&#39;; ch_1 &lt;= &#39;z&#39;; ch_1++) {
+    for (char ch_2 = ch_1; ch_2 &lt;= &#39;z&#39;; ch_2++) {
+      int sum = 0;
+      for (int id = 0; id &lt; n; id++) {
+        sum += isValid(id, ch_1, ch_2) * word[id].size();
+      }
+      ans = max(ans, sum);
+    }
+  }
+  cout &lt;&lt; ans &lt;&lt; endl;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem C -->
+<!-- Begins problem D -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+D: Hyperset
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemD" class="collapse">
+<div id="hyperset" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1287/B" target="_blank">Hyperset</a></h3>
+<p>If we have fixed two cards, we can compute what card do we need to make a set. Take care of your implementation.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemD" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef unsigned long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n, k;
+  cin &gt;&gt; n &gt;&gt; k;
+  vector &lt;string&gt; arr(n);
+  map &lt;string, int&gt; mp;
+  for (int i = 0; i &lt; n; i++) {
+    cin &gt;&gt; arr[i], mp[arr[i]]++;
+  }
+  ll ans = 0;
+  for (int i = 0; i &lt; n; i++) {
+    for (int j = i + 1; j &lt; n; j++) {
+      string need = string(k, &#39; &#39;);
+      for (int t = 0; t &lt; k; t++) {
+        if (arr[i][t] == arr[j][t]) {
+          need[t] = arr[i][t];
+        } else {
+          if (&#39;S&#39; != arr[i][t] and &#39;S&#39; != arr[j][t]) need[t] = &#39;S&#39;;
+          if (&#39;E&#39; != arr[i][t] and &#39;E&#39; != arr[j][t]) need[t] = &#39;E&#39;;
+          if (&#39;T&#39; != arr[i][t] and &#39;T&#39; != arr[j][t]) need[t] = &#39;T&#39;;
+        }
+      }
+      ans += mp[need];
+    }
+  }
+  cout &lt;&lt; ans / 3 &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem D -->
 </div>
 </div>
 

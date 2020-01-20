@@ -10,7 +10,7 @@ if len(sys.argv) == 1:
 id = sys.argv[1]
 output = """
 <!-- Begins problem %s -->
-<div class="card">
+<div class="card" id="%s">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem%s" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title -->
   <i class="fas fa-caret-right"></i> <p class="title">%s: [Title Name]</p>
@@ -42,6 +42,6 @@ output = """
 </div>
 <!-- ends problem %s -->
 
-""" %(id, id, id, id, id, id, id, id)
+""" %(id, id, id, id, id, id, id, id, id)
 
 print(output)

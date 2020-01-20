@@ -9,6 +9,41 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ### [Daily Problem - Part I](https://vjudge.net/contest/351983)
 
 
+<!-- Begins problem 06 -->
+<div class="card" id="06">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem06" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Day 06: GeT AC</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem06" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://atcoder.jp/contests/abc122/tasks/abc122_c" target="_blank">Day 06: GeT AC</a>
+
+First try it by yourself.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem06" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblem06" class="collapse">
+
+```c++
+// TO DO
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem 06 -->
+
+
+
 
 <!-- Begins problem 05 -->
 <div class="card">
@@ -22,7 +57,15 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 ### <a href="https://codeforces.com/contest/1266/problem/A" target="_blank">Day 05: Competitive Programmer</a>
 
-First try it by yourself.
+
+$60 = 3 * 5 * 2 * 2$
+
+Now, to verify that we can construct a number multiple of $60$ it is enough to
+verify:
+
+* It is multiple of 3: the sum of digits is multiple of 3
+* It is multiple of 5 and 2: It ends in 0
+* It is multiple of 4: the last two digits are multiple of 4
 
   <!-- begin code -->
   <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem05" aria-expanded="false" aria-controls="collapseTwo">
@@ -32,7 +75,53 @@ First try it by yourself.
   <div id="codeProblem05" class="collapse">
 
 ```c++
-// TO DO
+#include <bits/stdc++.h>
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair <int, int> pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin >> n;
+  while (n--) {
+    string s;
+    cin >> s;
+    if (sz(s) == 1) {
+      if (s[0] == '0') cout << "red\n";
+      else cout << "cyan\n";
+      continue;
+    }
+    int zero = 0;
+    int sum = 0;
+    for (auto ch: s) zero += (ch == '0'), sum += (ch - '0');
+    if (sum % 3 or !zero) {
+      cout << "cyan\n";
+      continue;
+    }
+    if (zero > 1) {
+      cout << "red\n";
+      continue;
+    }
+    bool ok = false;
+    for (char ch: s) {
+      if (ch == '0') continue;
+      int num = (ch - '0') * 10;
+      if (num % 4 == 0) ok = true;
+    }
+    if (ok) cout << "red\n";
+    else cout << "cyan\n";
+  }
+  return (0);
+}
 ```
 
   </div>

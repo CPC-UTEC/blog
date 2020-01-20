@@ -20,6 +20,9 @@ navbar:
         - text: Week 3
         - text: Keep it simple and straightforward
           href: class-05.html
+        - text: Think twice, code once
+          href: class-06.html
+
   right:
     - text: "Daily Problem"
       href: daily-problem.html

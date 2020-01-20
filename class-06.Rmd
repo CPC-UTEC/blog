@@ -1,0 +1,39 @@
+---
+title: "Clase 06: Complete Search III"
+date: "22-01-2020"
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+> "Think twice, code once"
+
+<div class="topic">Modular arithmetic</div>
+
+In process..
+
+<div class="topic">Binary exponenciation</div>
+
+In process..
+
+<div class="topic">Invariants and monovariants</div>
+
+In process..
+
+<div class="topic">Two pointers</div>
+
+In process..
+
+<div class="topic">Recursion</div>
+
+In process..
+
+Recommended readings:
+
+* [[Tutorial] Invariants and Monovariants](https://codeforces.com/blog/entry/57216)
+* [Competitive Programmer’s Handbook, chapters 5, 8 y 21](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+* Principles of Algorithmic Problem Solving, sections 15.6 y 15.7
+* [Learn Data Structures and Algorithms, section Basic Recursion](https://www.codechef.com/certification/data-structures-and-algorithms/prepare)
+* [E-maxx Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)
+

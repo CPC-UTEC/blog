@@ -1,5 +1,5 @@
 ---
-title: "Class 05: Brute Force II"
+title: "Class 05: Complete Search II"
 date: "20-01-2020"
 ---
 
@@ -21,11 +21,11 @@ discuss some of them:
 
 <div class="topic">Fixing variables</div>
 
-There are some kind of problems when you have some equations on $m$ variables.
-Then, its usually a good idea to first try a brute force approach. Find the range of
+There are some kind of problems when you have some equations on $m$ variables. Its usually a good 
+idea to first try a brute force approach. Find the range of
 each of the variables, do a loop for each of them, then inside each loop you
-have the value of that variable fixed, now its a constant. Moreover, when you
-have fixed $m - 1$ of these variables its usually easy to compute what the last
+have the value of that variable fixed, now it is a constant. Moreover, when you
+have fixed $m - 1$ of these variables its usually easy to compute what value the last
 variable should be. Evenmore, you have already solve one problem of this kind:
 [Simple equations](./class-04.html#problemA).
 
@@ -41,8 +41,8 @@ $$0 \leq a, b, c \leq 5000$$
 
 Its easy to identify that the variables of the problem are $x, y, z$ and if we
 fix two of these variable we can get the third one from the equation, so a brute
-force solution with two loops can solve the problem. Now, in order two choose
-what variable two fix, always prefer working with integers (you'll understand
+force solution with two loops can solve the problem. Now, in order to choose
+what variables to fix, always prefer working with integers (you'll understand
 better the reason of this in next classes), so we'll fix $y, z$ in $O(b * c)$.
 
 
@@ -115,10 +115,10 @@ For example, let's begin solving [this problem](https://onlinejudge.org/index.ph
 
 $$1 \leq n \leq 5842$$
 
-We need to compute $S = \{2^i \cdot 3 ^j \cdot 5^k \cdot 7 ^l \quad 0 \leq i, j, k, l \}$. 
-Lets say the maximum value we will compute is $L$, then $i, j, k, l = O(\log L)$. So, if we fix $L$
+We need to compute $S = \{2^i \cdot 3 ^j \cdot 5^k \cdot 7 ^l, \quad 0 \leq i, j, k, l \}$. 
+Let's say the maximum value we will compute is $L$, then $i, j, k, l = O(\log L)$. So, if we fix $L$
 we can compute the elements of $S$ that are less than $L$ in $O(\log^4(L))$. We
-can simply try different values of $L$ until we get more number than the
+can try different values of $L$ until we get more numbers than the
 maximum $n$ in the input (take care of overflow).
 
 <!-- Begins problem example02 -->
@@ -195,9 +195,9 @@ For example, let's begin with [this problem](https://codeforces.com/contest/817/
 
 **Problem:** Find
 
-$$|\{x \leq n \mid x - f(x) > s\}|$$
+$$|\{x \leq n \mid x - f(x) \geq s\}|$$
 
-Where $f(x) = $ sum of digits of $x$.
+Where $f(x) =$ sum of digits of $x$.
 
 $$1 \leq n, s \leq 10^{18}$$
 
@@ -206,7 +206,7 @@ At first glance, the problem looks difficutl, yet we have
 $$0 \leq f(x) \leq 9 * 18$$
 $$\to x - 9 * 18 \leq x - f(x) \leq 9 * 18$$
 
-So we just need to search the answer in $[s, s + 9 * 18]$. What happen with
+So, we just need to search the answer in $[s, s + 9 * 18]$. What happen with
 a number greater than $s + 9 * 18$ ?
 
 <!-- Begins problem example03 -->
@@ -254,17 +254,17 @@ int main () {
 <!-- ends problem example05 -->
 
 The key of these kind of problems is to identify that the search space is small
-because of a property or that there one of the variables of the input is small
+because of a property or that one of the variables of the input is small
 and we can try a brute force approach using it.
 
 <div class="topic">Case analysis</div>
 
-There are some problem that looks difficult, yet when you analyze the cases
+There are some problems that looks difficult, yet when you analyze the cases
 that can occur you realize that the problem simplify to something simple.
 
 For example, let's try [this problem](https://codeforces.com/problemset/problem/252/B).
 
-**Problem:** You are given an array $a$ of $n$ elements. Output two numbers $x, y \mid a_i \not = a_j \land i < j$ such that when swapping $a_i$ and  $a_j$ the array is not sorted (increasing or decreasing) or output -1 if no such pair or number exits.
+**Problem:** You are given an array $a$ of $n$ elements. Output two numbers $x, y \mid a_i \not = a_j \land i < j$ such that when swapping $a_i$ and  $a_j$ the array is not sorted (in increasing or decreasing order) or output -1 if no such pair or numbers exists.
 
 $$1 \leq n \leq 10^5$$
 
@@ -289,21 +289,21 @@ You can take three of these elements and you will find and answer with them (can
   - Case 3.1: $a_i < a_j$
 
   If we swap them, the array can not be in increasing order. If the array is not
-  in decreasing order we have and answer, else the array will be of the form:
+  in decreasing order we have an answer, else the array will be of the form:
 
-  $$a_1 = y \leq a_2 = y \leq \dots \leq a_i = y \leq \dots \leq a_j = x \leq \dots a_n =x$$
+  $$a_1 = y \geq a_2 = y \geq \dots \geq a_i = y \geq \dots \geq a_j = x \geq \dots \geq a_n =x$$
 
-  So, if there exits ans answer it must be in $[i, j)$ or $(i, j]$. Then, we
+  So, if there exists an answer, it must be in $[i, j)$ or $(i, j]$. Then, we
   just need to do the check for a pair of integers $(i, i + 1) \mid a_i < a_{i + 1}$.
 
   - Case 3.2: $a_i > a_j$
 
   If we swap them, the array can not be in decreasing order. If the array is not
-  in increasing order we have and answer, else the array will be of the form:
+  in increasing order we have an answer, else the array will be of the form:
 
-  $$a_1 = x \leq a_2 = x \leq \dots \leq a_i = x \leq \dots \leq a_j = y \leq \dots a_n =y$$
+  $$a_1 = x \leq a_2 = x \leq \dots \leq a_i = x \leq \dots \leq a_j = y \leq \dots \leq a_n =y$$
 
-  So, if there exits ans answer it must be in $[i, j)$ or $(i, j]$. Then, we
+  So, if there exists an answer it must be in $[i, j)$ or $(i, j]$. Then, we
   just need to do the check for a pair of integers $(i, i + 1) \mid a_i > a_{i + 1}$.
 
 
@@ -414,7 +414,7 @@ Let $prefix(x) = a_0 + a_1 + a_2 + \dots + a_x$ and $prefix(-1) = 0$. Then:
 
 $\displaystyle\sum_{i=l}^{r}a_i = prefix(r) - prefix(l - 1)$
 
-So, we can compute $prefix$ in an array and answer each query in $O(1)$.
+So, we can compute $prefix$ using an array and answer each query in $O(1)$.
 
 <!-- Begins problem exampleextra -->
 <div class="card" id="exampleextra">

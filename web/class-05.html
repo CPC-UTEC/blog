@@ -11,7 +11,7 @@
 
 
 
-<title>Class 05: Brute Force II</title>
+<title>Class 05: Complete Search II</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
@@ -303,6 +303,9 @@ $(document).ready(function () {
     <li>
       <a href="class-05.html">Keep it simple and straightforward</a>
     </li>
+    <li>
+      <a href="class-06.html">Think twice, code once</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -322,7 +325,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Class 05: Brute Force II</h1>
+<h1 class="title toc-ignore">Class 05: Complete Search II</h1>
 <h4 class="date">20-01-2020</h4>
 
 </div>
@@ -341,13 +344,13 @@ $(document).ready(function () {
 <div class="topic">
 Fixing variables
 </div>
-<p>There are some kind of problems when you have some equations on <span class="math inline">\(m\)</span> variables. Then, its usually a good idea to first try a brute force approach. Find the range of each of the variables, do a loop for each of them, then inside each loop you have the value of that variable fixed, now its a constant. Moreover, when you have fixed <span class="math inline">\(m - 1\)</span> of these variables its usually easy to compute what the last variable should be. Evenmore, you have already solve one problem of this kind: <a href="./class-04.html#problemA">Simple equations</a>.</p>
+<p>There are some kind of problems when you have some equations on <span class="math inline">\(m\)</span> variables. Its usually a good idea to first try a brute force approach. Find the range of each of the variables, do a loop for each of them, then inside each loop you have the value of that variable fixed, now it is a constant. Moreover, when you have fixed <span class="math inline">\(m - 1\)</span> of these variables its usually easy to compute what value the last variable should be. Evenmore, you have already solve one problem of this kind: <a href="./class-04.html#problemA">Simple equations</a>.</p>
 <p>Now, let try to solve <a href="https://codeforces.com/contest/44/problem/B">this problem</a></p>
 <p><strong>Problem:</strong> You will receive <span class="math inline">\(n, a, b, c\)</span> . You must find</p>
 <p><span class="math display">\[|\{(x, y, z) \mid 0 \leq x \leq a \land 0 \leq y \leq b \land 0 \leq z \leq
 c \land \frac{x}{2} + y + 2 z = n \}|\]</span></p>
 <p><span class="math display">\[1 \leq n \leq 10^4\]</span> <span class="math display">\[0 \leq a, b, c \leq 5000\]</span></p>
-<p>Its easy to identify that the variables of the problem are <span class="math inline">\(x, y, z\)</span> and if we fix two of these variable we can get the third one from the equation, so a brute force solution with two loops can solve the problem. Now, in order two choose what variable two fix, always prefer working with integers (you’ll understand better the reason of this in next classes), so we’ll fix <span class="math inline">\(y, z\)</span> in <span class="math inline">\(O(b * c)\)</span>.</p>
+<p>Its easy to identify that the variables of the problem are <span class="math inline">\(x, y, z\)</span> and if we fix two of these variable we can get the third one from the equation, so a brute force solution with two loops can solve the problem. Now, in order to choose what variables to fix, always prefer working with integers (you’ll understand better the reason of this in next classes), so we’ll fix <span class="math inline">\(y, z\)</span> in <span class="math inline">\(O(b * c)\)</span>.</p>
 <!-- Begins problem example01 -->
 <div id="example01" class="card">
 <!-- begin code -->
@@ -407,7 +410,7 @@ Simulation with brute force
 <p>For example, let’s begin solving <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=24&amp;page=show_problem&amp;problem=384">this problem</a>.</p>
 <p><strong>Problem:</strong> A <em>humble number</em> is a number whose only prime factors are <span class="math inline">\(2, 3, 5, 7\)</span>. You will receive a number <span class="math inline">\(n\)</span> and you should output the n-th humble number.</p>
 <p><span class="math display">\[1 \leq n \leq 5842\]</span></p>
-<p>We need to compute <span class="math inline">\(S = \{2^i \cdot 3 ^j \cdot 5^k \cdot 7 ^l \quad 0 \leq i, j, k, l \}\)</span>. Lets say the maximum value we will compute is <span class="math inline">\(L\)</span>, then <span class="math inline">\(i, j, k, l = O(\log L)\)</span>. So, if we fix <span class="math inline">\(L\)</span> we can compute the elements of <span class="math inline">\(S\)</span> that are less than <span class="math inline">\(L\)</span> in <span class="math inline">\(O(\log^4(L))\)</span>. We can simply try different values of <span class="math inline">\(L\)</span> until we get more number than the maximum <span class="math inline">\(n\)</span> in the input (take care of overflow).</p>
+<p>We need to compute <span class="math inline">\(S = \{2^i \cdot 3 ^j \cdot 5^k \cdot 7 ^l, \quad 0 \leq i, j, k, l \}\)</span>. Let’s say the maximum value we will compute is <span class="math inline">\(L\)</span>, then <span class="math inline">\(i, j, k, l = O(\log L)\)</span>. So, if we fix <span class="math inline">\(L\)</span> we can compute the elements of <span class="math inline">\(S\)</span> that are less than <span class="math inline">\(L\)</span> in <span class="math inline">\(O(\log^4(L))\)</span>. We can try different values of <span class="math inline">\(L\)</span> until we get more numbers than the maximum <span class="math inline">\(n\)</span> in the input (take care of overflow).</p>
 <!-- Begins problem example02 -->
 <div id="example02" class="card">
 <!-- begin code -->
@@ -473,12 +476,12 @@ Weak constraints
 <p>In this kind of problem the statement usually looks difficult, but once you identify the search space you may realize that the number of possible solutions is small.</p>
 <p>For example, let’s begin with <a href="https://codeforces.com/contest/817/problem/C">this problem</a>.</p>
 <p><strong>Problem:</strong> Find</p>
-<p><span class="math display">\[|\{x \leq n \mid x - f(x) &gt; s\}|\]</span></p>
-<p>Where $f(x) = $ sum of digits of <span class="math inline">\(x\)</span>.</p>
+<p><span class="math display">\[|\{x \leq n \mid x - f(x) \geq s\}|\]</span></p>
+<p>Where <span class="math inline">\(f(x) =\)</span> sum of digits of <span class="math inline">\(x\)</span>.</p>
 <p><span class="math display">\[1 \leq n, s \leq 10^{18}\]</span></p>
 <p>At first glance, the problem looks difficutl, yet we have</p>
 <p><span class="math display">\[0 \leq f(x) \leq 9 * 18\]</span> <span class="math display">\[\to x - 9 * 18 \leq x - f(x) \leq 9 * 18\]</span></p>
-<p>So we just need to search the answer in <span class="math inline">\([s, s + 9 * 18]\)</span>. What happen with a number greater than <span class="math inline">\(s + 9 * 18\)</span> ?</p>
+<p>So, we just need to search the answer in <span class="math inline">\([s, s + 9 * 18]\)</span>. What happen with a number greater than <span class="math inline">\(s + 9 * 18\)</span> ?</p>
 <!-- Begins problem example03 -->
 <div id="example03" class="card">
 <!-- begin code -->
@@ -518,13 +521,13 @@ int main () {
 <p><!-- ends code --></p>
 </div>
 <!-- ends problem example05 -->
-<p>The key of these kind of problems is to identify that the search space is small because of a property or that there one of the variables of the input is small and we can try a brute force approach using it.</p>
+<p>The key of these kind of problems is to identify that the search space is small because of a property or that one of the variables of the input is small and we can try a brute force approach using it.</p>
 <div class="topic">
 Case analysis
 </div>
-<p>There are some problem that looks difficult, yet when you analyze the cases that can occur you realize that the problem simplify to something simple.</p>
+<p>There are some problems that looks difficult, yet when you analyze the cases that can occur you realize that the problem simplify to something simple.</p>
 <p>For example, let’s try <a href="https://codeforces.com/problemset/problem/252/B">this problem</a>.</p>
-<p><strong>Problem:</strong> You are given an array <span class="math inline">\(a\)</span> of <span class="math inline">\(n\)</span> elements. Output two numbers <span class="math inline">\(x, y \mid a_i \not = a_j \land i &lt; j\)</span> such that when swapping <span class="math inline">\(a_i\)</span> and <span class="math inline">\(a_j\)</span> the array is not sorted (increasing or decreasing) or output -1 if no such pair or number exits.</p>
+<p><strong>Problem:</strong> You are given an array <span class="math inline">\(a\)</span> of <span class="math inline">\(n\)</span> elements. Output two numbers <span class="math inline">\(x, y \mid a_i \not = a_j \land i &lt; j\)</span> such that when swapping <span class="math inline">\(a_i\)</span> and <span class="math inline">\(a_j\)</span> the array is not sorted (in increasing or decreasing order) or output -1 if no such pair or numbers exists.</p>
 <p><span class="math display">\[1 \leq n \leq 10^5\]</span></p>
 <p>A first idea would be to fix <span class="math inline">\(i, j\)</span> with two loops and check if the condition holds. This solution is <span class="math inline">\(O(n^3)\)</span>, so it will give us a Time Limit Exceed veredict. We need something better.</p>
 <p>Let’s analye by cases on the number of different elements.</p>
@@ -542,15 +545,15 @@ Case analysis
 <ul>
 <li>Case 3.1: <span class="math inline">\(a_i &lt; a_j\)</span></li>
 </ul>
-<p>If we swap them, the array can not be in increasing order. If the array is not in decreasing order we have and answer, else the array will be of the form:</p>
-<p><span class="math display">\[a_1 = y \leq a_2 = y \leq \dots \leq a_i = y \leq \dots \leq a_j = x \leq \dots a_n =x\]</span></p>
-<p>So, if there exits ans answer it must be in <span class="math inline">\([i, j)\)</span> or <span class="math inline">\((i, j]\)</span>. Then, we just need to do the check for a pair of integers <span class="math inline">\((i, i + 1) \mid a_i &lt; a_{i + 1}\)</span>.</p>
+<p>If we swap them, the array can not be in increasing order. If the array is not in decreasing order we have an answer, else the array will be of the form:</p>
+<p><span class="math display">\[a_1 = y \geq a_2 = y \geq \dots \geq a_i = y \geq \dots \geq a_j = x \geq \dots \geq a_n =x\]</span></p>
+<p>So, if there exists an answer, it must be in <span class="math inline">\([i, j)\)</span> or <span class="math inline">\((i, j]\)</span>. Then, we just need to do the check for a pair of integers <span class="math inline">\((i, i + 1) \mid a_i &lt; a_{i + 1}\)</span>.</p>
 <ul>
 <li>Case 3.2: <span class="math inline">\(a_i &gt; a_j\)</span></li>
 </ul>
-<p>If we swap them, the array can not be in decreasing order. If the array is not in increasing order we have and answer, else the array will be of the form:</p>
-<p><span class="math display">\[a_1 = x \leq a_2 = x \leq \dots \leq a_i = x \leq \dots \leq a_j = y \leq \dots a_n =y\]</span></p>
-<p>So, if there exits ans answer it must be in <span class="math inline">\([i, j)\)</span> or <span class="math inline">\((i, j]\)</span>. Then, we just need to do the check for a pair of integers <span class="math inline">\((i, i + 1) \mid a_i &gt; a_{i + 1}\)</span>.</p></li>
+<p>If we swap them, the array can not be in decreasing order. If the array is not in increasing order we have an answer, else the array will be of the form:</p>
+<p><span class="math display">\[a_1 = x \leq a_2 = x \leq \dots \leq a_i = x \leq \dots \leq a_j = y \leq \dots \leq a_n =y\]</span></p>
+<p>So, if there exists an answer it must be in <span class="math inline">\([i, j)\)</span> or <span class="math inline">\((i, j]\)</span>. Then, we just need to do the check for a pair of integers <span class="math inline">\((i, i + 1) \mid a_i &gt; a_{i + 1}\)</span>.</p></li>
 </ul>
 <p>Using all these cases we can implement a <span class="math inline">\(O(n \log n)\)</span> solution.</p>
 <!-- Begins problem example05 -->
@@ -648,7 +651,7 @@ Extra: Prefix sums
 <p><strong>Problem:</strong> You are given an array of <span class="math inline">\(N\)</span> numbers and <span class="math inline">\(Q\)</span> queries. Each query is a range <span class="math inline">\(l, r\)</span>. For each query output the sum of elements of the array in positions <span class="math inline">\([l, r]\)</span>.</p>
 <p>Let <span class="math inline">\(prefix(x) = a_0 + a_1 + a_2 + \dots + a_x\)</span> and <span class="math inline">\(prefix(-1) = 0\)</span>. Then:</p>
 <p><span class="math inline">\(\displaystyle\sum_{i=l}^{r}a_i = prefix(r) - prefix(l - 1)\)</span></p>
-<p>So, we can compute <span class="math inline">\(prefix\)</span> in an array and answer each query in <span class="math inline">\(O(1)\)</span>.</p>
+<p>So, we can compute <span class="math inline">\(prefix\)</span> using an array and answer each query in <span class="math inline">\(O(1)\)</span>.</p>
 <!-- Begins problem exampleextra -->
 <div id="exampleextra" class="card">
 <!-- begin code -->

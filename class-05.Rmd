@@ -471,6 +471,14 @@ You can practice with these problems:
 * [Nikita and string](https://codeforces.com/contest/877/problem/B)
 * [Intense Heat](https://codeforces.com/contest/1003/problem/C)
 
+Recommended readings:
+
+* [Notas de fuerza bruta](https://gist.github.com/miguelAlessandro/f588d159a768dc43cc1ec9b81b27bd57)
+* [PCUNI-2019 Clase
+  05](https://nbviewer.jupyter.org/github/TISparta/pcuni-2019/blob/master/clase-05/clase-05.ipynb)
+* [Topcoder - Representation of integers and reals section 1](https://www.topcoder.com/community/competitive-programming/tutorials/representation-of-integers-and-reals-section-1/)
+* [Topcoder - Representation of integers and reals section 2](https://www.topcoder.com/community/competitive-programming/tutorials/representation-of-integers-and-reals-section-2/)
+
 <div class=topic><a href="https://vjudge.net/contest/353073">Contest</a></div>
 
 The solutions will be uploaded after the contest.

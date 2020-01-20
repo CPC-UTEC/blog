@@ -371,36 +371,29 @@ Day 05: Competitive Programmer
 <div id="collapseProblem05" class="collapse">
 <div id="day-05-competitive-programmer" class="section level3 card-body solution-body">
 <h3><a href="https://codeforces.com/contest/1266/problem/A" target="_blank">Day 05: Competitive Programmer</a></h3>
-<p><span class="math inline">\(60 = 3 * 5 * 2 * 2\)</span></p>
-<p>Now, to verify that we can construct a number multiple of <span class="math inline">\(60\)</span> it is enough to verify:</p>
+<p><span class="math inline">\(60 = 3 * 5 * 2 * 2\)</span>. Then, to verify that we can construct a number multiple of <span class="math inline">\(60\)</span> it is enough to verify:</p>
 <ul>
-<li><p>It is multiple of 3: the sum of digits is multiple of 3</p></li>
-<li><p>It is multiple of 5 and 2: It ends in 0</p></li>
-<li><p>It is multiple of 4: the last two digits are multiple of 4</p>
+<li>It is multiple of 3: the sum of digits is multiple of 3</li>
+<li>It is multiple of 5 and 2: It ends in 0</li>
+<li>It is multiple of 4: the last two digits are multiple of 4</li>
+</ul>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem05" aria-expanded="false" aria-controls="collapseTwo">
-<!-- title -->
-<i class="fas fa-caret-right"></i>
+<!-- title --> <i class="fas fa-caret-right"></i>
 <p class="title">
 Code
 </p>
 </div>
 <div id="codeProblem05" class="collapse">
-</li>
-</ul>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
-
 #define all(A) begin(A), end(A)
 #define rall(A) rbegin(A), rend(A)
 #define sz(A) int(A.size())
 #define pb push_back
 #define mp make_pair
-
 using namespace std;
-
 typedef long long ll;
 typedef pair &lt;int, int&gt; pii;
-
 int main () {
   ios::sync_with_stdio(false); cin.tie(0);
   int n;

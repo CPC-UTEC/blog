@@ -54,18 +54,13 @@ First try it by yourself.
 <!-- begin body -->
 <div id="collapseProblem05" class="collapse">
 <div class="card-body solution-body">
-
 ### <a href="https://codeforces.com/contest/1266/problem/A" target="_blank">Day 05: Competitive Programmer</a>
-
-
-$60 = 3 * 5 * 2 * 2$
-
-Now, to verify that we can construct a number multiple of $60$ it is enough to
+$60 = 3 * 5 * 2 * 2$. Then, to verify that we can construct a number multiple of $60$ it is enough to
 verify:
 
-* It is multiple of 3: the sum of digits is multiple of 3
-* It is multiple of 5 and 2: It ends in 0
-* It is multiple of 4: the last two digits are multiple of 4
+  * It is multiple of 3: the sum of digits is multiple of 3
+  * It is multiple of 5 and 2: It ends in 0
+  * It is multiple of 4: the last two digits are multiple of 4
 
   <!-- begin code -->
   <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem05" aria-expanded="false" aria-controls="collapseTwo">
@@ -73,21 +68,16 @@ verify:
   <i class="fas fa-caret-right"></i> <p class="title">Code</p>
   </div>
   <div id="codeProblem05" class="collapse">
-
 ```c++
 #include <bits/stdc++.h>
-
 #define all(A) begin(A), end(A)
 #define rall(A) rbegin(A), rend(A)
 #define sz(A) int(A.size())
 #define pb push_back
 #define mp make_pair
-
 using namespace std;
-
 typedef long long ll;
 typedef pair <int, int> pii;
-
 int main () {
   ios::sync_with_stdio(false); cin.tie(0);
   int n;
@@ -123,10 +113,8 @@ int main () {
   return (0);
 }
 ```
-
   </div>
   <!-- ends code -->
-
 </div>
 </div>
 </div>

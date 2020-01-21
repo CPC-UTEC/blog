@@ -479,7 +479,7 @@ Weak constraints
 <p><span class="math display">\[|\{x \leq n \mid x - f(x) \geq s\}|\]</span></p>
 <p>Where <span class="math inline">\(f(x) =\)</span> sum of digits of <span class="math inline">\(x\)</span>.</p>
 <p><span class="math display">\[1 \leq n, s \leq 10^{18}\]</span></p>
-<p>At first glance, the problem looks difficutl, yet we have</p>
+<p>At first glance, the problem looks difficult, yet we have</p>
 <p><span class="math display">\[0 \leq f(x) \leq 9 * 18\]</span> <span class="math display">\[\to x - 9 * 18 \leq x - f(x) \leq 9 * 18\]</span></p>
 <p>So, we just need to search the answer in <span class="math inline">\([s, s + 9 * 18]\)</span>. What happen with a number greater than <span class="math inline">\(s + 9 * 18\)</span> ?</p>
 <!-- Begins problem example03 -->
@@ -527,7 +527,7 @@ Case analysis
 </div>
 <p>There are some problems that looks difficult, yet when you analyze the cases that can occur you realize that the problem simplify to something simple.</p>
 <p>For example, let’s try <a href="https://codeforces.com/problemset/problem/252/B">this problem</a>.</p>
-<p><strong>Problem:</strong> You are given an array <span class="math inline">\(a\)</span> of <span class="math inline">\(n\)</span> elements. Output two numbers <span class="math inline">\(x, y \mid a_i \not = a_j \land i &lt; j\)</span> such that when swapping <span class="math inline">\(a_i\)</span> and <span class="math inline">\(a_j\)</span> the array is not sorted (in increasing or decreasing order) or output -1 if no such pair or numbers exists.</p>
+<p><strong>Problem:</strong> You are given an array <span class="math inline">\(a\)</span> of <span class="math inline">\(n\)</span> elements. Output two numbers <span class="math inline">\(i, j \mid a_i \not = a_j \land i &lt; j\)</span> such that when swapping <span class="math inline">\(a_i\)</span> and <span class="math inline">\(a_j\)</span> the array is not sorted (in increasing or decreasing order) or output -1 if no such pair or numbers exists.</p>
 <p><span class="math display">\[1 \leq n \leq 10^5\]</span></p>
 <p>A first idea would be to fix <span class="math inline">\(i, j\)</span> with two loops and check if the condition holds. This solution is <span class="math inline">\(O(n^3)\)</span>, so it will give us a Time Limit Exceed veredict. We need something better.</p>
 <p>Let’s analye by cases on the number of different elements.</p>

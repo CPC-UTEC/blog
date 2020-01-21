@@ -201,7 +201,7 @@ Where $f(x) =$ sum of digits of $x$.
 
 $$1 \leq n, s \leq 10^{18}$$
 
-At first glance, the problem looks difficutl, yet we have
+At first glance, the problem looks difficult, yet we have
 
 $$0 \leq f(x) \leq 9 * 18$$
 $$\to x - 9 * 18 \leq x - f(x) \leq 9 * 18$$
@@ -264,7 +264,7 @@ that can occur you realize that the problem simplify to something simple.
 
 For example, let's try [this problem](https://codeforces.com/problemset/problem/252/B).
 
-**Problem:** You are given an array $a$ of $n$ elements. Output two numbers $x, y \mid a_i \not = a_j \land i < j$ such that when swapping $a_i$ and  $a_j$ the array is not sorted (in increasing or decreasing order) or output -1 if no such pair or numbers exists.
+**Problem:** You are given an array $a$ of $n$ elements. Output two numbers $i, j \mid a_i \not = a_j \land i < j$ such that when swapping $a_i$ and  $a_j$ the array is not sorted (in increasing or decreasing order) or output -1 if no such pair or numbers exists.
 
 $$1 \leq n \leq 10^5$$
 

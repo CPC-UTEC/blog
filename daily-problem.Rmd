@@ -9,6 +9,42 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ### [Daily Problem - Part I](https://vjudge.net/contest/351983)
 
 
+<!-- Begins problem 07 -->
+<div class="card" id="07">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem07" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Day 07: z-sort</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem07" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/652/B" target="_blank">Day 07: z-sort</a>
+
+First try it by yourself.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem07" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblem07" class="collapse">
+
+```c++
+// TO DO
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem 07 -->
+
+
+
+
 <!-- Begins problem 06 -->
 <div class="card" id="06">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem06" aria-expanded="false" aria-controls="collapseTwo">
@@ -21,7 +57,8 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 ### <a href="https://atcoder.jp/contests/abc122/tasks/abc122_c" target="_blank">Day 06: GeT AC</a>
 
-First try it by yourself.
+We can count how many `AC` there are in a range using prefix sums and taking
+care or corner cases.
 
   <!-- begin code -->
   <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem06" aria-expanded="false" aria-controls="collapseTwo">
@@ -31,7 +68,39 @@ First try it by yourself.
   <div id="codeProblem06" class="collapse">
 
 ```c++
-// TO DO
+#include <bits/stdc++.h>
+
+#define all(A) begin(A), end(A)
+#define sz(A) int(A.size())
+
+using namespace std;
+
+typedef long long ll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n, q;
+  cin >> n >> q;
+  string s;
+  cin >> s;
+  vector <int> ac(n + 1, 0);
+  for (int i = 1; i < n; i++) {
+    if (s[i - 1] == 'A' and s[i] == 'C') {
+      ac[i + 1] = 1;
+    }
+  }
+  for (int i = 1; i <= n; i++) {
+    ac[i] += ac[i - 1];
+  }
+  while (q--) {
+    int l, r;
+    cin >> l >> r;
+    int x = ac[r] - ac[l - 1];
+    if (ac[l] - ac[l - 1] == 1) x--;
+    cout << x << '\n';
+  }
+  return (0);
+}
 ```
 
   </div>

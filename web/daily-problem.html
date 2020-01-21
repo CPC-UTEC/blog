@@ -332,6 +332,35 @@ $(document).ready(function () {
 
 <div id="daily-problem---part-i" class="section level3">
 <h3><a href="https://vjudge.net/contest/351983">Daily Problem - Part I</a></h3>
+<!-- Begins problem 07 -->
+<div id="07" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem07" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 07: z-sort
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem07" class="collapse">
+<div id="day-07-z-sort" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/652/B" target="_blank">Day 07: z-sort</a></h3>
+<p>First try it by yourself.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem07" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblem07" class="collapse">
+<pre class="cpp"><code>// TO DO</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem 07 -->
 <!-- Begins problem 06 -->
 <div id="06" class="card">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem06" aria-expanded="false" aria-controls="collapseTwo">
@@ -345,7 +374,7 @@ Day 06: GeT AC
 <div id="collapseProblem06" class="collapse">
 <div id="day-06-get-ac" class="section level3 card-body solution-body">
 <h3><a href="https://atcoder.jp/contests/abc122/tasks/abc122_c" target="_blank">Day 06: GeT AC</a></h3>
-<p>First try it by yourself.</p>
+<p>We can count how many <code>AC</code> there are in a range using prefix sums and taking care or corner cases.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem06" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title --> <i class="fas fa-caret-right"></i>
@@ -354,7 +383,39 @@ Code
 </p>
 </div>
 <div id="codeProblem06" class="collapse">
-<pre class="cpp"><code>// TO DO</code></pre>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define sz(A) int(A.size())
+
+using namespace std;
+
+typedef long long ll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n, q;
+  cin &gt;&gt; n &gt;&gt; q;
+  string s;
+  cin &gt;&gt; s;
+  vector &lt;int&gt; ac(n + 1, 0);
+  for (int i = 1; i &lt; n; i++) {
+    if (s[i - 1] == &#39;A&#39; and s[i] == &#39;C&#39;) {
+      ac[i + 1] = 1;
+    }
+  }
+  for (int i = 1; i &lt;= n; i++) {
+    ac[i] += ac[i - 1];
+  }
+  while (q--) {
+    int l, r;
+    cin &gt;&gt; l &gt;&gt; r;
+    int x = ac[r] - ac[l - 1];
+    if (ac[l] - ac[l - 1] == 1) x--;
+    cout &lt;&lt; x &lt;&lt; &#39;\n&#39;;
+  }
+  return (0);
+}</code></pre>
 </div>
 <p><!-- ends code --></p>
 </div>

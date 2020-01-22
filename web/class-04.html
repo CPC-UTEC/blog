@@ -401,7 +401,7 @@ Pythagorean triples
 <p><span class="math inline">\(gcd(a, b) =\)</span> greatest common divisor of <span class="math inline">\(a\)</span> and <span class="math inline">\(b = \max(d: d | a \land d | b)\)</span></p>
 <pre class="cpp"><code>int solution3 (int n) {
   int cnt = 0;
-  for (int a = 1; a &lt; n / 2; a++) {
+  for (int a = 1; a * a &lt; n; a++) {
     for (int b = 1; b &lt; a; b++) {
       if (__gcd(a, b) != 1) continue;
       if (a % 2 and b % 2) continue;

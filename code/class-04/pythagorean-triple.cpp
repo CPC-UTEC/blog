@@ -34,7 +34,7 @@ int solution2 (int n) {
 
 int solution3 (int n) {
   int cnt = 0;
-  for (int a = 1; a < n / 2; a++) {
+  for (int a = 1; a * a < n; a++) {
     for (int b = 1; b < a; b++) {
       if (__gcd(a, b) != 1) continue;
       if (a % 2 and b % 2) continue;

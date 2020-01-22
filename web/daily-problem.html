@@ -332,6 +332,35 @@ $(document).ready(function () {
 
 <div id="daily-problem---part-i" class="section level3">
 <h3><a href="https://vjudge.net/contest/351983">Daily Problem - Part I</a></h3>
+<!-- Begins problem 08 -->
+<div id="08" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem08" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 08: Little Quilt
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem08" class="collapse">
+<div id="day-08-little-quilt" class="section level3 card-body solution-body">
+<h3><a href="https://www.spoj.com/problems/QUILT/en/" target="_blank">Day 08: Little Quilt</a></h3>
+<p>First try it by yourself.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem08" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblem08" class="collapse">
+<pre class="cpp"><code>// TO DO</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem 08 -->
 <!-- Begins problem 07 -->
 <div id="07" class="card">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem07" aria-expanded="false" aria-controls="collapseTwo">
@@ -345,7 +374,7 @@ Day 07: z-sort
 <div id="collapseProblem07" class="collapse">
 <div id="day-07-z-sort" class="section level3 card-body solution-body">
 <h3><a href="https://codeforces.com/problemset/problem/652/B" target="_blank">Day 07: z-sort</a></h3>
-<p>First try it by yourself.</p>
+<p>Sort the array and alternate taking elements (the smallest, the greater, the second smallest, the second greater, …).</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem07" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title --> <i class="fas fa-caret-right"></i>
@@ -354,7 +383,24 @@ Code
 </p>
 </div>
 <div id="codeProblem07" class="collapse">
-<pre class="cpp"><code>// TO DO</code></pre>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+  int n;
+  cin &gt;&gt; n;
+  vector &lt;int&gt; arr(n);
+  for (int i = 0; i &lt; n; i++) cin &gt;&gt; arr[i];
+  sort(begin(arr), end(arr));
+  int l = 0, r = n - 1;
+  for (int i = 0; i &lt; n; i++) {
+    if (i % 2 == 0) cout &lt;&lt; arr[l++];
+    else cout &lt;&lt; arr[r--];
+    cout &lt;&lt; &quot; \n&quot;[i == n - 1];
+  }
+  return (0);
+}</code></pre>
 </div>
 <p><!-- ends code --></p>
 </div>

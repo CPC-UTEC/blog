@@ -395,7 +395,8 @@ Pythagorean triples
 <p>If <span class="math inline">\((x, y, z)\)</span> is a pythagorean triple and <span class="math inline">\(gcd(x, y, z) = 1\)</span>, then <span class="math inline">\((x, y, z)\)</span> is called a primite pythagorean triple.</p>
 <p>And there is a property (Euclid’s formula) that says that every primite pythagorean triple can be represented by a pair <span class="math inline">\((a, b) \mid 0 &lt; b &lt; a \land gcd(a, b) = 1 \land a\)</span> and <span class="math inline">\(b\)</span> are not both odds in the following way:</p>
 <p><span class="math display">\[x = a^2 - b^2\]</span> <span class="math display">\[y = 2 * a * b\]</span> <span class="math display">\[z = a * a + b * b\]</span></p>
-<p>Then we can generate primites <span class="math inline">\((x, y, z) \land (y, x, z)\)</span> and count how many of their multiples hold the condition of the problem in <span class="math inline">\(O(n^2 \log n)\)</span>.</p>
+<p>Moreover, we have: <span class="math display">\[a * a \leq a * a + b * b \leq z \leq n\]</span></p>
+<p>Then, a can just take values in <span class="math inline">\([0, \sqrt{n}]\)</span>. So we can generate primites <span class="math inline">\((x, y, z) \land (y, x, z)\)</span> and count how many of their multiples hold the condition of the problem in <span class="math inline">\(O((\sqrt{n}) \cdot \sqrt{n} \cdot \log n) = O(n \log n)\)</span>.</p>
 <p><strong>Note:</strong></p>
 <p><span class="math inline">\(gcd(a, b) =\)</span> greatest common divisor of <span class="math inline">\(a\)</span> and <span class="math inline">\(b = \max(d: d | a \land d | b)\)</span></p>
 <pre class="cpp"><code>int solution3 (int n) {

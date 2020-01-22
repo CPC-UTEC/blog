@@ -110,8 +110,11 @@ $$x = a^2 - b^2$$
 $$y = 2 * a * b$$
 $$z = a * a + b * b$$
 
-Then we can generate primites $(x, y, z) \land (y, x, z)$ and count how many of
-their multiples hold the condition of the problem in $O(n^2 \log n)$.
+Moreover, we have:
+$$a * a \leq a * a + b * b \leq z \leq n$$
+
+Then, a can just take values in $[0, \sqrt{n}]$. So we can generate primites $(x, y, z) \land (y, x, z)$ and count how many of
+their multiples hold the condition of the problem in $O((\sqrt{n}) \cdot \sqrt{n} \cdot \log n) = O(n \log n)$.
 
 **Note:**
 

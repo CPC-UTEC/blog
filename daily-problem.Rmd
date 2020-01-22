@@ -9,6 +9,42 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ### [Daily Problem - Part I](https://vjudge.net/contest/351983)
 
 
+<!-- Begins problem 08 -->
+<div class="card" id="08">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem08" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Day 08: Little Quilt</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem08" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://www.spoj.com/problems/QUILT/en/" target="_blank">Day 08: Little Quilt</a>
+
+First try it by yourself.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem08" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblem08" class="collapse">
+
+```c++
+// TO DO
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem 08 -->
+
+
+
+
 <!-- Begins problem 07 -->
 <div class="card" id="07">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem07" aria-expanded="false" aria-controls="collapseTwo">
@@ -21,7 +57,8 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 ### <a href="https://codeforces.com/problemset/problem/652/B" target="_blank">Day 07: z-sort</a>
 
-First try it by yourself.
+Sort the array and alternate taking elements (the smallest, the greater, the
+second smallest, the second greater, ...).
 
   <!-- begin code -->
   <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem07" aria-expanded="false" aria-controls="collapseTwo">
@@ -31,7 +68,24 @@ First try it by yourself.
   <div id="codeProblem07" class="collapse">
 
 ```c++
-// TO DO
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int n;
+  cin >> n;
+  vector <int> arr(n);
+  for (int i = 0; i < n; i++) cin >> arr[i];
+  sort(begin(arr), end(arr));
+  int l = 0, r = n - 1;
+  for (int i = 0; i < n; i++) {
+    if (i % 2 == 0) cout << arr[l++];
+    else cout << arr[r--];
+    cout << " \n"[i == n - 1];
+  }
+  return (0);
+}
 ```
 
   </div>

@@ -9,11 +9,6 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 > "Think twice, code once"
 
-<div class="topic">Modular arithmetic</div>
-
-In process..
-
-<div class="topic">Binary exponenciation</div>
 
 In process..
 
@@ -27,13 +22,290 @@ In process..
 
 <div class="topic">Recursion</div>
 
-In process..
+Imagine you have a funtion $f$ that solves a problem in this way:
+
+* When we are in a state with a specific property, we know how to directly solve
+  the problem
+* If we are not in a state with a specific property, we can solve the problem
+  using different states of $f$.
+
+For example:
+
+$$f(n) = 1 * 2 * 3 * \dots * n$$
+
+We want to compute $f(n)$ in a recursive way. Then we need:
+
+* Identify a state with a specific property that we can solve easily.
+
+  If $n = 0 \to f(0) = 1$.
+
+* Identify how to solve $f(n)$ using different states of $f$ (that are 'closer'
+  to the states with a specific property of the above point)
+
+$$f(n) = \underbrace{1 * 2 * 3 * \dots * (n - 1)}_{\text{f(n - 1)}} * n$$
+$$f(n) = n * f(n - 1)$$
+
+Then, we are basically saying that if $n = 0$ we know how to solve the problem,
+else if we have the answer of $f(n - 1)$ we can use it to solve $f(n)$.
+
+In code it is something like this:
+
+```c++
+ll f (int n) {
+  if (n == 0) return 1;
+  return n * f(n - 1);
+}
+```
+
+What is nice about recursion is that we can think in a recursive way. Thinking
+in this way the problem may become easier. For example you can say:
+
+Let $f$ be a function that solves the problem I am trying to solve. Then, you
+may say. I have no idea how to solve $f(state)$, but if somehow I would have
+the answer of $f(state'), f(state''), f(state'''), \dots$, then I can solve
+$f(state)$ and I know how to solve the problem in specific states.
+
+Then, in code, recursive solutions usually have have the form:
+
+```vw
+T ll (state):
+  if (state have a specific property):
+    solve the problem for this state and return something
+  else:
+    get the answer of f(state'), f(state''), f(state'''), ...
+    and using these answers compute f(state) and return something
+```
+
+For example, let's solve the problem of the towers of Hanoi.
+
+### The tower of Hanoi
+
+![](./images/class-05/Hanoi.jpeg)
+
+
+**Problem:** You have 3 rods, and a pile of $n$ disks in one rod. Each disk have different
+diameter, the disks are in order in the stack, the greatest in the button and
+the smallest on the top. We want to move all the disks to another rod. We can
+only move the top disk of a stack to another rod if the other rod is empty or
+the diameter of its top element is greater that the one we are moving. Can you
+give a sequence of movements to solve this problem ?
+
+Lets say we have the function $f$ such that $f(source, target, pivot, n)$ moves
+the $n$ disks that are is the `source` rod to the `target` rod. Then, we can
+say:
+
+If I want to move the $n$ disks from `source` rod to the `target` rod, first
+I need to move $n - 1$ disks from `source` to `pivot`, then I move the last
+disk in `source` to target. After that, we need to move the $n - 1$ disks  in
+`pivot` to `target` and we are done. Moreover, if there is only one disk we can
+direcly move to `target`. Then, we can write $f$ in this way:
+
+```bw
+void f(source, target, pivot, n):
+  if n == 1:
+    move the disk in source to target
+    return
+  # move the top n - 1 disks in source to pivot
+  f(source, pivot, n - 1)
+  # move the last disk in source to target
+  f(source, target, 1)
+  # move the n - 1 disks in pivot to target
+  f(pivot, target, n - 1)
+```
+
+And that's all. It solves the problem!
+
+### Exercises
+
+Write recursive functions to compute:
+
+* Sum of digits of a number $n$
+* $fib(n)$
+* $C(n, k)$
+* Binary representation of $n$
+
+<div class="topic">Modular arithmetic</div>
+
+When we are doing a division we are basically computing:
+
+$$a = b \cdot \lfloor a / b \rfloor + r$$
+$$0 \leq r < b$$
+
+Now, we say:
+
+$$a \equiv r \mod b \lor r \equiv a \mod b$$
+
+$r$ is what we get when we compute $a \% b$.
+
+When working with modular arithmetic, that set of values our numbers can take
+is $0, 1, 2, \dots, m - 1$, where $m$ is a constant. So each number $x$ is
+represented as $x \mod m$.
+
+For example, if $m = 12 \to x = 20$ would be represented as $x \mod 12 = 8$.
+
+In some problems you will be asked to output the answer module $m$. For doing
+this you may just solve your problem and in the end output $your\_answer \% m$.
+Nevertheless, what happend if $m= 10^9 + 7$ and you have:
+
+```c++
+int m = 1e9 + 7; // 10^9 + 7
+long long a = 1e10; // 10^10
+long long your_answer = (a * a) % m;
+```
+
+Althought we know that the $\%$ operator will give us a result less than $m$,
+$a * a$ can not fit in a `long long` ($10^{20} > 2^{63}$), so we have `overflow`. In
+order to fix that, we can use the properties of modular arithmetic:
+
+$$(x + y) \mod m = (x \mod m + y \mod m) \mod m$$
+$$(x - y) \mod m = (x \mod m - y \mod m) \mod m$$
+$$(x * y) \mod m = (x \mod m * y \mod m) \mod m$$
+$$x^n \mod m = (x \mod m)^n \mod m$$
+
+So, we can fix the above code in this way:
+
+```c++
+long long your_answer = ((a % m) * (a % m)) % m;
+```
+
+From the above properties we have:
+
+$x \mod m = x \mod m + 0 = x \mod m + m \mod m = (x + m) \mod m$
+
+The last equation will be useful because in C++ the result of $\%$ can be
+ in $(-m, m)$. For example:
+
+```c++
+cout << (-4) % 5 << '\n'; // -4
+```
+
+Then, the subtraction should be:
+
+$$(x - y) \mod m = ((x \mod m - y \mod m) \mod m + m) \mod m$$
+
+Now, the result will always be in $[0, m)$.
+
+<div class="topic">Binary exponenciation</div>
+
+$a^b$ can be expressed in a recursive way.
+
+$$
+    \text{power}(a, b) =,
+    \begin{cases}
+        1       & \quad \text{If } b = 0 \\
+        \text{power}(a, \lfloor b / 2 \rfloor) ^ 2  & \quad \text{if } b \mod 2 = 0 \\
+        a * \text{power}(a, \lfloor b / 2 \rfloor) ^ 2 & \quad \text{if } b \mod 2 = 1
+    \end{cases}
+$$
+
+Moreover, from the properties of modular arithmetic, we can get $a^b \mod m$
+as:
+
+$$
+    \text{binpow}(a, b) =,
+    \begin{cases}
+        1       & \quad \text{If } b = 0 \\
+        \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2 \mod m & \quad \text{if } b \mod 2 = 0 \\
+        (a * \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2) \mod m & \quad \text{if } b \mod 2 = 1
+    \end{cases}
+$$
+
+In code:
+
+```c++
+const ll m = 1e9 + 7;
+
+ll binpow (ll a, ll b) {
+  if (b == 0) return 1;
+  a %= m;
+  ll res = binpow(a, b / 2);
+  res = (res * res) % m;
+  if (b % 2 == 1) res = (a * res) % m;
+  return res;
+}
+```
+
+The above code compute $a^b \mod m$ in $O(\log b)$.
+
+This function will be really useful, but before using it, we need to know one
+theorem.
+
+### Fermat's little theorem
+
+If $m$ is prime ans $0 < a < m$, we have:
+
+$$a^{m - 1} \equiv 1 \mod m$$
+
+Moreover, we say the the inverse of $a$ is $b$ if:
+
+$$ab \equiv 1 \mod m$$
+
+$b$ is written as $a^{-1}$.
+
+And as $a^{m - 1} = a \cdot a^{m - 2}$
+
+Using Fermat's little theorem we have that the inverse of $a$ is $a^{m - 2}$ if $m$ is prime.
+
+Now, we can mention one more property of modular arithmetic (if $b^{-1}$ exists).
+
+$$\frac{a}{b} \mod m = ((a \mod m) * (b^{-1} \mod m)) \mod m$$
+
+Let's see how it is useful in [this problem](https://vjudge.net/problem/Gym-247724E).
+
+**Problem:** Compute $S = (1 + a + a^2 + a^3 + \dots + a^k) \mod m$.
+
+$$m = 10^9 + 7 \text{ (is prime)}$$
+$$1 \leq a \leq 10^{18}$$
+$$1 \leq k \leq 10^{18}$$
+
+If $a = 1 \to S = (k + 1) \mod m$
+
+If $a > 1 \to S = \frac{a^{k + 1} - 1}{a - 1} \mod m$
+
+Then, we can use the above properties to compute that.
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long ll;
+
+const ll m = 1e9 + 7;
+
+ll add (ll a, ll b) { return ((a) % m + (b % m)) % m; }
+ll sub (ll a, ll b) { return (((a) % m - (b % m)) + m) % m; }
+ll mul (ll a, ll b) { return ((a) % m * (b % m)) % m; }
+
+ll binpow (ll a, ll b) {
+  if (b == 0) return 1;
+  a %= m;
+  ll res = binpow(a, b / 2);
+  res = mul(res, res);
+  if (b % 2 == 1) res = mul(a, res);
+  return res;
+}
+
+ll inverse (ll a) { return binpow(a, m - 2); }
+
+int main () {
+  ll a, k;
+  cin >> a >> k;
+  if (sub(a, 1) == 0) {
+    cout << add(k, 1) << '\n';
+  } else {
+    cout << mul(sub(binpow(a, k + 1), 1), inverse(a - 1)) << '\n';
+  }
+  return (0);
+}
+```
 
 Recommended readings:
 
+* Concrete Mathematics - Knuth. Chapter 1
+* [Modular Arithmetic for Beginners](https://codeforces.com/blog/entry/72527)
 * [[Tutorial] Invariants and Monovariants](https://codeforces.com/blog/entry/57216)
 * [Competitive Programmer’s Handbook, chapters 5, 8 y 21](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
 * Principles of Algorithmic Problem Solving, sections 15.6 y 15.7
 * [Learn Data Structures and Algorithms, section Basic Recursion](https://www.codechef.com/certification/data-structures-and-algorithms/prepare)
 * [E-maxx Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)
-

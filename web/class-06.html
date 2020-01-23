@@ -337,9 +337,9 @@ $(document).ready(function () {
 <div class="topic">
 Two pointers
 </div>
-<p>This technique is usually used in an array. We have a pointer to the first element of the array and to the last. The first pointer will be incresing and the other one decreasing. In practice, intead of using a pointer, a <code>int</code> variable to keep track of the index is usually enough.</p>
+<p>This technique is usually used in an array. We have a pointer to the first element of the array and to the last. The first pointer will be incresing and the other one decreasing (you may also find variations of this idea). In practice, intead of using a pointer, a <code>int</code> variable to keep track of the index is usually enough.</p>
 <p>Let’s see this technique with an example:</p>
-<p><strong>Problem:</strong> You are given an array <span class="math inline">\(a\)</span> of <span class="math inline">\(n\)</span> elements. You should output the minimun number of intervals <span class="math inline">\([l_i, r_i] \mid a_i = a_j \forall \, i, j \in [l_i, r_i]\)</span> <span class="math inline">\([l_1, r_1] \cup [l_2, r_2] \cup \dots \cup [l_m, r_m] = [1, n]\)</span>.</p>
+<p><strong>Problem:</strong> You are given an array <span class="math inline">\(a\)</span> of <span class="math inline">\(n\)</span> elements. You should output the minimum number of intervals <span class="math inline">\([l_i, r_i] \mid a_i = a_j \forall \, i, j \in [l_i, r_i]\)</span> <span class="math inline">\([l_1, r_1] \cup [l_2, r_2] \cup \dots \cup [l_m, r_m] = [1, n]\)</span>.</p>
 <p><span class="math display">\[1 \leq n \leq 10^5\]</span></p>
 <p><strong>Example:</strong></p>
 <p><strong>Input:</strong></p>
@@ -382,11 +382,21 @@ Two pointers
   }
   return ret;  
 }</code></pre>
+<p><a href="./code/class-06/intervals.cpp">Full code</a></p>
 <p>The time complexity of both solutions is <span class="math inline">\(O(n)\)</span>.</p>
 <p>Let’s use this technique in <a href="https://leetcode.com/problems/two-sum/">this problem</a>:</p>
-<p><strong>Problem (2 sum problem):</strong> You are given an array <span class="math inline">\(a\)</span> of <span class="math inline">\(n\)</span> positive elements and an integer <span class="math inline">\(x\)</span>. You should output two numbers <span class="math inline">\(i, j \mid i \not = j \land a_i + a_j = x\)</span>. It is garantee that a solution always exits.</p>
-<p><span class="math display">\[1 \leq n \leq 10^5\]</span> <span class="math display">\[1 \leq x \leq 10^9\]</span></p>
-<p>We can use the same technique and solve the problem in <span class="math inline">\(O(n)\)</span>.</p>
+<p><strong>Problem (2 sum problem):</strong> You are given an array <span class="math inline">\(a\)</span> of <span class="math inline">\(n\)</span> positive elements and an integer <span class="math inline">\(target\)</span>. You should output two numbers <span class="math inline">\(i, j \mid i \not = j \land a_i + a_j = target\)</span>. It is garantee that a solution always exits.</p>
+<p><span class="math display">\[1 \leq n \leq 10^5\]</span> <span class="math display">\[1 \leq target \leq 10^9\]</span></p>
+<p>We can use the same technique + sorting and solve the problem in <span class="math inline">\(O(n \log n)\)</span>.</p>
+<p>First, let’s sort the array and init with <span class="math inline">\(l = 0 \land r = n - 1\)</span>. <span class="math inline">\(l\)</span> would just increase and <span class="math inline">\(r\)</span> would just decrease. Then, by the trichotomy property there are three cases:</p>
+<ul>
+<li><p><span class="math inline">\(a[l] + a[r] == target\)</span></p>
+<p>Then, we have and answer and our program can finish</p></li>
+<li><p><span class="math inline">\(a[l] + a[r] &lt; target\)</span></p>
+<p>In this case we need to get a greater sum. Decreasing <span class="math inline">\(r\)</span> the sum may keep the same or smaller. Increasing <span class="math inline">\(l\)</span> the sum may keep the same or greater. Then, we need to increase <span class="math inline">\(l\)</span>.</p></li>
+<li><p><span class="math inline">\(a[l] + a[r] &gt; target\)</span></p>
+<p>Similar to the previous case, we need to decrease the sum, then we decrease <span class="math inline">\(r\)</span>.</p></li>
+</ul>
 <pre class="cpp"><code>class Solution {
 public:
     vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) {
@@ -458,11 +468,11 @@ Recursion
     move the disk in source to target
     return
   # move the top n - 1 disks in source to pivot
-  f(source, pivot, n - 1)
+  f(source, pivot, target, n - 1)
   # move the last disk in source to target
-  f(source, target, 1)
+  f(source, target, pivot, 1)
   # move the n - 1 disks in pivot to target
-  f(pivot, target, n - 1)</code></pre>
+  f(pivot, target, source, n - 1)</code></pre>
 <p>And that’s all. It solves the problem!</p>
 </div>
 <div id="exercises" class="section level3">
@@ -596,8 +606,9 @@ int main () {
 <li><a href="https://cp-algorithms.com/algebra/binary-exp.html">E-maxx Binary Exponentiation</a></li>
 </ul>
 <div class="topic">
-<a href="https://vjudge.net/contest/353470">Contest</a>
+Contest
 </div>
+<p>You can find the contest <a href="https://vjudge.net/contest/353470">here</a>.</p>
 <p>The solutions will be uploaded after the contest.</p>
 </div>
 

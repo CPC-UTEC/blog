@@ -14,13 +14,13 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 This technique is usually used in an array. We have a pointer to the first
 element of the array and to the last. The first pointer will be incresing and
-the other one decreasing. In practice, intead of using a pointer, a `int`
+the other one decreasing (you may also find variations of this idea). In practice, intead of using a pointer, a `int`
 variable to keep track of the index is usually enough.
 
 Let's see this technique with an example:
 
 **Problem:** You are given an array $a$ of $n$ elements. You should output the
-minimun number of intervals $[l_i, r_i] \mid a_i = a_j \forall \, i, j \in [l_i,
+minimum number of intervals $[l_i, r_i] \mid a_i = a_j \forall \, i, j \in [l_i,
 r_i]$ \land $[l_1, r_1] \cup [l_2, r_2] \cup \dots \cup [l_m, r_m] = [1, n]$.
 
 $$1 \leq n \leq 10^5$$
@@ -79,17 +79,38 @@ vector <pair <int, int>> solution2 (const vector <int>& arr) {
 }
 ```
 
+[Full code](./code/class-06/intervals.cpp)
+
 The time complexity of both solutions is $O(n)$.
 
 Let's use this technique in [this problem](https://leetcode.com/problems/two-sum/):
 
-**Problem (2 sum problem):** You are given an array $a$ of $n$ positive elements and an integer $x$. You
-should output two numbers $i, j \mid i \not = j \land a_i + a_j = x$. It is garantee that a solution always exits.
+**Problem (2 sum problem):** You are given an array $a$ of $n$ positive elements and an integer $target$. You
+should output two numbers $i, j \mid i \not = j \land a_i + a_j = target$. It is garantee that a solution always exits.
 
 $$1 \leq n \leq 10^5$$
-$$1 \leq x \leq 10^9$$
+$$1 \leq target \leq 10^9$$
 
-We can use the same technique and solve the problem in $O(n)$.
+We can use the same technique + sorting and solve the problem in $O(n \log n)$.
+
+First, let's sort the array and init with $l = 0 \land r = n - 1$. $l$ would
+just increase and $r$ would just decrease. Then, by the trichotomy property there are
+three cases:
+
+* $a[l] + a[r] == target$
+
+  Then, we have and answer and our program can finish
+
+* $a[l] + a[r] < target$
+
+  In this case we need to get a greater sum. Decreasing $r$ the sum may keep
+  the same or smaller. Increasing $l$ the sum may keep the same or greater.
+  Then, we need to increase $l$.
+
+* $a[l] + a[r] > target$
+
+  Similar to the previous case, we need to decrease the sum, then we decrease
+  $r$.
 
 ```c++
 class Solution {
@@ -208,11 +229,11 @@ void f(source, target, pivot, n):
     move the disk in source to target
     return
   # move the top n - 1 disks in source to pivot
-  f(source, pivot, n - 1)
+  f(source, pivot, target, n - 1)
   # move the last disk in source to target
-  f(source, target, 1)
+  f(source, target, pivot, 1)
   # move the n - 1 disks in pivot to target
-  f(pivot, target, n - 1)
+  f(pivot, target, source, n - 1)
 ```
 
 And that's all. It solves the problem!
@@ -414,6 +435,8 @@ Recommended readings:
 * [Learn Data Structures and Algorithms, section Basic Recursion](https://www.codechef.com/certification/data-structures-and-algorithms/prepare)
 * [E-maxx Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)
 
-<div class=topic><a href="https://vjudge.net/contest/353470">Contest</a></div>
+<div class="topic">Contest</div>
+
+You can find the contest [here](https://vjudge.net/contest/353470).
 
 The solutions will be uploaded after the contest.

@@ -269,7 +269,9 @@ Recommended readings:
 - [Codeforces - Counting Divisors of a Number in $O(\sqrt[3]{n})$ - Tutorial](https://codeforces.com/blog/entry/22317)
 
 
-<div class=topic><a href="https://vjudge.net/contest/352372">Contest</a></div>
+<div class="topic">Contest</div>
+
+You can find the contest [here](https://vjudge.net/contest/352372).
 
 
 <!-- Begins problem A -->

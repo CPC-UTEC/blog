@@ -107,7 +107,9 @@ The greatest sum
 - Almost all learning resources are oriented to C++.
 - It has a strong community.
 
-<div class="topic"><a href="https://vjudge.net/contest/350658">Contest</a></div>
+<div class="topic">Contest</div>
+
+You can find the contest [here](https://vjudge.net/contest/350658).
 
 <!-- Begins problem A -->
 <div class="card">

@@ -479,6 +479,9 @@ Recommended readings:
 * [Topcoder - Representation of integers and reals section 1](https://www.topcoder.com/community/competitive-programming/tutorials/representation-of-integers-and-reals-section-1/)
 * [Topcoder - Representation of integers and reals section 2](https://www.topcoder.com/community/competitive-programming/tutorials/representation-of-integers-and-reals-section-2/)
 
-<div class=topic><a href="https://vjudge.net/contest/353073">Contest</a></div>
+
+<div class="topic">Contest</div>
+
+You can find the contest [here](https://vjudge.net/contest/353073).
 
 The solutions will be uploaded after the contest.

@@ -9,8 +9,9 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 > "Think Big "
 
-<div class="topic"><a href="https://vjudge.net/contest/350901">Contest</a></div>
+<div class="topic">Contest</div>
 
+You can find the contest [here](https://vjudge.net/contest/350901).
 
 <!-- Begins problem A -->
 <div class="card">

@@ -9,6 +9,42 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ### [Daily Problem - Part I](https://vjudge.net/contest/351983)
 
 
+<!-- Begins problem 10 -->
+<div class="card" id="10">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem10" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Day 10: JOE is on TV!</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem10" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/1293/B" target="_blank">Day 10: JOE is on TV!</a>
+
+First try it by yourself.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem10" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblem10" class="collapse">
+
+```c++
+// TO DO
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem 10 -->
+
+
+
+
 <!-- Begins problem 09 -->
 <div class="card" id="09">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem09" aria-expanded="false" aria-controls="collapseTwo">
@@ -21,7 +57,8 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 ### <a href="https://codeforces.com/contest/181/problem/B" target="_blank">Day 09: Number of Triplets</a>
 
-First try it by yourself.
+If you fix $A, C$ with two `fors`, you can get what value of $B$ you need.
+Moreover, as all the points are integers, we can check if $A_x + C_x \land A_y + C_y$ are even in order to avoid working with floats. Now, we have fixed $B = ((A_x + C_x) / 2, (A_y + C_y) / 2)$ and we need to check if this point is in the input. We can do it with a set (you'll get TLE with a map) and solve the problem in $O(n^2 \log n)$.
 
   <!-- begin code -->
   <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem09" aria-expanded="false" aria-controls="collapseTwo">
@@ -31,11 +68,40 @@ First try it by yourself.
   <div id="codeProblem09" class="collapse">
 
 ```c++
-// TO DO
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int n;
+  cin >> n;
+  vector <pair <int, int>> point(n);
+  set <pair <int, int>> st;
+  for (int i = 0; i < n; i++) {
+    cin >> point[i].first >> point[i].second;
+    st.insert(point[i]);
+  }
+  int ans = 0;
+  for (int a = 0; a < n; a++) {
+    for (int c = a + 1; c < n; c++) {
+      pair <int, int> b;
+      int x = point[a].first + point[c].first;
+      int y = point[a].second + point[c].second;
+      if (x % 2 or y % 2) continue;
+      b.first = x / 2;
+      b.second = y / 2;
+      if (st.count(b)) ans++;
+    }
+  }
+  cout << ans << endl;
+  return (0);
+}
 ```
 
   </div>
   <!-- ends code -->
+
+Furthermore, you can check if a point is in the input in $O(1)$ storing the points in a matrix of booleans. But, as the coordinates can take negative values in $[-1000, 1000]$ you can associate to each number $(x, y) \to (x + 1000, y + 1000)$ (this is a biyection). Using it, each coordinate is non-negative, so we can store it in our matrix.
 
 </div>
 </div>

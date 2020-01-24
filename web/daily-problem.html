@@ -332,6 +332,35 @@ $(document).ready(function () {
 
 <div id="daily-problem---part-i" class="section level3">
 <h3><a href="https://vjudge.net/contest/351983">Daily Problem - Part I</a></h3>
+<!-- Begins problem 10 -->
+<div id="10" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem10" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 10: JOE is on TV!
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem10" class="collapse">
+<div id="day-10-joe-is-on-tv" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1293/B" target="_blank">Day 10: JOE is on TV!</a></h3>
+<p>First try it by yourself.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem10" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblem10" class="collapse">
+<pre class="cpp"><code>// TO DO</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem 10 -->
 <!-- Begins problem 09 -->
 <div id="09" class="card">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem09" aria-expanded="false" aria-controls="collapseTwo">
@@ -345,7 +374,7 @@ Day 09: Number of Triplets
 <div id="collapseProblem09" class="collapse">
 <div id="day-09-number-of-triplets" class="section level3 card-body solution-body">
 <h3><a href="https://codeforces.com/contest/181/problem/B" target="_blank">Day 09: Number of Triplets</a></h3>
-<p>First try it by yourself.</p>
+<p>If you fix <span class="math inline">\(A, C\)</span> with two <code>fors</code>, you can get what value of <span class="math inline">\(B\)</span> you need. Moreover, as all the points are integers, we can check if <span class="math inline">\(A_x + C_x \land A_y + C_y\)</span> are even in order to avoid working with floats. Now, we have fixed <span class="math inline">\(B = ((A_x + C_x) / 2, (A_y + C_y) / 2)\)</span> and we need to check if this point is in the input. We can do it with a set (you’ll get TLE with a map) and solve the problem in <span class="math inline">\(O(n^2 \log n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem09" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title --> <i class="fas fa-caret-right"></i>
@@ -354,9 +383,37 @@ Code
 </p>
 </div>
 <div id="codeProblem09" class="collapse">
-<pre class="cpp"><code>// TO DO</code></pre>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+  int n;
+  cin &gt;&gt; n;
+  vector &lt;pair &lt;int, int&gt;&gt; point(n);
+  set &lt;pair &lt;int, int&gt;&gt; st;
+  for (int i = 0; i &lt; n; i++) {
+    cin &gt;&gt; point[i].first &gt;&gt; point[i].second;
+    st.insert(point[i]);
+  }
+  int ans = 0;
+  for (int a = 0; a &lt; n; a++) {
+    for (int c = a + 1; c &lt; n; c++) {
+      pair &lt;int, int&gt; b;
+      int x = point[a].first + point[c].first;
+      int y = point[a].second + point[c].second;
+      if (x % 2 or y % 2) continue;
+      b.first = x / 2;
+      b.second = y / 2;
+      if (st.count(b)) ans++;
+    }
+  }
+  cout &lt;&lt; ans &lt;&lt; endl;
+  return (0);
+}</code></pre>
 </div>
 <p><!-- ends code --></p>
+<p>Furthermore, you can check if a point is in the input in <span class="math inline">\(O(1)\)</span> storing the points in a matrix of booleans. But, as the coordinates can take negative values in <span class="math inline">\([-1000, 1000]\)</span> you can associate to each number <span class="math inline">\((x, y) \to (x + 1000, y + 1000)\)</span> (this is a biyection). Using it, each coordinate is non-negative, so we can store it in our matrix.</p>
 </div>
 </div>
 </div>

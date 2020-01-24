@@ -385,7 +385,7 @@ Two pointers
 <p><a href="./code/class-06/intervals.cpp">Full code</a></p>
 <p>The time complexity of both solutions is <span class="math inline">\(O(n)\)</span>.</p>
 <p>Let’s use this technique in <a href="https://leetcode.com/problems/two-sum/">this problem</a>:</p>
-<p><strong>Problem (2 sum problem):</strong> You are given an array <span class="math inline">\(a\)</span> of <span class="math inline">\(n\)</span> positive elements and an integer <span class="math inline">\(target\)</span>. You should output two numbers <span class="math inline">\(i, j \mid i \not = j \land a_i + a_j = target\)</span>. It is garantee that a solution always exits.</p>
+<p><strong>Problem (2 sum problem):</strong> You are given an array <span class="math inline">\(a\)</span> of <span class="math inline">\(n\)</span> <strong>positive</strong> elements and an integer <span class="math inline">\(target\)</span>. You should output two numbers <span class="math inline">\(i, j \mid i \not = j \land a_i + a_j = target\)</span>. It is garantee that a solution always exits.</p>
 <p><span class="math display">\[1 \leq n \leq 10^5\]</span> <span class="math display">\[1 \leq target \leq 10^9\]</span></p>
 <p>We can use the same technique + sorting and solve the problem in <span class="math inline">\(O(n \log n)\)</span>.</p>
 <p>First, let’s sort the array and init with <span class="math inline">\(l = 0 \land r = n - 1\)</span>. <span class="math inline">\(l\)</span> would just increase and <span class="math inline">\(r\)</span> would just decrease. Then, by the trichotomy property there are three cases:</p>
@@ -421,7 +421,33 @@ public:
         return ans;
     }
 };</code></pre>
-<p>How could you solve the problem if you need to find three numbers <span class="math inline">\(x, y, z \mid x \not = y \not = z \land a_x + a_y + a_z = target\)</span> ?</p>
+<p><strong>Extra:</strong> This is another solution using STL + fixing variables in <span class="math inline">\(O(n \log n)\)</span>:</p>
+<pre class="cpp"><code>class Solution {
+public:
+    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) {
+        vector &lt;int&gt; ans;
+        map &lt;int, vector &lt;int&gt;&gt; pos;
+        int n = nums.size();
+        for (int i = 0; i &lt; n; i++) {
+            pos[nums[i]].push_back(i);
+        }
+        for (int x = 0; x &lt; n; x++) {
+            int k = target - nums[x];
+            if (pos.count(k)) {
+                int cnt = 0;
+                for (int y: pos[k]) {
+                    if (y != x) {
+                        ans = {x, y};
+                    }
+                    cnt++;
+                    if (cnt == 2) break;
+                }
+            }
+        }
+        return ans;
+    }
+};</code></pre>
+<p>How could you solve the same problem if you need to find three numbers <span class="math inline">\(x, y, z \mid x \not = y \not = z \land a_x + a_y + a_z = target\)</span> ?</p>
 <div class="topic">
 Recursion
 </div>

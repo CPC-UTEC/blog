@@ -85,7 +85,7 @@ The time complexity of both solutions is $O(n)$.
 
 Let's use this technique in [this problem](https://leetcode.com/problems/two-sum/):
 
-**Problem (2 sum problem):** You are given an array $a$ of $n$ positive elements and an integer $target$. You
+**Problem (2 sum problem):** You are given an array $a$ of $n$ **positive** elements and an integer $target$. You
 should output two numbers $i, j \mid i \not = j \land a_i + a_j = target$. It is garantee that a solution always exits.
 
 $$1 \leq n \leq 10^5$$
@@ -139,7 +139,39 @@ public:
 };
 ```
 
-How could you solve the problem if you need to find three numbers $x, y, z \mid
+**Extra:** This is another solution using STL + fixing variables in $O(n \log n)$:
+
+```c++
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector <int> ans;
+        map <int, vector <int>> pos;
+        int n = nums.size();
+        for (int i = 0; i < n; i++) {
+            pos[nums[i]].push_back(i);
+        }
+        for (int x = 0; x < n; x++) {
+            int k = target - nums[x];
+            if (pos.count(k)) {
+                int cnt = 0;
+                for (int y: pos[k]) {
+                    if (y != x) {
+                        ans = {x, y};
+                    }
+                    cnt++;
+                    if (cnt == 2) break;
+                }
+            }
+        }
+        return ans;
+    }
+};
+```
+
+
+
+How could you solve the same problem if you need to find three numbers $x, y, z \mid
 x \not = y \not = z \land a_x + a_y + a_z = target$ ?
 
 <div class="topic">Recursion</div>

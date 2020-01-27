@@ -24,3 +24,5 @@ images](./gallery.html)
 - [Class 05 - Keep it simple and straightforward](./class-05.html)
 - [Class 06 - Think twice, code once](./class-06.html)
 
+### *Week 4*
+- [Class 08 - Turning out the mask](./class-08.html)

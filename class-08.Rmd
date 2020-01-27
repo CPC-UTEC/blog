@@ -1,0 +1,249 @@
+---
+title: "Clase 08: Complete Search IV"
+date: "22-01-2020"
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+> "Turning out the mask"
+
+
+<div class="topic">Bit representation</div>
+The computers only manage bits when these are working. So, numbers are represented as bit strings. In this case, we use bit representation of a number for working inside of competitive programming problem.
+
+Remember, bit representation is a number in base 2.
+
+  $X = c_02^0+ c_12^1 + c_22^2 ... + c_k2^k$
+
+In C++, Java and python, the numbers of sort int and long long use 32-bits and 64-bits, respectively.
+
+For example, the number 42 is
+
+00000000000000000000000000101010
+
+The leftmost bit, the most significant bit, is the sign of the number. It is 0 for nonnegative numbers and 1 for negative number. The remaining 31 o 63 bits are used for the magnitude of the number. The technique used is called Two's complement, where we work with nonegative numbers and if we would like to work with negative numbers first inverting all the bits in the number, and then increasing the number by one.
+
+For example, the number -42: 
+
+First, inverting all the bits.
+
+11111111111111111111111111010101
+
+Then, increasing by one.
+
+11111111111111111111111111010110
+
+So, the interval for integers of type int is 
+
+$[ -2^{31},2^{31}-1]$
+
+and for long long is
+
+$[ -2^{63},2^{63}-1]$
+
+Warning with unsigned int and unsigned long.
+
+With all this, we can use integers to represent a lightweight small set of Boolean values. All set operations
+then involve only the bitwise manipulation of the corresponding integer, which makes
+it a much more efficient choice when compared with the C++ STL vector<bool>,
+bitset, or set<int> options.
+
+<div class="topic">Bitwise operation</div>
+
+**Check if i-th bit of n is on:**
+
+In 0-based indexing from right.
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+void  main() {
+  int n;
+  int i=4;
+  cin>>n;
+
+  if(n & 1<<i)
+    cout<<"It's on"<<endl;
+  else
+    cout<<"It's off"<<endl;
+
+  return 0;  
+}
+```
+
+**To multiply/divide and integer by 2:**
+
+Shift/right left operation.
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+void  main() {
+  int n;
+  cin>>n;
+  //Here n is 2*n
+  n = n << 1;
+  //Again n becomes 2*n
+  n <<= 1;
+  //n becomes n/2
+  n >>= 1;
+
+  return 0;  
+}
+```
+
+**To multiply/divide and integer by 2:**
+
+Shift/right left operation.
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+void  main() {
+  int n;
+  cin>>n;
+  //Here n is 2*n
+  n = n << 1;
+  //Again n becomes 2*n
+  n <<= 1;
+  //n becomes n/2
+  n >>= 1;
+
+  return 0;  
+}
+```
+
+**To set on the i-th bit:**
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+void  main() {
+
+  int n=8;
+  n = n | (1<<5);
+  //Now n is 40
+  n |= 1<<2;
+  //Here n is 44
+  cout<<n<<endl;
+
+  return 0;  
+}
+```
+
+**To set off the i-th bit:**
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+void  main() {
+
+  int n=44;
+  n = n & ~(1<<5); 
+  //Now n is 12
+  n &= ~(1<<2); 
+  //Here n is 8
+  cout<<n<<endl;
+
+  return 0;  
+}
+```
+
+**To toggle the i-th bit:**
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+void  main() {
+
+  int n=14;
+  n = n ^ (1<<1); 
+  //Now n is 15
+  n ^= (1<<1); 
+  //Now n is 14 again 
+  cout<<n<<endl;
+
+  return 0;  
+}
+```
+**To get the value of the least significant bit that is on:**
+First from the right
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+void  main() {
+
+  int n=14;
+  int leastbit;
+  leastbit = n & (-n); 
+  // t is 2
+  cout<<t<<endl;
+
+  return 0;  
+}
+```
+
+**To turn on all bits in a set of size n.**
+
+Be careful with overflows.
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+void  main() {
+
+  #set of size 4
+  int n=4;
+  int setn = (1<<n)-1; 
+  //setn is 15, but its binary representing is 1111
+  cout<<setn<<endl;
+
+  return 0;  
+}
+```
+
+Note:
+There exists a built functions of GCC that counting how many bits are on.
+```c++
+# For integers
+#int __builtin_popcount(int x)
+# For  long long 
+#int __builtin_popcountll(long long x)
+
+#For example
+
+int main(){
+  #We get 2 as result.
+  cout<<__builtin_popcount(12)<<endl;
+
+  return 0;
+}
+
+```
+We invite you all visite this.
+[Built Funcionts of GCC](https://www.geeksforgeeks.org/builtin-functions-gcc-compiler/)
+
+
+Recommended readings:
+
+* Concrete Mathematics - Knuth. Chapter 1
+* [Modular Arithmetic for Beginners](https://codeforces.com/blog/entry/72527)
+* Principles of Algorithmic Problem Solving, sections 15.6 y 15.7
+* [E-maxx Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)
+
+<div class="topic">Contest</div>
+
+You can find the contest [here](https://vjudge.net/contest/353470).
+
+The solutions will be uploaded after the contest.

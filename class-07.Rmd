@@ -11,7 +11,61 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 <div class="topic">Contribution technique</div>
 
-In process...
+This technique can help to reduce long computations with lot of variables. This
+kind of problems are usually of couting and combinatorics.
+
+**Problem:** You will receive $n$ points on the plane. Find how many
+non-degenerate triangles you can build with these points as vertices.
+
+$$1 \leq n \leq 2000$$
+
+First, we note that we can implement a $O(n^3)$ solution, but we need something
+better. Then, we remember that if we have three no collinear points, we have
+a triangule. Moreover, two different points form a line. Using these ideas, we
+can fix a point and a line that pass throught it. If we fix the point 'A' of
+a triangle, the second vertex 'B' can be any other point that pass thought this
+line. If $x$ points pass on this line, then $n - x$ points are outside, so 'C' has $n - x$ options. So, if we fix a point and a line that pass though it we know that this line adds $(x - 1) \cdot (n -x)$  to the answer. Then, we can use brute force over it. Nevertheless, we are doing double couting (each point is counted 3 times and in two directions). So, the answer is divided by 6.
+
+A line is mapped using its direction vector, but we need to work with integers.
+Check the implementation for more details.
+
+```c++
+#include <bits/stdc++.h>
+
+map<pair<int, int>, int> tri[maxN];
+
+int main() {
+  cin >> n;
+  for (int i = 1; i <= n; ++i) {
+    cin >> x[i] >> y[i];
+  }
+  for (int i = 1; i <= n; ++i) {
+    for (int j = 1; j <= n; ++j) {
+      if (i == j) {
+        continue;
+      }
+      int vx = x[i] - x[j];
+      int vy = y[i] - y[j];
+      int g = __gcd(abs(vx), abs(vy));
+      vx /= g;
+      vy /= g;
+      if (vx < 0 or vx == 0 and vy < 0) {
+        vx = -vx;
+        vy = -vy;
+      }
+      tri[i][{vx, vy}] += 1;
+    }
+  }
+  long long ans = 0;
+  for (int i = 1; i <= n; ++i) {
+    for (auto v: tri[i]) {
+      ans += (n - 1 - v.second) * v.second; 
+    }
+  }
+  cout << ans / 6 << endl;
+  return 0;
+}
+```
 
 <div class="topic">Seaching over all the permutations</div>
 

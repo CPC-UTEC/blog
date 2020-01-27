@@ -341,7 +341,46 @@ $(document).ready(function () {
 <div class="topic">
 Contribution technique
 </div>
-<p>In process…</p>
+<p>This technique can help to reduce long computations with lot of variables. This kind of problems are usually of couting and combinatorics.</p>
+<p><strong>Problem:</strong> You will receive <span class="math inline">\(n\)</span> points on the plane. Find how many non-degenerate triangles you can build with these points as vertices.</p>
+<p><span class="math display">\[1 \leq n \leq 2000\]</span></p>
+<p>First, we note that we can implement a <span class="math inline">\(O(n^3)\)</span> solution, but we need something better. Then, we remember that if we have three no collinear points, we have a triangule. Moreover, two different points form a line. Using these ideas, we can fix a point and a line that pass throught it. If we fix the point ‘A’ of a triangle, the second vertex ‘B’ can be any other point that pass thought this line. If <span class="math inline">\(x\)</span> points pass on this line, then <span class="math inline">\(n - x\)</span> points are outside, so ‘C’ has <span class="math inline">\(n - x\)</span> options. So, if we fix a point and a line that pass though it we know that this line adds <span class="math inline">\((x - 1) \cdot (n -x)\)</span> to the answer. Then, we can use brute force over it. Nevertheless, we are doing double couting (each point is counted 3 times and in two directions). So, the answer is divided by 6.</p>
+<p>A line is mapped using its direction vector, but we need to work with integers. Check the implementation for more details.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+map&lt;pair&lt;int, int&gt;, int&gt; tri[maxN];
+
+int main() {
+  cin &gt;&gt; n;
+  for (int i = 1; i &lt;= n; ++i) {
+    cin &gt;&gt; x[i] &gt;&gt; y[i];
+  }
+  for (int i = 1; i &lt;= n; ++i) {
+    for (int j = 1; j &lt;= n; ++j) {
+      if (i == j) {
+        continue;
+      }
+      int vx = x[i] - x[j];
+      int vy = y[i] - y[j];
+      int g = __gcd(abs(vx), abs(vy));
+      vx /= g;
+      vy /= g;
+      if (vx &lt; 0 or vx == 0 and vy &lt; 0) {
+        vx = -vx;
+        vy = -vy;
+      }
+      tri[i][{vx, vy}] += 1;
+    }
+  }
+  long long ans = 0;
+  for (int i = 1; i &lt;= n; ++i) {
+    for (auto v: tri[i]) {
+      ans += (n - 1 - v.second) * v.second; 
+    }
+  }
+  cout &lt;&lt; ans / 6 &lt;&lt; endl;
+  return 0;
+}</code></pre>
 <div class="topic">
 Seaching over all the permutations
 </div>

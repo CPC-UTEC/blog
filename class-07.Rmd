@@ -1,0 +1,364 @@
+---
+title: "Clase 08: Complete Search IV"
+date: "27-01-2020"
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+> "Turning out the mask"
+
+<div class="topic">Seaching over all the permutations</div>
+
+There are problems where you need to search over all the permutations of $[1, 2, \dots, n]$ in order to find a solution. You can do it using the STL. For example:
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int n = 4;
+  vector <int> arr(n);
+  iota(begin(arr), end(arr), 1);
+  // the array must be sorted or you won't get all the permutations
+  do {
+    for (int arr_i: arr) {
+      cout << arr_i << ' ';
+    }
+    cout << '\n';
+  } while (next_permutation(begin(arr), end(arr)));
+  return (0);
+}
+```
+The above code has complexity $O(n! n)$.
+
+Now, let's see this technique in [this problem](https://codeforces.com/problemset/problem/910/C).
+
+**Solution:**
+
+Note that $abcdefghij$ can be mapped to $0123456789$. Then, we can search the
+answer in $O(\Sigma! n)$ where $\Sigma = 10$. But $1 \leq n \leq 1000$, so this
+approach would be a $TLE$ veredict. Nevertheless, we can use a counter of
+frecuencies for each digit and then get the total sum using it. In this way we
+have an $O(\Sigma! LS)$  solution, where $S = 10 \land L \leq 6$. Here $L$ is the
+maximum number of digits.
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int LEN = 6, SIGMA = 10;
+
+int cnt[LEN + 1][SIGMA + 1], val[SIGMA + 1];
+bool invalid[SIGMA + 1];
+
+int main () {
+  int n;
+  cin >> n;
+  for (int i = 0; i < n; i++) {
+    string number;
+    cin >> number;
+    invalid[number[0] - 'a'] = true;
+    int sz = number.size();
+    for (int j = 0; j < sz; j++) {
+      cnt[LEN - sz + j][number[j] - 'a']++;
+    }
+  }
+  string sigma = "abcdefghij";
+  int ans = INT_MAX;
+  do {
+    if (invalid[sigma[0] - 'a']) continue;
+    int p = 0;
+    for (const char ch: sigma) val[ch - 'a'] = p++;
+    int sum = 0, carry = 0, power = 1;
+    for (int i = LEN - 1; i >= 0; i--) {
+      int ac = 0;
+      for (int j = 0; j < SIGMA; j++) {
+        ac += cnt[i][j] * val[j];
+      }
+      ac += carry;
+      sum = sum + power * (ac % 10);
+      power *= 10;
+      carry = ac / 10;
+    }
+    while (carry) {
+      sum = sum + power * (carry % 10);
+      power *= 10;
+      carry /= 10;
+    }
+    ans = min(ans, sum);
+  } while (next_permutation(begin(sigma), end(sigma)));
+  cout << ans << endl;
+  return (0);
+}
+```
+
+<div class="topic">Bit representation</div>
+The computers only manage bits when these are working. So, numbers are represented as bit strings. In this case, we use bit representation of a number for working inside of competitive programming problem.
+
+Remember, bit representation is a number in base 2.
+
+  $X = c_02^0+ c_12^1 + c_22^2 ... + c_k2^k$
+
+In C++, Java and Python, the int and long long uses 32-bits and 64-bits, respectively.
+
+For example, the number 42 is
+
+00000000000000000000000000101010
+
+The leftmost bit, the most significant bit, is the sign of the number. It is 0 for nonnegative numbers and 1 for negative number. The remaining 31 o 63 bits are used for the magnitude of the number. The technique used is called Two's complement, where we work with nonegative numbers and if we would like to work with negative numbers first inverting all the bits in the number, and then increasing the number by one.
+
+For example, the number -42: 
+
+First, inverting all the bits.
+
+11111111111111111111111111010101
+
+Then, increasing by one.
+
+11111111111111111111111111010110
+
+So, the interval for integers of type int is 
+
+$[ -2^{31},2^{31}-1]$
+
+and for long long is
+
+$[ -2^{63},2^{63}-1]$
+
+Warning with unsigned int and unsigned long.
+
+With all this, we can use integers to represent a lightweight small set of Boolean values. All set operations
+then involve only the bitwise manipulation of the corresponding integer, which makes
+it a much more efficient choice when compared with the C++ STL vector<bool>,
+bitset, or set<int> options.
+
+<div class="topic">Bitwise operations</div>
+
+**Check if i-th bit of n is on:**
+
+In 0-based indexing from right.
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+void  main() {
+  int n;
+  int i=4;
+  cin>>n;
+
+  if(n & 1<<i)
+    cout<<"It's on"<<endl;
+  else
+    cout<<"It's off"<<endl;
+
+  return 0;  
+}
+```
+
+**To multiply/divide and integer by 2:**
+
+Shift/right left operation.
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+void  main() {
+  int n;
+  cin>>n;
+  //Here n is 2*n
+  n = n << 1;
+  //Again n becomes 2*n
+  n <<= 1;
+  //n becomes n/2
+  n >>= 1;
+
+  return 0;  
+}
+```
+
+**To set on the i-th bit:**
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+void  main() {
+
+  int n=8;
+  n = n | (1<<5);
+  //Now n is 40
+  n |= 1<<2;
+  //Here n is 44
+  cout<<n<<endl;
+
+  return 0;  
+}
+```
+
+**To set off the i-th bit:**
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+void  main() {
+
+  int n=44;
+  n = n & ~(1<<5); 
+  //Now n is 12
+  n &= ~(1<<2); 
+  //Here n is 8
+  cout<<n<<endl;
+
+  return 0;  
+}
+```
+
+**To toggle the i-th bit:**
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+void  main() {
+
+  int n=14;
+  n = n ^ (1<<1); 
+  //Now n is 15
+  n ^= (1<<1); 
+  //Now n is 14 again 
+  cout<<n<<endl;
+
+  return 0;  
+}
+```
+
+**To get the value of the least significant bit that is on:**
+First from the right
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+void  main() {
+
+  int n=14;
+  int leastbit;
+  leastbit = n & (-n); 
+  // t is 2
+  cout<<t<<endl;
+
+  return 0;  
+}
+```
+
+**To turn on all bits in a set of size n.**
+
+Be careful with overflows.
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+
+void  main() {
+
+  #set of size 4
+  int n=4;
+  int setn = (1<<n)-1; 
+  //setn is 15, but its binary representing is 1111
+  cout<<setn<<endl;
+
+  return 0;  
+}
+```
+
+**Note:**
+There exists built functions of GCC for counting how many bits are on.
+```c++
+// For integers
+#int __builtin_popcount(int x)
+// For  long long 
+#int __builtin_popcountll(long long x)
+
+#For example
+
+int main(){
+  // We get 2 as result.
+  cout<<__builtin_popcount(12)<<endl;
+  return 0;
+}
+
+```
+We invite all of you  to visite [Built Funcionts of GCC](https://www.geeksforgeeks.org/builtin-functions-gcc-compiler/).
+
+<div class="topic">Brute force on bitmasks</div>
+
+There are some kind of problem where you have $n$ items and each item can be taken or not. Then, you can represent the states of the problems as $S = \{ b_1b_2b_3 \dots b_n: b_i = 0 \lor b_i = 1\}$. That is, if $b_i = 0$ we are not taken the $i-th$ element, else we are taking it. And we can use bitmasks to simulate $S$.
+
+Let's see how to use it in [this problem](https://acm.timus.ru/problem.aspx?space=1&num=1060).
+
+If you select the same cell two times, the field is not changed. Then, we only
+care if each element is taken or not. Then we can simulate all the options in
+$O(n^2 2^n)$ where $n=16$.
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int dr[] = {0, 1, 0, -1, 0};
+  int dc[] = {0, 0, 1, 0, -1};
+  vector <string> grid(4);
+  vector <string> black(4, string(4, 'b'));
+  vector <string> white(4, string(4, 'w'));
+  for (int i = 0; i < 4; i++) cin >> grid[i];
+  int ans = INT_MAX;
+  for (int mask = 0; mask < (1 << 16); mask++) {
+    vector <string> tmp = grid;
+    int cnt = 0;
+    for (int bit = 0; bit < 16; bit++) {
+      if ((mask >> bit) & 1) {
+        cnt++;
+        int r = bit / 4;
+        int c = bit % 4;
+        for (int d = 0; d < 5; d++) {
+          int nr = r + dr[d];
+          int nc = c + dc[d];
+          if (0 <= min(nr, nc) and max(nr, nc) < 4) {
+            if (tmp[nr][nc] == 'b') tmp[nr][nc] = 'w';
+            else tmp[nr][nc] = 'b';
+          }
+        }
+      }
+    }
+    if (tmp == black or tmp == white) {
+      ans = min(ans, cnt);
+    }
+  }
+  if (ans == INT_MAX) puts("Impossible");
+  else cout << ans << endl;
+  return (0);
+}
+```
+
+Recommended readings:
+
+* Competitive Programming 3, section 2.1 and 2.2.
+* [Competitive Programming 3, chapter 10](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+* [GPC-UNI Clase 4](https://nbviewer.jupyter.org/github/GPC-UNI/Programacion-Competitiva/blob/master/uni-no-fiis/clase-04/clase-04.ipynb)
+* [GPC-UNI Clase 5](https://nbviewer.jupyter.org/github/GPC-UNI/Programacion-Competitiva/blob/master/uni-no-fiis/clase-05/clase-05.ipynb)
+* [PCUNI-2019 Clase 7](https://nbviewer.jupyter.org/github/TISparta/pcuni-2019/blob/master/clase-07/clase-07.ipynb)
+* [Principles of Algorithmic Problem Solving, chapter 7](https://www.csc.kth.se/~jsannemo/slask/main.pdf)
+
+<div class="topic">Contest</div>
+
+You can find the contest [here](https://vjudge.net/contest/354002).
+
+The solutions will be uploaded after the contest.

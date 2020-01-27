@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Clase 08: Complete Search IV</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CP UTEC</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="schedule.html">Schedule</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lessons
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Week 1</li>
+    <li>
+      <a href="class-01.html">The Art of Thinking</a>
+    </li>
+    <li>
+      <a href="class-02.html">Think Big</a>
+    </li>
+    <li class="dropdown-header">Week 2</li>
+    <li>
+      <a href="class-03.html">Don't reinvent the wheel!</a>
+    </li>
+    <li>
+      <a href="class-04.html">Try every possibility</a>
+    </li>
+    <li class="dropdown-header">Week 3</li>
+    <li>
+      <a href="class-05.html">Keep it simple and straightforward</a>
+    </li>
+    <li>
+      <a href="class-06.html">Think twice, code once</a>
+    </li>
+    <li class="dropdown-header">Week 4</li>
+    <li>
+      <a href="class-07.html">Turning out the mask</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="daily-problem.html">Daily Problem</a>
+</li>
+<li>
+  <a href="gallery.html">Gallery</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Clase 08: Complete Search IV</h1>
+<h4 class="date">27-01-2020</h4>
+
+</div>
+
+
+<blockquote>
+<p>“Turning out the mask”</p>
+</blockquote>
+<div class="topic">
+Seaching over all the permutations
+</div>
+<p>There are problems where you need to search over all the permutations of <span class="math inline">\([1, 2, \dots, n]\)</span> in order to find a solution. You can do it using the STL. For example:</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+  int n = 4;
+  vector &lt;int&gt; arr(n);
+  iota(begin(arr), end(arr), 1);
+  // the array must be sorted or you won&#39;t get all the permutations
+  do {
+    for (int arr_i: arr) {
+      cout &lt;&lt; arr_i &lt;&lt; &#39; &#39;;
+    }
+    cout &lt;&lt; &#39;\n&#39;;
+  } while (next_permutation(begin(arr), end(arr)));
+  return (0);
+}</code></pre>
+<p>The above code has complexity <span class="math inline">\(O(n! n)\)</span>.</p>
+<p>Now, let’s see this technique in <a href="https://codeforces.com/problemset/problem/910/C">this problem</a>.</p>
+<p><strong>Solution:</strong></p>
+<p>Note that <span class="math inline">\(abcdefghij\)</span> can be mapped to <span class="math inline">\(0123456789\)</span>. Then, we can search the answer in <span class="math inline">\(O(\Sigma! n)\)</span> where <span class="math inline">\(\Sigma = 10\)</span>. But <span class="math inline">\(1 \leq n \leq 1000\)</span>, so this approach would be a <span class="math inline">\(TLE\)</span> veredict. Nevertheless, we can use a counter of frecuencies for each digit and then get the total sum using it. In this way we have an <span class="math inline">\(O(\Sigma! LS)\)</span> solution, where <span class="math inline">\(S = 10 \land L \leq 6\)</span>. Here <span class="math inline">\(L\)</span> is the maximum number of digits.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int LEN = 6, SIGMA = 10;
+
+int cnt[LEN + 1][SIGMA + 1], val[SIGMA + 1];
+bool invalid[SIGMA + 1];
+
+int main () {
+  int n;
+  cin &gt;&gt; n;
+  for (int i = 0; i &lt; n; i++) {
+    string number;
+    cin &gt;&gt; number;
+    invalid[number[0] - &#39;a&#39;] = true;
+    int sz = number.size();
+    for (int j = 0; j &lt; sz; j++) {
+      cnt[LEN - sz + j][number[j] - &#39;a&#39;]++;
+    }
+  }
+  string sigma = &quot;abcdefghij&quot;;
+  int ans = INT_MAX;
+  do {
+    if (invalid[sigma[0] - &#39;a&#39;]) continue;
+    int p = 0;
+    for (const char ch: sigma) val[ch - &#39;a&#39;] = p++;
+    int sum = 0, carry = 0, power = 1;
+    for (int i = LEN - 1; i &gt;= 0; i--) {
+      int ac = 0;
+      for (int j = 0; j &lt; SIGMA; j++) {
+        ac += cnt[i][j] * val[j];
+      }
+      ac += carry;
+      sum = sum + power * (ac % 10);
+      power *= 10;
+      carry = ac / 10;
+    }
+    while (carry) {
+      sum = sum + power * (carry % 10);
+      power *= 10;
+      carry /= 10;
+    }
+    ans = min(ans, sum);
+  } while (next_permutation(begin(sigma), end(sigma)));
+  cout &lt;&lt; ans &lt;&lt; endl;
+  return (0);
+}</code></pre>
+<div class="topic">
+Bit representation
+</div>
+<p>The computers only manage bits when these are working. So, numbers are represented as bit strings. In this case, we use bit representation of a number for working inside of competitive programming problem.</p>
+<p>Remember, bit representation is a number in base 2.</p>
+<p><span class="math inline">\(X = c_02^0+ c_12^1 + c_22^2 ... + c_k2^k\)</span></p>
+<p>In C++, Java and Python, the int and long long uses 32-bits and 64-bits, respectively.</p>
+<p>For example, the number 42 is</p>
+<p>00000000000000000000000000101010</p>
+<p>The leftmost bit, the most significant bit, is the sign of the number. It is 0 for nonnegative numbers and 1 for negative number. The remaining 31 o 63 bits are used for the magnitude of the number. The technique used is called Two’s complement, where we work with nonegative numbers and if we would like to work with negative numbers first inverting all the bits in the number, and then increasing the number by one.</p>
+<p>For example, the number -42:</p>
+<p>First, inverting all the bits.</p>
+<p>11111111111111111111111111010101</p>
+<p>Then, increasing by one.</p>
+<p>11111111111111111111111111010110</p>
+<p>So, the interval for integers of type int is</p>
+<p><span class="math inline">\([ -2^{31},2^{31}-1]\)</span></p>
+<p>and for long long is</p>
+<p><span class="math inline">\([ -2^{63},2^{63}-1]\)</span></p>
+<p>Warning with unsigned int and unsigned long.</p>
+<p>With all this, we can use integers to represent a lightweight small set of Boolean values. All set operations then involve only the bitwise manipulation of the corresponding integer, which makes it a much more efficient choice when compared with the C++ STL vector<bool>, bitset, or set<int> options.</p>
+<div class="topic">
+Bitwise operations
+</div>
+<p><strong>Check if i-th bit of n is on:</strong></p>
+<p>In 0-based indexing from right.</p>
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+void  main() {
+  int n;
+  int i=4;
+  cin&gt;&gt;n;
+
+  if(n &amp; 1&lt;&lt;i)
+    cout&lt;&lt;&quot;It&#39;s on&quot;&lt;&lt;endl;
+  else
+    cout&lt;&lt;&quot;It&#39;s off&quot;&lt;&lt;endl;
+
+  return 0;  
+}</code></pre>
+<p><strong>To multiply/divide and integer by 2:</strong></p>
+<p>Shift/right left operation.</p>
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+void  main() {
+  int n;
+  cin&gt;&gt;n;
+  //Here n is 2*n
+  n = n &lt;&lt; 1;
+  //Again n becomes 2*n
+  n &lt;&lt;= 1;
+  //n becomes n/2
+  n &gt;&gt;= 1;
+
+  return 0;  
+}</code></pre>
+<p><strong>To set on the i-th bit:</strong></p>
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+void  main() {
+
+  int n=8;
+  n = n | (1&lt;&lt;5);
+  //Now n is 40
+  n |= 1&lt;&lt;2;
+  //Here n is 44
+  cout&lt;&lt;n&lt;&lt;endl;
+
+  return 0;  
+}</code></pre>
+<p><strong>To set off the i-th bit:</strong></p>
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+void  main() {
+
+  int n=44;
+  n = n &amp; ~(1&lt;&lt;5); 
+  //Now n is 12
+  n &amp;= ~(1&lt;&lt;2); 
+  //Here n is 8
+  cout&lt;&lt;n&lt;&lt;endl;
+
+  return 0;  
+}</code></pre>
+<p><strong>To toggle the i-th bit:</strong></p>
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+void  main() {
+
+  int n=14;
+  n = n ^ (1&lt;&lt;1); 
+  //Now n is 15
+  n ^= (1&lt;&lt;1); 
+  //Now n is 14 again 
+  cout&lt;&lt;n&lt;&lt;endl;
+
+  return 0;  
+}</code></pre>
+<p><strong>To get the value of the least significant bit that is on:</strong> First from the right</p>
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+void  main() {
+
+  int n=14;
+  int leastbit;
+  leastbit = n &amp; (-n); 
+  // t is 2
+  cout&lt;&lt;t&lt;&lt;endl;
+
+  return 0;  
+}</code></pre>
+<p><strong>To turn on all bits in a set of size n.</strong></p>
+<p>Be careful with overflows.</p>
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+void  main() {
+
+  #set of size 4
+  int n=4;
+  int setn = (1&lt;&lt;n)-1; 
+  //setn is 15, but its binary representing is 1111
+  cout&lt;&lt;setn&lt;&lt;endl;
+
+  return 0;  
+}</code></pre>
+<p><strong>Note:</strong> There exists built functions of GCC for counting how many bits are on.</p>
+<pre class="cpp"><code>// For integers
+#int __builtin_popcount(int x)
+// For  long long 
+#int __builtin_popcountll(long long x)
+
+#For example
+
+int main(){
+  // We get 2 as result.
+  cout&lt;&lt;__builtin_popcount(12)&lt;&lt;endl;
+  return 0;
+}
+</code></pre>
+<p>We invite all of you to visite <a href="https://www.geeksforgeeks.org/builtin-functions-gcc-compiler/">Built Funcionts of GCC</a>.</p>
+<div class="topic">
+Brute force on bitmasks
+</div>
+<p>There are some kind of problem where you have <span class="math inline">\(n\)</span> items and each item can be taken or not. Then, you can represent the states of the problems as <span class="math inline">\(S = \{ b_1b_2b_3 \dots b_n: b_i = 0 \lor b_i = 1\}\)</span>. That is, if <span class="math inline">\(b_i = 0\)</span> we are not taken the <span class="math inline">\(i-th\)</span> element, else we are taking it. And we can use bitmasks to simulate <span class="math inline">\(S\)</span>.</p>
+<p>Let’s see how to use it in <a href="https://acm.timus.ru/problem.aspx?space=1&amp;num=1060">this problem</a>.</p>
+<p>If you select the same cell two times, the field is not changed. Then, we only care if each element is taken or not. Then we can simulate all the options in <span class="math inline">\(O(n^2 2^n)\)</span> where <span class="math inline">\(n=16\)</span>.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+  int dr[] = {0, 1, 0, -1, 0};
+  int dc[] = {0, 0, 1, 0, -1};
+  vector &lt;string&gt; grid(4);
+  vector &lt;string&gt; black(4, string(4, &#39;b&#39;));
+  vector &lt;string&gt; white(4, string(4, &#39;w&#39;));
+  for (int i = 0; i &lt; 4; i++) cin &gt;&gt; grid[i];
+  int ans = INT_MAX;
+  for (int mask = 0; mask &lt; (1 &lt;&lt; 16); mask++) {
+    vector &lt;string&gt; tmp = grid;
+    int cnt = 0;
+    for (int bit = 0; bit &lt; 16; bit++) {
+      if ((mask &gt;&gt; bit) &amp; 1) {
+        cnt++;
+        int r = bit / 4;
+        int c = bit % 4;
+        for (int d = 0; d &lt; 5; d++) {
+          int nr = r + dr[d];
+          int nc = c + dc[d];
+          if (0 &lt;= min(nr, nc) and max(nr, nc) &lt; 4) {
+            if (tmp[nr][nc] == &#39;b&#39;) tmp[nr][nc] = &#39;w&#39;;
+            else tmp[nr][nc] = &#39;b&#39;;
+          }
+        }
+      }
+    }
+    if (tmp == black or tmp == white) {
+      ans = min(ans, cnt);
+    }
+  }
+  if (ans == INT_MAX) puts(&quot;Impossible&quot;);
+  else cout &lt;&lt; ans &lt;&lt; endl;
+  return (0);
+}</code></pre>
+<p>Recommended readings:</p>
+<ul>
+<li>Competitive Programming 3, section 2.1 and 2.2.</li>
+<li><a href="https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf">Competitive Programming 3, chapter 10</a></li>
+<li><a href="https://nbviewer.jupyter.org/github/GPC-UNI/Programacion-Competitiva/blob/master/uni-no-fiis/clase-04/clase-04.ipynb">GPC-UNI Clase 4</a></li>
+<li><a href="https://nbviewer.jupyter.org/github/GPC-UNI/Programacion-Competitiva/blob/master/uni-no-fiis/clase-05/clase-05.ipynb">GPC-UNI Clase 5</a></li>
+<li><a href="https://nbviewer.jupyter.org/github/TISparta/pcuni-2019/blob/master/clase-07/clase-07.ipynb">PCUNI-2019 Clase 7</a></li>
+<li><a href="https://www.csc.kth.se/~jsannemo/slask/main.pdf">Principles of Algorithmic Problem Solving, chapter 7</a></li>
+</ul>
+<div class="topic">
+Contest
+</div>
+<p>You can find the contest <a href="https://vjudge.net/contest/354002">here</a>.</p>
+<p>The solutions will be uploaded after the contest.</p>
+
+<footer>
+  <p>Copyright &copy; 2020. Competitive Programming UTEC</p>
+</footer>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

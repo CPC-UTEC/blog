@@ -22,6 +22,9 @@ navbar:
           href: class-05.html
         - text: Think twice, code once
           href: class-06.html
+        - text: Week 4
+        - text: Turning out the mask
+          href: class-07.html
 
   right:
     - text: "Daily Problem"

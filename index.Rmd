@@ -25,4 +25,4 @@ images](./gallery.html)
 - [Class 06 - Think twice, code once](./class-06.html)
 
 ### *Week 4*
-- [Class 08 - Turning out the mask](./class-08.html)
+- [Class 07 - Turning out the mask](./class-07.html)

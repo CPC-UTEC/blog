@@ -306,6 +306,10 @@ $(document).ready(function () {
     <li>
       <a href="class-06.html">Think twice, code once</a>
     </li>
+    <li class="dropdown-header">Week 4</li>
+    <li>
+      <a href="class-07.html">Turning out the mask</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -332,6 +336,35 @@ $(document).ready(function () {
 
 <div id="daily-problem---part-i" class="section level3">
 <h3><a href="https://vjudge.net/contest/351983">Daily Problem - Part I</a></h3>
+<!-- Begins problem 11 -->
+<div id="11" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem11" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 11: Blocks
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem11" class="collapse">
+<div id="day-11-blocks" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/contest/1271/problem/B" target="_blank">Day 11: Blocks</a></h3>
+<p>First try it by yourself.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem11" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblem11" class="collapse">
+<pre class="cpp"><code>// TO DO</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem 11 -->
 <!-- Begins problem 10 -->
 <div id="10" class="card">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem10" aria-expanded="false" aria-controls="collapseTwo">
@@ -345,7 +378,8 @@ Day 10: JOE is on TV!
 <div id="collapseProblem10" class="collapse">
 <div id="day-10-joe-is-on-tv" class="section level3 card-body solution-body">
 <h3><a href="https://codeforces.com/problemset/problem/1293/B" target="_blank">Day 10: JOE is on TV!</a></h3>
-<p>First try it by yourself.</p>
+<p>You can notice that the optimal strategy is that in each turn one opponent fail to answer. Then, our answer is</p>
+<p><span class="math display">\[\frac{1}{n} + \frac{1}{n - 1} + \frac{1}{n - 2} + \dots + \frac{1}{1}\]</span></p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem10" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title --> <i class="fas fa-caret-right"></i>
@@ -354,7 +388,33 @@ Code
 </p>
 </div>
 <div id="codeProblem10" class="collapse">
-<pre class="cpp"><code>// TO DO</code></pre>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+typedef vector &lt;int&gt; vi;
+typedef vector &lt;ll&gt; vll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin &gt;&gt; n;
+  long double sum = 0;
+  for (int i = 1; i &lt;= n; i++) {
+    long double x = i;
+    sum += 1.0 / x;
+  }
+  cout &lt;&lt; fixed &lt;&lt; setprecision(12) &lt;&lt; sum &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
 </div>
 <p><!-- ends code --></p>
 </div>

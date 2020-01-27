@@ -9,6 +9,42 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ### [Daily Problem - Part I](https://vjudge.net/contest/351983)
 
 
+<!-- Begins problem 11 -->
+<div class="card" id="11">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem11" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Day 11: Blocks</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem11" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/contest/1271/problem/B" target="_blank">Day 11: Blocks</a>
+
+First try it by yourself.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem11" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblem11" class="collapse">
+
+```c++
+// TO DO
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem 11 -->
+
+
+
+
 <!-- Begins problem 10 -->
 <div class="card" id="10">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem10" aria-expanded="false" aria-controls="collapseTwo">
@@ -21,7 +57,10 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 ### <a href="https://codeforces.com/problemset/problem/1293/B" target="_blank">Day 10: JOE is on TV!</a>
 
-First try it by yourself.
+You can notice that the optimal strategy is that in each turn one opponent fail
+to answer. Then, our answer is
+
+$$\frac{1}{n} + \frac{1}{n - 1} + \frac{1}{n - 2} + \dots + \frac{1}{1}$$
 
   <!-- begin code -->
   <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem10" aria-expanded="false" aria-controls="collapseTwo">
@@ -31,7 +70,33 @@ First try it by yourself.
   <div id="codeProblem10" class="collapse">
 
 ```c++
-// TO DO
+#include <bits/stdc++.h>
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin >> n;
+  long double sum = 0;
+  for (int i = 1; i <= n; i++) {
+    long double x = i;
+    sum += 1.0 / x;
+  }
+  cout << fixed << setprecision(12) << sum << '\n';
+  return (0);
+}
 ```
 
   </div>

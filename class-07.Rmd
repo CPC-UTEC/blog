@@ -1,5 +1,5 @@
 ---
-title: "Clase 08: Complete Search IV"
+title: "Clase 07: Complete Search IV"
 date: "27-01-2020"
 ---
 
@@ -8,6 +8,10 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
 > "Turning out the mask"
+
+<div class="topic">Contribution technique</div>
+
+In process...
 
 <div class="topic">Seaching over all the permutations</div>
 

@@ -336,6 +336,35 @@ $(document).ready(function () {
 
 <div id="daily-problem---part-i" class="section level3">
 <h3><a href="https://vjudge.net/contest/351983">Daily Problem - Part I</a></h3>
+<!-- Begins problem 12 -->
+<div id="12" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem12" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 12: Green Bin
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem12" class="collapse">
+<div id="day-12-green-bin" class="section level3 card-body solution-body">
+<h3><a href="https://abc137.contest.atcoder.jp/tasks/abc137_c?lang=en" target="_blank">Day 12: Green Bin</a></h3>
+<p>First try it by yourself.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem12" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblem12" class="collapse">
+<pre class="cpp"><code>// TO DO</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem 12 -->
 <!-- Begins problem 11 -->
 <div id="11" class="card">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem11" aria-expanded="false" aria-controls="collapseTwo">
@@ -349,7 +378,7 @@ Day 11: Blocks
 <div id="collapseProblem11" class="collapse">
 <div id="day-11-blocks" class="section level3 card-body solution-body">
 <h3><a href="https://codeforces.com/contest/1271/problem/B" target="_blank">Day 11: Blocks</a></h3>
-<p>First try it by yourself.</p>
+<p>Each block should end up being black or white. You can fix what color the string will be and try to change it in a loop (if you are in iteration <code>i</code> you have already change <span class="math inline">\(s[0: i - 1]\)</span>, now if <span class="math inline">\(s[i] \not = \text{the color you have fixed}\)</span>, invert <span class="math inline">\(s[i], s[i + 1]\)</span>). In this way you need at most <span class="math inline">\(n - 1\)</span> operations.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem11" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title --> <i class="fas fa-caret-right"></i>
@@ -358,7 +387,45 @@ Code
 </p>
 </div>
 <div id="codeProblem11" class="collapse">
-<pre class="cpp"><code>// TO DO</code></pre>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+void solve (string s, char ch) {
+  vector &lt;int&gt; ans;
+  for (int i = 0; i + 1 &lt; sz(s); i++) {
+    if (s[i] != ch) {
+      s[i] = ch;
+      s[i + 1] = (s[i + 1] == &#39;B&#39;) ? &#39;W&#39; : &#39;B&#39;;
+      ans.pb(i + 1);
+    }
+  }
+  if (s.back() != ch) return;
+  cout &lt;&lt; sz(ans) &lt;&lt; &#39;\n&#39;;
+  for (int elem: ans) cout &lt;&lt; elem &lt;&lt; &#39; &#39;;
+  exit(0);
+}
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin &gt;&gt; n;
+  string s;
+  cin &gt;&gt; s;
+  solve(s, &#39;W&#39;);
+  solve(s, &#39;B&#39;);
+  cout &lt;&lt; -1 &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
 </div>
 <p><!-- ends code --></p>
 </div>

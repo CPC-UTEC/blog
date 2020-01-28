@@ -9,6 +9,42 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ### [Daily Problem - Part I](https://vjudge.net/contest/351983)
 
 
+<!-- Begins problem 12 -->
+<div class="card" id="12">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem12" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Day 12: Green Bin</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem12" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://abc137.contest.atcoder.jp/tasks/abc137_c?lang=en" target="_blank">Day 12: Green Bin</a>
+
+First try it by yourself.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem12" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblem12" class="collapse">
+
+```c++
+// TO DO
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem 12 -->
+
+
+
+
 <!-- Begins problem 11 -->
 <div class="card" id="11">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem11" aria-expanded="false" aria-controls="collapseTwo">
@@ -21,7 +57,10 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 ### <a href="https://codeforces.com/contest/1271/problem/B" target="_blank">Day 11: Blocks</a>
 
-First try it by yourself.
+Each block should end up being black or white. You can fix what color the
+string will be and try to change it in a loop (if you are in iteration `i` you
+have already change $s[0: i - 1]$, now if $s[i] \not = \text{the color you have fixed}$,
+invert $s[i], s[i + 1]$). In this way you need at most $n - 1$ operations.
 
   <!-- begin code -->
   <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem11" aria-expanded="false" aria-controls="collapseTwo">
@@ -31,7 +70,45 @@ First try it by yourself.
   <div id="codeProblem11" class="collapse">
 
 ```c++
-// TO DO
+#include <bits/stdc++.h>
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair <int, int> pii;
+
+void solve (string s, char ch) {
+  vector <int> ans;
+  for (int i = 0; i + 1 < sz(s); i++) {
+    if (s[i] != ch) {
+      s[i] = ch;
+      s[i + 1] = (s[i + 1] == 'B') ? 'W' : 'B';
+      ans.pb(i + 1);
+    }
+  }
+  if (s.back() != ch) return;
+  cout << sz(ans) << '\n';
+  for (int elem: ans) cout << elem << ' ';
+  exit(0);
+}
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin >> n;
+  string s;
+  cin >> s;
+  solve(s, 'W');
+  solve(s, 'B');
+  cout << -1 << '\n';
+  return (0);
+}
 ```
 
   </div>

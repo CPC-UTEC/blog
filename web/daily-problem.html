@@ -310,6 +310,9 @@ $(document).ready(function () {
     <li>
       <a href="class-07.html">Turning out the mask</a>
     </li>
+    <li>
+      <a href="class-08.html">Like the God of Go</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -336,6 +339,35 @@ $(document).ready(function () {
 
 <div id="daily-problem---part-i" class="section level3">
 <h3><a href="https://vjudge.net/contest/351983">Daily Problem - Part I</a></h3>
+<!-- Begins problem 13 -->
+<div id="13" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem13" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 13: Exception Handling
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblem13" class="collapse">
+<div id="day-13-exception-handling" class="section level3 card-body solution-body">
+<h3><a href="https://atcoder.jp/contests/abc134/tasks/abc134_c" target="_blank">Day 13: Exception Handling</a></h3>
+<p>First try it by yourself.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem13" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblem13" class="collapse">
+<pre class="cpp"><code>// TO DO</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem 13 -->
 <!-- Begins problem 12 -->
 <div id="12" class="card">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblem12" aria-expanded="false" aria-controls="collapseTwo">
@@ -349,7 +381,7 @@ Day 12: Green Bin
 <div id="collapseProblem12" class="collapse">
 <div id="day-12-green-bin" class="section level3 card-body solution-body">
 <h3><a href="https://abc137.contest.atcoder.jp/tasks/abc137_c?lang=en" target="_blank">Day 12: Green Bin</a></h3>
-<p>First try it by yourself.</p>
+<p>If <span class="math inline">\(s \land t\)</span> are anagrams, then <span class="math inline">\(sort(all(a)) = sort(all(b))\)</span>. That is, if we sort the letters of a string, we have a representative of a set of anagrams. Moreover, if we have <span class="math inline">\(x\)</span> string of the same anagram class, we can choose <span class="math inline">\(\binom{x}{2}\)</span> indices such that <span class="math inline">\(s_i \land s_j\)</span> are anagrams. In this way, we can implement a solution in <span class="math inline">\(O(N \log N)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem12" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title --> <i class="fas fa-caret-right"></i>
@@ -358,7 +390,38 @@ Code
 </p>
 </div>
 <div id="codeProblem12" class="collapse">
-<pre class="cpp"><code>// TO DO</code></pre>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin &gt;&gt; n;
+  map &lt;string, int&gt; mp;
+  for (int i = 0; i &lt; n; i++) {
+    string s;
+    cin &gt;&gt; s;
+    sort(all(s));
+    mp[s]++;
+  }
+  ll ans = 0;
+  for (auto pp: mp) {
+    ll cnt = pp.second;
+    ans += cnt * (cnt - 1) / 2;
+  }
+  cout &lt;&lt; ans &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
 </div>
 <p><!-- ends code --></p>
 </div>

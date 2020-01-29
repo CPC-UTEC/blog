@@ -25,6 +25,8 @@ navbar:
         - text: Week 4
         - text: Turning out the mask
           href: class-07.html
+        - text: Like the God of Go
+          href: class-08.html
 
   right:
     - text: "Daily Problem"

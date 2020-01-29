@@ -26,3 +26,4 @@ images](./gallery.html)
 
 ### *Week 4*
 - [Class 07 - Turning out the mask](./class-07.html)
+- [Class 08 - Like the God of Go](./class-08.html)

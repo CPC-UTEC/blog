@@ -229,7 +229,7 @@ int main () {
   <!-- ends code -->
 
 Here we have implemented a program to find the power set of $\{1, 2, 3, \dots, n\}$ in 
-$O(n 2 ^ n)$. This is a solution using what is known as `backtrackin`. In
+$O(n 2 ^ n)$. This is a solution using what is known as `backtracking`. In
 general, a backtracking solution has this form:
 
 ```bw
@@ -330,7 +330,7 @@ int main () {
 
 <div class="topic">Permutations</div>
 
-Do problem of generating all the permutations can also be easily computed using
+The problem of generating all the permutations can also be easily computed using
 backtracking in $O(n n!)$
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Clase 04: Complete Search I"
+title: "Class 04: Complete Search I"
 date: "15-01-2020"
 ---
 
@@ -269,7 +269,7 @@ Recommended readings:
 - [Codeforces - Counting Divisors of a Number in $O(\sqrt[3]{n})$ - Tutorial](https://codeforces.com/blog/entry/22317)
 
 
-<div class="topic">Contest</div>
+<div class="topic" id="contest">Contest</div>
 
 You can find the contest [here](https://vjudge.net/contest/352372).
 

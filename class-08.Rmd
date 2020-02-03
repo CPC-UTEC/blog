@@ -1,5 +1,5 @@
 ---
-title: "Clase 08: Complete Search IV"
+title: "Class 08: Complete Search V"
 date: "29-01-2020"
 ---
 
@@ -688,9 +688,9 @@ Recommended readings:
 * Competitive Programming 3, section 3.2.2, 8.2.1 and 8.2.2.
 * [GeekForGeeks - Backtracking Algorithms](https://www.geeksforgeeks.org/backtracking-algorithms/)
 
-You may also be interested in watching the documental of AlphaGo. [Here](https://youtu.be/8tq1C8spV_g) is the trailer.
+You may also be interested in watching this documental of AlphaGo. [Here](https://youtu.be/8tq1C8spV_g) is the trailer.
 
-<div class="topic">Contest</div>
+<div class="topic" id="contest">Contest</div>
 
 You can find the contest [here](https://vjudge.net/contest/354334).
 

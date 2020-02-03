@@ -9,7 +9,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 > "Think Big "
 
-<div class="topic">Contest</div>
+<div class="topic" id="contest">Contest</div>
 
 You can find the contest [here](https://vjudge.net/contest/350901).
 

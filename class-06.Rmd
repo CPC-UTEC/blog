@@ -1,5 +1,5 @@
 ---
-title: "Clase 06: Complete Search III"
+title: "Class 06: Complete Search III"
 date: "22-01-2020"
 ---
 
@@ -180,7 +180,7 @@ Imagine you have a funtion $f$ that solves a problem in this way:
 
 * When we are in a state with a specific property, we know how to directly solve
   the problem
-* If we are not in a state with a specific property, we can solve the problem
+* If we are not in a state with the specific property, we can solve the problem
   using different states of $f$.
 
 For example:
@@ -467,7 +467,7 @@ Recommended readings:
 * [Learn Data Structures and Algorithms, section Basic Recursion](https://www.codechef.com/certification/data-structures-and-algorithms/prepare)
 * [E-maxx Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)
 
-<div class="topic">Contest</div>
+<div class="topic" id="contest">Contest</div>
 
 You can find the contest [here](https://vjudge.net/contest/353470).
 

@@ -18,19 +18,124 @@ title: "Schedule"
 
 ### *Week 1*
 
-#### **Sesion**
-
-* [**Class 1: Introduction**](./class-01.html)
-  - What is competitive programming?
-  - Topics of the course
-  - Virtual Judges
-  - Problem structure
-  - Veredicts information
-  - Environment setup
+* <div id="class-01">[**Class 1: Introduction**](./class-01.html)</div>
+  **Topics**
+  + What is competitive programming?
+  + Topics of the course
+  + Virtual Judges
+  + Problem structure
+  + Veredicts information
+  + Environment setup
   
-  - **Reading**
-    + [Training Camp Argentina 2019. Nivel Inicial. E/S + Intro](https://tc-arg.tk/pdfs/2019/ipc.pdf)
-    + [Competitive Programming 3, chapter 1](https://cpbook.net/)
-    + [Errichto - How to test your solutions in Competitive Programming, on
+  **Readings**
+  + [Training Camp Argentina 2019. Nivel Inicial. E/S + Intro](https://tc-arg.tk/pdfs/2019/ipc.pdf)
+  + [Competitive Programming 3, chapter 1](https://cpbook.net/)
+  + [Errichto - How to test your solutions in Competitive Programming, on
     Linux](https://www.youtube.com/watch?v=JXTVOyQpSGM)
-    + [An awesome list for competitive programming](https://codeforces.com/blog/entry/23054)
+  + [An awesome list for competitive programming](https://codeforces.com/blog/entry/23054)
+
+* <div id="class-02">[**Class 2: Asymptotic Analysis**](./class-02.html)</div>
+  
+  **Readings**
+  + [Competitive Programmer's Handbook, chapter 2](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+  + [Learn Data Structures and Algorithms, section Asymptotic analysis](https://www.codechef.com/certification/data-structures-and-algorithms/prepare)
+
+
+### *Week 2*
+
+* <div id="class-03">[**Class 3: STL**](./class-03.html)</div>
+  **Topics**
+  + Standard Template Library (STL) 
+  + Numeric data types and its operations 
+  + String
+  + Vector
+  + Set 
+  + Map
+  + Struct 
+  
+  **Readings**
+  + [Antti  Laaksonen.Competitive  programmer’s  handbook - chapter 1 y 4](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+  + [Competitive C++ Manifesto: A Style Guide](https://codeforces.com/blog/entry/64218)
+  + [TopCoder - Power up C++ with the Standard Template Library - Part I](https://www.topcoder.com/community/competitive-programming/tutorials/power-up-c-with-the-standard-template-library-part-1/)
+ 
+* <div id="class-04">[**Class 4: Complete Search I**](./class-04.html)</div>
+  **Topics**
+  + Problem Solving Paradigms
+  + Pythagorean triples
+  + Primality Test
+  + Sieve of Eratosthenes
+  + Finding the number of divisors of a number
+  + $\sigma_{0}(n) = O(\sqrt[3]{n})$
+
+  **Readings**
+  + Competitive Programming 3, section 3.2 y 5.5.1
+  + [Codeforces - How to come up with the solutions: techniques](https://codeforces.com/blog/entry/20548)
+  + [Codeforces - Amount of divisors of N](https://codeforces.com/blog/entry/13585)
+  + [Codeforces - Counting Divisors of a Number in $O(\sqrt[3]{n})$ - Tutorial](https://codeforces.com/blog/entry/22317)
+
+
+### *Week 3*
+
+* <div id="class-05">[**Class 5: Complete Search II**](./class-05.html)</div>
+  **Topics**
+  + Fixing variables
+  + Simulation with brute force
+  + Weak constraints
+  + Case analysis
+  + Extra: Prefix sums
+
+  **Readings**
+  + [Notas de fuerza bruta](https://gist.github.com/miguelAlessandro/f588d159a768dc43cc1ec9b81b27bd57)
+  + [PCUNI-2019 Clase 05](https://nbviewer.jupyter.org/github/TISparta/pcuni-2019/blob/master/clase-05/clase-05.ipynb)
+  + [Topcoder - Representation of integers and reals section 1](https://www.topcoder.com/community/competitive-programming/tutorials/representation-of-integers-and-reals-section-1/)
+  + [Topcoder - Representation of integers and reals section 2](https://www.topcoder.com/community/competitive-programming/tutorials/representation-of-integers-and-reals-section-2/)
+
+
+* <div id="class-06">[**Class 6: Complete Search III**](./class-06.html)</div>
+  **Topics**
+  + Two pointers
+  + Recursion
+  + Modular arithmetic
+  + Binary exponenciation
+
+  **Readings**
+  + Concrete Mathematics - Knuth. Chapter 1
+  + [Modular Arithmetic for Beginners](https://codeforces.com/blog/entry/72527)
+  + [Competitive Programmer’s Handbook, chapters 5, 8 y 21](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+  + Principles of Algorithmic Problem Solving, sections 15.6 y 15.7
+  + [Learn Data Structures and Algorithms, section Basic Recursion](https://www.codechef.com/certification/data-structures-and-algorithms/prepare)
+  + [E-maxx Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)
+
+
+### *Week 4*
+
+* <div id="class-07">[**Class 7: Complete Search IV**](./class-07.html)</div>
+  **Topics**
+  + Contribution technique
+  + Seaching over all the permutations
+  + Binary representation
+  + Bitwise operations
+  + Brute force on bitmasks
+
+  **Readings**
+  + Competitive Programming 3, section 2.1 and 2.2.
+  + [Competitive Programming 3, chapter 10](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+  + [GPC-UNI Clase 4](https://nbviewer.jupyter.org/github/GPC-UNI/Programacion-Competitiva/blob/master/uni-no-fiis/clase-04/clase-04.ipynb)
+  + [GPC-UNI Clase 5](https://nbviewer.jupyter.org/github/GPC-UNI/Programacion-Competitiva/blob/master/uni-no-fiis/clase-05/clase-05.ipynb)
+  + [PCUNI-2019 Clase 7](https://nbviewer.jupyter.org/github/TISparta/pcuni-2019/blob/master/clase-07/clase-07.ipynb)
+  + [Principles of Algorithmic Problem Solving, chapter 7](https://www.csc.kth.se/~jsannemo/slask/main.pdf)
+
+
+* <div id="class-08">[**Class 8: Complete Search V**](./class-08.html)</div>
+  **Topics**
+  + Power set
+  + 0-1 Knapsack problem
+  + Permutations
+  + Sudoku
+  + N-queen problem
+
+  **Readings**
+  + [HackerEarth - Recursion and Backtracking](https://www.hackerearth.com/practice/basic-programming/recursion/recursion-and-backtracking/tutorial/)
+  + Competitive Programming 3, section 3.2.2, 8.2.1 and 8.2.2.
+  + [GeekForGeeks - Backtracking Algorithms](https://www.geeksforgeeks.org/backtracking-algorithms/)
+

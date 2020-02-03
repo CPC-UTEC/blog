@@ -1,5 +1,5 @@
 ---
-title: "Clase 07: Complete Search IV"
+title: "Class 07: Complete Search IV"
 date: "27-01-2020"
 ---
 
@@ -154,7 +154,7 @@ int main () {
 }
 ```
 
-<div class="topic">Bit representation</div>
+<div class="topic">Binary representation</div>
 The computers only manage bits when these are working. So, numbers are represented as bit strings. In this case, we use bit representation of a number for working inside of competitive programming problem.
 
 Remember, bit representation is a number in base 2.
@@ -415,7 +415,7 @@ Recommended readings:
 * [PCUNI-2019 Clase 7](https://nbviewer.jupyter.org/github/TISparta/pcuni-2019/blob/master/clase-07/clase-07.ipynb)
 * [Principles of Algorithmic Problem Solving, chapter 7](https://www.csc.kth.se/~jsannemo/slask/main.pdf)
 
-<div class="topic">Contest</div>
+<div class="topic" id="contest">Contest</div>
 
 You can find the contest [here](https://vjudge.net/contest/354002).
 

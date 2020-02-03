@@ -14,7 +14,6 @@
 <title>Daily Problem</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -343,8 +342,8 @@ Day 10: JOE is on TV!
 </div>
 <!-- begin body -->
 <div id="collapseProblem10" class="collapse">
-<div id="day-10-joe-is-on-tv" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1293/B" target="_blank">Day 10: JOE is on TV!</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-10-joe-is-on-tv"><a href="https://codeforces.com/problemset/problem/1293/B" target="_blank">Day 10: JOE is on TV!</a></h3>
 <p>First try it by yourself.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem10" aria-expanded="false" aria-controls="collapseTwo">
@@ -372,8 +371,8 @@ Day 09: Number of Triplets
 </div>
 <!-- begin body -->
 <div id="collapseProblem09" class="collapse">
-<div id="day-09-number-of-triplets" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/181/problem/B" target="_blank">Day 09: Number of Triplets</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-09-number-of-triplets"><a href="https://codeforces.com/contest/181/problem/B" target="_blank">Day 09: Number of Triplets</a></h3>
 <p>If you fix <span class="math inline">\(A, C\)</span> with two <code>fors</code>, you can get what value of <span class="math inline">\(B\)</span> you need. Moreover, as all the points are integers, we can check if <span class="math inline">\(A_x + C_x \land A_y + C_y\)</span> are even in order to avoid working with floats. Now, we have fixed <span class="math inline">\(B = ((A_x + C_x) / 2, (A_y + C_y) / 2)\)</span> and we need to check if this point is in the input. We can do it with a set (you’ll get TLE with a map) and solve the problem in <span class="math inline">\(O(n^2 \log n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem09" aria-expanded="false" aria-controls="collapseTwo">
@@ -429,8 +428,8 @@ Day 08: Little Quilt
 </div>
 <!-- begin body -->
 <div id="collapseProblem08" class="collapse">
-<div id="day-08-little-quilt" class="section level3 card-body solution-body">
-<h3><a href="https://www.spoj.com/problems/QUILT/en/" target="_blank">Day 08: Little Quilt</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-08-little-quilt"><a href="https://www.spoj.com/problems/QUILT/en/" target="_blank">Day 08: Little Quilt</a></h3>
 <p>First try it by yourself.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem08" aria-expanded="false" aria-controls="collapseTwo">
@@ -458,8 +457,8 @@ Day 07: z-sort
 </div>
 <!-- begin body -->
 <div id="collapseProblem07" class="collapse">
-<div id="day-07-z-sort" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/652/B" target="_blank">Day 07: z-sort</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-07-z-sort"><a href="https://codeforces.com/problemset/problem/652/B" target="_blank">Day 07: z-sort</a></h3>
 <p>Sort the array and alternate taking elements (the smallest, the greater, the second smallest, the second greater, …).</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem07" aria-expanded="false" aria-controls="collapseTwo">
@@ -504,8 +503,8 @@ Day 06: GeT AC
 </div>
 <!-- begin body -->
 <div id="collapseProblem06" class="collapse">
-<div id="day-06-get-ac" class="section level3 card-body solution-body">
-<h3><a href="https://atcoder.jp/contests/abc122/tasks/abc122_c" target="_blank">Day 06: GeT AC</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-06-get-ac"><a href="https://atcoder.jp/contests/abc122/tasks/abc122_c" target="_blank">Day 06: GeT AC</a></h3>
 <p>We can count how many <code>AC</code> there are in a range using prefix sums and taking care or corner cases.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem06" aria-expanded="false" aria-controls="collapseTwo">
@@ -565,8 +564,8 @@ Day 05: Competitive Programmer
 </div>
 <!-- begin body -->
 <div id="collapseProblem05" class="collapse">
-<div id="day-05-competitive-programmer" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/1266/problem/A" target="_blank">Day 05: Competitive Programmer</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-05-competitive-programmer"><a href="https://codeforces.com/contest/1266/problem/A" target="_blank">Day 05: Competitive Programmer</a></h3>
 <p><span class="math inline">\(60 = 3 * 5 * 2 * 2\)</span>. Then, to verify that we can construct a number multiple of <span class="math inline">\(60\)</span> it is enough to verify:</p>
 <ul>
 <li>It is multiple of 3: the sum of digits is multiple of 3</li>
@@ -641,8 +640,8 @@ Day 04: 0 or 1 Swap
 </div>
 <!-- begin body -->
 <div id="collapseProblem04" class="collapse">
-<div id="day-04-0-or-1-swap" class="section level3 card-body solution-body">
-<h3><a href="https://atcoder.jp/contests/abc135/tasks/abc135_b" target="_blank">Day 04: 0 or 1 Swap</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-04-0-or-1-swap"><a href="https://atcoder.jp/contests/abc135/tasks/abc135_b" target="_blank">Day 04: 0 or 1 Swap</a></h3>
 <p>Try every <span class="math inline">\(i, j\)</span>. This solution is <span class="math inline">\(O(N^3)\)</span> and as <span class="math inline">\(N \leq 50\)</span> it is enough.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem04" aria-expanded="false" aria-controls="collapseTwo">
@@ -701,8 +700,8 @@ Day 03: Brick Break
 </div>
 <!-- begin body -->
 <div id="collapseProblem03" class="collapse">
-<div id="day-03-brick-break" class="section level3 card-body solution-body">
-<h3><a href="https://atcoder.jp/contests/abc148/tasks/abc148_d" target="_blank">Day 03: Brick Break</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-03-brick-break"><a href="https://atcoder.jp/contests/abc148/tasks/abc148_d" target="_blank">Day 03: Brick Break</a></h3>
 <p>The problem is basically to find the largest continuous segment <span class="math inline">\([l, r] \mid a[l + i] = i + 1, 0 \leq i \leq r - l\)</span>. Notice that we can do it in <span class="math inline">\(O(n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem03" aria-expanded="false" aria-controls="collapseTwo">
@@ -758,8 +757,8 @@ Day 02: Prime Subtraction
 </div>
 <!-- begin body -->
 <div id="collapseProblem02" class="collapse">
-<div id="day-02-prime-subtraction" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/1238/problem/A" target="_blank">Day 02: Prime Subtraction</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-02-prime-subtraction"><a href="https://codeforces.com/contest/1238/problem/A" target="_blank">Day 02: Prime Subtraction</a></h3>
 <p>If <span class="math inline">\(x - y = 1\)</span> then the answer is no, else, by the fundamental theorem of arithmetic <span class="math inline">\(\exists \, p\)</span> prime <span class="math inline">\(: p | (x - y)\)</span>. So, the answer is yes.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem02" aria-expanded="false" aria-controls="collapseTwo">
@@ -801,8 +800,8 @@ Day 01: Superhero Transformation
 </div>
 <!-- begin body -->
 <div id="collapseProblem01" class="collapse">
-<div id="day-01-superhero-transformation" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1111/A" target="_blank">Day 01: Superhero Transformation</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-01-superhero-transformation"><a href="https://codeforces.com/problemset/problem/1111/A" target="_blank">Day 01: Superhero Transformation</a></h3>
 <p>Let <span class="math inline">\(f(c) = 1\)</span> if <code>c</code> is as vowel and <span class="math inline">\(f(c) = 0\)</span> otherwise. Then, the answer is true iff <span class="math inline">\(|s| = |t| \land f(s[i]) = f(t[i]) \quad \forall i \in [0, n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem01" aria-expanded="false" aria-controls="collapseTwo">

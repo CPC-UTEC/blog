@@ -11,7 +11,7 @@
 
 
 
-<title>UTEC Competitive programming training - Summer 2020</title>
+<title>Clase 08: Complete Search IV</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,6 +22,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -322,50 +324,192 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">UTEC Competitive programming training - Summer 2020</h1>
+<h1 class="title toc-ignore">Clase 08: Complete Search IV</h1>
+<h4 class="date">22-01-2020</h4>
 
 </div>
 
 
-<p>Here you can find the material developed in this training and a <a href="./gallery.html">collection of images</a></p>
-<div id="couches" class="section level2">
-<h2><strong>Couches</strong></h2>
+<blockquote>
+<p>“Turning out the mask”</p>
+</blockquote>
+<div class="topic">
+Bit representation
+</div>
+<p>The computers only manage bits when these are working. So, numbers are represented as bit strings. In this case, we use bit representation of a number for working inside of competitive programming problem.</p>
+<p>Remember, bit representation is a number in base 2.</p>
+<p><span class="math inline">\(X = c_02^0+ c_12^1 + c_22^2 ... + c_k2^k\)</span></p>
+<p>In C++, Java and python, the numbers of sort int and long long use 32-bits and 64-bits, respectively.</p>
+<p>For example, the number 42 is</p>
+<p>00000000000000000000000000101010</p>
+<p>The leftmost bit, the most significant bit, is the sign of the number. It is 0 for nonnegative numbers and 1 for negative number. The remaining 31 o 63 bits are used for the magnitude of the number. The technique used is called Two’s complement, where we work with nonegative numbers and if we would like to work with negative numbers first inverting all the bits in the number, and then increasing the number by one.</p>
+<p>For example, the number -42:</p>
+<p>First, inverting all the bits.</p>
+<p>11111111111111111111111111010101</p>
+<p>Then, increasing by one.</p>
+<p>11111111111111111111111111010110</p>
+<p>So, the interval for integers of type int is</p>
+<p><span class="math inline">\([ -2^{31},2^{31}-1]\)</span></p>
+<p>and for long long is</p>
+<p><span class="math inline">\([ -2^{63},2^{63}-1]\)</span></p>
+<p>Warning with unsigned int and unsigned long.</p>
+<p>With all this, we can use integers to represent a lightweight small set of Boolean values. All set operations then involve only the bitwise manipulation of the corresponding integer, which makes it a much more efficient choice when compared with the C++ STL vector<bool>, bitset, or set<int> options.</p>
+<div class="topic">
+Bitwise operation
+</div>
+<p><strong>Check if i-th bit of n is on:</strong></p>
+<p>In 0-based indexing from right.</p>
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+void  main() {
+  int n;
+  int i=4;
+  cin&gt;&gt;n;
+
+  if(n &amp; 1&lt;&lt;i)
+    cout&lt;&lt;&quot;It&#39;s on&quot;&lt;&lt;endl;
+  else
+    cout&lt;&lt;&quot;It&#39;s off&quot;&lt;&lt;endl;
+
+  return 0;  
+}</code></pre>
+<p><strong>To multiply/divide and integer by 2:</strong></p>
+<p>Shift/right left operation.</p>
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+void  main() {
+  int n;
+  cin&gt;&gt;n;
+  //Here n is 2*n
+  n = n &lt;&lt; 1;
+  //Again n becomes 2*n
+  n &lt;&lt;= 1;
+  //n becomes n/2
+  n &gt;&gt;= 1;
+
+  return 0;  
+}</code></pre>
+<p><strong>To multiply/divide and integer by 2:</strong></p>
+<p>Shift/right left operation.</p>
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+void  main() {
+  int n;
+  cin&gt;&gt;n;
+  //Here n is 2*n
+  n = n &lt;&lt; 1;
+  //Again n becomes 2*n
+  n &lt;&lt;= 1;
+  //n becomes n/2
+  n &gt;&gt;= 1;
+
+  return 0;  
+}</code></pre>
+<p><strong>To set on the i-th bit:</strong></p>
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+void  main() {
+
+  int n=8;
+  n = n | (1&lt;&lt;5);
+  //Now n is 40
+  n |= 1&lt;&lt;2;
+  //Here n is 44
+  cout&lt;&lt;n&lt;&lt;endl;
+
+  return 0;  
+}</code></pre>
+<p><strong>To set off the i-th bit:</strong></p>
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+void  main() {
+
+  int n=44;
+  n = n &amp; ~(1&lt;&lt;5); 
+  //Now n is 12
+  n &amp;= ~(1&lt;&lt;2); 
+  //Here n is 8
+  cout&lt;&lt;n&lt;&lt;endl;
+
+  return 0;  
+}</code></pre>
+<p><strong>To toggle the i-th bit:</strong></p>
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+void  main() {
+
+  int n=14;
+  n = n ^ (1&lt;&lt;1); 
+  //Now n is 15
+  n ^= (1&lt;&lt;1); 
+  //Now n is 14 again 
+  cout&lt;&lt;n&lt;&lt;endl;
+
+  return 0;  
+}</code></pre>
+<p><strong>To get the value of the least significant bit that is on:</strong> First from the right</p>
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+void  main() {
+
+  int n=14;
+  int leastbit;
+  leastbit = n &amp; (-n); 
+  // t is 2
+  cout&lt;&lt;t&lt;&lt;endl;
+
+  return 0;  
+}</code></pre>
+<p><strong>To turn on all bits in a set of size n.</strong></p>
+<p>Be careful with overflows.</p>
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+void  main() {
+
+  #set of size 4
+  int n=4;
+  int setn = (1&lt;&lt;n)-1; 
+  //setn is 15, but its binary representing is 1111
+  cout&lt;&lt;setn&lt;&lt;endl;
+
+  return 0;  
+}</code></pre>
+<p>Note: There exists a built functions of GCC that counting how many bits are on.</p>
+<pre class="cpp"><code># For integers
+#int __builtin_popcount(int x)
+# For  long long 
+#int __builtin_popcountll(long long x)
+
+#For example
+
+int main(){
+  #We get 2 as result.
+  cout&lt;&lt;__builtin_popcount(12)&lt;&lt;endl;
+
+  return 0;
+}
+</code></pre>
+<p>We invite you all visite this. <a href="https://www.geeksforgeeks.org/builtin-functions-gcc-compiler/">Built Funcionts of GCC</a></p>
+<p>Recommended readings:</p>
 <ul>
-<li>José Leonidas García Gonzales - <a href="mailto:jose.garcia@utec.edu.pe">jose.garcia@utec.edu.pe</a></li>
-<li>Giordano Mitchell Alvitez Falcon - <a href="mailto:giordano.alvitez@utec.edu.pe">giordano.alvitez@utec.edu.pe</a></li>
-<li>Jorge Ignacio Fiestas Lavezzolo - <a href="mailto:jorge.fiestas@utec.edu.pe">jorge.fiestas@utec.edu.pe</a></li>
+<li>Concrete Mathematics - Knuth. Chapter 1</li>
+<li><a href="https://codeforces.com/blog/entry/72527">Modular Arithmetic for Beginners</a></li>
+<li>Principles of Algorithmic Problem Solving, sections 15.6 y 15.7</li>
+<li><a href="https://cp-algorithms.com/algebra/binary-exp.html">E-maxx Binary Exponentiation</a></li>
 </ul>
+<div class="topic">
+Contest
 </div>
-<div id="clases" class="section level2">
-<h2><strong>Clases</strong></h2>
-<div id="week-1" class="section level3">
-<h3><em>Week 1</em></h3>
-<ul>
-<li><a href="./class-01.html">Class 01 - The Art of Thinking</a></li>
-<li><a href="./class-02.html">Class 02 - Think Big</a></li>
-</ul>
-</div>
-<div id="week-2" class="section level3">
-<h3><em>Week 2</em></h3>
-<ul>
-<li><a href="./class-03.html">Class 03 - Don’t reinvent the wheel</a></li>
-<li><a href="./class-04.html">Class 04 - Try every possibility</a></li>
-</ul>
-</div>
-<div id="week-3" class="section level3">
-<h3><em>Week 3</em></h3>
-<ul>
-<li><a href="./class-05.html">Class 05 - Keep it simple and straightforward</a></li>
-<li><a href="./class-06.html">Class 06 - Think twice, code once</a></li>
-</ul>
-</div>
-<div id="week-4" class="section level3">
-<h3><em>Week 4</em></h3>
-<ul>
-<li><a href="./class-08.html">Class 08 - Turning out the mask</a></li>
-</ul>
-</div>
-</div>
+<p>You can find the contest <a href="https://vjudge.net/contest/353470">here</a>.</p>
+<p>The solutions will be uploaded after the contest.</p>
 
 <footer>
   <p>Copyright &copy; 2020. Competitive Programming UTEC</p>

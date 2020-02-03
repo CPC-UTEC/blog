@@ -3,26 +3,76 @@ title: "UTEC Competitive programming training - Summer 2020"
 ---
 
 Here you can find the material developed in this training and a [collection of
-images](./gallery.html)
+images](./gallery.html).
 
 ## **Couches**
 - José Leonidas García Gonzales - jose.garcia@utec.edu.pe
 - Giordano Mitchell Alvitez Falcon - giordano.alvitez@utec.edu.pe
 - Jorge Ignacio Fiestas Lavezzolo - jorge.fiestas@utec.edu.pe
 
-## **Clases**
+## **Classes**
+
+Each class lasts two hours. Classes have a theorical and practical part. The
+theorical part consists of a lecture-style class. The practical part is a set
+of problems in a contest using [vjudge](https://vjudge.net/). The solutions of the problems are
+posted when the contest finishes. Moreover, each class have some recommended readings. Furthermore, from Monday to Friday there is a daily problem to practice, you can find them [here](./daily-problem.html).
+
+The classes are on Monday and Wednesday in UTEC at A801 from 17:00 to 19:00.
+
+We are following this [schedule](./schedule.html).
+
+These links can help you navigate through the material developed.
 
 ### *Week 1*
-- [Class 01 - The Art of Thinking](./class-01.html)
-- [Class 02 - Think Big](./class-02.html)
+- [01-06-2020] - Class 01 - Introduction 
+  + [Theory](./class-01.html)
+  + [Contest](https://vjudge.net/contest/350658)
+  + [Solutions](./class-01.html#contest)
+  + [Readings](./schedule.html#class-01)
+
+- [01-08-2020] - Class 02 - Asymptotic Analysis
+  + [Contest](https://vjudge.net/contest/350901)
+  + [Solutions](./class-02.html#contest)
+  + [Readings](./schedule.html#class-02)
 
 ### *Week 2*
-- [Class 03 - Don't reinvent the wheel](./class-03.html)
-- [Class 04 - Try every possibility](./class-04.html)
+- [01-13-2020] - Class 03 - STL
+  + [Theory](./class-03.html)
+  + [Contest](https://vjudge.net/contest/351569)
+  + [Solutions](./class-03.html#contest)
+  + [Readings](./schedule.html#class-03)
+
+- [01-15-2020] - Class 04 - Complete Search I
+  + [Theory](./class-04.html)
+  + [Contest](https://vjudge.net/contest/352372)
+  + [Solutions](./class-04.html#contest)
+  + [Readings](./schedule.html#class-04)
 
 ### *Week 3*
-- [Class 05 - Keep it simple and straightforward](./class-05.html)
-- [Class 06 - Think twice, code once](./class-06.html)
+- [01-20-2020] - Class 05 - Complete Search II
+  + [Theory](./class-05.html)
+  + [Contest](https://vjudge.net/contest/353073)
+  + [Readings](./schedule.html#class-05)
+  + [Solutions](./class-05.html#contest)
+
+- [01-22-2020] - Class 06 - Complete Search III
+  + [Theory](./class-06.html)
+  + [Contest](https://vjudge.net/contest/353470)
+  + [Readings](./schedule.html#class-06)
 
 ### *Week 4*
-- [Class 08 - Turning out the mask](./class-08.html)
+- [01-27-2020] - Class 07 - Complete Search IV
+  + [Theory](./class-07.html)
+  + [Contest](https://vjudge.net/contest/354002)
+  + [Readings](./schedule.html#class-07)
+
+- [01-29-2020] - Class 08 - Complete Search V
+  + [Theory](./class-08.html)
+  + [Contest](https://vjudge.net/contest/354334)
+  + [Readings](./schedule.html#class-08)
+
+### *Week 5*
+- [02-03-2020] - Class 09 - Contest I
+  + [Contest](https://vjudge.net/contest/355171)
+
+The repository of this page can be found [here](https://github.com/CP-UTEC/Lessons).

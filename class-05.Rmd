@@ -480,8 +480,336 @@ Recommended readings:
 * [Topcoder - Representation of integers and reals section 2](https://www.topcoder.com/community/competitive-programming/tutorials/representation-of-integers-and-reals-section-2/)
 
 
-<div class="topic">Contest</div>
+<div class="topic" id="contest">Contest</div>
 
 You can find the contest [here](https://vjudge.net/contest/353073).
 
-The solutions will be uploaded after the contest.
+
+<!-- Begins problem problem-A -->
+<div class="card" id="problem-A">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemproblem-A" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">A: Kaprekar Numbers</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemproblem-A" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=915" target="_blank">Kaprekar Numbers</a>
+
+You can preprocess the Kaprekar numbers in $[2, 40000]$ (there are only 19 of them). After that, you can answer each query quickly.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-A" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemproblem-A" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+
+const int N = 4e4;
+vi kaprekar;
+
+bool isKaprekar (int n) {
+  string sq = to_string(n * n);
+  for (int i = 0; i + 1 < sz(sq); i++) {
+    int l = stoi(sq.substr(0, i + 1));
+    int r = stoi(sq.substr(i + 1));
+    if (0 < min(l, r) and l + r == n) return true;
+  }
+  return false;
+}
+
+void preprocess () {
+  for (int n = 2; n <= N; n++) {
+    if (isKaprekar(n)) {
+      kaprekar.pb(n);
+    }
+  }
+}
+
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  preprocess(); // just 19 elements
+  int tc;
+  cin >> tc;
+  for (int t = 1; t <= tc; t++) {
+    int l, r;
+    cin >> l >> r;
+    vi ans;
+    for (int elem: kaprekar) {
+      if (l <= elem and elem <= r) {
+        ans.pb(elem);
+      }
+    }
+    if (t > 1) cout << '\n';
+    cout << "case #" << t << '\n';
+    if (ans.empty()) {
+      cout << "no kaprekar numbers\n";
+    } else {
+      for (int elem: ans) {
+        cout << elem << '\n';
+      }
+    }
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem problem-A -->
+
+
+
+
+
+<!-- Begins problem problem-B -->
+<div class="card" id="problem-B">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemproblem-B" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">B: Schedule</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemproblem-B" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/31/C" target="_blank">Schedule</a>
+
+Just try every option.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-B" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemproblem-B" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin >> n;
+  vector <pair <pii, int>> arr(n + 1);
+  arr[0] = mp(pii(0, 0), 0);
+  for (int i = 1; i <= n; i++) {
+    arr[i].second = i;
+    cin >> arr[i].first.first >> arr[i].first.second;
+  }
+  sort(all(arr));
+  vi ans;
+  for (auto fix: arr) {
+    if (fix.second == 0) continue;
+    int prev = 0;
+    bool ok = true;
+    for (int i = 1; i <= n; i++) {
+      if (arr[i] == fix) continue;
+      ok &= (arr[prev].first.second <= arr[i].first.first);
+      prev = i;
+    }
+    if (ok) ans.pb(fix.second);
+  }
+  sort(all(ans));
+  cout << sz(ans) << '\n';
+  for (int i = 0; i < sz(ans); i++) cout << ans[i] << " \n"[i == sz(ans) - 1];
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem problem-B -->
+
+
+
+
+
+<!-- Begins problem problem-C -->
+<div class="card" id="problem-C">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemproblem-C" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">C: Ranges</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemproblem-C" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://www.spoj.com/problems/RRANGE/en/" target="_blank">Ranges</a>
+
+First, if you have this sum:
+
+$$l + (l + 1) + (l + 2) + \dots + (r - 1) + (r)$$
+
+You can compute it using:
+
+$$\frac{r \cdot (r + 1)}{2} - \frac{(l - 1) \cdot l}{2}$$
+
+Moreover, you notice that you can not process each query in $O(N)$ because of
+the time limit, but using the above formula you can answer each query in
+$O(U)$ and that is enough for the problem.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-C" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemproblem-C" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+ 
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+ 
+using namespace std;
+ 
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+ 
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  const ll MOD = 10000;
+  int n, u, q;
+  cin >> n >> u >> q;
+  vector <pii> update(u);
+  for (int i = 0; i < u; i++) cin >> update[i].first >> update[i].second;
+  auto get = [&] (ll x) {
+    return x * (x + 1) / 2;
+  };
+  while (q--) {
+    int l, r;
+    cin >> l >> r;
+    ll ans = 0;
+    for (auto pp: update) {
+      int L = max(pp.first, l);
+      int R = min(pp.second, r);
+      if (L <= R) {
+        ll x = L - pp.first + 1;
+        ll y = R - pp.first + 1;
+        ans += get(y) - get(x - 1);
+        ans %= MOD;
+      }
+    }
+    cout << ans << '\n';
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem problem-C -->
+
+
+
+
+
+<!-- Begins problem problem-D -->
+<div class="card" id="problem-D">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemproblem-D" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">D: Classroom Watch<p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemproblem-D" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/876/C" target="_blank">Classroom Watch</a>
+
+Let $f(x) =$ sum of digits of $x$.
+
+For the constraints of the problem we have that $0 \leq f(x) \leq 9 \cdot 9$.
+Then, we have:
+
+$$\max(0, n - 9 * 9) \leq x \leq n$$
+
+So, our search space is very small, we can just try a brute force approach on
+this interval.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-D" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemproblem-D" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int sumOfDigits (int p) {
+  int ret = 0;
+  while (p) ret += (p % 10), p /= 10;
+  return ret;
+}
+
+int main () {
+  int n;
+  vector <int> ans;
+  cin >> n;
+  for (int p = max(0, n - 9 * 9); p <= n; p++) if (p + sumOfDigits(p) == n) ans.push_back(p);
+  cout << ans.size() << endl;
+  for (auto x: ans) cout << x << endl;
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem problem-D -->
+
+
+

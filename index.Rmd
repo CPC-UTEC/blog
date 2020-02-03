@@ -74,5 +74,6 @@ These links can help you navigate through the material developed.
 ### *Week 5*
 - [02-03-2020] - Class 09 - Contest I
   + [Contest](https://vjudge.net/contest/355171)
+  + [Upsolving](https://vjudge.net/contest/355230)
 
 The repository of this page can be found [here](https://github.com/CP-UTEC/Lessons).

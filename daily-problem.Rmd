@@ -9,6 +9,42 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ### [Daily Problem - Part I](https://vjudge.net/contest/351983)
 
 
+<!-- Begins problem problem-17 -->
+<div class="card" id="problem-17">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemproblem-17" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Day 17: GCD on Blackboard</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemproblem-17" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://abc125.contest.atcoder.jp/tasks/abc125_c?lang=en" target="_blank">Day 17: GCD on Blackboard</a>
+
+First try it by yourself.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-17" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemproblem-17" class="collapse">
+
+```c++
+// TO DO
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem problem-17 -->
+
+
+
+
 <!-- Begins problem problem-16 -->
 <div class="card" id="problem-16">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemproblem-16" aria-expanded="false" aria-controls="collapseTwo">
@@ -25,6 +61,23 @@ There is some problem in the rendering of the problem. It should say:
 
 $$\lfloor \frac{N}{m} \rfloor = N \bmod m$$
 
+**Solution:**
+
+We known from the division theorem that:
+
+$$N = \lfloor \frac{N}{m} \rfloor \cdot m + N \bmod m$$
+
+Let $k = \lfloor \frac{N}{m} \rfloor = N \bmod m$
+
+Then, we have:
+
+$$N = k \cdot m + k$$
+$$N = k \cdot (m + 1)$$
+
+Then, m + 1 must be a divisor of $N$, so we can generate all the divisors of
+$N$ and check if the condition holds in $O(\sqrt{N}).
+
+
   <!-- begin code -->
   <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-16" aria-expanded="false" aria-controls="collapseTwo">
   <!-- title -->
@@ -33,7 +86,36 @@ $$\lfloor \frac{N}{m} \rfloor = N \bmod m$$
   <div id="codeProblemproblem-16" class="collapse">
 
 ```c++
-// TO DO
+#include <bits/stdc++.h>
+
+#define all(A) begin(A), end(A)
+#define sz(A) int(A.size())
+
+using namespace std;
+
+typedef long long ll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  ll n;
+  cin >> n;
+  vector <ll> div;
+  for (ll d = 1; d * d <= n; d++) {
+    if (n % d == 0) {
+      if (d != 1) div.push_back(d);
+      if (d != n / d) div.push_back(n / d);
+    }
+  }
+  ll ans = 0;
+  for (ll d: div) {
+    ll m = d - 1;
+    if (n % m == n / m) {
+      ans += m;
+    }
+  }
+  cout << ans << endl;
+  return (0);
+}
 ```
 
   </div>

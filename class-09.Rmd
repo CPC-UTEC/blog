@@ -14,3 +14,5 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 You can find the contest [here](https://vjudge.net/contest/355171).
 
 The solutions will be uploaded after the contest.
+
+The upsolving contest is [here](https://vjudge.net/contest/355256).

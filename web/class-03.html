@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Class 03: STL</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CP UTEC</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="schedule.html">Schedule</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lessons
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Week 1</li>
+    <li>
+      <a href="class-01.html">Introduction</a>
+    </li>
+    <li>
+      <a href="class-02.html">Asymptotic Analysis</a>
+    </li>
+    <li class="dropdown-header">Week 2</li>
+    <li>
+      <a href="class-03.html">STL</a>
+    </li>
+    <li>
+      <a href="class-04.html">Complete Search I</a>
+    </li>
+    <li class="dropdown-header">Week 3</li>
+    <li>
+      <a href="class-05.html">Complete Search II</a>
+    </li>
+    <li>
+      <a href="class-06.html">Complete Search III</a>
+    </li>
+    <li class="dropdown-header">Week 4</li>
+    <li>
+      <a href="class-07.html">Complete Search IV</a>
+    </li>
+    <li>
+      <a href="class-08.html">Complete Search V</a>
+    </li>
+    <li class="dropdown-header">Week 5</li>
+    <li>
+      <a href="class-09.html">Contest I</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="daily-problem.html">Daily Problem</a>
+</li>
+<li>
+  <a href="gallery.html">Gallery</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Class 03: STL</h1>
+<h4 class="date">13-01-2020</h4>
+
+</div>
+
+
+<blockquote>
+<p>“Don’t reinvent the wheel!”</p>
+</blockquote>
+<div class="topic">
+Standard Template Library (STL)
+</div>
+<p>STL is a collection of libraries of C++ that we can use in the contests. It gives us common data structures (array, stack, set, priority_queue, map, …), common algorithms (sort, next_permutation, binary_search, lower_bound, upper_bound), common functions (input-output (I/O), sqrt, pow, abs, min, max, …)</p>
+<p>First of all, lets understand what happens in a simple hello world program.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+  cout &lt;&lt; &quot;Hello World!&quot; &lt;&lt; &#39;\n&#39;;
+  return 0;
+}</code></pre>
+<p>(The explanation will be given in class)</p>
+<p>Extra: You can also practice competitive programming in other languages.</p>
+<p>Examples:</p>
+<ul>
+<li><p><a href="https://codeforces.com/submissions/Petr/page/3">Petr</a></p></li>
+<li><p><a href="https://codeforces.com/submissions/pajenegod">pajenegod</a></p></li>
+</ul>
+<p>But, as mentioned in the first class, C++ is usually better for its efficiency and simplicity.</p>
+<div class="topic">
+Numeric data types and its operations
+</div>
+<div id="tipos-de-datos-enteros" class="section level3">
+<h3>Tipos de datos enteros</h3>
+<ul>
+<li><code>int</code> <span class="math inline">\([-2^{31}, 2^{31}) \approx [-10^9, 10^9]\)</span></li>
+<li><code>long long</code> <span class="math inline">\([-2^{63}, 2^{63}) \approx [-10^{18}, 10^{18}]\)</span></li>
+</ul>
+</div>
+<div id="tipos-de-datos-flotantes" class="section level3">
+<h3>Tipos de datos flotantes</h3>
+<ul>
+<li>float</li>
+<li>double</li>
+<li>long double</li>
+</ul>
+</div>
+<div id="operaciones-aritméticas" class="section level3">
+<h3>Operaciones aritméticas</h3>
+<ul>
+<li>addition: x + y</li>
+<li>subtraction: x - y</li>
+<li>multiplication: x * y (what happens if <span class="math inline">\(x = y = 10^9\)</span> and <code>x</code> and <code>y</code> are <code>int</code>)</li>
+<li>division: x / y (take care if <code>x</code>, <code>y</code> are <code>int</code> and you want the result in <code>float</code>)</li>
+<li>exponenciation: pow(x, y) (the output is in <code>double</code>)</li>
+<li>module: a % b (what happens if <code>b</code> is zero? why?)</li>
+</ul>
+</div>
+<div id="order-or-precedence" class="section level3">
+<h3>Order or precedence</h3>
+<p><code>int &lt; long long &lt; float &lt; double &lt; long double</code></p>
+<p>Examples:</p>
+<pre class="cpp"><code>int x = 1;
+long long y = 8;
+auto z = x + y; // long long</code></pre>
+<pre class="cpp"><code>int x = 1;
+float y = 8;
+auto z = x + y; // float</code></pre>
+<div class="topic">
+String
+</div>
+<p>Another useful data type is <code>string</code>.</p>
+<p>In <a href="http://www.cplusplus.com/reference/string/string/">cplusplus.com</a> you will find a reference of how to work with strings.</p>
+<p><a href="./code/class-02/string.cpp">Example</a></p>
+<pre class="cpp"><code>string s;
+// input
+cin &gt;&gt; s; // In the same way you can read a int, long long, float, ...
+// You can iterate it in this way
+for (int i = 0; i &lt; s.size(); i++) {
+  // s[i]: get the i-th element
+  cout &lt;&lt; s[i] &lt;&lt; &#39;\n&#39;; // In the same way you can output a int, long long, float, ...
+}
+s[2] = &#39;b&#39;; // modify the element in position 2
+// You can also print the whole string
+cout &lt;&lt; s &lt;&lt; &#39;\n&#39;;
+// Yout can also iterate in this way
+for (char elem: s) {
+  cout &lt;&lt; elem;
+}
+cout &lt;&lt; &#39;\n&#39;; // what happens without this line ?
+s += &#39;a&#39;; // you can add append a letter or string
+cout &lt;&lt; s.substr(2, 2) &lt;&lt; &#39;\n&#39;; // what does this function do ?
+// The comparisson is like this (take care of not using just one &#39;=&#39; )
+if (s == &quot;hola&quot;) cout &lt;&lt; &quot;ok&quot; &lt;&lt; &#39;\n&#39;;</code></pre>
+<div class="topic">
+Vector
+</div>
+<p>You will need a vector in almost all of your contests, so its very important to know how to use it.</p>
+<p>In <a href="http://www.cplusplus.com/reference/vector/vector/">cplusplus.com</a> you will find a reference of how to work with vectors.</p>
+<p><a href="./code/class-02/vector.cpp">Example</a></p>
+<pre class="cpp"><code>vector &lt;int&gt; arr;
+// Add a element to the end of the vector - O(1)
+arr.push_back(123);
+arr.push_back(987);
+arr.push_back(343);
+arr.push_back(134);
+arr.push_back(345);
+// Delete the last element - O(1)
+arr.pop_back();
+// Insert a element in the i-th position - O(n)
+int i = 2;
+arr.insert(begin(arr) + i, 234);
+// Delete a element in the i-th position - O(n)
+i = 1;
+arr.erase(begin(arr) + i);
+// Copy the vector - O(n)
+vector &lt;int&gt; arrCopy = arr;
+// We can iterate a vector in this way
+for (int arr_i: arr) {
+  // do something
+}
+// We can also use &#39;auto&#39;
+for (auto elem: arr) {
+  cout &lt;&lt; elem &lt;&lt; &#39;\n&#39;;
+}
+// We can also iterate in this way
+// arr.size() returns the number of element of the vector - O(1)
+for (int i = 0; i &lt; arr.size(); i++) {
+  // arr[i]: get the i-th element - O(1)
+  cout &lt;&lt; arr[i] &lt;&lt; &#39;\n&#39;;
+}
+// Delete all the elements - O(n)
+arr.clear();</code></pre>
+<p>You can find the more common methods of vectors and its complexity in this image.</p>
+<p><img src="images/class-02/vector.jpg" /></p>
+<p>A <a href="http://www.cplusplus.com/reference/deque/deque/">deque</a> gives us all the methods of a vector and two more:</p>
+<ul>
+<li><p>push_front: Insert a element in the begining O(1)</p></li>
+<li><p>pop_front: Erase the first element O(1)</p></li>
+</ul>
+<p>Read what these functions do:</p>
+<ul>
+<li><a href="http://www.cplusplus.com/reference/algorithm/min_element/"><code>min_element</code></a></li>
+<li><a href="http://www.cplusplus.com/reference/algorithm/sort/"><code>sort</code></a></li>
+<li><a href="http://www.cplusplus.com/reference/algorithm/fill/"><code>fill</code></a></li>
+<li><a href="http://www.cplusplus.com/reference/algorithm/reverse/"><code>reverse</code></a></li>
+<li><a href="http://www.cplusplus.com/reference/algorithm/random_shuffle/"><code>random_shuffle</code></a></li>
+<li><a href="http://www.cplusplus.com/reference/algorithm/unique/"><code>unique</code></a></li>
+<li><a href="http://www.cplusplus.com/reference/algorithm/count/"><code>count</code></a></li>
+</ul>
+<p>Question: How would you declare a matrix ?</p>
+<div class="topic">
+Set
+</div>
+<p>In <a href="http://www.cplusplus.com/reference/set/set/">cplusplus.com</a> you will find a reference of how to work with sets.</p>
+<p><a href="./code/class-02/set.cpp">Example</a></p>
+<pre class="cpp"><code>set &lt;int&gt; S;
+// Insert a element - O(log n)
+S.insert(3);
+S.insert(4);
+S.insert(-100);
+S.insert(-345);
+// The elements are stored in ascending order
+for (auto x: S) {
+  cout &lt;&lt; x &lt;&lt; endl;
+}
+// Check if a element is in the set - O(log n)
+if (S.count(4) &gt; 0) {
+  cout &lt;&lt; &quot;4 is in S\n&quot;;
+}
+// You can also check that using the method find
+if (S.find(4) != end(S)) {
+  cout &lt;&lt; &quot;4 is in S&quot; &lt;&lt; endl;
+}
+// Delete a elemento - O(log n)
+S.erase(4);
+// You can also delete in this way
+S.erase(S.find(-100));
+// If we store the iterator - O(log n)
+// auto it = S.find(val) - O(log n)
+// Then we can erase the element - O(1)
+// S.erase(it)</code></pre>
+<p>You can find the more common methods of sets and its complexity in this image.</p>
+<p><img src="images/class-02/set.jpg" /></p>
+<p>Read about <a href="http://www.cplusplus.com/reference/set/multiset/">multisets</a>.</p>
+<div class="topic">
+Map
+</div>
+<p>In <a href="http://www.cplusplus.com/reference/map/map/">cplusplus.com</a> you will find a reference of how to work with maps.</p>
+<p><a href="./code/class-02/map.cpp">Example</a></p>
+<pre class="cpp"><code>map &lt;string, int&gt; my_map;
+// Insert a element - O(log n)
+my_map[&quot;hola&quot;] = 1;
+my_map[&quot;mundo&quot;] = 5;
+// The elements are stored in ascending order
+for (auto x: my_map) {
+  cout &lt;&lt; x.first &lt;&lt; &#39; &#39; &lt;&lt; x.second &lt;&lt; endl;
+}
+// Check if a element is in the map - O(log n)
+if (my_map.count(&quot;hola&quot;) &gt; 0) {
+  cout &lt;&lt; &quot;4 is in my_map\n&quot;;
+}
+// You can also check that using the method find
+if (my_map.find(&quot;hola&quot;) != end(my_map)) {
+  cout &lt;&lt; &quot;4 is in my_map&quot; &lt;&lt; endl;
+}
+my_map[&quot;hola&quot;] = 10;
+for (auto x: my_map) {
+  cout &lt;&lt; x.first &lt;&lt; &#39; &#39; &lt;&lt; x.second &lt;&lt; &#39;\n&#39;;
+}
+// Delete a elemento - O(log n)
+my_map.erase(&quot;hola&quot;);
+// You can also delete in this way
+my_map.erase(my_map.find(&quot;mundo&quot;));
+// If we store the iterator - O(log n)
+// auto it = my_map.find(val) - O(log n)
+// Then we can erase the element - O(1)
+// my_map.erase(it)</code></pre>
+<p>The complexity of its operations is the same of a set.</p>
+<div class="topic">
+Struct
+</div>
+<p>With a <code>struct</code> we can create our own data type which can encapsulate other data type.</p>
+<p><a href="./code/class-02/struct.cpp">Example</a></p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+struct MyStructure {
+  // we can declare attributes of different types
+  int var1;
+  double var2;
+  string var3;
+  MyStructure (int var1, double var2, string _var3):
+    var1(var1),
+    var2(var2) { // we can initialize the variables in this way
+      var3 = _var3; // ot in this way
+    }
+  void my_method () {
+    cout &lt;&lt; var1 &lt;&lt; &#39; &#39; &lt;&lt; var2 &lt;&lt; &#39; &#39; &lt;&lt; var3 &lt;&lt; &#39;\n&#39;;
+  }
+};
+
+int main () {
+  MyStructure structure(18, 20.7, &quot;hello world!&quot;);
+  structure.my_method(); // cal a method
+  structure.var1 = 19; // access an attribute
+  cout &lt;&lt; structure.var3 &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+<p>Read about <a href="http://www.cplusplus.com/reference/utility/pair/">pair</a>.</p>
+<p>Read <a href="https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf">Antti Laaksonen.Competitive programmer’s handbook - chapter 1 y 4</a>. Section 1.4 will help you understand common practice that you will find in competitive programming (which you eventually will use) and in Chapter 4 you will see more examples of how yo use <code>vector</code>, <code>set</code>, <code>map</code> and much more.</p>
+<p>You may also be interested in reading:</p>
+<ul>
+<li><p><a href="https://codeforces.com/blog/entry/64218">Competitive C++ Manifesto: A Style Guide</a></p></li>
+<li><p><a href="https://www.topcoder.com/community/competitive-programming/tutorials/power-up-c-with-the-standard-template-library-part-1/">TopCoder - Power up C++ with the Standard Template Library - Part I</a></p></li>
+</ul>
+<div id="contest" class="topic">
+Contest
+</div>
+<p>You can find the contest <a href="https://vjudge.net/contest/351569">here</a>.</p>
+<!-- Begins problem A -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+A: Chat Server’s Outgoing Traffic
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div class="card-body solution-body">
+<h3 id="problem-a-chat-servers-outgoing-traffic"><a href="https://codeforces.com/contest/5/problem/A" target="_blank">Problem A: Chat Server’s Outgoing Traffic</a></h3>
+<p>Just implement what the problem says.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemA" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int ans = 0;
+  int cur = 0;
+  string s;
+  while (getline(cin, s)) {
+    if (s[0] == &#39;+&#39;) {
+      cur++;
+    } else if (s[0] == &#39;-&#39;) {
+      cur--;
+    } else {
+      int pos = 0;
+      while (s[pos] != &#39;:&#39;) pos++;
+      ans += (sz(s) - pos - 1) * cur;
+    }
+  }
+  cout &lt;&lt; ans &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+<!-- Begins problem B -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+B: Counting-out Rhyme
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div class="card-body solution-body">
+<h3 id="problem-b-counting-out-rhyme"><a href="https://codeforces.com/problemset/problem/792/B" target="_blank">Problem B: Counting-out Rhyme</a></h3>
+<p>The constraints are small, just simulate what the problem says.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemB" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n, k;
+  cin &gt;&gt; n &gt;&gt; k;
+  vector &lt;int&gt; arr(n);
+  iota(all(arr), 1);
+  int cur = 0;
+  for (int i = 0; i &lt; k; i++) {
+    int a;
+    cin &gt;&gt; a;
+    a %= sz(arr);
+    while (a--) cur = (cur + 1) % sz(arr);
+    cout &lt;&lt; arr[cur] &lt;&lt; &#39; &#39;;
+    arr.erase(begin(arr) + cur);
+    cur %= sz(arr);
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+<!-- Begins problem C -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+C: Shuffle Hashing
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div class="card-body solution-body">
+<h3 id="problem-c-shuffle-hashing"><a href="https://codeforces.com/problemset/problem/1278/A" target="_blank">Problem C: Shuffle Hashing</a></h3>
+<p>If you can construct <code>h</code> from <code>p</code>, then <span class="math inline">\(\exists s_1, s_2, q \mid h = s_1 + q + s_2\)</span></p>
+<p>Then <span class="math inline">\(h[n:n + m] = q\)</span> where <code>n</code> is the length <span class="math inline">\(s_1\)</span> and <code>m</code> the length of<code>p</code>. Then <span class="math inline">\(sort(h[n:n + m]) = sort(p)\)</span>. So, we just need to check if that is true for some value of <span class="math inline">\(n\)</span>.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemC" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int tc;
+  cin &gt;&gt; tc;
+  while (tc--) {
+    string p, h;
+    cin &gt;&gt; p &gt;&gt; h;
+    bool ok = false;
+    sort(all(p));
+    for (int i = 0; i &lt; sz(h); i++) {
+      string x = h.substr(i, sz(p));
+      sort(all(x));
+      if (x == p) ok = true;
+    }
+    if (ok) cout &lt;&lt; &quot;YES\n&quot;;
+    else cout &lt;&lt; &quot;NO\n&quot;;
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem C -->
+<!-- Begins problem D -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+D: Free spots
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemD" class="collapse">
+<div class="card-body solution-body">
+<h3 id="problem-d-free-spots"><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1644" target="_blank">Problem D: Free spots</a></h3>
+<p>For each test we can create a matrix of booleans initialized of false’s. Then, for each query <span class="math inline">\(x_1, y_1, x_2, y_3\)</span> we set to true every element of the matrix in position <span class="math inline">\((r, c) \mid x_1 \leq r \leq x_2 \land y_1 \leq c \leq y_2\)</span>, assumming <span class="math inline">\(x_1 \leq x_2 \land y_1 \leq y_2\)</span>. So, after processing every query, the answer is the number of elements that are false.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemD" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int w, h, n;
+  while (cin &gt;&gt; w &gt;&gt; h &gt;&gt; n) {
+    if (w == 0 and h == 0 and n == 0) break;
+    vector &lt;vector &lt;bool&gt;&gt; vis(w + 1, vector &lt;bool&gt; (h + 1, false));
+    while (n--) {
+      int x1, y1, x2, y2;
+      cin &gt;&gt; x1 &gt;&gt; y1 &gt;&gt; x2 &gt;&gt; y2;
+      for (int r = min(x1, x2); r &lt;= max(x1, x2); r++) {
+        for (int c = min(y1, y2); c &lt;= max(y1, y2); c++) {
+          vis[r][c] = true;
+        }
+      }
+    }
+    int cnt = 0;
+    for (int r = 1; r &lt;= w; r++) {
+      for (int c = 1; c &lt;= h; c++) {
+        if (!vis[r][c]) cnt++;
+      }
+    }
+    if (cnt == 0) cout &lt;&lt; &quot;There is no empty spots.\n&quot;;
+    else if (cnt == 1) cout &lt;&lt; &quot;There is one empty spot.&quot; &lt;&lt; &#39;\n&#39;;
+    else cout &lt;&lt; &quot;There are &quot; &lt;&lt; cnt &lt;&lt; &quot; empty spots.\n&quot;;
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem D -->
+</div>
+
+<footer>
+  <p>Copyright &copy; 2020. Competitive Programming UTEC</p>
+</footer>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

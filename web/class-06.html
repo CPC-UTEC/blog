@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Class 06: Complete Search III</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CP UTEC</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="schedule.html">Schedule</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lessons
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Week 1</li>
+    <li>
+      <a href="class-01.html">Introduction</a>
+    </li>
+    <li>
+      <a href="class-02.html">Asymptotic Analysis</a>
+    </li>
+    <li class="dropdown-header">Week 2</li>
+    <li>
+      <a href="class-03.html">STL</a>
+    </li>
+    <li>
+      <a href="class-04.html">Complete Search I</a>
+    </li>
+    <li class="dropdown-header">Week 3</li>
+    <li>
+      <a href="class-05.html">Complete Search II</a>
+    </li>
+    <li>
+      <a href="class-06.html">Complete Search III</a>
+    </li>
+    <li class="dropdown-header">Week 4</li>
+    <li>
+      <a href="class-07.html">Complete Search IV</a>
+    </li>
+    <li>
+      <a href="class-08.html">Complete Search V</a>
+    </li>
+    <li class="dropdown-header">Week 5</li>
+    <li>
+      <a href="class-09.html">Contest I</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="daily-problem.html">Daily Problem</a>
+</li>
+<li>
+  <a href="gallery.html">Gallery</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Class 06: Complete Search III</h1>
+<h4 class="date">22-01-2020</h4>
+
+</div>
+
+
+<blockquote>
+<p>“Think twice, code once”</p>
+</blockquote>
+<div class="topic">
+Two pointers
+</div>
+<p>This technique is usually used in an array. We have a pointer to the first element of the array and to the last. The first pointer will be incresing and the other one decreasing (you may also find variations of this idea). In practice, intead of using a pointer, a <code>int</code> variable to keep track of the index is usually enough.</p>
+<p>Let’s see this technique with an example:</p>
+<p><strong>Problem:</strong> You are given an array <span class="math inline">\(a\)</span> of <span class="math inline">\(n\)</span> elements. You should output the minimum number of intervals <span class="math inline">\([l_i, r_i] \mid a_i = a_j \forall \, i, j \in [l_i, r_i]\)</span> <span class="math inline">\([l_1, r_1] \cup [l_2, r_2] \cup \dots \cup [l_m, r_m] = [1, n]\)</span>.</p>
+<p><span class="math display">\[1 \leq n \leq 10^5\]</span></p>
+<p><strong>Example:</strong></p>
+<p><strong>Input:</strong></p>
+<p><span class="math inline">\(n = 7\)</span></p>
+<p><span class="math inline">\(a = 1\ 1\ 1\ 2\ 2\ 3\ 3\)</span></p>
+<p><strong>Output:</strong></p>
+<p><span class="math inline">\(1\ 3\)</span></p>
+<p><span class="math inline">\(4\ 5\)</span></p>
+<p><span class="math inline">\(6\ 7\)</span></p>
+<div id="first-implementation" class="section level3">
+<h3>First implementation</h3>
+<pre class="cpp"><code>vector &lt;pair &lt;int, int&gt;&gt; solution1 (const vector &lt;int&gt;&amp; arr) {
+  int n = arr.size();
+  vector &lt;bool&gt; vis(n, false);
+  vector &lt;pair &lt;int, int&gt;&gt; ret;
+  for (int l = 0; l &lt; n; l++) {
+    if (vis[l]) continue;
+    int L = l;
+    int R = l;
+    for (int r = l; r &lt; n and arr[l] == arr[r]; r++) {
+      vis[r] = true;
+      R = r;
+    }
+    ret.push_back({1 + L, 1 + R});
+  }
+  return ret;  
+}</code></pre>
+</div>
+<div id="second-implementation" class="section level3">
+<h3>Second implementation</h3>
+<pre class="cpp"><code>vector &lt;pair &lt;int, int&gt;&gt; solution2 (const vector &lt;int&gt;&amp; arr) {
+  int n = arr.size();
+  vector &lt;pair &lt;int, int&gt;&gt; ret;
+  int l = 0;
+  while (l &lt; n) {
+    int r = l;
+    while (r + 1 &lt; n and arr[l] == arr[r + 1]) r++;
+    ret.push_back({1 + l, 1 + r});
+    l = r + 1;
+  }
+  return ret;  
+}</code></pre>
+<p><a href="./code/class-06/intervals.cpp">Full code</a></p>
+<p>The time complexity of both solutions is <span class="math inline">\(O(n)\)</span>.</p>
+<p>Let’s use this technique in <a href="https://leetcode.com/problems/two-sum/">this problem</a>:</p>
+<p><strong>Problem (2 sum problem):</strong> You are given an array <span class="math inline">\(a\)</span> of <span class="math inline">\(n\)</span> <strong>positive</strong> elements and an integer <span class="math inline">\(target\)</span>. You should output two numbers <span class="math inline">\(i, j \mid i \not = j \land a_i + a_j = target\)</span>. It is garantee that a solution always exits.</p>
+<p><span class="math display">\[1 \leq n \leq 10^5\]</span> <span class="math display">\[1 \leq target \leq 10^9\]</span></p>
+<p>We can use the same technique + sorting and solve the problem in <span class="math inline">\(O(n \log n)\)</span>.</p>
+<p>First, let’s sort the array and init with <span class="math inline">\(l = 0 \land r = n - 1\)</span>. <span class="math inline">\(l\)</span> would just increase and <span class="math inline">\(r\)</span> would just decrease. Then, by the trichotomy property there are three cases:</p>
+<ul>
+<li><p><span class="math inline">\(a[l] + a[r] == target\)</span></p>
+<p>Then, we have and answer and our program can finish</p></li>
+<li><p><span class="math inline">\(a[l] + a[r] &lt; target\)</span></p>
+<p>In this case we need to get a greater sum. Decreasing <span class="math inline">\(r\)</span> the sum may keep the same or smaller. Increasing <span class="math inline">\(l\)</span> the sum may keep the same or greater. Then, we need to increase <span class="math inline">\(l\)</span>.</p></li>
+<li><p><span class="math inline">\(a[l] + a[r] &gt; target\)</span></p>
+<p>Similar to the previous case, we need to decrease the sum, then we decrease <span class="math inline">\(r\)</span>.</p></li>
+</ul>
+<pre class="cpp"><code>class Solution {
+public:
+    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) {
+        vector &lt;pair &lt;int, int&gt;&gt; arr;
+        int index = 0;
+        for (int elem: nums) {
+            arr.push_back({elem, index});
+            index++;
+        }
+        sort(begin(arr), end(arr));
+        int n = nums.size();
+        int l = 0, r = n - 1;
+        vector &lt;int&gt; ans;
+        while (l &lt; r) {
+            if (arr[l].first + arr[r].first == target) {
+                ans = {arr[l].second, arr[r].second};
+                break;
+            }
+            if (arr[l].first + arr[r].first &lt; target) l++;
+            else r--;
+        }
+        return ans;
+    }
+};</code></pre>
+<p><strong>Extra:</strong> This is another solution using STL + fixing variables in <span class="math inline">\(O(n \log n)\)</span>:</p>
+<pre class="cpp"><code>class Solution {
+public:
+    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) {
+        vector &lt;int&gt; ans;
+        map &lt;int, vector &lt;int&gt;&gt; pos;
+        int n = nums.size();
+        for (int i = 0; i &lt; n; i++) {
+            pos[nums[i]].push_back(i);
+        }
+        for (int x = 0; x &lt; n; x++) {
+            int k = target - nums[x];
+            if (pos.count(k)) {
+                int cnt = 0;
+                for (int y: pos[k]) {
+                    if (y != x) {
+                        ans = {x, y};
+                    }
+                    cnt++;
+                    if (cnt == 2) break;
+                }
+            }
+        }
+        return ans;
+    }
+};</code></pre>
+<p>How could you solve the same problem if you need to find three numbers <span class="math inline">\(x, y, z \mid x \not = y \not = z \land a_x + a_y + a_z = target\)</span> ?</p>
+<div class="topic">
+Recursion
+</div>
+<p>Imagine you have a funtion <span class="math inline">\(f\)</span> that solves a problem in this way:</p>
+<ul>
+<li>When we are in a state with a specific property, we know how to directly solve the problem</li>
+<li>If we are not in a state with the specific property, we can solve the problem using different states of <span class="math inline">\(f\)</span>.</li>
+</ul>
+<p>For example:</p>
+<p><span class="math display">\[f(n) = 1 * 2 * 3 * \dots * n\]</span></p>
+<p>We want to compute <span class="math inline">\(f(n)\)</span> in a recursive way. Then we need:</p>
+<ul>
+<li><p>Identify a state with a specific property that we can solve easily.</p>
+<p>If <span class="math inline">\(n = 0 \to f(0) = 1\)</span>.</p></li>
+<li><p>Identify how to solve <span class="math inline">\(f(n)\)</span> using different states of <span class="math inline">\(f\)</span> (that are ‘closer’ to the states with a specific property of the above point)</p></li>
+</ul>
+<p><span class="math display">\[f(n) = \underbrace{1 * 2 * 3 * \dots * (n - 1)}_{\text{f(n - 1)}} * n\]</span> <span class="math display">\[f(n) = n * f(n - 1)\]</span></p>
+<p>Then, we are basically saying that if <span class="math inline">\(n = 0\)</span> we know how to solve the problem, else if we have the answer of <span class="math inline">\(f(n - 1)\)</span> we can use it to solve <span class="math inline">\(f(n)\)</span>.</p>
+<p>In code it is something like this:</p>
+<pre class="cpp"><code>ll f (int n) {
+  if (n == 0) return 1;
+  return n * f(n - 1);
+}</code></pre>
+<p>What is nice about recursion is that we can think in a recursive way. Thinking in this way the problem may become easier. For example you can say:</p>
+<p>Let <span class="math inline">\(f\)</span> be a function that solves the problem I am trying to solve. Then, you may say. I have no idea how to solve <span class="math inline">\(f(state)\)</span>, but if somehow I would have the answer of <span class="math inline">\(f(state&#39;), f(state&#39;&#39;), f(state&#39;&#39;&#39;), \dots\)</span> then I can solve <span class="math inline">\(f(state)\)</span> and I know how to solve the problem in specific states.</p>
+<p>Then, in code, recursive solutions usually have have the form:</p>
+<pre class="vw"><code>T f(state):
+  if (state have a specific property):
+    solve the problem for this state and return something
+  else:
+    get the answer of f(state&#39;), f(state&#39;&#39;), f(state&#39;&#39;&#39;), ...
+    and using these answers compute f(state) and return something</code></pre>
+<p>For example, let’s solve the problem of the towers of Hanoi.</p>
+</div>
+<div id="the-tower-of-hanoi" class="section level3">
+<h3>The tower of Hanoi</h3>
+<p><img src="images/class-05/Hanoi.jpeg" /></p>
+<p><strong>Source:</strong> <a href="https://en.wikipedia.org/wiki/Tower_of_Hanoi#/media/File:Tower_of_Hanoi.jpeg">Wikipedia</a></p>
+<p><strong>Problem:</strong> You have 3 rods, and a pile of <span class="math inline">\(n\)</span> disks in one rod. Each disk have different diameter, the disks are in order in the stack, the greatest in the button and the smallest on the top. We want to move all the disks to another rod. We can only move the top disk of a stack to another rod if the other rod is empty or the diameter of its top element is greater that the one we are moving. Can you give a sequence of movements to solve this problem ?</p>
+<p>Lets say we have the function <span class="math inline">\(f\)</span> such that <span class="math inline">\(f(source, target, pivot, n)\)</span> moves the <span class="math inline">\(n\)</span> disks that are in the <code>source</code> rod to the <code>target</code> rod. Then, we can say:</p>
+<p>If I want to move the <span class="math inline">\(n\)</span> disks from <code>source</code> rod to the <code>target</code> rod, first I need to move <span class="math inline">\(n - 1\)</span> disks from <code>source</code> to <code>pivot</code>, then I move the last disk in <code>source</code> to target. After that, we need to move the <span class="math inline">\(n - 1\)</span> disks in <code>pivot</code> to <code>target</code> and we are done. Moreover, if there is only one disk we can direcly move it to <code>target</code>. Then, we can write <span class="math inline">\(f\)</span> in this way:</p>
+<pre class="bw"><code>void f(source, target, pivot, n):
+  if n == 1:
+    move the disk in source to target
+    return
+  # move the top n - 1 disks in source to pivot
+  f(source, pivot, target, n - 1)
+  # move the last disk in source to target
+  f(source, target, pivot, 1)
+  # move the n - 1 disks in pivot to target
+  f(pivot, target, source, n - 1)</code></pre>
+<p>And that’s all. It solves the problem!</p>
+</div>
+<div id="exercises" class="section level3">
+<h3>Exercises</h3>
+<p>Write recursive functions to compute:</p>
+<ul>
+<li>Sum of digits of a number <span class="math inline">\(n\)</span></li>
+<li><span class="math inline">\(fib(n)\)</span></li>
+<li><span class="math inline">\(C(n, k)\)</span></li>
+<li>Binary representation of <span class="math inline">\(n\)</span></li>
+<li>Determinant of a matrix (<strong>Challenge</strong>)</li>
+</ul>
+<div class="topic">
+Modular arithmetic
+</div>
+<p>When we are doing a division we are basically computing:</p>
+<p><span class="math display">\[a = b \cdot \lfloor a / b \rfloor + r\]</span> <span class="math display">\[0 \leq r &lt; b\]</span></p>
+<p>Now, we say:</p>
+<p><span class="math display">\[a \equiv r \mod b \lor r \equiv a \mod b\]</span></p>
+<p>That is <span class="math inline">\(x \equiv y \mod m\)</span> iff <span class="math inline">\((x - y) | m\)</span>.</p>
+<p><strong>Note:</strong> <span class="math inline">\(r\)</span> is what we get when we compute <span class="math inline">\(a \% b\)</span>.</p>
+<p>When working with modular arithmetic, that set of values our numbers can take is <span class="math inline">\(0, 1, 2, \dots, m - 1\)</span>, where <span class="math inline">\(m\)</span> is a constant. So each number <span class="math inline">\(x\)</span> is represented as <span class="math inline">\(x \mod m\)</span>.</p>
+<p>For example, if <span class="math inline">\(m = 12 \to x = 20\)</span> is represented as <span class="math inline">\(x \mod 12 = 8\)</span>.</p>
+<p>In some problems you will be asked to output the answer module <span class="math inline">\(m\)</span>. For doing this you may just solve your problem and in the end output <span class="math inline">\(your\_answer \% m\)</span>. Nevertheless, what happend if <span class="math inline">\(m= 10^9 + 7\)</span> and you have:</p>
+<pre class="cpp"><code>int m = 1e9 + 7; // 10^9 + 7
+long long a = 1e10; // 10^10
+long long your_answer = (a * a) % m;</code></pre>
+<p>Althought we know that the <span class="math inline">\(\%\)</span> operator will give us a result less than <span class="math inline">\(m\)</span>, <span class="math inline">\(a * a\)</span> can not fit in a <code>long long</code> (<span class="math inline">\(10^{20} &gt; 2^{63}\)</span>), so we have <code>overflow</code>. In order to fix that, we can use the properties of modular arithmetic:</p>
+<p><span class="math display">\[(x + y) \mod m = (x \mod m + y \mod m) \mod m\]</span> <span class="math display">\[(x - y) \mod m = (x \mod m - y \mod m) \mod m\]</span> <span class="math display">\[(x * y) \mod m = (x \mod m * y \mod m) \mod m\]</span> <span class="math display">\[x^n \mod m = (x \mod m)^n \mod m\]</span></p>
+<p>So, we can fix the above code in this way:</p>
+<pre class="cpp"><code>long long your_answer = ((a % m) * (a % m)) % m;</code></pre>
+<p>From the above properties we have:</p>
+<p><span class="math inline">\(x \mod m = x \mod m + 0 = x \mod m + m \mod m = (x + m) \mod m\)</span></p>
+<p>The last equation will be useful because in C++ the result of <span class="math inline">\(\%\)</span> can be in <span class="math inline">\((-m, m)\)</span>. For example:</p>
+<pre class="cpp"><code>cout &lt;&lt; (-4) % 5 &lt;&lt; &#39;\n&#39;; // -4</code></pre>
+<p>Then, the subtraction should be:</p>
+<p><span class="math display">\[(x - y) \mod m = ((x \mod m - y \mod m) \mod m + m) \mod m\]</span></p>
+<p>Now, the result will always be in <span class="math inline">\([0, m)\)</span>.</p>
+<div class="topic">
+Binary exponenciation
+</div>
+<p><span class="math inline">\(a^b\)</span> can be expressed in a recursive way.</p>
+<p><span class="math display">\[
+    \text{power}(a, b) =,
+    \begin{cases}
+        1       &amp; \quad \text{If } b = 0 \\
+        \text{power}(a, \lfloor b / 2 \rfloor) ^ 2  &amp; \quad \text{if } b \mod 2 = 0 \\
+        a * \text{power}(a, \lfloor b / 2 \rfloor) ^ 2 &amp; \quad \text{if } b \mod 2 = 1
+    \end{cases}
+\]</span></p>
+<p>Moreover, from the properties of modular arithmetic, we can get <span class="math inline">\(a^b \mod m\)</span> as:</p>
+<p><span class="math display">\[
+    \text{binpow}(a, b) =,
+    \begin{cases}
+        1       &amp; \quad \text{If } b = 0 \\
+        \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2 \mod m &amp; \quad \text{if } b \mod 2 = 0 \\
+        (a * \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2) \mod m &amp; \quad \text{if } b \mod 2 = 1
+    \end{cases}
+\]</span></p>
+<p>In code:</p>
+<pre class="cpp"><code>const ll m = 1e9 + 7;
+
+ll binpow (ll a, ll b) {
+  if (b == 0) return 1;
+  a %= m;
+  ll res = binpow(a, b / 2);
+  res = (res * res) % m;
+  if (b % 2 == 1) res = (a * res) % m;
+  return res;
+}</code></pre>
+<p>The above code compute <span class="math inline">\(a^b \mod m\)</span> in <span class="math inline">\(O(\log b)\)</span>.</p>
+<p>This function will be really useful, but before using it, we need to know one theorem.</p>
+</div>
+<div id="fermats-little-theorem" class="section level3">
+<h3>Fermat’s little theorem</h3>
+<p>If <span class="math inline">\(m\)</span> is prime and <span class="math inline">\(0 &lt; a &lt; m\)</span>, we have:</p>
+<p><span class="math display">\[a^{m - 1} \equiv 1 \mod m\]</span></p>
+<p>Moreover, we say the the inverse of <span class="math inline">\(a\)</span> is <span class="math inline">\(b\)</span> if:</p>
+<p><span class="math display">\[ab \equiv 1 \mod m\]</span></p>
+<p><span class="math inline">\(b\)</span> is written as <span class="math inline">\(a^{-1}\)</span>.</p>
+<p>And as <span class="math inline">\(a^{m - 1} = a \cdot a^{m - 2}\)</span></p>
+<p>Using Fermat’s little theorem we have that the inverse of <span class="math inline">\(a\)</span> is <span class="math inline">\(a^{m - 2}\)</span> if <span class="math inline">\(m\)</span> is prime.</p>
+<p>Now, we can mention one more property of modular arithmetic (if <span class="math inline">\(b^{-1}\)</span> exists).</p>
+<p><span class="math display">\[\frac{a}{b} \mod m = ((a \mod m) * (b^{-1} \mod m)) \mod m\]</span></p>
+<p>Let’s see how it is useful in <a href="https://vjudge.net/problem/Gym-247724E">this problem</a>.</p>
+<p><strong>Problem:</strong> Compute <span class="math inline">\(S = (1 + a + a^2 + a^3 + \dots + a^k) \mod m\)</span>.</p>
+<p><span class="math display">\[m = 10^9 + 7 \text{ (is prime)}\]</span> <span class="math display">\[1 \leq a \leq 10^{18}\]</span> <span class="math display">\[1 \leq k \leq 10^{18}\]</span></p>
+<p>If <span class="math inline">\(a = 1 \to S = (k + 1) \mod m\)</span></p>
+<p>If <span class="math inline">\(a &gt; 1 \to S = \frac{a^{k + 1} - 1}{a - 1} \mod m\)</span></p>
+<p>Then, we can use the above properties to compute that.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+const ll m = 1e9 + 7;
+
+ll add (ll a, ll b) { return ((a) % m + (b % m)) % m; }
+ll sub (ll a, ll b) { return (((a) % m - (b % m)) + m) % m; }
+ll mul (ll a, ll b) { return ((a) % m * (b % m)) % m; }
+
+ll binpow (ll a, ll b) {
+  if (b == 0) return 1;
+  a %= m;
+  ll res = binpow(a, b / 2);
+  res = mul(res, res);
+  if (b % 2 == 1) res = mul(a, res);
+  return res;
+}
+
+ll inverse (ll a) { return binpow(a, m - 2); }
+
+int main () {
+  ll a, k;
+  cin &gt;&gt; a &gt;&gt; k;
+  if (sub(a, 1) == 0) {
+    cout &lt;&lt; add(k, 1) &lt;&lt; &#39;\n&#39;;
+  } else {
+    cout &lt;&lt; mul(sub(binpow(a, k + 1), 1), inverse(a - 1)) &lt;&lt; &#39;\n&#39;;
+  }
+  return (0);
+}</code></pre>
+<p>Recommended readings:</p>
+<ul>
+<li>Concrete Mathematics - Knuth. Chapter 1</li>
+<li><a href="https://codeforces.com/blog/entry/72527">Modular Arithmetic for Beginners</a></li>
+<li><a href="https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf">Competitive Programmer’s Handbook, chapters 5, 8 y 21</a></li>
+<li>Principles of Algorithmic Problem Solving, sections 15.6 y 15.7</li>
+<li><a href="https://www.codechef.com/certification/data-structures-and-algorithms/prepare">Learn Data Structures and Algorithms, section Basic Recursion</a></li>
+<li><a href="https://cp-algorithms.com/algebra/binary-exp.html">E-maxx Binary Exponentiation</a></li>
+</ul>
+<div id="contest" class="topic">
+Contest
+</div>
+<p>You can find the contest <a href="https://vjudge.net/contest/353470">here</a>.</p>
+<p>The solutions will be uploaded after the contest.</p>
+</div>
+
+<footer>
+  <p>Copyright &copy; 2020. Competitive Programming UTEC</p>
+</footer>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

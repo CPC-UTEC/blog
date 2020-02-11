@@ -1,6 +1,6 @@
 ---
 title: "Class 06: Complete Search III"
-date: "22-01-2020"
+date: "01-22-2020"
 ---
 
 ```{r setup, include=FALSE}

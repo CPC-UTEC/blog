@@ -70,3 +70,17 @@ footer {
   align-items: center;
   justify-content: center;
 }
+
+.carousel-caption {
+  z-index: 10;
+}
+
+.carousel .item {
+  background-color: #777;
+  height: 450px;
+}
+
+.carousel-inner > .item > img {
+  min-width: 100%;
+  height: 450px;
+}

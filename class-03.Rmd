@@ -1,6 +1,6 @@
 ---
 title: "Class 03: STL"
-date: "13-01-2020"
+date: "01-13-2020"
 ---
 
 ```{r setup, include=FALSE}

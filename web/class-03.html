@@ -14,6 +14,7 @@
 <title>Class 03: STL</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -316,6 +317,10 @@ $(document).ready(function () {
     <li>
       <a href="class-09.html">Contest I</a>
     </li>
+    <li class="dropdown-header">Week 6</li>
+    <li>
+      <a href="class-10.html">Contest UTEC-UNI I</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -336,7 +341,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Class 03: STL</h1>
-<h4 class="date">13-01-2020</h4>
+<h4 class="date">01-13-2020</h4>
 
 </div>
 
@@ -608,8 +613,8 @@ A: Chat Server’s Outgoing Traffic
 </div>
 <!-- begin body -->
 <div id="collapseProblemA" class="collapse">
-<div class="card-body solution-body">
-<h3 id="problem-a-chat-servers-outgoing-traffic"><a href="https://codeforces.com/contest/5/problem/A" target="_blank">Problem A: Chat Server’s Outgoing Traffic</a></h3>
+<div id="problem-a-chat-servers-outgoing-traffic" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/contest/5/problem/A" target="_blank">Problem A: Chat Server’s Outgoing Traffic</a></h3>
 <p>Just implement what the problem says.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
@@ -668,8 +673,8 @@ B: Counting-out Rhyme
 </div>
 <!-- begin body -->
 <div id="collapseProblemB" class="collapse">
-<div class="card-body solution-body">
-<h3 id="problem-b-counting-out-rhyme"><a href="https://codeforces.com/problemset/problem/792/B" target="_blank">Problem B: Counting-out Rhyme</a></h3>
+<div id="problem-b-counting-out-rhyme" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/792/B" target="_blank">Problem B: Counting-out Rhyme</a></h3>
 <p>The constraints are small, just simulate what the problem says.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
@@ -727,8 +732,8 @@ C: Shuffle Hashing
 </div>
 <!-- begin body -->
 <div id="collapseProblemC" class="collapse">
-<div class="card-body solution-body">
-<h3 id="problem-c-shuffle-hashing"><a href="https://codeforces.com/problemset/problem/1278/A" target="_blank">Problem C: Shuffle Hashing</a></h3>
+<div id="problem-c-shuffle-hashing" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1278/A" target="_blank">Problem C: Shuffle Hashing</a></h3>
 <p>If you can construct <code>h</code> from <code>p</code>, then <span class="math inline">\(\exists s_1, s_2, q \mid h = s_1 + q + s_2\)</span></p>
 <p>Then <span class="math inline">\(h[n:n + m] = q\)</span> where <code>n</code> is the length <span class="math inline">\(s_1\)</span> and <code>m</code> the length of<code>p</code>. Then <span class="math inline">\(sort(h[n:n + m]) = sort(p)\)</span>. So, we just need to check if that is true for some value of <span class="math inline">\(n\)</span>.</p>
 <!-- begin code -->
@@ -788,8 +793,8 @@ D: Free spots
 </div>
 <!-- begin body -->
 <div id="collapseProblemD" class="collapse">
-<div class="card-body solution-body">
-<h3 id="problem-d-free-spots"><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1644" target="_blank">Problem D: Free spots</a></h3>
+<div id="problem-d-free-spots" class="section level3 card-body solution-body">
+<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1644" target="_blank">Problem D: Free spots</a></h3>
 <p>For each test we can create a matrix of booleans initialized of false’s. Then, for each query <span class="math inline">\(x_1, y_1, x_2, y_3\)</span> we set to true every element of the matrix in position <span class="math inline">\((r, c) \mid x_1 \leq r \leq x_2 \land y_1 \leq c \leq y_2\)</span>, assumming <span class="math inline">\(x_1 \leq x_2 \land y_1 \leq y_2\)</span>. So, after processing every query, the answer is the number of elements that are false.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">

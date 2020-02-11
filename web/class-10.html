@@ -11,9 +11,10 @@
 
 
 
-<title>Class 10: Complete Search V</title>
+<title>Class 10: Contest UTEC-UNI I</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -316,6 +317,10 @@ $(document).ready(function () {
     <li>
       <a href="class-09.html">Contest I</a>
     </li>
+    <li class="dropdown-header">Week 6</li>
+    <li>
+      <a href="class-10.html">Contest UTEC-UNI I</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -335,179 +340,836 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Class 10: Complete Search V</h1>
-<h4 class="date">29-01-2020</h4>
+<h1 class="title toc-ignore">Class 10: Contest UTEC-UNI I</h1>
+<h4 class="date">02-10-2020</h4>
 
 </div>
 
 
 <blockquote>
-<p>“Binary like Yin &amp; Yang”</p>
+<p>“It takes courage to sail in uncharted waters”</p>
 </blockquote>
-<p>The most common ways to search a value are linear search and binary search.</p>
-<p>Linear search is a simple searching through all array’s values and comparing with each of them.</p>
-<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-int main () {
-  int num = 10;
-  int x=20;
-  int arr[]={2,4,6,7,8,10,20,4034,4535,5635435,577436536};
-  for(int i=0;i&lt;10;i++){
-    if(arr[i]==x){
-      cout&lt;&lt;i+1&lt;&lt;endl;
-      break;
-    }
-  }
-  if(i==10)
-    cout&lt;&lt;x&lt;&lt;&quot; is not in the array&quot;&lt;&lt;endl;
-    
-  return (0);
-}</code></pre>
 <div class="topic">
-Binary Search
-</div>
-<p>One of the most useful algorithms that exist. Also, it is in the backbone of another grant algorithms. It achieves a complexity of O(log(n)).</p>
-<p>Requeriments: - Sorted Sequence</p>
-<p>First Approach</p>
-<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-int binary_search(int *seq,int size, int x){
-  int left=0,right=size-1;
-  while(left&lt;=right){
-    int med=left+(right-left)/2;
-    if(seq[med]==x)
-      return seq;
-    if(seq[med]&gt;x)
-      right=med-1;
-    else
-      left=med+1;
-  }
-  //Several times is not convenient return a number, but there not exists a positions -1 in array. So, there is not problem here.
-  return -1;
-}
-
-int main () {
-  int num = 10;
-  int arr[]={2,4,6,7,8,10,20,4034,4535,5635435,577436536};
-  int pos=binary_search(arr,10,num);
-  if(pos!=-1)
-    cout&lt;&lt;pos&lt;&lt;endl;
-  else
-    cout&lt;&lt;&quot;Value is not in array&quot;&lt;&lt;endl;
-    
-  return (0);
-}</code></pre>
-<p>Now, what happen if there exists many equal values in the array. What position does the binary method return?</p>
-<pre class="cpp"><code>  int arr[]={2,4,6,7,8,10,10,10,20,4034,4535,5635435,577436536};</code></pre>
-<p>We cannot say what position return because it dependes of others factors. In cases when the array start to inscrease this becomes really hard guessing.</p>
-<p>For that cases, we are going to work with lower and upper bound.</p>
-<p><em>Lower Bound</em></p>
-<p>Imagine that we have two arrays, one array of integer values and another of boolean values. Now, if we want to find an special value x, we need to set of the boolean array in each position with 0 if the value in this position is lower than x and 1 if this one i upper or equal than x.</p>
-<p>Really, we do not have a second array with boolean values. It just works for explaining. Our algorithm work in the way we look for values upper or equal and finish in the first position that x appears in the array.</p>
-<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
-
-using namespace std;,
-
-int binary_search(int *seq,int size, int x){
-  int left=0,right=size-1;
-  int pos=-1;
-  while(left&lt;right){
-    int med=left+(right-left)/2;
-    if(seq[med]==x){
-      pos=med;
-    }
-    if(seq[med]&gt;=x)
-      right=med; //our algorithm change here
-    else
-      left=med+1;
-  }
-  return pos;
-}</code></pre>
-<p><em>Upper Bound</em></p>
-<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-int binary_search(int *seq,int size, int x){
-  int left=0,right=size-1;
-  int pos=-1;
-  while(left&lt;right){
-    int med=left+(right-left)/2;
-    if(seq[med]==x){
-      pos=med;
-    }
-    if(seq[med]&gt;=x)
-      right=med-1;
-    else
-      left=med;
-  }
-
-  return pos;
-}
-</code></pre>
-<p>In the above algorithm there exists a bug. Attempt with the following case: <span class="math display">\[A = \{ 1, 3, 4, 6, 7, 7, 7, 8, 9\}\]</span></p>
-<p>What happen here.</p>
-<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-int binary_search(int *seq,int size, int x){
-  int left=0,right=size-1;
-  int pos=-1;
-  while(left&lt;right){
-    int med=left+(right-left+1)/2; //this line was modified
-    if(seq[med]==x){
-      pos=med;
-    }
-    if(seq[med]&gt;=x)
-      right=med-1;
-    else
-      left=med;
-  }
-
-  return pos;
-}</code></pre>
-<p>##Binary search through real numbers In this case, we need to manage an extra value, it is called error de precision and it is represented by epsilon. Because of this way we can control the iterations over while. Another form is write down a counter for seting it before and the iterations end when the counter achieves 0.</p>
-<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-int binary_search_realnumbers(double left, double right, double lim){
-  double epsilon=1e-7;
-  while(right-left&lt;epsilon){
-    double med=left+(right-left)/2; 
-    if(f(med)&lt;x)
-      left=med;
-    else
-      right=med;
-  }
-
-  return pos;
-}
-</code></pre>
-<div class="topic">
-Ternary Search
-</div>
-</div>
-<p><!-- ends code --></p>
-<p>With this code we get this solution:</p>
-<p>Then, our solution has complexity <span class="math inline">\(O(n!)\)</span>.</p>
-<p>Recommended readings:</p>
-<ul>
-<li><a href="https://www.hackerearth.com/practice/basic-programming/recursion/recursion-and-backtracking/tutorial/">HackerEarth - Recursion and Backtracking</a></li>
-<li>Competitive Programming 3, section 3.2.2, 8.2.1 and 8.2.2.</li>
-<li><a href="https://www.geeksforgeeks.org/backtracking-algorithms/">GeekForGeeks - Backtracking Algorithms</a></li>
-</ul>
-<p>You may also be interested in watching this documental of AlphaGo. <a href="https://youtu.be/8tq1C8spV_g">Here</a> is the trailer.</p>
-<div id="contest" class="topic">
 Contest
 </div>
-<p>You can find the contest <a href="https://vjudge.net/contest/354334">here</a>.</p>
-<p>The solutions will be uploaded after the contest.</p>
+<p>In the gallery there are some pictures of the contest.</p>
+<p>You can find the contest <a href="http://codeforces.com/contest/268759">here</a>.</p>
+<p>The statements in PDF can be found in <a href="./files/class-10/statements-English.pdf">English</a> and in <a href="./files/class-10/statements-Spanish.pdf">Spanish</a>.</p>
+<p>Here are the solutions:</p>
+<!-- Begins problem A -->
+<div id="A" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+A: A + B = C
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div id="a-a-b-c" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/group/02X2svGOwt/contest/268759/problem/A" target="_blank">A: A + B = C</a></h3>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemA" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+  double a, b, c;
+  cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+  if (fabs(a + b - c) &lt; 1e-6) cout &lt;&lt; &quot;YES&quot; &lt;&lt; &#39;\n&#39;;
+  else cout &lt;&lt; &quot;NO&quot; &lt;&lt; &#39;\n&#39;;
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+<p><strong>Author:</strong> TISparta</p>
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+<!-- Begins problem B -->
+<div id="B" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+B: Quick Game
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div id="b-quick-game" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/group/02X2svGOwt/contest/268759/problem/B" target="_blank">B: Quick Game</a></h3>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemB" class="collapse">
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+#define all(v) (v).begin(),(v).end()
+#define pb push_back
+#define ppb pop_back
+#define mp make_pair
+#define ri(x) scanf(&quot;%d&quot;,&amp;(x))
+#define ri2(x,y) scanf(&quot;%d %d&quot;,&amp;(x),&amp;(y))
+#define ri3(x,y,z) scanf(&quot;%d %d %d&quot;,&amp;(x),&amp;(y),&amp;(z))
+#define rll(x) scanf(&quot;%lld&quot;,&amp;(x))
+#define rll2(x,y) scanf(&quot;%lld %lld&quot;,&amp;(x),&amp;(y))
+#define rll3(x,y,z) scanf(&quot;%lld %lld %lld&quot;,&amp;(x),&amp;(y),&amp;(z))
+#define gc(x) ((x) = getchar())
+using namespace::std;
+
+const long double PI = acos(-1);
+const long long MOD = 1000000000 +7;
+
+typedef long long ll;
+typedef pair&lt;ll,ll&gt; pll;
+typedef pair&lt;ll,pll&gt; tll;
+typedef pair&lt;int,int&gt; ii;
+typedef pair&lt;int,ii&gt; iii;
+typedef vector&lt;int&gt; vi;
+typedef vector&lt;ii&gt; vii;
+typedef vector&lt;iii&gt; viii;
+typedef vector&lt;ll&gt; vll;
+typedef vector&lt;pll&gt; vpll;
+typedef vector&lt;tll&gt; vtll;
+typedef vector&lt;string&gt; vs;
+typedef set&lt;int&gt; si;
+typedef set&lt;ii&gt; sii;
+typedef set&lt;iii&gt; siii;
+
+ll gcd(ll a, ll b){ return b==0?a:gcd(b,a%b);}
+
+ll add(ll a, ll b, ll m = MOD){
+    if(a &gt;= m) a %= m;
+    if(b &gt;= m) b %= m;
+    if(a &lt; 0) a += m;
+    if(b &lt; 0) b += m;
+    ll res = a+b;
+    if(res &gt;= m or res &lt;= -m) res %= m;
+    if(res &lt; 0) res += m;
+    return res;
+}
+
+ll mul(ll a, ll b, ll m = MOD){
+    if(a &gt;= m) a %= m;
+    if(b &gt;= m) b %= m;
+    if(a &lt; 0) a += m;
+    if(b &lt; 0) b += m;
+    ll res = a*b;
+    if(res &gt;= m or res &lt;= -m) res %= m;
+    if(res &lt; 0) res += m;
+    return res;
+}
+
+ll pow_mod(ll a, ll b, ll m = MOD){
+    ll res = 1LL;
+    a = a%m;
+    while(b){
+        if(b&amp;1) res = mul(res,a,m);
+        b &gt;&gt;= 1;
+        a = mul(a,a,m);
+    }
+    return res;
+}
+
+ll fastexp(ll a, ll b){
+    ll res = 1LL;
+    while(b){
+        if(b&amp;1) res = res*a;
+        b &gt;&gt;= 1;
+        a *= a;
+    }
+    return res;
+}
+
+int gcdExtendido(int a, int b, int *x, int *y){
+    if(a == 0){
+        *x = 0;
+        *y = 1;
+        return b;
+    }
+    int x1, y1;
+    int gcd = gcdExtendido(b%a,a,&amp;x1,&amp;y1);
+    
+    *x = y1-(b/a)*x1;
+    *y = x1;
+    return gcd;
+}
+
+int modInverso(int a, int m){
+    int x, y;
+    int g = gcdExtendido(a,m,&amp;x,&amp;y);
+    if(g!=1) return -1;
+    else return (x%m + m)%m;
+}
+
+/****************************************
+*************P*L*A*N*T*I*L*L*A************
+*****************************************/
+
+const int N = 1000000+5;
+
+int n;
+char s[N];
+
+int main(){
+    scanf(&quot;%s&quot;,s);
+    n = strlen(s);
+    int mask = 0;
+    for(int i=0; i&lt;n; i++){
+        int c = s[i] - &#39;a&#39;;
+        mask ^= 1&lt;&lt;c;
+    }
+    int ans = max(1, (int)__builtin_popcount(mask));
+    printf(&quot;%d\n&quot;,ans);
+    return 0;
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+<p><strong>Author:</strong> racsosabe</p>
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+<!-- Begins problem C -->
+<div id="C" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+C: Integer Circumradius
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div id="c-integer-circumradius" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/group/02X2svGOwt/contest/268759/problem/C" target="_blank">C: Integer Circumradius</a></h3>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemC" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    int a, b, c;
+    int nc = 1;
+    int t;
+    cin &gt;&gt; t;
+    while (cin &gt;&gt; a &gt;&gt; b) {
+        assert(1 &lt;= a and a &lt;= 20000);
+        assert(1 &lt;= b and b &lt;= 20000);
+        if (a &gt; b) swap(a, b);
+        bool ok = 1;
+        for (int x = b - a + 1; x &lt; a + b; ++x) {
+            long long t = 1ll * a * b * x;
+            long long q1 = 1ll * (a + b + x) * (a + b - x);
+            long long q2 = 1ll * (a - b + x) * (-a + b + x);
+            long long sq = sqrt(q1 * q2);
+            while (sq * sq &gt; q1 * q2) sq -= 1;
+            while (sq * sq &lt; q1 * q2) sq += 1;
+            if (sq * sq == q1 * q2) {
+                if (t % sq == 0) {
+                    cout &lt;&lt; x &lt;&lt; endl;
+                    ok = 0;
+                    break;
+                }
+            }
+        }
+        if (ok) {
+            cout &lt;&lt; -1 &lt;&lt; endl;
+        }
+    }
+    return 0;
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+<p><strong>Author:</strong> Fischer</p>
+</div>
+</div>
+</div>
+<!-- ends problem C -->
+<!-- Begins problem D -->
+<div id="D" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+D: The answer to the life
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemD" class="collapse">
+<div id="d-the-answer-to-the-life" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/group/02X2svGOwt/contest/268759/problem/D" target="_blank">D: The answer to the life</a></h3>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemD" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+const ll N = 1e11;
+vector &lt;ll&gt; arr;
+
+void backtrack (ll num) {
+  if (num &gt; N) {
+    return;
+  }
+  if (num != 0) {
+    arr.push_back(num);
+  }
+  backtrack(num * 10 + 4);
+  backtrack(num * 10 + 2);
+}
+
+int main () {
+  backtrack(0);
+  int q;
+  cin &gt;&gt; q;
+  while (q--) {
+    ll l, r;
+    cin &gt;&gt; l &gt;&gt; r;
+    int ans = 0;
+    for (ll elem: arr) {
+      ans += (l &lt;= elem and elem &lt;= r);
+    }
+    if (ans == 42) cout &lt;&lt; &quot;YES\n&quot;;
+    else cout &lt;&lt; &quot;NO\n&quot;;
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+<p><strong>Author:</strong> TISparta</p>
+</div>
+</div>
+</div>
+<!-- ends problem D -->
+<!-- Begins problem E -->
+<div id="E" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemE" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+E: Carmichael Attack
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemE" class="collapse">
+<div id="e-carmichael-attack" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/group/02X2svGOwt/contest/268759/problem/E" target="_blank">E: Carmichael Attack</a></h3>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemE" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemE" class="collapse">
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+#define all(v) (v).begin(),(v).end()
+#define pb push_back
+#define ppb pop_back
+#define mp make_pair
+#define ri(x) scanf(&quot;%d&quot;,&amp;(x))
+#define ri2(x,y) scanf(&quot;%d %d&quot;,&amp;(x),&amp;(y))
+#define ri3(x,y,z) scanf(&quot;%d %d %d&quot;,&amp;(x),&amp;(y),&amp;(z))
+#define rll(x) scanf(&quot;%lld&quot;,&amp;(x))
+#define rll2(x,y) scanf(&quot;%lld %lld&quot;,&amp;(x),&amp;(y))
+#define rll3(x,y,z) scanf(&quot;%lld %lld %lld&quot;,&amp;(x),&amp;(y),&amp;(z))
+#define gc(x) ((x) = getchar())
+using namespace::std;
+
+const long double PI = acos(-1);
+const long long MOD = 1000000000 +7;
+
+typedef long long ll;
+typedef pair&lt;ll,ll&gt; pll;
+typedef pair&lt;ll,pll&gt; tll;
+typedef pair&lt;int,int&gt; ii;
+typedef pair&lt;int,ii&gt; iii;
+typedef vector&lt;int&gt; vi;
+typedef vector&lt;ii&gt; vii;
+typedef vector&lt;iii&gt; viii;
+typedef vector&lt;ll&gt; vll;
+typedef vector&lt;pll&gt; vpll;
+typedef vector&lt;tll&gt; vtll;
+typedef vector&lt;string&gt; vs;
+typedef set&lt;int&gt; si;
+typedef set&lt;ii&gt; sii;
+typedef set&lt;iii&gt; siii;
+
+ll gcd(ll a, ll b){ return b==0?a:gcd(b,a%b);}
+
+ll add(ll a, ll b, ll m = MOD){
+    if(a &gt;= m) a %= m;
+    if(b &gt;= m) b %= m;
+    if(a &lt; 0) a += m;
+    if(b &lt; 0) b += m;
+    ll res = a+b;
+    if(res &gt;= m or res &lt;= -m) res %= m;
+    if(res &lt; 0) res += m;
+    return res;
+}
+
+ll mul(ll a, ll b, ll m = MOD){
+    if(a &gt;= m) a %= m;
+    if(b &gt;= m) b %= m;
+    if(a &lt; 0) a += m;
+    if(b &lt; 0) b += m;
+    ll res = a*b;
+    if(res &gt;= m or res &lt;= -m) res %= m;
+    if(res &lt; 0) res += m;
+    return res;
+}
+
+ll pow_mod(ll a, ll b, ll m = MOD){
+    ll res = 1LL;
+    a = a%m;
+    while(b){
+        if(b&amp;1) res = mul(res,a,m);
+        b &gt;&gt;= 1;
+        a = mul(a,a,m);
+    }
+    return res;
+}
+
+ll fastexp(ll a, ll b){
+    ll res = 1LL;
+    while(b){
+        if(b&amp;1) res = res*a;
+        b &gt;&gt;= 1;
+        a *= a;
+    }
+    return res;
+}
+
+int gcdExtendido(int a, int b, int *x, int *y){
+    if(a == 0){
+        *x = 0;
+        *y = 1;
+        return b;
+    }
+    int x1, y1;
+    int gcd = gcdExtendido(b%a,a,&amp;x1,&amp;y1);
+    
+    *x = y1-(b/a)*x1;
+    *y = x1;
+    return gcd;
+}
+
+int modInverso(int a, int m){
+    int x, y;
+    int g = gcdExtendido(a,m,&amp;x,&amp;y);
+    if(g!=1) return -1;
+    else return (x%m + m)%m;
+}
+
+/****************************************
+*************P*L*A*N*T*I*L*L*A************
+*****************************************/
+
+const int N = 6000000+5;
+
+int n;
+int pf[N];
+
+void init(){
+    for(int i=1; i&lt;N; i++){
+        pf[i] = i;
+    }
+    for(int i=2; i*i&lt;=N; i++){
+        if(pf[i] == i){
+            for(int j = i*i; j &lt; N; j+=i){
+                pf[j] = i;
+            }
+        }
+    }
+}
+
+bool primo(int x){
+    for(int i=2; i*i&lt;=x; i++){
+        if(x % i == 0) return false;
+    }
+    return true;
+}
+
+bool testBases(int x){
+    for(int i=2; i&lt;x; i++){
+        if(gcd(x,i) &gt; 1) continue;
+        int r = pow_mod(i,x-1,x);
+        if(r != 1) return false;
+    }
+    return true;
+}
+
+bool carmichael(int x){
+    if(x &lt; N){
+        if(pf[x] == x) return false;
+    }
+    else if(primo(x)) return false;
+    return testBases(x);
+}
+
+int main(){
+    ri(n);
+    init();
+    while(!carmichael(n)) n += 1;
+    printf(&quot;%d\n&quot;,n);
+    return 0;
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+<p><strong>Author:</strong> racsosabe</p>
+</div>
+</div>
+</div>
+<!-- ends problem E -->
+<!-- Begins problem F -->
+<div id="F" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemF" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+F. Divisible Subarray
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemF" class="collapse">
+<div id="f.-divisible-subarray" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/group/02X2svGOwt/contest/268759/problem/F" target="_blank">F. Divisible Subarray</a></h3>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemF" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemF" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    int last = 1, cnt = 0, mx = 0;
+    for (int i = 0; i &lt; n; ++i) {
+        int x;
+        cin &gt;&gt; x;
+        if (x % last == 0) cnt += 1;
+        else cnt = 1;
+        mx = max(mx, cnt);
+        last = x;
+    }
+    cout &lt;&lt; mx &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+<p><strong>Author:</strong> Fischer</p>
+</div>
+</div>
+</div>
+<!-- ends problem F -->
+<!-- Begins problem G -->
+<div id="G" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemG" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+G: 3-sum
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemG" class="collapse">
+<div id="g-3-sum" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/group/02X2svGOwt/contest/268759/problem/G" target="_blank">G: 3-sum</a></h3>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemG" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemG" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+  int n, target;
+  cin &gt;&gt; n &gt;&gt; target;
+  vector &lt;int&gt; arr(n);
+  for (int i = 0; i &lt; n; i++) cin &gt;&gt; arr[i];
+  sort(begin(arr), end(arr));
+  for (int x = 0; x &lt; n; x++) {
+    int l = 0;
+    int r = n - 1;
+    int new_target = target - arr[x];
+    while (l &lt; r) {
+      if (arr[l] + arr[r] == new_target) {
+        if (arr[l] != arr[x] and
+            arr[r] != arr[x] and
+            arr[l] != arr[r]) {
+          vector &lt;int&gt; ans = {arr[x], arr[l], arr[r]};
+          sort(begin(ans), end(ans));
+          cout &lt;&lt; ans[0] &lt;&lt; &#39; &#39; &lt;&lt; ans[1] &lt;&lt; &#39; &#39; &lt;&lt; ans[2] &lt;&lt; &#39;\n&#39;;
+          return (0);
+        }
+        l++;
+      } else if (arr[l] + arr[r] &lt; new_target) {
+        l++;
+      } else {
+        r--;
+      }
+    }
+  }
+  cout &lt;&lt; -1 &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+<p><strong>Author:</strong> TISparta</p>
+</div>
+</div>
+</div>
+<!-- ends problem G -->
+<!-- Begins problem H -->
+<div id="H" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemH" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+H. Rare Factorial
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemH" class="collapse">
+<div id="h.-rare-factorial" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/group/02X2svGOwt/contest/268759/problem/H" target="_blank">H. Rare Factorial</a></h3>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemH" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemH" class="collapse">
+<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+#define all(v) (v).begin(),(v).end()
+#define pb push_back
+#define ppb pop_back
+#define mp make_pair
+#define ri(x) scanf(&quot;%d&quot;,&amp;(x))
+#define ri2(x,y) scanf(&quot;%d %d&quot;,&amp;(x),&amp;(y))
+#define ri3(x,y,z) scanf(&quot;%d %d %d&quot;,&amp;(x),&amp;(y),&amp;(z))
+#define rll(x) scanf(&quot;%lld&quot;,&amp;(x))
+#define rll2(x,y) scanf(&quot;%lld %lld&quot;,&amp;(x),&amp;(y))
+#define rll3(x,y,z) scanf(&quot;%lld %lld %lld&quot;,&amp;(x),&amp;(y),&amp;(z))
+#define gc(x) ((x) = getchar())
+using namespace::std;
+
+const long double PI = acos(-1);
+const long long MOD = 1000000000 +7;
+
+typedef long long ll;
+typedef pair&lt;ll,ll&gt; pll;
+typedef pair&lt;ll,pll&gt; tll;
+typedef pair&lt;int,int&gt; ii;
+typedef pair&lt;int,ii&gt; iii;
+typedef vector&lt;int&gt; vi;
+typedef vector&lt;ii&gt; vii;
+typedef vector&lt;iii&gt; viii;
+typedef vector&lt;ll&gt; vll;
+typedef vector&lt;pll&gt; vpll;
+typedef vector&lt;tll&gt; vtll;
+typedef vector&lt;string&gt; vs;
+typedef set&lt;int&gt; si;
+typedef set&lt;ii&gt; sii;
+typedef set&lt;iii&gt; siii;
+
+ll gcd(ll a, ll b){ return b==0?a:gcd(b,a%b);}
+
+ll add(ll a, ll b, ll m = MOD){
+    if(a &gt;= m) a %= m;
+    if(b &gt;= m) b %= m;
+    if(a &lt; 0) a += m;
+    if(b &lt; 0) b += m;
+    ll res = a+b;
+    if(res &gt;= m or res &lt;= -m) res %= m;
+    if(res &lt; 0) res += m;
+    return res;
+}
+
+ll mul(ll a, ll b, ll m = MOD){
+    if(a &gt;= m) a %= m;
+    if(b &gt;= m) b %= m;
+    if(a &lt; 0) a += m;
+    if(b &lt; 0) b += m;
+    ll res = a*b;
+    if(res &gt;= m or res &lt;= -m) res %= m;
+    if(res &lt; 0) res += m;
+    return res;
+}
+
+ll pow_mod(ll a, ll b, ll m = MOD){
+    ll res = 1LL;
+    a = a%m;
+    while(b){
+        if(b&amp;1) res = mul(res,a,m);
+        b &gt;&gt;= 1;
+        a = mul(a,a,m);
+    }
+    return res;
+}
+
+ll fastexp(ll a, ll b){
+    ll res = 1LL;
+    while(b){
+        if(b&amp;1) res = res*a;
+        b &gt;&gt;= 1;
+        a *= a;
+    }
+    return res;
+}
+
+int gcdExtendido(int a, int b, int *x, int *y){
+    if(a == 0){
+        *x = 0;
+        *y = 1;
+        return b;
+    }
+    int x1, y1;
+    int gcd = gcdExtendido(b%a,a,&amp;x1,&amp;y1);
+    
+    *x = y1-(b/a)*x1;
+    *y = x1;
+    return gcd;
+}
+
+int modInverso(int a, int m){
+    int x, y;
+    int g = gcdExtendido(a,m,&amp;x,&amp;y);
+    if(g!=1) return -1;
+    else return (x%m + m)%m;
+}
+
+/****************************************
+*************P*L*A*N*T*I*L*L*A************
+*****************************************/
+
+ll L, M;
+
+bool valid(int k, int n){
+    int A = 1, B = 1;
+    for(int i=2; i&lt;=k; i++) A *= i;
+    int total = 1&lt;&lt;n;
+    for(int i=0; i&lt;n; i++){
+        B *= (total - fastexp(2,i));
+    }
+    return A == B;
+}
+
+int main(){
+    rll2(L,M);
+    int ans = 0;
+    for(int k=1; k &lt;= min(6LL,L); k++){
+        for(int n = 1; n &lt;= min(6LL,M); n++){
+            if(valid(k,n)){
+                ans = add(ans,1);
+            }
+        }
+    }
+    printf(&quot;%d\n&quot;,ans);
+    return 0;
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+<p><strong>Author:</strong> racsosabe</p>
+</div>
+</div>
+</div>
+<!-- ends problem H -->
+<!-- Begins problem I -->
+<div id="I" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemI" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+I. Hyper Sum
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemI" class="collapse">
+<div id="i.-hyper-sum" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/group/02X2svGOwt/contest/268759/problem/I" target="_blank">I. Hyper Sum</a></h3>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemI" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemI" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    int a, b, c;
+    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+    set&lt;int&gt; A, B, C;
+    auto add = [](set&lt;int&gt;&amp; S, int x) -&gt; void {
+        S.emplace(x);
+    };
+    for (int i = 1; i*i &lt;= max({a, b, c}); ++i) {
+        if (a % i == 0) add(A, i), add(A, a/i);
+        if (b % i == 0) add(B, i), add(B, b/i);
+        if (c % i == 0) add(C, i), add(C, c/i);
+    }
+    bool sum = false;
+    for (int x : A){
+        for (int y : B) {
+            sum |= C.count(x + y);
+            if (sum){
+                break;
+            }
+        }
+        if(sum) break;
+    }
+    if (sum) cout &lt;&lt; &quot;YES&quot; &lt;&lt; endl;
+    else cout &lt;&lt; &quot;NO&quot; &lt;&lt; endl;
+    return 0;
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+<p><strong>Author:</strong> Fischer</p>
+</div>
+</div>
+</div>
+<!-- ends problem I -->
 
 <footer>
   <p>Copyright &copy; 2020. Competitive Programming UTEC</p>

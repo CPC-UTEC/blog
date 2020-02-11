@@ -30,6 +30,9 @@ navbar:
         - text: Week 5
         - text: Contest I
           href: class-09.html
+        - text: Week 6
+        - text: Contest UTEC-UNI I
+          href: class-10.html
 
   right:
     - text: "Daily Problem"

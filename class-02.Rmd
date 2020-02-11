@@ -1,6 +1,6 @@
 ---
 title: "Class 02: Asymptotic Analysis"
-date: "08-01-2020"
+date: "01-08-2020"
 ---
 
 ```{r setup, include=FALSE}

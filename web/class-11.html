@@ -419,7 +419,9 @@ int binary_search(int *seq,int size, int x){
 }</code></pre>
 <p>Now, what happen if there exists many equal values in the array. What position does the binary method return?</p>
 <pre class="cpp"><code>  int arr[] = {2,4,6,7,8,10,10,10,20,4034,4535,5635435,577436536};</code></pre>
-<p>In this cases we need more information in order to determine what value we must return. Even though in many problems it doesn’t matter which we pick, in many others it will. For that cases, we are going to work with lower and upper bound. <strong>Lower Bound</strong> The <em>lower bound</em> is the first element that does not compare less than the value we are looking for. In simpler words, is the first occurrence of the search value. The following is a possible implementation of lower bound, however, <code>std::lower_bound</code> can simplify things for us.</p>
+<p>In this cases we need more information in order to determine what value we must return. Even though in many problems it doesn’t matter which we pick, in many others it will. For that cases, we are going to work with lower and upper bound.</p>
+<p><strong>Lower Bound</strong></p>
+<p>The <em>lower bound</em> is the first element that does not compare less than the value we are looking for. In simpler words, is the first occurrence of the search value. The following is a possible implementation of lower bound, however, <code>std::lower_bound</code> can simplify things for us.</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 using namespace std;,
 int binary_search(int *arr, int size, int x) {
@@ -440,7 +442,8 @@ int binary_search(int *arr, int size, int x) {
   }
   return pos;
 }</code></pre>
-<p><strong>Upper Bound</strong> This is the last element that compares less than or equal to our value. Similarly, it can be found using the following algorithm:</p>
+<p><strong>Upper Bound</strong></p>
+<p>This is the last element that compares less than or equal to our value. Similarly, it can be found using the following algorithm:</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 using namespace std;
 int binary_search(int *arr, int size, int x){
@@ -464,14 +467,25 @@ int binary_search(int *arr, int size, int x){
 <div class="topic">
 Away form Arrays
 </div>
-As it was mentioned before, binary search is not only useful for finding values in an array, but it also has other uses. In this section we will explore some of these. ## Solving an Equation Let’s say we want to solve the equation: <span class="math inline">\(f(x) = ax^3 + bx^2 + cx + d = e\)</span>, where <span class="math inline">\(a, b, c, d, e &gt; 0\)</span>. The answer must be right to 4 decimal places. How can we do this efficiently? We can use binary search to solve this in <span class="math inline">\(O(logn)\)</span> time. The key idea is to realize that <span class="math inline">\(f\)</span> is a increasing function, and therefore <span class="math inline">\(x_a \leq x_b \rightarrow f(x_a) \leq f(x_b)\)</span>. Therefore we can run a binary search in <span class="math inline">\(x\)</span> in order to find the answer. However our binary search will be slightly different, as now we don’t need to find a precise answer, but one with a precision of 4 decimal places. This means that we want to find an x such that <span class="math inline">\(|e - f(x)| &gt; 0.0001\)</span>. ## Searching for the Answer Let’s consider the following problem: <a href="https://onlinejudge.org/external/120/12032.pdf" class="uri">https://onlinejudge.org/external/120/12032.pdf</a> - What would be the brute force approach? - How can we improve this basic solution? The key thing is to realize that if we can reach the top with some an initial strength <span class="math inline">\(k_0\)</span>, then any initial strength <span class="math inline">\(k, k &gt; k_0\)</span> can also reach the top. Therefore we can use binary search to look for the minimum value of <span class="math inline">\(k\)</span> that reaches the top from 1 to <span class="math inline">\(r + 1\)</span>. As we can determine for a given <span class="math inline">\(k\)</span> if it is possible to reach the top, then this solution would have a complexity of <span class="math inline">\(O(nlog(r + 1))\)</span>.
+<p>As it was mentioned before, binary search is not only useful for finding values in an array, but it also has other uses. In this section we will explore some of these.</p>
+<div id="solving-an-equation" class="section level2">
+<h2>Solving an Equation</h2>
+<p>Let’s say we want to solve the equation: <span class="math inline">\(f(x) = ax^3 + bx^2 + cx + d = e\)</span>, where <span class="math inline">\(a, b, c, d, e &gt; 0\)</span>. The answer must be right to 4 decimal places. How can we do this efficiently? We can use binary search to solve this in <span class="math inline">\(O(logn)\)</span> time. The key idea is to realize that <span class="math inline">\(f\)</span> is a increasing function, and therefore <span class="math inline">\(x_a \leq x_b \rightarrow f(x_a) \leq f(x_b)\)</span>. Therefore we can run a binary search in <span class="math inline">\(x\)</span> in order to find the answer. However our binary search will be slightly different, as now we don’t need to find a precise answer, but one with a precision of 4 decimal places. This means that we want to find an x such that <span class="math inline">\(|e - f(x)| &gt; 0.0001\)</span>.</p>
 </div>
-<p><!-- ends code --></p>
+<div id="searching-for-the-answer" class="section level2">
+<h2>Searching for the Answer</h2>
+<p>Let’s consider the following problem: <a href="https://onlinejudge.org/external/120/12032.pdf" class="uri">https://onlinejudge.org/external/120/12032.pdf</a></p>
+<ul>
+<li>What would be the brute force approach?</li>
+<li>How can we improve this basic solution?</li>
+</ul>
+<p>The key thing is to realize that if we can reach the top with some an initial strength <span class="math inline">\(k_0\)</span>, then any initial strength <span class="math inline">\(k, k &gt; k_0\)</span> can also reach the top. Therefore we can use binary search to look for the minimum value of <span class="math inline">\(k\)</span> that reaches the top from 1 to <span class="math inline">\(r + 1\)</span>. As we can determine for a given <span class="math inline">\(k\)</span> if it is possible to reach the top, then this solution would have a complexity of <span class="math inline">\(O(nlog(r + 1))\)</span>.</p>
 <div id="contest" class="topic">
 Contest
 </div>
 <p>You can find the contest <a href="https://vjudge.net/contest/357719">here</a>.</p>
 <p>The solutions will be uploaded after the contest.</p>
+</div>
 
 <footer>
   <p>Copyright &copy; 2020. Competitive Programming UTEC</p>

@@ -1,0 +1,18 @@
+---
+title: "Class 09: Contest I"
+date: "02-03-2020"
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+> "Hard work beats talent when talent doesn't work hard"
+
+<div class="topic" id="contest">Contest</div>
+
+You can find the contest [here](https://vjudge.net/contest/355171).
+
+The solutions will be uploaded after the contest.
+
+The upsolving contest is [here](https://vjudge.net/contest/355256).

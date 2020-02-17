@@ -1,6 +1,6 @@
 ---
 title: "Class 02: Asymptotic Analysis"
-date: "08-01-2020"
+date: "01-08-2020"
 ---
 
 ```{r setup, include=FALSE}
@@ -9,8 +9,9 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 > "Think Big "
 
-<div class="topic"><a href="https://vjudge.net/contest/350901">Contest</a></div>
+<div class="topic" id="contest">Contest</div>
 
+You can find the contest [here](https://vjudge.net/contest/350901).
 
 <!-- Begins problem A -->
 <div class="card">

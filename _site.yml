@@ -8,13 +8,32 @@ navbar:
     - text: "Lessons"
       menu:
         - text: Week 1
-        - text: The Art of Thinking
+        - text: Introduction
           href: class-01.html
-        - text: Think Big
+        - text: Asymptotic Analysis
           href: class-02.html
         - text: Week 2
-        - text: Don't reinvent the wheel!
+        - text: STL
           href: class-03.html
+        - text: Complete Search I
+          href: class-04.html
+        - text: Week 3
+        - text: Complete Search II
+          href: class-05.html
+        - text: Complete Search III
+          href: class-06.html
+        - text: Week 4
+        - text: Complete Search IV
+          href: class-07.html
+        - text: Complete Search V
+          href: class-08.html
+        - text: Week 5
+        - text: Contest I
+          href: class-09.html
+        - text: Week 6
+        - text: Contest UTEC-UNI I
+          href: class-10.html
+
   right:
     - text: "Daily Problem"
       href: daily-problem.html
@@ -23,7 +42,7 @@ navbar:
 output_dir: "web"
 output:
   html_document:
-    theme: yeti
+    theme: yeti 
     highlight: textmate
     css: style.css
     include:

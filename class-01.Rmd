@@ -1,6 +1,6 @@
 ---
 title: "Class 01: Introduction"
-date: "06-01-2020"
+date: "01-06-2020"
 ---
 
 ```{r setup, include=FALSE}
@@ -107,7 +107,9 @@ The greatest sum
 - Almost all learning resources are oriented to C++.
 - It has a strong community.
 
-<div class="topic"><a href="https://vjudge.net/contest/350658">Contest</a></div>
+<div class="topic" id="contest">Contest</div>
+
+You can find the contest [here](https://vjudge.net/contest/350658).
 
 <!-- Begins problem A -->
 <div class="card">

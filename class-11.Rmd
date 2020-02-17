@@ -1,0 +1,222 @@
+---
+title: "Class 11: Divide and Conquer I"
+date: "02-12-2020"
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+> "Binary like Yin & Yang"
+
+The most common ways to search a value are linear search and binary search.
+
+Linear search is a simple searching through all array's values and comparing with each of them.
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int num = 10;
+  int x=20;
+  int arr[]={2,4,6,7,8,10,20,4034,4535,5635435,577436536};
+  for(int i=0;i<10;i++){
+    if(arr[i]==x){
+      cout<<i+1<<endl;
+      break;
+    }
+  }
+  if(i==10)
+    cout<<x<<" is not in the array"<<endl;
+    
+  return (0);
+}
+```
+<div class="topic">Binary Search</div>
+
+One of the most useful algorithms that exist. Also, it is in the backbone of another grant algorithms. It achieves a complexity of O(log(n)).
+
+Requeriments:
+- Sorted Sequence
+
+First Approach
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int binary_search(int *seq,int size, int x){
+  int left=0,right=size-1;
+  while(left<=right){
+    int med=left+(right-left)/2;
+    if(seq[med]==x)
+      return seq;
+    if(seq[med]>x)
+      right=med-1;
+    else
+      left=med+1;
+  }
+  //Several times is not convenient return a number, but there not exists a positions -1 in array. So, there is not problem here.
+  return -1;
+}
+
+int main () {
+  int num = 10;
+  int arr[]={2,4,6,7,8,10,20,4034,4535,5635435,577436536};
+  int pos=binary_search(arr,10,num);
+  if(pos!=-1)
+    cout<<pos<<endl;
+  else
+    cout<<"Value is not in array"<<endl;
+    
+  return (0);
+}
+```
+
+
+Now, what happen if there exists many equal values in the array. What position does the binary method return?
+```c++
+  int arr[]={2,4,6,7,8,10,10,10,20,4034,4535,5635435,577436536};
+```
+
+We cannot say what position return because it dependes of others factors. In cases when the array start to inscrease  this becomes really hard guessing.
+
+For that cases, we are going to work with lower and upper bound.
+
+*Lower Bound*
+
+Imagine that we have two arrays, one array of integer values and another of boolean values. Now, if we want to find an special value x, we need to set of the boolean array in each position with 0 if the value in this position is lower than  x and 1 if  this one i upper or equal than x.
+
+Really, we do not have a second array with boolean values. It just works for explaining. Our algorithm work in the way we look for values upper or equal and finish in the first position that x appears in the array.
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;,
+
+int binary_search(int *seq,int size, int x){
+  int left=0,right=size-1;
+  int pos=-1;
+  while(left<right){
+    int med=left+(right-left)/2;
+    if(seq[med]==x){
+      pos=med;
+    }
+    if(seq[med]>=x)
+      right=med; //our algorithm change here
+    else
+      left=med+1;
+  }
+  return pos;
+}
+```
+
+*Upper Bound*
+
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int binary_search(int *seq,int size, int x){
+  int left=0,right=size-1;
+  int pos=-1;
+  while(left<right){
+    int med=left+(right-left)/2;
+    if(seq[med]==x){
+      pos=med;
+    }
+    if(seq[med]>=x)
+      right=med-1;
+    else
+      left=med;
+  }
+
+  return pos;
+}
+
+```
+
+In the above algorithm there exists a bug.
+Attempt with the following case:
+$$A = \{ 1, 3, 4, 6, 7, 7, 7, 8, 9\}$$
+
+What happen here.
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int binary_search(int *seq,int size, int x){
+  int left=0,right=size-1;
+  int pos=-1;
+  while(left<right){
+    int med=left+(right-left+1)/2; //this line was modified
+    if(seq[med]==x){
+      pos=med;
+    }
+    if(seq[med]>=x)
+      right=med-1;
+    else
+      left=med;
+  }
+
+  return pos;
+}
+```
+
+##Binary search through real numbers
+In this case, we need to manage an extra value, it is called error de precision and it is represented by epsilon.
+Because of this way we can control  the iterations over while.
+Another form is write down a counter for seting it before and the iterations end when the counter achieves 0. 
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int binary_search_realnumbers(double left, double right, double lim){
+  double epsilon=1e-7;
+  while(right-left<epsilon){
+    double med=left+(right-left)/2; 
+    if(f(med)<x)
+      left=med;
+    else
+      right=med;
+  }
+
+  return pos;
+}
+
+```
+
+<div class="topic">Ternary Search</div>
+
+
+</div>
+  <!-- ends code -->
+
+
+
+With this code we get this solution:
+
+Then, our solution has complexity $O(n!)$.
+
+Recommended readings:
+
+* [HackerEarth - Recursion and Backtracking](https://www.hackerearth.com/practice/basic-programming/recursion/recursion-and-backtracking/tutorial/)
+* Competitive Programming 3, section 3.2.2, 8.2.1 and 8.2.2.
+* [GeekForGeeks - Backtracking Algorithms](https://www.geeksforgeeks.org/backtracking-algorithms/)
+
+You may also be interested in watching this documental of AlphaGo. [Here](https://youtu.be/8tq1C8spV_g) is the trailer.
+
+<div class="topic" id="contest">Contest</div>
+
+You can find the contest [here](https://vjudge.net/contest/354334).
+
+The solutions will be uploaded after the contest.

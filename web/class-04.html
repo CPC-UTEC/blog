@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Class 04: Complete Search I</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CP UTEC</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="schedule.html">Schedule</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lessons
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Week 1</li>
+    <li>
+      <a href="class-01.html">Introduction</a>
+    </li>
+    <li>
+      <a href="class-02.html">Asymptotic Analysis</a>
+    </li>
+    <li class="dropdown-header">Week 2</li>
+    <li>
+      <a href="class-03.html">STL</a>
+    </li>
+    <li>
+      <a href="class-04.html">Complete Search I</a>
+    </li>
+    <li class="dropdown-header">Week 3</li>
+    <li>
+      <a href="class-05.html">Complete Search II</a>
+    </li>
+    <li>
+      <a href="class-06.html">Complete Search III</a>
+    </li>
+    <li class="dropdown-header">Week 4</li>
+    <li>
+      <a href="class-07.html">Complete Search IV</a>
+    </li>
+    <li>
+      <a href="class-08.html">Complete Search V</a>
+    </li>
+    <li class="dropdown-header">Week 5</li>
+    <li>
+      <a href="class-09.html">Contest I</a>
+    </li>
+    <li class="dropdown-header">Week 6</li>
+    <li>
+      <a href="class-10.html">Contest UTEC-UNI I</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="daily-problem.html">Daily Problem</a>
+</li>
+<li>
+  <a href="gallery.html">Gallery</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Class 04: Complete Search I</h1>
+<h4 class="date">01-15-2020</h4>
+
+</div>
+
+
+<blockquote>
+<p>“Try every possibility”</p>
+</blockquote>
+<div class="topic">
+Problem Solving Paradigms
+</div>
+<p>A programming paradigm is a way to solve problems. The four problem solving paradigms commonly used in programming contests are:</p>
+<div class="center-image">
+<p><img src="images/class-04/programming-paradigms.png" /></p>
+</div>
+<p>Complete search is a general method that can be used to solve almost any algorithm problem. It basically try to generate all possible solutions to a problem in order to do something with them (count number of elements, find a particular solution with one property, etc).</p>
+<p>You can find complete search solution in two ways: iterative and recursive. When it is iterative it may be a single loop, two loops, three or more loops, using two pointers, etc. When it is recursive it can be a simple recursive function, it can be a recursive function that search different states with trial and error (backtracking), it may have some kind of prunning in order to not visit every state, etc.</p>
+<p>When solving complete search solutions you will follow some combination of these structures to solve problems.</p>
+<p>When you find complete search in a iterative way it is called a <code>brute force</code> solution. In the next 4 classes we will study more about this kind of solutions. Moreover, mastering this paradigm will help you to understand easily the other ones.</p>
+<div class="topic">
+Pythagorean triples
+</div>
+<p>Lets start this paradigm solving a simple problem.</p>
+<p>A pythagorean triple is a triplet (x,y,z) that satisfies the equation <span class="math inline">\(x^2 + y^2 = z^2\)</span>.</p>
+<p><strong>Problem:</strong> You will receive an integer <span class="math inline">\(n\)</span>. Find the number of pythagorean triples such that <span class="math inline">\(1 \leq x, y, z \leq n\)</span>.</p>
+<p><span class="math display">\[1 \leq n \leq 10^3\]</span></p>
+<div id="first-solution" class="section level3">
+<h3>First solution</h3>
+<p>We can fix <span class="math inline">\(x, y, z\)</span> using three loops and verify if the equation holds in <span class="math inline">\(O(n^3)\)</span>.</p>
+<pre class="cpp"><code>int solution1 (int n) {
+  int cnt = 0;
+  for (int x = 1; x &lt;= n; x++) {
+    for (int y = 1; y &lt;= n; y++) {
+      for (int z = 1; z &lt;= n; z++) {
+        if (x * x + y * y == z * z) {
+          cnt++;
+        }
+      }
+    }
+  }
+  return cnt;
+}</code></pre>
+<p>We can fix <span class="math inline">\(x, y\)</span> and determine if <span class="math inline">\(\exists \, 1 \leq z \leq n\)</span> that holds the equation in <span class="math inline">\(O(n^2)\)</span>.</p>
+</div>
+<div id="second-solution" class="section level3">
+<h3>Second solution</h3>
+<pre class="cpp"><code>int solution2 (int n) {
+  vector &lt;bool&gt; is_sq(n * n + 1, false);
+  for (int z = 1; z &lt;= n; z++) {
+    is_sq[z * z] = true;
+  }
+  int cnt = 0;
+  for (int x = 1; x &lt;= n; x++) {
+    for (int y = 1; y &lt;= n; y++) {
+      if (x * x + y * y &lt;= n * n and is_sq[x * x + y * y]) {
+        cnt++;
+      }
+    }
+  }
+  return cnt;
+}</code></pre>
+</div>
+<div id="third-solution" class="section level3">
+<h3>Third solution</h3>
+<p>If <span class="math inline">\((x, y, z)\)</span> is a pythagorean triple, then <span class="math inline">\((kx, ky, kz), k \in \mathbb{N}\)</span> is also a pythagorean triple.</p>
+<p>So, if we find <span class="math inline">\((x, y, z) \mid gcd(x, y, z) = 1\)</span>, then the number of triples <span class="math inline">\((kx, ky, kz) \mid 1 \leq kx, ky, kz \leq n\)</span> is <span class="math inline">\(\min(\lfloor n / x \rfloor, \lfloor n / y \rfloor, \lfloor n / z \rfloor )\)</span>.</p>
+<p>If <span class="math inline">\((x, y, z)\)</span> is a pythagorean triple and <span class="math inline">\(gcd(x, y, z) = 1\)</span>, then <span class="math inline">\((x, y, z)\)</span> is called a primite pythagorean triple.</p>
+<p>And there is a property (Euclid’s formula) that says that every primite pythagorean triple can be represented by a pair <span class="math inline">\((a, b) \mid 0 &lt; b &lt; a \land gcd(a, b) = 1 \land a\)</span> and <span class="math inline">\(b\)</span> are not both odds in the following way:</p>
+<p><span class="math display">\[x = a^2 - b^2\]</span> <span class="math display">\[y = 2 * a * b\]</span> <span class="math display">\[z = a * a + b * b\]</span></p>
+<p>Moreover, we have: <span class="math display">\[a * a \leq a * a + b * b \leq z \leq n\]</span></p>
+<p>Then, a can just take values in <span class="math inline">\([0, \sqrt{n}]\)</span>. So we can generate primites <span class="math inline">\((x, y, z) \land (y, x, z)\)</span> and count how many of their multiples hold the condition of the problem in <span class="math inline">\(O((\sqrt{n}) \cdot \sqrt{n} \cdot \log n) = O(n \log n)\)</span>.</p>
+<p><strong>Note:</strong></p>
+<p><span class="math inline">\(gcd(a, b) =\)</span> greatest common divisor of <span class="math inline">\(a\)</span> and <span class="math inline">\(b = \max(d: d | a \land d | b)\)</span></p>
+<pre class="cpp"><code>int solution3 (int n) {
+  int cnt = 0;
+  for (int a = 1; a * a &lt; n; a++) {
+    for (int b = 1; b &lt; a; b++) {
+      if (__gcd(a, b) != 1) continue;
+      if (a % 2 and b % 2) continue;
+      int x = a * a - b * b;
+      int y = 2 * a * b;
+      int z = a * a + b * b;
+      int add = min({n / x, n / y, n / z});
+      cnt += 2 * add;
+    }
+  }
+  return cnt;
+}</code></pre>
+<p><a href="./code/class-04/pythagorean-triple.cpp">Full code</a></p>
+<div class="topic">
+Primality Test
+</div>
+<p><strong>Problem:</strong> Given a number <span class="math inline">\(n\)</span>, determine if it is prime or not,</p>
+<p><strong>Definition:</strong> A prime number is a natural number that have exactly two divisors. The first prime numbers are <span class="math inline">\(2, 3, 5, 7, 11, 13, \dots\)</span></p>
+<div id="first-solution-1" class="section level4">
+<h4>First solution</h4>
+<p>We can use the given definition and implement a <span class="math inline">\(O(n)\)</span> solution.</p>
+<pre class="cpp"><code>bool isPrime1 (int n) {
+  int n_div = 0;
+  for (int d = 1; d &lt;= n; d++) {
+    if (n % d == 0) n_div++;
+  }
+  return (n_div == 2);
+}</code></pre>
+</div>
+<div id="second-solution-1" class="section level4">
+<h4>Second solution</h4>
+<p>We notice that if <span class="math inline">\(d | n \to (n / d) | n\)</span>. Moreover: <span class="math display">\[\text{If } d \not = \sqrt{n} \to (d &lt; \sqrt{n} &lt; (n / d)) \lor ((n / d) &lt; \sqrt{n} &lt; d)\]</span></p>
+<p>So we can assume <span class="math inline">\(d &lt; (n / d)\)</span> iterate for every <span class="math inline">\(d &lt; \sqrt{n}\)</span> and if <span class="math inline">\(d | n\)</span> count two more divisors (<span class="math inline">\(d, n / d\)</span>) and handle the special case <span class="math inline">\(d = \sqrt{n}\)</span>. In this way we can count the number of divisors of <span class="math inline">\(n\)</span> and check if a number if prime in <span class="math inline">\(O(\sqrt{n})\)</span>.</p>
+<pre class="cpp"><code>bool isPrime2 (int n) {
+  int n_div = 0;
+  for (int d = 1; d * d &lt;= n; d++) {
+    if (n % d == 0) {
+      n_div++;
+      if (n / d != d) n_div++;
+    }
+  }
+  return (n_div == 2);
+}</code></pre>
+<p><a href="./code/class-04/primality-check.cpp">Full code</a></p>
+<div class="topic">
+Sieve of Eratosthenes
+</div>
+<p>We want to solve the same problem of the previous section but now we want to be able to handle multiples queries in a optimal way. Then, we want to store an array where we can get wheter or not a number is prime.</p>
+<p>We can use a simple idea to achieve that. We will initiate with an array where every element is true (it will represent if the number is prime or not). Then we will iterate from <span class="math inline">\(2\)</span> to <span class="math inline">\(n\)</span> and every time we find a prime number, we set to false its multiples that are greater than it.</p>
+<p>As every prime number have only two divisors (1 and itself), and we are iterating from the number 2, then when we are in the number <span class="math inline">\(i\)</span> in the iteration if <span class="math inline">\(i\)</span> is a prime number it will be set to true, else <span class="math inline">\(\exists \, p\)</span> (prime) <span class="math inline">\(: p &lt; i \land p | i\)</span>, so the array will already be set to false in that position.</p>
+<p>We can use this idea and implement an algorithm two obtain such array. The special cases (i.e <span class="math inline">\(n = 0 \lor n = 1\)</span>) can be handle easily. The complexity of this solution is <span class="math inline">\(O(n \log \log n)\)</span>.</p>
+<pre class="cpp"><code>vector &lt;bool&gt; sieve (int n) {
+  vector &lt;bool&gt; is_prime(n + 1, true);
+  is_prime[0] = is_prime[1] = false;
+  for (int i = 2; i &lt;= n; i++) {
+    if (!is_prime[i]) continue;
+    for (int j = 2 * i; j &lt;= n; j += i) {
+      is_prime[j] = false;
+    }
+  }
+  return is_prime;
+}</code></pre>
+<p><a href="./code/class-04/sieve-of-eratosthenes.cpp">Full code</a></p>
+<div class="topic">
+Finding the number of divisors of a number
+</div>
+<p><strong>Note:</strong> <span class="math display">\[\sigma_{0}(n) = \text{ number of divisors of } n\]</span></p>
+<p>We have already written a program that computes the number of divisors in <span class="math inline">\(O(n)\)</span> and in <span class="math inline">\(O(\sqrt{n})\)</span>. But, we can use an idea similar to the one we used in the previous section.</p>
+<pre class="cpp"><code>vector &lt;int&gt; nDivisors (int n) {
+  vector &lt;int&gt; n_div(n + 1, 0);
+  for (int i = 1; i &lt;= n; i++) {
+    for (int j = i; j &lt;= n; j += i) {
+      n_div[j] += 1;
+    }
+  }
+  return n_div;
+}</code></pre>
+<p><a href="./code/class-04/number-divisors.cpp">Full code</a></p>
+<p>The complexity of the above algorithm is:</p>
+<p><span class="math display">\[n + \frac{n}{2} + \frac{n}{3} + \frac{n}{4} + \dots + \frac{n}{n}\]</span> <span class="math display">\[n \cdot (1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \dots + \frac{1}{n})\]</span> <span class="math display">\[n \cdot H_{n} &lt; n \log n\]</span></p>
+<p>So, the complexity of our program is <span class="math inline">\(O (n \log n)\)</span>.</p>
+<div class="topic">
+<span class="math inline">\(\sigma_{0}(n) = O(\sqrt[3]{n})\)</span>
+</div>
+<p>There are some problems that look like a brute force solution would give a Time Limit veredict. One common example of this kind of problem are the ones where you need to do something with the divisors of a number. You will face one problem of this kind in one of your daily problems.</p>
+<p>Recommended readings:</p>
+<ul>
+<li><p>Competitive Programming 3, section 3.2 y 5.5.1</p></li>
+<li><p><a href="https://codeforces.com/blog/entry/20548">Codeforces - How to come up with the solutions: techniques</a></p></li>
+<li><p><a href="https://codeforces.com/blog/entry/13585">Codeforces - Amount of divisors of N</a></p></li>
+<li><p><a href="https://codeforces.com/blog/entry/22317">Codeforces - Counting Divisors of a Number in <span class="math inline">\(O(\sqrt[3]{n})\)</span> - Tutorial</a></p></li>
+</ul>
+<div id="contest" class="topic">
+Contest
+</div>
+<p>You can find the contest <a href="https://vjudge.net/contest/352372">here</a>.</p>
+<!-- Begins problem A -->
+<div id="problemA" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+A: Simple Equations
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div id="simple-equations" class="section level3 card-body solution-body">
+<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2612" target="_blank">Simple Equations</a></h3>
+<p><span class="math display">\[0 \leq x^2 \quad \forall x \in \mathbb{N}\]</span> <span class="math display">\[\to x^2 \leq x^2 + y^2 + z^2 = C\]</span> <span class="math display">\[x^2 \leq C\]</span> <span class="math display">\[|x| \leq \sqrt{C}\]</span> <span class="math display">\[-\sqrt{C} \leq x \leq \sqrt{C}\]</span> The same hold for <span class="math inline">\(x, y, z\)</span>. Moreover if we have fixed <span class="math inline">\(x, y\)</span>, then <span class="math inline">\(z = A - x - y\)</span>. So, we can fix <span class="math inline">\(x, y\)</span> in <span class="math inline">\(O(\sqrt{C}^2) = O(C)\)</span> and verify if <span class="math inline">\(x, y, z\)</span> holds the equations in <span class="math inline">\(O(1)\)</span>. Don’t forget <span class="math inline">\(x, y, z\)</span> must be different.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemA" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+void solve (int A, int B, int C) {
+  int lim = sqrt(C) + 1;
+  for (int x = -lim; x &lt;= lim; x++) {
+    for (int y = -lim; y &lt;= lim; y++) {
+      int z = A - x - y;
+      if (x == y or x == z or y == z) continue;
+      if ((x + y + z == A) and
+          (x * y * z == B) and
+          (x * x + y * y + z * z == C)) {
+        cout &lt;&lt; x &lt;&lt; &#39; &#39; &lt;&lt; y &lt;&lt; &#39; &#39; &lt;&lt; z &lt;&lt; &#39;\n&#39;;
+        return;
+      }
+    }
+  }
+  cout &lt;&lt; &quot;No solution.\n&quot;;
+}
+
+int main () {
+  int tc;
+  cin &gt;&gt; tc;
+  while (tc--) {
+    int A, B, C;
+    cin &gt;&gt; A &gt;&gt; B &gt;&gt; C;
+    solve(A, B, C);
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+<!-- Begins problem B -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+B: Common Divisors
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div id="common-divisors" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1203/C" target="_blank">Common Divisors</a></h3>
+<p><span class="math inline">\(S = \{x: x | a_i \quad \forall i \in [1, n] \}\)</span></p>
+<p>Let <span class="math inline">\(g = \gcd(a_1, a_2, \dots, a_n)\)</span>.</p>
+<p><strong>Affirmation:</strong> <span class="math inline">\(S = \{x: x | g \}\)</span>. (The proof is left to the reader)</p>
+<p>Then, we just need to find <span class="math inline">\(\sigma_0(g)\)</span> and we can do it in <span class="math inline">\(O(\sqrt{n}))\)</span>.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemB" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin &gt;&gt; n;
+  vector &lt;ll&gt; arr(n);
+  cin &gt;&gt; arr[0];
+  ll g = arr[0];
+  for (int i = 1; i &lt; n; i++) cin &gt;&gt; arr[i], g = __gcd(g, arr[i]);
+  ll ans = 0;
+  for (ll d = 1; d * d &lt;= g; d++) {
+    if (g % d) continue;
+    ans++;
+    ll d2 = g / d;
+    if (d == d2) continue;
+    ans++;
+  }
+  cout &lt;&lt; ans &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+<!-- Begins problem C -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+C: 2Char
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div id="char" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/593/A" target="_blank">2Char</a></h3>
+<p>The key of the problem is to notice what the search space is. As every valid text would have at most two characters and maximum length, then we can fix what would be the two characters and take all the strings that just have these characters.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemC" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int MAX_N = 110;
+
+int n, ans;
+string word[MAX_N];
+
+bool isValid(int id, char ch_1, char ch_2) {
+  for (int pos = 0; pos &lt; word[id].size(); pos++) {
+    if (word[id][pos] != ch_1 and word[id][pos] != ch_2) {
+      return false;
+    }
+  }
+  return true;
+}
+
+int main() {
+  cin &gt;&gt; n;
+  for (int i = 0; i &lt; n; i++) cin &gt;&gt; word[i];
+  for (char ch_1 = &#39;a&#39;; ch_1 &lt;= &#39;z&#39;; ch_1++) {
+    for (char ch_2 = ch_1; ch_2 &lt;= &#39;z&#39;; ch_2++) {
+      int sum = 0;
+      for (int id = 0; id &lt; n; id++) {
+        sum += isValid(id, ch_1, ch_2) * word[id].size();
+      }
+      ans = max(ans, sum);
+    }
+  }
+  cout &lt;&lt; ans &lt;&lt; endl;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem C -->
+<!-- Begins problem D -->
+<div class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+D: Hyperset
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemD" class="collapse">
+<div id="hyperset" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1287/B" target="_blank">Hyperset</a></h3>
+<p>If we have fixed two cards, we can compute what card do we need to make a set. Take care of your implementation.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemD" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef unsigned long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n, k;
+  cin &gt;&gt; n &gt;&gt; k;
+  vector &lt;string&gt; arr(n);
+  map &lt;string, int&gt; mp;
+  for (int i = 0; i &lt; n; i++) {
+    cin &gt;&gt; arr[i], mp[arr[i]]++;
+  }
+  ll ans = 0;
+  for (int i = 0; i &lt; n; i++) {
+    for (int j = i + 1; j &lt; n; j++) {
+      string need = string(k, &#39; &#39;);
+      for (int t = 0; t &lt; k; t++) {
+        if (arr[i][t] == arr[j][t]) {
+          need[t] = arr[i][t];
+        } else {
+          if (&#39;S&#39; != arr[i][t] and &#39;S&#39; != arr[j][t]) need[t] = &#39;S&#39;;
+          if (&#39;E&#39; != arr[i][t] and &#39;E&#39; != arr[j][t]) need[t] = &#39;E&#39;;
+          if (&#39;T&#39; != arr[i][t] and &#39;T&#39; != arr[j][t]) need[t] = &#39;T&#39;;
+        }
+      }
+      ans += mp[need];
+    }
+  }
+  cout &lt;&lt; ans / 3 &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem D -->
+</div>
+</div>
+
+<footer>
+  <p>Copyright &copy; 2020. Competitive Programming UTEC</p>
+</footer>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

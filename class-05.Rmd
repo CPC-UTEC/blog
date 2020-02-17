@@ -1,0 +1,815 @@
+---
+title: "Class 05: Complete Search II"
+date: "01-20-2020"
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+> "Keep it simple and straightforward"
+
+There is a great variety of brute force problems. Lots of them are unique and
+it requires a lot of creativity in order to solve them, yet there is a great
+amount of them that can be solved with common strategies. In this class, we'll
+discuss some of them:
+
+* Fixing variables
+* Simulation
+* Weak constraints
+* Case analysis
+
+<div class="topic">Fixing variables</div>
+
+There are some kind of problems when you have some equations on $m$ variables. Its usually a good 
+idea to first try a brute force approach. Find the range of
+each of the variables, do a loop for each of them, then inside each loop you
+have the value of that variable fixed, now it is a constant. Moreover, when you
+have fixed $m - 1$ of these variables its usually easy to compute what value the last
+variable should be. Evenmore, you have already solve one problem of this kind:
+[Simple equations](./class-04.html#problemA).
+
+Now, let try to solve [this problem](https://codeforces.com/contest/44/problem/B)
+
+**Problem:** You will receive $n, a, b, c$ . You must find
+
+$$|\{(x, y, z) \mid 0 \leq x \leq a \land 0 \leq y \leq b \land 0 \leq z \leq
+c \land \frac{x}{2} + y + 2 z = n \}|$$
+
+$$1 \leq n \leq 10^4$$
+$$0 \leq a, b, c \leq 5000$$
+
+Its easy to identify that the variables of the problem are $x, y, z$ and if we
+fix two of these variable we can get the third one from the equation, so a brute
+force solution with two loops can solve the problem. Now, in order to choose
+what variables to fix, always prefer working with integers (you'll understand
+better the reason of this in next classes), so we'll fix $y, z$ in $O(b * c)$.
+
+
+<!-- Begins problem example01 -->
+<div class="card" id="example01">
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemexample01" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemexample01" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n, a, b, c;
+  cin >> n >> a >> b >> c;
+  int ans = 0;
+  for (int z = 0; z <= c; z++) {
+    for (int y = 0; y <= b; y++) {
+      int left = n - z * 2 - y;
+      if (left < 0) continue;
+      int x = left * 2;
+      if (x <= a) ans++;
+    }
+  }
+  cout << ans << '\n';
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+<!-- ends problem example01 -->
+
+You can practice with these problems:
+
+* [Cut Ribbon](https://codeforces.com/problemset/problem/189/A)
+* [Economy Game](https://codeforces.com/contest/681/problem/B)
+* [Berry Jam](https://codeforces.com/contest/1278/problem/C)
+* [Hot Bath](https://codeforces.com/contest/126/problem/A) (**Challenge**)
+
+
+<div class="topic">Simulation with brute force</div>
+
+These kind of problem usually describes a pattern, recurence formula or situation 
+that you can compute easily.
+
+For example, let's begin solving [this problem](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=384).
+
+**Problem:** A *humble number* is a number whose only prime factors are $2, 3, 5, 7$. You will receive a number $n$ and you should output the n-th humble number.
+
+$$1 \leq n \leq 5842$$
+
+We need to compute $S = \{2^i \cdot 3 ^j \cdot 5^k \cdot 7 ^l, \quad 0 \leq i, j, k, l \}$. 
+Let's say the maximum value we will compute is $L$, then $i, j, k, l = O(\log L)$. So, if we fix $L$
+we can compute the elements of $S$ that are less than $L$ in $O(\log^4(L))$. We
+can try different values of $L$ until we get more numbers than the
+maximum $n$ in the input (take care of overflow).
+
+<!-- Begins problem example02 -->
+<div class="card" id="example02">
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemexample02" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemexample02" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long ll;
+
+int main () {
+  const ll L = 1e10;
+  vector <ll> arr;
+  for (ll two = 1; two < L; two *= 2) {
+    for (ll three = 1; three < L; three *= 3) {
+      for (ll five = 1; five < L; five *= 5) {
+        for (ll seven = 1; seven < L; seven *= 7) {
+          if (two >= L / three) break;
+          ll cur = two * three;
+          if (cur >= L / five) break;
+          cur *= five;
+          if (cur >= L / seven) break;
+          cur *= seven;
+          arr.push_back(cur);
+        }
+      }
+    }
+  }
+  sort(begin(arr), end(arr));
+  int n;
+  while (cin >> n) {
+    if (n == 0) break;
+    string pos;
+    if (n % 10 == 1 and (n / 10) % 10 != 1) pos = "st";
+    else if (n % 10 == 2 and (n / 10) % 10 != 1) pos = "nd";
+    else if (n % 10 == 3 and (n / 10) % 10 != 1) pos = "rd";
+    else pos = "th";
+    cout << "The " << n << pos << " humble number is " << arr[n - 1] << ".\n";
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+<!-- ends problem example02 -->
+
+You can practice with these problems:
+
+* [Primary Arithmetic](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=976)
+* [Beautiful Year](https://codeforces.com/contest/271/problem/A)
+* [3n + 1 problem](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=36)
+* [Link/Cut Tree](https://codeforces.com/contest/614/problem/A)
+* [Easy Type Programming](https://codeforces.com/contest/239/problem/B)
+
+<div class="topic">Weak constraints</div>
+
+In this kind of problem the statement usually looks difficult, but once you
+identify the search space you may realize that the number of possible solutions
+is small.
+
+For example, let's begin with [this problem](https://codeforces.com/contest/817/problem/C).
+
+**Problem:** Find
+
+$$|\{x \leq n \mid x - f(x) \geq s\}|$$
+
+Where $f(x) =$ sum of digits of $x$.
+
+$$1 \leq n, s \leq 10^{18}$$
+
+At first glance, the problem looks difficult, yet we have
+
+$$0 \leq f(x) \leq 9 * 18$$
+$$\to x - 9 * 18 \leq x - f(x) \leq 9 * 18$$
+
+So, we just need to search the answer in $[s, s + 9 * 18]$. What happen with
+a number greater than $s + 9 * 18$ ?
+
+<!-- Begins problem example03 -->
+<div class="card" id="example03">
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemexample03" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemexample03" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long ll;
+
+const int MX_SUM = 9 * 18;
+
+int sumOfDigits (ll num) {
+  int ret = 0;
+  while (num) ret += (num % 10), num /= 10;
+  return ret;
+}
+
+int main () {
+  ll n, s;
+  cin >> n >> s;
+  ll ans = 0, k;
+  for (k = s; k <= min(n, s + MX_SUM); k++) {
+    if (k - sumOfDigits(k) >= s) ans++;
+  }
+  ans += max(0LL, n - k + 1);
+  cout << ans << endl;
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+<!-- ends problem example05 -->
+
+The key of these kind of problems is to identify that the search space is small
+because of a property or that one of the variables of the input is small
+and we can try a brute force approach using it.
+
+<div class="topic">Case analysis</div>
+
+There are some problems that looks difficult, yet when you analyze the cases
+that can occur you realize that the problem simplify to something simple.
+
+For example, let's try [this problem](https://codeforces.com/problemset/problem/252/B).
+
+**Problem:** You are given an array $a$ of $n$ elements. Output two numbers $i, j \mid a_i \not = a_j \land i < j$ such that when swapping $a_i$ and  $a_j$ the array is not sorted (in increasing or decreasing order) or output -1 if no such pair or numbers exists.
+
+$$1 \leq n \leq 10^5$$
+
+A first idea would be to fix $i, j$ with two loops and check if the condition
+holds. This solution is $O(n^3)$, so it will give us a Time Limit Exceed
+veredict. We need something better.
+
+Let's analye by cases on the number of different elements.
+
+* Case 1: All the elements are equals
+
+Then, the answer is -1.
+
+* Case 2: There are more than 2 different elements.
+
+You can take three of these elements and you will find and answer with them (can you prove it?).
+
+* Case 3: There are exactly 2 different elements.
+
+  Let's fix $x = a_i$ and $y = a_j$.
+
+  - Case 3.1: $a_i < a_j$
+
+  If we swap them, the array can not be in increasing order. If the array is not
+  in decreasing order we have an answer, else the array will be of the form:
+
+  $$a_1 = y \geq a_2 = y \geq \dots \geq a_i = y \geq \dots \geq a_j = x \geq \dots \geq a_n =x$$
+
+  So, if there exists an answer, it must be in $[i, j)$ or $(i, j]$. Then, we
+  just need to do the check for a pair of integers $(i, i + 1) \mid a_i < a_{i + 1}$.
+
+  - Case 3.2: $a_i > a_j$
+
+  If we swap them, the array can not be in decreasing order. If the array is not
+  in increasing order we have an answer, else the array will be of the form:
+
+  $$a_1 = x \leq a_2 = x \leq \dots \leq a_i = x \leq \dots \leq a_j = y \leq \dots \leq a_n =y$$
+
+  So, if there exists an answer it must be in $[i, j)$ or $(i, j]$. Then, we
+  just need to do the check for a pair of integers $(i, i + 1) \mid a_i > a_{i + 1}$.
+
+
+Using all these cases we can implement a $O(n \log n)$ solution.
+
+<!-- Begins problem example05 -->
+<div class="card" id="example05">
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemexample05" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemexample05" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int n;
+  cin >> n;
+  set <int> values;
+  map <int, int> pos;
+  vector <int> a(n);
+  for (int i = 0; i < n; i++) {
+    cin >> a[i];
+    pos[a[i]] = i;
+    values.insert(a[i]);
+  }
+  if (values.size() == 1) {
+    cout << -1 << '\n';
+    return (0);
+  }
+  vector <int> a_inc = a;
+  vector <int> a_dec = a;
+  sort(begin(a_inc), end(a_inc));
+  sort(begin(a_dec), end(a_dec));
+  reverse(begin(a_dec), end(a_dec));
+  if (values.size() > 2) {
+    vector <int> arr;
+    for (auto pp: pos) {
+      arr.push_back(pp.second);
+    }
+    for (int i = 0; i < 3; i++) {
+      for (int j = i + 1; j < 3; j++) {
+        int x = arr[i];
+        int y = arr[j];
+        swap(a[x], a[y]);
+        if (a != a_inc and a != a_dec) {
+          cout << 1 + min(x, y) << ' ' << 1 + max(x, y) << '\n';
+          return (0);
+        }
+        swap(a[x], a[y]);
+      }
+    }
+  }
+  for (int i = 0; i + 1 < n; i++) {
+    if (a[i] < a[i + 1]) {
+      swap(a[i], a[i + 1]);
+      if (a != a_dec) {
+        cout << 1 + i << ' ' << 1 + i + 1 << '\n';
+        return (0);
+      }
+      swap(a[i], a[i + 1]);
+      break;
+    }
+  }
+  for (int i = 0; i + 1 < n; i++) {
+    if (a[i] > a[i + 1]) {
+      swap(a[i], a[i + 1]);
+      if (a != a_inc) {
+        cout << 1 + i << ' ' << 1 + i + 1 << '\n';
+        return (0);
+      }
+      swap(a[i], a[i + 1]);
+      break;
+    }
+  }
+  cout << -1 << '\n';
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+<!-- ends problem example05 -->
+
+You can practice with these problems:
+
+* [Shawarma Tent](https://codeforces.com/contest/1271/problem/C)
+* [Interesting Subarray](https://codeforces.com/contest/1270/problem/B)
+* [Divide by Three](https://codeforces.com/contest/792/problem/C) (**Challenge**)
+
+<div class="topic">Extra: Prefix sums</div>
+
+Prefix sums is a simple technique, yet quite powerful.
+
+Let's show the technique with [this problem](https://www.spoj.com/problems/CSUMQ/).
+
+**Problem:** You are given an array of $N$ numbers and $Q$ queries. Each query is a range
+$l, r$. For each query output the sum of elements of the array in positions $[l, r]$.
+
+Let $prefix(x) = a_0 + a_1 + a_2 + \dots + a_x$ and $prefix(-1) = 0$. Then:
+
+$\displaystyle\sum_{i=l}^{r}a_i = prefix(r) - prefix(l - 1)$
+
+So, we can compute $prefix$ using an array and answer each query in $O(1)$.
+
+<!-- Begins problem exampleextra -->
+<div class="card" id="exampleextra">
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemexampleextra" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemexampleextra" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long ll;
+
+int n;
+vector <ll> prefix;
+
+ll get (int pos) {
+  if (pos == -1) return 0;
+  return prefix[pos];
+}
+
+int main () {
+  cin >> n;
+  prefix.resize(n);
+  for (int i = 0; i < n; i++) {
+    int a;
+    cin >> a;
+    prefix[i] = a + get(i - 1);
+  }
+  int q;
+  cin >> q;
+  while (q--) {
+    int l, r;
+    cin >> l >> r;
+    cout << get(r) - get(l - 1) << '\n';
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+<!-- ends problem exampleextra -->
+
+You can practice with these problems:
+
+* [Nikita and string](https://codeforces.com/contest/877/problem/B)
+* [Intense Heat](https://codeforces.com/contest/1003/problem/C)
+
+Recommended readings:
+
+* [Notas de fuerza bruta](https://gist.github.com/miguelAlessandro/f588d159a768dc43cc1ec9b81b27bd57)
+* [PCUNI-2019 Clase
+  05](https://nbviewer.jupyter.org/github/TISparta/pcuni-2019/blob/master/clase-05/clase-05.ipynb)
+* [Topcoder - Representation of integers and reals section 1](https://www.topcoder.com/community/competitive-programming/tutorials/representation-of-integers-and-reals-section-1/)
+* [Topcoder - Representation of integers and reals section 2](https://www.topcoder.com/community/competitive-programming/tutorials/representation-of-integers-and-reals-section-2/)
+
+
+<div class="topic" id="contest">Contest</div>
+
+You can find the contest [here](https://vjudge.net/contest/353073).
+
+
+<!-- Begins problem problem-A -->
+<div class="card" id="problem-A">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemproblem-A" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">A: Kaprekar Numbers</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemproblem-A" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=915" target="_blank">Kaprekar Numbers</a>
+
+You can preprocess the Kaprekar numbers in $[2, 40000]$ (there are only 19 of them). After that, you can answer each query quickly.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-A" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemproblem-A" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+
+const int N = 4e4;
+vi kaprekar;
+
+bool isKaprekar (int n) {
+  string sq = to_string(n * n);
+  for (int i = 0; i + 1 < sz(sq); i++) {
+    int l = stoi(sq.substr(0, i + 1));
+    int r = stoi(sq.substr(i + 1));
+    if (0 < min(l, r) and l + r == n) return true;
+  }
+  return false;
+}
+
+void preprocess () {
+  for (int n = 2; n <= N; n++) {
+    if (isKaprekar(n)) {
+      kaprekar.pb(n);
+    }
+  }
+}
+
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  preprocess(); // just 19 elements
+  int tc;
+  cin >> tc;
+  for (int t = 1; t <= tc; t++) {
+    int l, r;
+    cin >> l >> r;
+    vi ans;
+    for (int elem: kaprekar) {
+      if (l <= elem and elem <= r) {
+        ans.pb(elem);
+      }
+    }
+    if (t > 1) cout << '\n';
+    cout << "case #" << t << '\n';
+    if (ans.empty()) {
+      cout << "no kaprekar numbers\n";
+    } else {
+      for (int elem: ans) {
+        cout << elem << '\n';
+      }
+    }
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem problem-A -->
+
+
+
+
+
+<!-- Begins problem problem-B -->
+<div class="card" id="problem-B">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemproblem-B" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">B: Schedule</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemproblem-B" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/31/C" target="_blank">Schedule</a>
+
+Just try every option.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-B" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemproblem-B" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin >> n;
+  vector <pair <pii, int>> arr(n + 1);
+  arr[0] = mp(pii(0, 0), 0);
+  for (int i = 1; i <= n; i++) {
+    arr[i].second = i;
+    cin >> arr[i].first.first >> arr[i].first.second;
+  }
+  sort(all(arr));
+  vi ans;
+  for (auto fix: arr) {
+    if (fix.second == 0) continue;
+    int prev = 0;
+    bool ok = true;
+    for (int i = 1; i <= n; i++) {
+      if (arr[i] == fix) continue;
+      ok &= (arr[prev].first.second <= arr[i].first.first);
+      prev = i;
+    }
+    if (ok) ans.pb(fix.second);
+  }
+  sort(all(ans));
+  cout << sz(ans) << '\n';
+  for (int i = 0; i < sz(ans); i++) cout << ans[i] << " \n"[i == sz(ans) - 1];
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem problem-B -->
+
+
+
+
+
+<!-- Begins problem problem-C -->
+<div class="card" id="problem-C">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemproblem-C" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">C: Ranges</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemproblem-C" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://www.spoj.com/problems/RRANGE/en/" target="_blank">Ranges</a>
+
+First, if you have this sum:
+
+$$l + (l + 1) + (l + 2) + \dots + (r - 1) + (r)$$
+
+You can compute it using:
+
+$$\frac{r \cdot (r + 1)}{2} - \frac{(l - 1) \cdot l}{2}$$
+
+Moreover, you notice that you can not process each query in $O(N)$ because of
+the time limit, but using the above formula you can answer each query in
+$O(U)$ and that is enough for the problem.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-C" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemproblem-C" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+ 
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+ 
+using namespace std;
+ 
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+ 
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  const ll MOD = 10000;
+  int n, u, q;
+  cin >> n >> u >> q;
+  vector <pii> update(u);
+  for (int i = 0; i < u; i++) cin >> update[i].first >> update[i].second;
+  auto get = [&] (ll x) {
+    return x * (x + 1) / 2;
+  };
+  while (q--) {
+    int l, r;
+    cin >> l >> r;
+    ll ans = 0;
+    for (auto pp: update) {
+      int L = max(pp.first, l);
+      int R = min(pp.second, r);
+      if (L <= R) {
+        ll x = L - pp.first + 1;
+        ll y = R - pp.first + 1;
+        ans += get(y) - get(x - 1);
+        ans %= MOD;
+      }
+    }
+    cout << ans << '\n';
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem problem-C -->
+
+
+
+
+
+<!-- Begins problem problem-D -->
+<div class="card" id="problem-D">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemproblem-D" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">D: Classroom Watch<p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemproblem-D" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/876/C" target="_blank">Classroom Watch</a>
+
+Let $f(x) =$ sum of digits of $x$.
+
+For the constraints of the problem we have that $0 \leq f(x) \leq 9 \cdot 9$.
+Then, we have:
+
+$$\max(0, n - 9 * 9) \leq x \leq n$$
+
+So, our search space is very small, we can just try a brute force approach on
+this interval.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-D" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemproblem-D" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int sumOfDigits (int p) {
+  int ret = 0;
+  while (p) ret += (p % 10), p /= 10;
+  return ret;
+}
+
+int main () {
+  int n;
+  vector <int> ans;
+  cin >> n;
+  for (int p = max(0, n - 9 * 9); p <= n; p++) if (p + sumOfDigits(p) == n) ans.push_back(p);
+  cout << ans.size() << endl;
+  for (auto x: ans) cout << x << endl;
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem problem-D -->
+
+
+

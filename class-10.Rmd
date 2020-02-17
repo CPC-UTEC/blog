@@ -1,0 +1,24 @@
+---
+title: "Class 10: Contest UTEC-UNI I"
+date: "02-10-2020"
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+> "It takes courage to sail in uncharted waters"
+
+<div class=topic>Contest</div>
+
+In the gallery there are some pictures of the contest.
+
+You can find the contest [here](https://codeforces.com/group/qWRAoRrTOT/contest/268759).
+
+The statements in PDF can be found in [English](./files/class-10/statements-English.pdf) and in
+[Spanish](./files/class-10/statements-Spanish.pdf).
+
+The solutions are in [this blog](https://codeforces.com/group/qWRAoRrTOT/blog/entry/5475).
+
+You need to be in the Codeforces Group to be able to see the contest and
+solutions. Write us if you want to join it.

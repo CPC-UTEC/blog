@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Class 11: Divide and Conquer I</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CP UTEC</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="schedule.html">Schedule</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lessons
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Week 1</li>
+    <li>
+      <a href="class-01.html">Introduction</a>
+    </li>
+    <li>
+      <a href="class-02.html">Asymptotic Analysis</a>
+    </li>
+    <li class="dropdown-header">Week 2</li>
+    <li>
+      <a href="class-03.html">STL</a>
+    </li>
+    <li>
+      <a href="class-04.html">Complete Search I</a>
+    </li>
+    <li class="dropdown-header">Week 3</li>
+    <li>
+      <a href="class-05.html">Complete Search II</a>
+    </li>
+    <li>
+      <a href="class-06.html">Complete Search III</a>
+    </li>
+    <li class="dropdown-header">Week 4</li>
+    <li>
+      <a href="class-07.html">Complete Search IV</a>
+    </li>
+    <li>
+      <a href="class-08.html">Complete Search V</a>
+    </li>
+    <li class="dropdown-header">Week 5</li>
+    <li>
+      <a href="class-09.html">Contest I</a>
+    </li>
+    <li class="dropdown-header">Week 6</li>
+    <li>
+      <a href="class-10.html">Contest UTEC-UNI I</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="daily-problem.html">Daily Problem</a>
+</li>
+<li>
+  <a href="gallery.html">Gallery</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Class 11: Divide and Conquer I</h1>
+<h4 class="date">02-12-2020</h4>
+
+</div>
+
+
+<blockquote>
+<p>“Binary like Yin &amp; Yang”</p>
+</blockquote>
+<p>The most common ways to search a value are linear search and binary search.</p>
+<p>Linear search is a simple searching through all array’s values and comparing with each of them.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+  int num = 10;
+  int x=20;
+  int arr[]={2,4,6,7,8,10,20,4034,4535,5635435,577436536};
+  for(int i=0;i&lt;10;i++){
+    if(arr[i]==x){
+      cout&lt;&lt;i+1&lt;&lt;endl;
+      break;
+    }
+  }
+  if(i==10)
+    cout&lt;&lt;x&lt;&lt;&quot; is not in the array&quot;&lt;&lt;endl;
+    
+  return (0);
+}</code></pre>
+<div class="topic">
+Binary Search
+</div>
+<p>One of the most useful algorithms that exist. Also, it is in the backbone of another grant algorithms. It achieves a complexity of O(log(n)).</p>
+<p>Requeriments: - Sorted Sequence</p>
+<p>First Approach</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int binary_search(int *seq,int size, int x){
+  int left=0,right=size-1;
+  while(left&lt;=right){
+    int med=left+(right-left)/2;
+    if(seq[med]==x)
+      return seq;
+    if(seq[med]&gt;x)
+      right=med-1;
+    else
+      left=med+1;
+  }
+  //Several times is not convenient return a number, but there not exists a positions -1 in array. So, there is not problem here.
+  return -1;
+}
+
+int main () {
+  int num = 10;
+  int arr[]={2,4,6,7,8,10,20,4034,4535,5635435,577436536};
+  int pos=binary_search(arr,10,num);
+  if(pos!=-1)
+    cout&lt;&lt;pos&lt;&lt;endl;
+  else
+    cout&lt;&lt;&quot;Value is not in array&quot;&lt;&lt;endl;
+    
+  return (0);
+}</code></pre>
+<p>Now, what happen if there exists many equal values in the array. What position does the binary method return?</p>
+<pre class="cpp"><code>  int arr[]={2,4,6,7,8,10,10,10,20,4034,4535,5635435,577436536};</code></pre>
+<p>We cannot say what position return because it dependes of others factors. In cases when the array start to inscrease this becomes really hard guessing.</p>
+<p>For that cases, we are going to work with lower and upper bound.</p>
+<p><em>Lower Bound</em></p>
+<p>Imagine that we have two arrays, one array of integer values and another of boolean values. Now, if we want to find an special value x, we need to set of the boolean array in each position with 0 if the value in this position is lower than x and 1 if this one i upper or equal than x.</p>
+<p>Really, we do not have a second array with boolean values. It just works for explaining. Our algorithm work in the way we look for values upper or equal and finish in the first position that x appears in the array.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;,
+
+int binary_search(int *seq,int size, int x){
+  int left=0,right=size-1;
+  int pos=-1;
+  while(left&lt;right){
+    int med=left+(right-left)/2;
+    if(seq[med]==x){
+      pos=med;
+    }
+    if(seq[med]&gt;=x)
+      right=med; //our algorithm change here
+    else
+      left=med+1;
+  }
+  return pos;
+}</code></pre>
+<p><em>Upper Bound</em></p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int binary_search(int *seq,int size, int x){
+  int left=0,right=size-1;
+  int pos=-1;
+  while(left&lt;right){
+    int med=left+(right-left)/2;
+    if(seq[med]==x){
+      pos=med;
+    }
+    if(seq[med]&gt;=x)
+      right=med-1;
+    else
+      left=med;
+  }
+
+  return pos;
+}
+</code></pre>
+<p>In the above algorithm there exists a bug. Attempt with the following case: <span class="math display">\[A = \{ 1, 3, 4, 6, 7, 7, 7, 8, 9\}\]</span></p>
+<p>What happen here.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int binary_search(int *seq,int size, int x){
+  int left=0,right=size-1;
+  int pos=-1;
+  while(left&lt;right){
+    int med=left+(right-left+1)/2; //this line was modified
+    if(seq[med]==x){
+      pos=med;
+    }
+    if(seq[med]&gt;=x)
+      right=med-1;
+    else
+      left=med;
+  }
+
+  return pos;
+}</code></pre>
+<p>##Binary search through real numbers In this case, we need to manage an extra value, it is called error de precision and it is represented by epsilon. Because of this way we can control the iterations over while. Another form is write down a counter for seting it before and the iterations end when the counter achieves 0.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int binary_search_realnumbers(double left, double right, double lim){
+  double epsilon=1e-7;
+  while(right-left&lt;epsilon){
+    double med=left+(right-left)/2; 
+    if(f(med)&lt;x)
+      left=med;
+    else
+      right=med;
+  }
+
+  return pos;
+}
+</code></pre>
+<div class="topic">
+Ternary Search
+</div>
+</div>
+<p><!-- ends code --></p>
+<p>With this code we get this solution:</p>
+<p>Then, our solution has complexity <span class="math inline">\(O(n!)\)</span>.</p>
+<p>Recommended readings:</p>
+<ul>
+<li><a href="https://www.hackerearth.com/practice/basic-programming/recursion/recursion-and-backtracking/tutorial/">HackerEarth - Recursion and Backtracking</a></li>
+<li>Competitive Programming 3, section 3.2.2, 8.2.1 and 8.2.2.</li>
+<li><a href="https://www.geeksforgeeks.org/backtracking-algorithms/">GeekForGeeks - Backtracking Algorithms</a></li>
+</ul>
+<p>You may also be interested in watching this documental of AlphaGo. <a href="https://youtu.be/8tq1C8spV_g">Here</a> is the trailer.</p>
+<div id="contest" class="topic">
+Contest
+</div>
+<p>You can find the contest <a href="https://vjudge.net/contest/354334">here</a>.</p>
+<p>The solutions will be uploaded after the contest.</p>
+
+<footer>
+  <p>Copyright &copy; 2020. Competitive Programming UTEC</p>
+</footer>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

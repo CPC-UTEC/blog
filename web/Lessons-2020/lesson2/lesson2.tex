@@ -10,9 +10,22 @@
 
 \usepackage{listings}
 
-%\definecolor{owngreen}{rgb}{.125,.5,.25}
-%\usecolortheme[named=owngreen]{structure}
-%\usecolortheme{wolverine}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstset{
+  basicstyle=\ttfamily,
+  keywordstyle=\color{magenta},
+  stringstyle=\color{codepurple},
+  numbers=left,
+  numbersep=5pt,
+  numberstyle=\tiny\color{codegray},
+  backgroundcolor=\color{backcolour},
+  showstringspaces=false,
+  tabsize=4
+}
 
 \author{Jorge F., Leonidas G., Giordano A.}
 
@@ -25,159 +38,147 @@
 \begin{document}
 
 \begin{frame}
-  \titlepage
+	\titlepage
 \end{frame}
 
 
 \section{Asymptotic analysis}
 
-\begin{frame}{Overview}
+\begin{frame}{Motivation}
 
-  \begin{itemize}
-    \item In 2019, Twitter users send more than 500,000 tweets every minute.
-    \item In 2019, 8.1 billion internet users.
-    \item In 2018, 2.375 billion monthly active users in Facebook.
-  \end{itemize}
+	\begin{itemize}
+		\item In 2019, Twitter users send more than 500,000 tweets every minute.
+		\item In 2019, 8.1 billion internet users.
+		\item In 2018, 2.375 billion monthly active users in Facebook.
+	\end{itemize}
 
-  How can we decide which algorithm is better?
+	\begin{center}
+		This numbers are increasing every day!
+		How can services and pages sustain this?
+		How can we compare different solutions?
+	\end{center}
 
-  \begin{center}
-    \includegraphics[width=0.23\linewidth]{../img/scalability}
+	\begin{center}
+		\includegraphics[width=0.23\linewidth]{../img/scalability}
 
-    \textbf{Scalability}
-  \end{center}
+		\textbf{Scalability}
+	\end{center}
 
 \end{frame}
 
+\begin{frame}{First Approach: Sampling \& Extrapolation}
 
-\begin{frame}{Definition}
-  A method of defining the mathematical boundation of the run-time performance or space usage of programs. With this, we can estimate the running time or space usage as function of the input size. Particularly, the order of growth in time o space of one algorithm according to input size.
+	\begin{itemize}
+		\item We can measure how long a program takes to run for different input sizes.
+		\item This will give us a function we can extrapolate.
+		\item Using this method we can experimentally compare different algorithms. 
+	\end{itemize}
 
-  Using the asymptotic analysis we can easily estimate:
-  \begin{itemize}
-    \item Average Case - $\Theta(n)$ Theta notation
-    \item Best Case - $\Omega(n)$ Omega notation
-    \item Worst Case - $O(n)$ Big oh notation
-  \end{itemize}
+	\begin{center}
+		Is there a better and simpler way to estimate the complexity of algorithms?
+	\end{center}
 \end{frame}
 
+\begin{frame}{Asymptotic Analysis - Definition}
+	A method for defining the mathematical boundaries of the run-time performance or space usage of programs as the input size increases. Useful for estimating the time and space complexity in function of the input size.
+
+	Using the asymptotic analysis we can easily estimate:
+	\begin{itemize}
+		\item Lower Bound - $\Omega(n)$ Omega notation
+		\item Upper Bound - $O(n)$ Big oh notation
+		\item \textit{Tight Bound} - $\Theta(n)$ Theta notation
+	\end{itemize}
+\end{frame}
 
 \begin{frame}{Big O Notation}
-  The formal way to express the upper bound of an algorithm running time.
-  
-  \begin{itemize}
-    \item Ommit lower terms.
-    \item Ommit multiplicative constants.
-    \item Start from a particular input size $(n_0)$
-    \item Sometimes the constant factors makes a considerable difference.
-  \end{itemize}
+	The formal way to express the upper bound of an algorithm running time.
+	
+	\begin{itemize}
+		\item Omit lower terms and coefficients.
+		\item $f(n) = O(g(n)) \rightarrow f(n) \leq kg(n)$ for $n > n_0$
+	\end{itemize}
 
-  \begin{center}
-    \includegraphics[width=.35\linewidth]{../img/bigO}
-  \end{center}
+	\begin{center}
+		\includegraphics[width=.35\linewidth]{../img/bigO}
+	\end{center}
 \end{frame}
-
 
 \begin{frame}{Space Usage vs Running Time}
 
-  There exists almost always a \textbf{trade-off} in an algorithm between used space and run-time performance. Sometimes, we need to save computed values for future actions in order to improve the running time.
+	There exists almost always a \textbf{trade-off} in an algorithm between space-usage, run-time performance and brain power. Sometimes, we need to save computed values for future actions in order to improve the running time.
 
-  \underline{Example}
+	\underline{Example}
 
-  Fibonnaci Algorithm
+	Fibonacci Algorithm
 
 \end{frame}
 
 \begin{frame}{Simplification examples}
 
-  \begin{itemize}
-    \item Drop lower terms.
-    \item Drop multiplicative constants.
-  \end{itemize}
+	Drop lower terms and multiplicative constants.
 
-  \begin{center}
+	\begin{center}
 
-  $n^3 + n^2 + 1$
+	$n^3 + n^2 + 1$
 
-  $log(n) + n^2 + 100$
+	$log(n) + n^2 + 100$
 
-  $0.001*n^3 + 1$
+	$0.001*n^3 + 1$
 
-  $ n*log(n) + n^2$
+	$ n*log(n) + n^2$
 
-  $ n*log(n) + n + 10^{100}$
+	$ n*log(n) + n + 10^{100}$
 
-  $ n*log(n) + 500*n + 10^{100}$
+	$ n*log(n) + 500*n + 10^{100}$
 
-  $ n*log(n) + n + 2^n$
+	$ n*log(n) + n + 2^n$
 
-  \end{center}
+	\end{center}
+
+	How do we define lower terms? 
 
 \end{frame}
 
 \begin{frame}[fragile]{Examples Linear Algorithm}
 
-  \begin{lstlisting}[language=C++]
-    int main(){
-      int ans=0;
-      for(int i=0;i<100;i++){
-        if(i%2==0)
-          ans+=i;
-      }
-      cout<<ans<<endl;
-      return 0;
-    }
-  \end{lstlisting}
+\begin{lstlisting}[language=C++]
+int main() {
+	int ans = 0;
+	for (int i = 0; i < 100; i++) {
+		if (i % 2 == 0)
+			ans += i;
+	}
+	cout << ans << endl;
+	return 0;
+}
+\end{lstlisting}
 
 \end{frame}
 
 \begin{frame}[fragile]{Examples Quadratic Algorithm}
 
-  \begin{lstlisting}[language=C++]
-    int main(){
-      int ans=0;
-      for(int i=0;i<100;i++){
-        for(int j=0;j<100;j++){
-          if(i*i==j)
-            ans+=i;
-          if(j-i==i)
-            ans-=i;
-        }
-      }
-      cout<<ans<<endl;
-      return 0;
-    }
-  \end{lstlisting}
+\begin{lstlisting}[language=C++]
+int main(){
+	int ans=0;
+	for (int i = 0; i < 100; i++){
+		for (int j = 0; j < 100; j++) {
+			if (i * i == j)
+				ans += i;
+			if (j - i == i)
+				ans -= i;
+		}
+	}
+	cout << ans << endl;
+	return 0;
+}
+\end{lstlisting}
 
 \end{frame}
 
 \begin{frame}{Examples of Time Complexity}
-  \begin{center}
-    \includegraphics[width=.85\linewidth]{../img/bigOchart}
-  \end{center}
-\end{frame}
-
-\iffalse
-\begin{frame}{Programming Languages}
-
-   \vspace{2mm}
-   \begin{centering}
-   \bgroup
-   \def\arraystretch{5}
-   \setlength\tabcolsep{35pt}.
-   \begin{tabular}{ c c }
-   \includegraphics[width=0.23\linewidth]{../img/java} &
-   \includegraphics[width=0.23\linewidth]{../img/python} \\
-   \includegraphics[width=0.23\linewidth]{../img/kotlin} &
-   \includegraphics[width=0.23\linewidth]{../img/cpp}
-   \end{tabular}
-   \egroup
-   \end{centering}
-
-\end{frame}
-\fi
-
-\begin{frame}{Announcements}
+	\begin{center}
+		\includegraphics[width=.85\linewidth]{../img/bigOchart}
+	\end{center}
 \end{frame}
 
 \end{document}

@@ -33,6 +33,9 @@ navbar:
         - text: Week 6
         - text: Contest UTEC-UNI I
           href: class-10.html
+        - text: Week 7
+        - text: Divide and Conquer I
+          href: class-11.html
 
   right:
     - text: "Daily Problem"

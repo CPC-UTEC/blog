@@ -59,6 +59,7 @@ These links can help you navigate through the material developed.
   + [Theory](./class-06.html)
   + [Contest](https://vjudge.net/contest/353470)
   + [Readings](./schedule.html#class-06)
+  + [Solutions](./class-06.html#contest)
 
 ### *Week 4*
 - [01-27-2020] - Class 07 - Complete Search IV

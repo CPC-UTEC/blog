@@ -73,11 +73,14 @@ These links can help you navigate through the material developed.
 
 ### *Week 5*
 - [02-03-2020] - Class 09 - Contest I
+  + [Theory](./class-09.html)
   + [Contest](https://vjudge.net/contest/355171)
   + [Upsolving](https://vjudge.net/contest/355256)
 
 ### *Week 6*
 - [02-10-2020] - Class 10 - Contest UTEC-UNI I
-  + [Contest](http://codeforces.com/contest/268759)
+  + [Theory](./class-10.html)
+  + [Contest](https://codeforces.com/group/qWRAoRrTOT/contest/268759)
+  + [Solutions](https://codeforces.com/group/qWRAoRrTOT/blog/entry/5475)
 
 The repository of this page can be found [here](https://github.com/CP-UTEC/Lessons).

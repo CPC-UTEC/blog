@@ -471,4 +471,417 @@ Recommended readings:
 
 You can find the contest [here](https://vjudge.net/contest/353470).
 
-The solutions will be uploaded after the contest.
+
+<!-- Begins problem A -->
+<div class="card" id="A">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">A: Brutality</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/1107/C" target="_blank">Brutality</a>
+
+The optimal strategy is to take equal consecutive elements and take
+the $k$ highest values. We can implement this idea with two
+pointers and sorting in $O(n \log n)$.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemA" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+#define all(X) begin(X), end(X)
+
+using namespace std;
+
+typedef long long ll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  ll n, k;
+  cin >> n >> k;
+  vector <ll> a(n);
+  for (int i = 0; i < n; i++) cin >> a[i];
+  string s;
+  cin >> s;
+  ll ans = 0;
+  for (int i = 0; i < n;) {
+    vector <ll> tmp;
+    tmp.push_back(a[i]);
+    int j = i + 1;
+    while (j < n and s[i] == s[j]) tmp.push_back(a[j]), j++;
+    sort(rbegin(tmp), rend(tmp));
+    int cnt = 0;
+    for (ll elem: tmp) {
+      if (cnt == k) break;
+      ans += elem;
+      cnt++;
+    }
+    i = j;
+  }
+  cout << ans << endl;
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+
+
+
+
+
+<!-- Begins problem B -->
+<div class="card" id="B">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">B: Fox and Snake</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/510/A" target="_blank">Fox and Snake</a>
+
+There is a pattern every four rows.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemB" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+     
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n, m;
+  cin >> n >> m;
+  for (int r = 0; r < n; r++) {
+    if (r % 4 == 0 or r % 4 == 2) {
+      cout << string(m, '#') << '\n';
+    } else if (r % 4 == 1) {
+      cout << string(m - 1, '.') + '#' << '\n';
+    } else {
+      cout << '#' + string(m - 1, '.') << '\n';
+    }
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+
+
+
+
+<!-- Begins problem C -->
+<div class="card" id="C">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">C: Counting Chaos</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2284" target="_blank">Counting Chaos</a>
+
+Just try all options.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemC" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+
+bool isPalindrome (int hh, int mm) {
+  int val = hh * 100 + mm;
+  string s = to_string(val);
+  string rs = s;
+  reverse(all(rs));
+  return s == rs;
+}
+
+int val (char ch) { return ch - '0'; }
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int tc;
+  cin >> tc;
+  while (tc--) {
+    string s;
+    cin >> s;
+    int hh = val(s[0]) * 10 + val(s[1]);
+    int mm = val(s[3]) * 10 + val(s[4]);
+    do {
+      mm++;
+      if (mm == 60) mm = 0, hh++;
+      if (hh == 24) hh = 0;
+    } while (!isPalindrome(hh, mm));
+    cout << setfill('0') << setw(2) << hh << ":";
+    cout << setfill('0') << setw(2) << mm << "\n";
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem C -->
+
+
+
+
+<!-- Begins problem D -->
+<div class="card" id="D">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">D: Mirror, Mirror</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemD" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2284" target="_blank">Mirror, Mirror</a>
+
+Just implement what the problem says. Be careful with the implementation.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemD" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+
+vector <string> rotate90 (const vector <string>& a) {
+  int n = sz(a);
+  vector <string> b = a;
+  for (int r = 0; r < n; r++) {
+    for (int c = 0; c < n; c++) {
+      b[c][n - 1 - r] = a[r][c];
+    }
+  }
+  return b;
+}
+
+vector <string> reflect (const vector <string>& a) {
+  int n = sz(a);
+  vector <string> b = a;
+  for (int r = 0; 2 * r < n; r++) {
+    swap(b[r], b[n - 1 - r]);
+  }
+  return b;
+}
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int tc = 0;
+  int n;
+  while (cin >> n) {
+    vector <string> a(n);
+    vector <string> b(n);
+    for (int r = 0; r < n; r++) cin >> a[r] >> b[r];
+    cout << "Pattern " << ++tc << " was ";
+    if (a == b) {
+      cout << "preserved.\n";
+      continue;
+    }
+    int rotate = 0;
+    vector <string> cur = a;
+    for (int i = 1; i < 4; i++) {
+      cur = rotate90(cur);
+      if (cur == b) {
+        rotate = 90 * i;
+        break;
+      }
+    }
+    if (rotate != 0) {
+      cout << "rotated " << rotate << " degrees.\n";
+      continue;
+    }
+    rotate = 0;
+    cur = reflect(a);
+    if (cur == b) {
+      cout << "reflected vertically.\n";
+      continue;
+    }
+    for (int i = 1; i < 4; i++) {
+      cur = rotate90(cur);
+      if (cur == b) {
+        rotate = 90 * i;
+        break;
+      }
+    }
+    if (rotate != 0) {
+      cout << "reflected vertically and rotated " << rotate << " degrees.\n";
+      continue;
+    }
+    cout << "improperly transformed.\n";
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem D -->
+
+
+
+
+<!-- Begins problem E -->
+<div class="card" id="E">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemE" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">E: Fractal</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemE" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="http://poj.org/problem?id=2083" target="_blank">Fractal</a>
+
+You can create a matrix filled with spaces, select a position and start doing
+the recursion to store the fractal in the matrix. The choice or the initial
+position and how to do the transition can be obtained by getting a pattern with the
+first values of $n$.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemE" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemE" class="collapse">
+
+```c++
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+vector <string> grid;
+int DR[] = {-1, -1, 1, 1, 0};
+int DC[] = {1, -1, 1, -1, 0};
+
+void print () {
+  for (int i = 0; i < grid.size(); i++) {
+    string& row = grid[i];
+    int j = row.size() - 1;
+    while (row[j] == ' ') row.erase(row.begin() + j);
+    cout << row << endl;
+  }
+  cout << '-' << endl;
+}
+
+void rec (int r, int c, int step) {
+  if (step == 0) {
+    grid[r][c] = 'X';
+    return;
+  }
+  for (int d = 0; d < 5; d++) {
+    rec(r + DR[d] * step, c + DC[d] * step, step / 3);
+  }
+}
+
+int main () {
+  int n;
+  while (cin >> n, n != -1) {
+    int gridSize = int(pow(3, n - 1));
+    grid = vector <string> (gridSize, string(gridSize, ' '));
+    int initial = (n == 1) ? 0 : gridSize / 3 + gridSize / 6; 
+    int step = gridSize / 3;
+    rec(initial, initial, step);
+    print();
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem E -->
+
+
+

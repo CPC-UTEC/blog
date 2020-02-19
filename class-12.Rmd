@@ -1,6 +1,6 @@
 ---
-title: "Class 11: Divide and Conquer I"
-date: "02-17-2020"
+title: "Class 12: Divide and Conquer II"
+date: "02-19-2020"
 ---
 
 ```{r setup, include=FALSE}
@@ -357,7 +357,57 @@ n)$, then the complexity of merge sort if $O(n \log n)$.
 
 <div class="topic">Inductive constructions</div>
 
-In process...
+In some mathematical induction proofs we use disjoint smalles cases of
+a problem to solve a larger one (usually doing some kind of constructions). For
+example:
+
+**Problem:** In a square grid of side length $2^n$, one unit square is blocked
+(represented by coloring it black). Your task is to cover the remaining $4^n
+- 1$ squares with *triominos*, L-shaped tiles consisting of three squares in
+  the following fashion. The triominos can be rotated by any multiple of $90$
+  degress. Moreover, the triominos may not overlap each other, nor cover
+  anything outside the grid. Given $1 \leq n \leq 8, 0 \leq x < 2^n \land
+  0 \leq y < 2^n$. The black square has coordinates $(x, y)$. Find a valid
+  tiling of the grid.
+
+These are the four valid rotations of a triomino.
+
+<div class="row text-center">
+![](./images/class-12/tiling1.png)
+</div>
+
+This is a possible tiling for $n = 2$.
+
+<div class="row text-center">
+![](./images/class-12/tiling2.png)
+</div>
+
+* The problem and images where taken from [Principles of Algorithmic Problem
+  Solving, secion 10.1 - page 170](https://www.csc.kth.se/~jsannemo/slask/main.pdf).
+
+First off all let's prove that there is always a valid tiling by induction:
+
+- If $n = 1$ no matter where that black square is, we can always fill the grid
+  with one rotation of a triomino.
+
+- If $n > 1$ we can divide the grid in four grids of size $2^{n - 1}$, we can
+  identify in which new grid the black square is and put a triomino in such
+  a way that it have 1 of its square in one different grid and is not in the
+  grid where the black square is. Then, we have to solve the same problem in
+  four smaller instances, but by the inductive hyphotesis we have already the
+  answer for them. This construction idea can be seen in this image:
+
+
+  <div class="row text-center"> 
+    ![](./images/class-12/triomino.png)
+  </div>
+
+And we can use the construction used in the above prove to implement a solution
+like this:
+
+```c++
+TO DO
+```
 
 Recommended readings:
 

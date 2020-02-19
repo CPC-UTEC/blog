@@ -11,7 +11,7 @@
 
 
 
-<title>Class 11: Divide and Conquer I</title>
+<title>Class 12: Divide and Conquer II</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
@@ -347,8 +347,8 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Class 11: Divide and Conquer I</h1>
-<h4 class="date">02-17-2020</h4>
+<h1 class="title toc-ignore">Class 12: Divide and Conquer II</h1>
+<h4 class="date">02-19-2020</h4>
 
 </div>
 
@@ -621,7 +621,29 @@ vector &lt;int&gt; merge_sort (const vector &lt;int&gt;&amp; a) {
 <div class="topic">
 Inductive constructions
 </div>
-<p>In process…</p>
+<p>In some mathematical induction proofs we use disjoint smalles cases of a problem to solve a larger one (usually doing some kind of constructions). For example:</p>
+<p><strong>Problem:</strong> In a square grid of side length <span class="math inline">\(2^n\)</span>, one unit square is blocked (represented by coloring it black). Your task is to cover the remaining <span class="math inline">\(4^n - 1\)</span> squares with <em>triominos</em>, L-shaped tiles consisting of three squares in the following fashion. The triominos can be rotated by any multiple of <span class="math inline">\(90\)</span> degress. Moreover, the triominos may not overlap each other, nor cover anything outside the grid. Given <span class="math inline">\(1 \leq n \leq 8, 0 \leq x &lt; 2^n \land  0 \leq y &lt; 2^n\)</span>. The black square has coordinates <span class="math inline">\((x, y)\)</span>. Find a valid tiling of the grid.</p>
+<p>These are the four valid rotations of a triomino.</p>
+<div class="row text-center">
+<p><img src="images/class-12/tiling1.png" /></p>
+</div>
+<p>This is a possible tiling for <span class="math inline">\(n = 2\)</span>.</p>
+<div class="row text-center">
+<p><img src="images/class-12/tiling2.png" /></p>
+</div>
+<ul>
+<li>The problem and images where taken from <a href="https://www.csc.kth.se/~jsannemo/slask/main.pdf">Principles of Algorithmic Problem Solving, secion 10.1 - page 170</a>.</li>
+</ul>
+<p>First off all let’s prove that there is always a valid tiling by induction:</p>
+<ul>
+<li><p>If <span class="math inline">\(n = 1\)</span> no matter where that black square is, we can always fill the grid with one rotation of a triomino.</p></li>
+<li><p>If <span class="math inline">\(n &gt; 1\)</span> we can divide the grid in four grids of size <span class="math inline">\(2^{n - 1}\)</span>, we can identify in which new grid the black square is and put a triomino in such a way that it have 1 of its square in one different grid and is not in the grid where the black square is. Then, we have to solve the same problem in four smaller instances, but by the inductive hyphotesis we have already the answer for them. This construction idea can be seen in this image:</p>
+<div class="row text-center">
+<p><img src="images/class-12/triomino.png" /></p>
+</div></li>
+</ul>
+<p>And we can use the construction used in the above prove to implement a solution like this:</p>
+<pre class="cpp"><code>TO DO</code></pre>
 <p>Recommended readings:</p>
 <ul>
 <li><a href="https://www.csc.kth.se/~jsannemo/slask/main.pdf">Principles of Algorithmic Problem Solving, section 10.1 and 10.2</a></li>

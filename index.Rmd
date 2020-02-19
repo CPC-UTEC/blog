@@ -89,4 +89,8 @@ These links can help you navigate through the material developed.
   + [Theory](./class-11.html)
   + [Contest](https://vjudge.net/contest/357719)
 
+- [02-19-2020] - Class 12 - Divide and Conquer II
+  + [Theory](./class-12.html)
+  + [Contest](https://vjudge.net/contest/357719)
+
 The repository of this page can be found [here](https://github.com/CP-UTEC/Lessons).

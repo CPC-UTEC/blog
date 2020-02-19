@@ -36,6 +36,8 @@ navbar:
         - text: Week 7
         - text: Divide and Conquer I
           href: class-11.html
+        - text: Divide and Conquer II
+          href: class-12.html
 
   right:
     - text: "Daily Problem"

@@ -60,7 +60,7 @@ title: "Schedule"
  
 * <div id="class-04">[**Class 4: Complete Search I**](./class-04.html)</div>
   **Topics**
-  + Problem Solving Paradigms
+  + Problem solving paradigms
   + Pythagorean triples
   + Primality Test
   + Sieve of Eratosthenes

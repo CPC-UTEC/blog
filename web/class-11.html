@@ -325,6 +325,9 @@ $(document).ready(function () {
     <li>
       <a href="class-11.html">Divide and Conquer I</a>
     </li>
+    <li>
+      <a href="class-12.html">Divide and Conquer II</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -345,7 +348,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Class 11: Divide and Conquer I</h1>
-<h4 class="date">02-12-2020</h4>
+<h4 class="date">02-17-2020</h4>
 
 </div>
 
@@ -354,77 +357,91 @@ $(document).ready(function () {
 <p>“Binary like Yin &amp; Yang”</p>
 </blockquote>
 <div class="topic">
-The Divide and Conquer Paradigm
+The divide and conquer paradigm
 </div>
-<p>The main idea of <em>Divide and Conquer</em> is that we can tackle a big problem by solving smaller sub-problems and then merging this solutions together to get an answer. The genius part about all of this is that if we can find sub-problems that are similar to the original problem, then we can also use divide and conquer to solve the smaller problems.</p>
+<p>The main idea of <em>Divide and Conquer</em> is that we can tackle a big problem by solving smaller sub-problems and then merging these solutions together to get an answer. The interesting part is that if we can find disjoint sub-problems that are similar to the original problem, then we may use divide and conquer to solve the smaller problems.</p>
 <p>There are usually three steps in divide and conquer:</p>
 <ul>
 <li>Divide: Forming the sub-problems.</li>
 <li>Conquer: Solving each sub-problem.</li>
-<li>Merge: Using the solutions to sub-problems to solve the original problem.</li>
+<li>Merge: Using the solutions of the sub-problems to solve the original problem.</li>
 </ul>
 <p>Today we will learn about one of the most popular Divide and Conquer algorithms: <strong>Binary Search</strong>.</p>
 <div class="topic">
-Motivation
+Binary search
 </div>
+<div id="motivation" class="section level3">
+<h3>Motivation</h3>
 <p>Let’s say that you need to find the position of a value in an array. <strong>How would you do it?</strong></p>
-<p>The most intuitive way of approaching this problem is to go through all elements in an array and check if it is the one you are looking for.</p>
+<p>The most intuitive way of approaching this problem is to go through all elements in the array and check if it is the one you are looking for.</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
 using namespace std;
+
 int main () {
   int num = 10;
-  int x=20;
-  int arr[]={2,4,6,7,8,10,20,4034,4535,5635435,577436536};
-  for (int i = 0; i &lt; 10; i++) {
+  int x = 20;
+  vector &lt;int&gt; arr = {
+    2, 4, 6, 7, 8, 10, 20, 4034, 4535, 5635435, 577436536
+  };
+  bool found = false;
+  for (int i = 0; i &lt; arr.size(); i++) {
     if (arr[i] == x) {
-      cout &lt;&lt; i+1 &lt;&lt; endl;
+      cout &lt;&lt; i + 1 &lt;&lt; endl;
+      found = true;
       break;
     }
   }
-  if (i==10) {
-    cout&lt;&lt;x&lt;&lt;&quot; is not in the array&quot;&lt;&lt;endl;
+  if (not found) {
+    cout &lt;&lt; x &lt;&lt; &quot; is not in the array&quot; &lt;&lt; &#39;\n&#39;;
   }
-    
   return (0);
 }</code></pre>
 <p>It is very simple to see that this approach has a complexity of <span class="math inline">\(O(n)\)</span>. In general, this complexity is pretty good, however looking for a specific element in an array is a basic operation that usually needs to be done more than once. What happens if we do this linear search thousands of times? How many times can we do it without exceeding the time limit? <strong>Is there a better way?</strong></p>
-<div class="topic">
-Binary Search
 </div>
-<p>There is a better way and it’s called <em>Binary Search</em>. This is one of the most basic and powerful concepts, as it can be used in thousands of algorithms to boost up the performance significantly. Most importantly, as we will see, its uses go beyond searching for an element in an array. The only condition that needs to hold for binary search to work is that the array (or our search domain) must be sorted.</p>
+<div id="binary-search" class="section level3">
+<h3>Binary search</h3>
+<p>There is a better way and it’s called <em>Binary Search</em>. This is one of the most basic and powerful concepts. It can be used in thousands of algorithms to boost up the performance significantly. Most importantly, as we will see, its uses go beyond searching for an element in an array. The only condition that needs to hold for binary search to work is that the array (or our search domain) must be sorted.</p>
 <ul>
 <li><strong>Divide:</strong> We can compare our value to the element in the middle of the array. As the array is sorted this will tell us if the element is to the right or the left of the middle.</li>
 <li><strong>Conquer:</strong> We can now search for the element in the corresponding half of the array.</li>
 <li><strong>Merge:</strong> If we find the element in its corresponding half we have also found it in the array.</li>
 </ul>
-<p>First Approach</p>
+<div id="first-approach" class="section level4">
+<h4>First approach</h4>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
 using namespace std;
-int binary_search(int *seq,int size, int x){
+
+int binary_search (int* seq, int size, int x) {
   int left = 0;
   right = size - 1;
   while (left &lt;= right) {
-    int med = left + (right-left) / 2;
+    int med = left + (right - left) / 2;
     if (arr[med] == x) {
-      return seq;
-    }
-    else if (arr[med] &gt; x) {
+      return med;
+      }
+      else if (arr[med] &gt; x) {
       right = med - 1;
-    }
+      }
     else {
-      left = med+1;
-    }
+      left = med + 1;
+      }
   }
   return -1;
 }</code></pre>
 <p>Now, what happen if there exists many equal values in the array. What position does the binary method return?</p>
-<pre class="cpp"><code>  int arr[] = {2,4,6,7,8,10,10,10,20,4034,4535,5635435,577436536};</code></pre>
-<p>In this cases we need more information in order to determine what value we must return. Even though in many problems it doesn’t matter which we pick, in many others it will. For that cases, we are going to work with lower and upper bound.</p>
-<p><strong>Lower Bound</strong></p>
+<pre class="cpp"><code>int arr[] = {
+  2, 4, 6, 7, 8, 10, 10, 10, 20, 4034, 4535, 5635435, 577436536
+};</code></pre>
+<p>In this cases we need more information in order to determine what value we must return. Even though in many problems it doesn’t matter which we pick, in many others it will. For that cases, we are going to work with what is called lower and upper bound.</p>
+<div class"topic">Lower bound</div>
 <p>The <em>lower bound</em> is the first element that does not compare less than the value we are looking for. In simpler words, is the first occurrence of the search value. The following is a possible implementation of lower bound, however, <code>std::lower_bound</code> can simplify things for us.</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
 using namespace std;,
-int binary_search(int *arr, int size, int x) {
+
+int binary_search (int* arr, int size, int x) {
   int left = 0;
   int right = size - 1;
   int pos = -1;
@@ -435,18 +452,21 @@ int binary_search(int *arr, int size, int x) {
     }
     if (arr[med] &gt;= x) {
       right = med;
-    }
-    else {
+      } else {
       left = med + 1;
-    }
+      }
   }
   return pos;
 }</code></pre>
-<p><strong>Upper Bound</strong></p>
+<div class="topic">
+Upper bound
+</div>
 <p>This is the last element that compares less than or equal to our value. Similarly, it can be found using the following algorithm:</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
 using namespace std;
-int binary_search(int *arr, int size, int x){
+
+int binary_search (int* arr, int size, int x) {
   int left = 0;
   int right = size - 1;
   int pos = -1;
@@ -457,29 +477,38 @@ int binary_search(int *arr, int size, int x){
     }
     if (arr[med] &gt;= x) {
       right = med - 1;
-    }
-    else {
+    } else {
       left = med;
-    }
+      }
   }
   return pos;
 }</code></pre>
+<p>You may find useful to search - <a href="http://www.cplusplus.com/reference/algorithm/lower_bound/">lower_bound as a function</a> - <a href="http://www.cplusplus.com/reference/algorithm/upper_bound/">upper_bound as a function</a> - <a href="http://www.cplusplus.com/reference/set/set/lower_bound/">lower_bound as a method</a> - <a href="http://www.cplusplus.com/reference/set/set/upper_bound/">upper_bound as a method</a></p>
 <div class="topic">
-Away form Arrays
+Binary aearch on the answer
 </div>
 <p>As it was mentioned before, binary search is not only useful for finding values in an array, but it also has other uses. In this section we will explore some of these.</p>
-<div id="solving-an-equation" class="section level2">
-<h2>Solving an Equation</h2>
-<p>Let’s say we want to solve the equation: <span class="math inline">\(f(x) = ax^3 + bx^2 + cx + d = e\)</span>, where <span class="math inline">\(a, b, c, d, e &gt; 0\)</span>. The answer must be right to 4 decimal places. How can we do this efficiently? We can use binary search to solve this in <span class="math inline">\(O(logn)\)</span> time. The key idea is to realize that <span class="math inline">\(f\)</span> is a increasing function, and therefore <span class="math inline">\(x_a \leq x_b \rightarrow f(x_a) \leq f(x_b)\)</span>. Therefore we can run a binary search in <span class="math inline">\(x\)</span> in order to find the answer. However our binary search will be slightly different, as now we don’t need to find a precise answer, but one with a precision of 4 decimal places. This means that we want to find an x such that <span class="math inline">\(|e - f(x)| &gt; 0.0001\)</span>.</p>
 </div>
-<div id="searching-for-the-answer" class="section level2">
-<h2>Searching for the Answer</h2>
-<p>Let’s consider the following problem: <a href="https://onlinejudge.org/external/120/12032.pdf" class="uri">https://onlinejudge.org/external/120/12032.pdf</a></p>
+</div>
+<div id="solving-an-equation" class="section level3">
+<h3>Solving an equation</h3>
+<p>Let’s say we want to solve the equation: <span class="math inline">\(f(x) = ax^3 + bx^2 + cx + d = e\)</span>, where <span class="math inline">\(a, b, c, d, e &gt; 0\)</span>. The answer must be right to 4 decimal places. How can we do this efficiently? We can use binary search to solve this in <span class="math inline">\(O(logn)\)</span> time. The key idea is to realize that <span class="math inline">\(f\)</span> is a increasing function, and therefore <span class="math inline">\(x_a \leq x_b \rightarrow f(x_a) \leq f(x_b)\)</span>. Therefore we can run a binary search in <span class="math inline">\(x\)</span> in order to find the answer. However our binary search will be slightly different as now we don’t need to find a precise answer, but one with a precision of 4 decimal places. This means that we want to find an x such that <span class="math inline">\(|e - f(x)| &lt; 0.0001\)</span>.</p>
+</div>
+<div id="searching-for-the-answer" class="section level3">
+<h3>Searching for the Answer</h3>
+<p>Let’s consider <a href="https://onlinejudge.org/external/120/12032.pdf">this problem</a>.</p>
 <ul>
 <li>What would be the brute force approach?</li>
 <li>How can we improve this basic solution?</li>
 </ul>
-<p>The key thing is to realize that if we can reach the top with some an initial strength <span class="math inline">\(k_0\)</span>, then any initial strength <span class="math inline">\(k, k &gt; k_0\)</span> can also reach the top. Therefore we can use binary search to look for the minimum value of <span class="math inline">\(k\)</span> that reaches the top from 1 to <span class="math inline">\(r + 1\)</span>. As we can determine for a given <span class="math inline">\(k\)</span> if it is possible to reach the top, then this solution would have a complexity of <span class="math inline">\(O(nlog(r + 1))\)</span>.</p>
+<p>The key thing is to realize that if we can reach the top with some an initial strength <span class="math inline">\(k_0\)</span>, then any initial strength <span class="math inline">\(k, k &gt; k_0\)</span> can also reach the top. Therefore we can use binary search to look for the minimum value of <span class="math inline">\(k\)</span> that reaches the top from 1 to <span class="math inline">\(r + 1\)</span>. As we can determine for a given <span class="math inline">\(k\)</span> if it is possible to reach the top, then this solution would have a complexity of <span class="math inline">\(O(n \log(r))\)</span>.</p>
+<p>Recommended readings:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=GU7DpgHINWQ">Errichto - Binary search lecture (C++ and Python)</a></li>
+<li><a href="https://www.topcoder.com/community/competitive-programming/tutorials/binary-search/">Topcoder - Binary search</a></li>
+<li><a href="https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf">Competitive Programmer’s Handbook, chapter 3</a></li>
+<li><a href="https://www.csc.kth.se/~jsannemo/slask/main.pdf">Principles of Algorithmic Problem Solving, section 10.3</a></li>
+</ul>
 <div id="contest" class="topic">
 Contest
 </div>

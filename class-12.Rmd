@@ -152,6 +152,10 @@ int main () {
 In these examples we have defined $\mathbb{D} \subset \mathbb{Z}$ but we may
 have, for example, $\mathbb{D} \subset \mathbb{R}$.
 
+Moreover, if you have problems determining how to compute $m$, always think of
+what do you want to do when $l + 1 = r$. You want that $m = l \lor m = r$ and
+then you will find if you need to compute $m = (l + r) / 2$ or $l = (l + r + 1) / 2$ and how to update $l, r$.
+
 <div class="topic">Ternary search</div>
 
 Let $f(x)$ be a unimodal function in $[l, r]$, that is, it hols
@@ -312,6 +316,44 @@ vector <int> merge_sort (const vector <int>& a) {
 ```
 [Full code](./code/class-12/merge-sort.cpp)
 
+And we can also implement merge sort in a simple way using the STL in this way:
+
+```c++
+vector <int> merge_sort (const vector <int>& a) {
+  if (a.size() <= 1) return a;
+  int m = a.size() / 2;
+  vector <int> left(begin(a), begin(a) + m);
+  vector <int> right(begin(a) + m, end(a));
+  vector <int> x = merge_sort(left);
+  vector <int> y = merge_sort(right);
+  vector <int> ret;
+  std::merge(begin(x), end(x),
+             begin(y), end(y),
+             std::back_inserter(ret));
+  return ret;
+};
+```
+
+[Full code](./code/class-12/merge-sort-stl.cpp)
+
+Now, in order to get the complexity of this algorithm notice that
+
+- We need to run $2^0$ merge function in $O(n / 2^0)$
+- We need to run $2^1$ merge functions in $O(n / 2^1)$
+- We need to run $2^2$ merge functions in $O(n / 2^2)$
+- We need to run $2^4$ merge functions in $O(n / 2^3)$
+...
+- We need to run $2^{\log n}$ merge functions in $O(n / 2^{\log n})$
+
+We can see it in this way:
+
+<div class="row text-center">
+![](./images/class-12/merge-sort.png)
+</div>
+
+So, basically, the number of operations that merge sort does (i.e its
+complexity) is the area of a rectangle with width $O(n)$ and height $O(\log
+n)$, then the complexity of merge sort if $O(n \log n)$.
 
 <div class="topic">Inductive constructions</div>
 

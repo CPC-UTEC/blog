@@ -465,6 +465,7 @@ int main () {
   return (0);
 }</code></pre>
 <p>In these examples we have defined <span class="math inline">\(\mathbb{D} \subset \mathbb{Z}\)</span> but we may have, for example, <span class="math inline">\(\mathbb{D} \subset \mathbb{R}\)</span>.</p>
+<p>Moreover, if you have problems determining how to compute <span class="math inline">\(m\)</span>, always think of what do you want to do when <span class="math inline">\(l + 1 = r\)</span>. You want that <span class="math inline">\(m = l \lor m = r\)</span> and then you will find if you need to compute <span class="math inline">\(m = (l + r) / 2\)</span> or <span class="math inline">\(l = (l + r + 1) / 2\)</span> and how to update <span class="math inline">\(l, r\)</span>.</p>
 <div class="topic">
 Ternary search
 </div>
@@ -589,6 +590,34 @@ vector &lt;int&gt; merge_sort (const vector &lt;int&gt;&amp; a) {
 };
 ...</code></pre>
 <p><a href="./code/class-12/merge-sort.cpp">Full code</a></p>
+<p>And we can also implement merge sort in a simple way using the STL in this way:</p>
+<pre class="cpp"><code>vector &lt;int&gt; merge_sort (const vector &lt;int&gt;&amp; a) {
+  if (a.size() &lt;= 1) return a;
+  int m = a.size() / 2;
+  vector &lt;int&gt; left(begin(a), begin(a) + m);
+  vector &lt;int&gt; right(begin(a) + m, end(a));
+  vector &lt;int&gt; x = merge_sort(left);
+  vector &lt;int&gt; y = merge_sort(right);
+  vector &lt;int&gt; ret;
+  std::merge(begin(x), end(x),
+             begin(y), end(y),
+             std::back_inserter(ret));
+  return ret;
+};</code></pre>
+<p><a href="./code/class-12/merge-sort-stl.cpp">Full code</a></p>
+<p>Now, in order to get the complexity of this algorithm notice that</p>
+<ul>
+<li>We need to run <span class="math inline">\(2^0\)</span> merge function in <span class="math inline">\(O(n / 2^0)\)</span></li>
+<li>We need to run <span class="math inline">\(2^1\)</span> merge functions in <span class="math inline">\(O(n / 2^1)\)</span></li>
+<li>We need to run <span class="math inline">\(2^2\)</span> merge functions in <span class="math inline">\(O(n / 2^2)\)</span></li>
+<li>We need to run <span class="math inline">\(2^4\)</span> merge functions in <span class="math inline">\(O(n / 2^3)\)</span> …</li>
+<li>We need to run <span class="math inline">\(2^{\log n}\)</span> merge functions in <span class="math inline">\(O(n / 2^{\log n})\)</span></li>
+</ul>
+<p>We can see it in this way:</p>
+<div class="row text-center">
+<p><img src="images/class-12/merge-sort.png" /></p>
+</div>
+<p>So, basically, the number of operations that merge sort does (i.e its complexity) is the area of a rectangle with width <span class="math inline">\(O(n)\)</span> and height <span class="math inline">\(O(\log n)\)</span>, then the complexity of merge sort if <span class="math inline">\(O(n \log n)\)</span>.</p>
 <div class="topic">
 Inductive constructions
 </div>

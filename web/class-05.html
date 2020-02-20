@@ -319,7 +319,7 @@ $(document).ready(function () {
     </li>
     <li class="dropdown-header">Week 6</li>
     <li>
-      <a href="class-10.html">Contest UTEC-UNI I</a>
+      <a href="class-10.html">Contest UTEC-UNI-UPC I</a>
     </li>
     <li class="dropdown-header">Week 7</li>
     <li>
@@ -367,12 +367,12 @@ $(document).ready(function () {
 Fixing variables
 </div>
 <p>There are some kind of problems when you have some equations on <span class="math inline">\(m\)</span> variables. Its usually a good idea to first try a brute force approach. Find the range of each of the variables, do a loop for each of them, then inside each loop you have the value of that variable fixed, now it is a constant. Moreover, when you have fixed <span class="math inline">\(m - 1\)</span> of these variables its usually easy to compute what value the last variable should be. Evenmore, you have already solve one problem of this kind: <a href="./class-04.html#problemA">Simple equations</a>.</p>
-<p>Now, let try to solve <a href="https://codeforces.com/contest/44/problem/B">this problem</a></p>
+<p>Now, let try to solve <a href="https://codeforces.com/contest/44/problem/B">this problem</a>.</p>
 <p><strong>Problem:</strong> You will receive <span class="math inline">\(n, a, b, c\)</span> . You must find</p>
 <p><span class="math display">\[|\{(x, y, z) \mid 0 \leq x \leq a \land 0 \leq y \leq b \land 0 \leq z \leq
 c \land \frac{x}{2} + y + 2 z = n \}|\]</span></p>
 <p><span class="math display">\[1 \leq n \leq 10^4\]</span> <span class="math display">\[0 \leq a, b, c \leq 5000\]</span></p>
-<p>Its easy to identify that the variables of the problem are <span class="math inline">\(x, y, z\)</span> and if we fix two of these variable we can get the third one from the equation, so a brute force solution with two loops can solve the problem. Now, in order to choose what variables to fix, always prefer working with integers (you’ll understand better the reason of this in next classes), so we’ll fix <span class="math inline">\(y, z\)</span> in <span class="math inline">\(O(b * c)\)</span>.</p>
+<p>Its easy to identify that the variables of the problem are <span class="math inline">\(x, y, z\)</span> and if we fix two of these variable we can get the third one from the equation, so a brute force solution with two loops can solve the problem. Now, in order to choose what variables to fix, always prefer working with integers (you’ll understand better the reason of this in next classes), so we’ll fix <span class="math inline">\(y, z\)</span> in <span class="math inline">\(O(b \cdot c)\)</span>.</p>
 <!-- Begins problem example01 -->
 <div id="example01" class="card">
 <!-- begin code -->
@@ -428,11 +428,11 @@ int main () {
 <div class="topic">
 Simulation with brute force
 </div>
-<p>These kind of problem usually describes a pattern, recurence formula or situation that you can compute easily.</p>
+<p>These kind of problems usually describes a pattern, recurrence formula or situation that you can compute easily.</p>
 <p>For example, let’s begin solving <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=24&amp;page=show_problem&amp;problem=384">this problem</a>.</p>
 <p><strong>Problem:</strong> A <em>humble number</em> is a number whose only prime factors are <span class="math inline">\(2, 3, 5, 7\)</span>. You will receive a number <span class="math inline">\(n\)</span> and you should output the n-th humble number.</p>
 <p><span class="math display">\[1 \leq n \leq 5842\]</span></p>
-<p>We need to compute <span class="math inline">\(S = \{2^i \cdot 3 ^j \cdot 5^k \cdot 7 ^l, \quad 0 \leq i, j, k, l \}\)</span>. Let’s say the maximum value we will compute is <span class="math inline">\(L\)</span>, then <span class="math inline">\(i, j, k, l = O(\log L)\)</span>. So, if we fix <span class="math inline">\(L\)</span> we can compute the elements of <span class="math inline">\(S\)</span> that are less than <span class="math inline">\(L\)</span> in <span class="math inline">\(O(\log^4(L))\)</span>. We can try different values of <span class="math inline">\(L\)</span> until we get more numbers than the maximum <span class="math inline">\(n\)</span> in the input (take care of overflow).</p>
+<p>We need to compute <span class="math inline">\(S = \{2^i \cdot 3 ^j \cdot 5^k \cdot 7 ^l, \quad 0 \leq i, j, k, l \}\)</span>. Let’s say the maximum value we will compute is <span class="math inline">\(L\)</span>, then <span class="math inline">\(i, j, k, l = O(\log L)\)</span>. So, if we fix <span class="math inline">\(L\)</span> we can compute the elements of <span class="math inline">\(S\)</span> that are less than <span class="math inline">\(L\)</span> in <span class="math inline">\(O(\log^4 L)\)</span>. We can try different values of <span class="math inline">\(L\)</span> until we get more numbers than the maximum <span class="math inline">\(n\)</span> in the input (take care of overflow).</p>
 <!-- Begins problem example02 -->
 <div id="example02" class="card">
 <!-- begin code -->
@@ -484,6 +484,7 @@ int main () {
 <p><!-- ends code --></p>
 </div>
 <!-- ends problem example02 -->
+<p>Notice, for example, how <span class="math inline">\(two \cdot three \geq L\)</span> may produce overflow but <span class="math inline">\(two \geq \frac{L}{three}\)</span> will not.</p>
 <p>You can practice with these problems:</p>
 <ul>
 <li><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=24&amp;page=show_problem&amp;problem=976">Primary Arithmetic</a></li>
@@ -502,8 +503,8 @@ Weak constraints
 <p>Where <span class="math inline">\(f(x) =\)</span> sum of digits of <span class="math inline">\(x\)</span>.</p>
 <p><span class="math display">\[1 \leq n, s \leq 10^{18}\]</span></p>
 <p>At first glance, the problem looks difficult, yet we have</p>
-<p><span class="math display">\[0 \leq f(x) \leq 9 * 18\]</span> <span class="math display">\[\to x - 9 * 18 \leq x - f(x) \leq 9 * 18\]</span></p>
-<p>So, we just need to search the answer in <span class="math inline">\([s, s + 9 * 18]\)</span>. What happen with a number greater than <span class="math inline">\(s + 9 * 18\)</span> ?</p>
+<p><span class="math display">\[0 \leq f(x) \leq 9 \cdot 18\]</span> <span class="math display">\[\to x - 9 \cdot 18 \leq x - f(x) \leq 9 \cdot 18\]</span></p>
+<p>So, we just need to search the answer in <span class="math inline">\([s, s + 9 \cdot 18]\)</span>. What happen with a number greater than <span class="math inline">\(s + 9 \cdot 18\)</span> ?</p>
 <!-- Begins problem example03 -->
 <div id="example03" class="card">
 <!-- begin code -->
@@ -554,14 +555,10 @@ Case analysis
 <p>A first idea would be to fix <span class="math inline">\(i, j\)</span> with two loops and check if the condition holds. This solution is <span class="math inline">\(O(n^3)\)</span>, so it will give us a Time Limit Exceed veredict. We need something better.</p>
 <p>Let’s analye by cases on the number of different elements.</p>
 <ul>
-<li>Case 1: All the elements are equals</li>
-</ul>
-<p>Then, the answer is -1.</p>
-<ul>
-<li>Case 2: There are more than 2 different elements.</li>
-</ul>
-<p>You can take three of these elements and you will find and answer with them (can you prove it?).</p>
-<ul>
+<li><p>Case 1: All the elements are equals</p>
+<p>Then, the answer is -1.</p></li>
+<li><p>Case 2: There are more than 2 different elements.</p>
+<p>You can take three of these elements and you will find and answer with them (can you prove it?).</p></li>
 <li><p>Case 3: There are exactly 2 different elements.</p>
 <p>Let’s fix <span class="math inline">\(x = a_i\)</span> and <span class="math inline">\(y = a_j\)</span>.</p>
 <ul>
@@ -987,7 +984,7 @@ D: Classroom Watch
 <h3><a href="https://codeforces.com/problemset/problem/876/C" target="_blank">Classroom Watch</a></h3>
 <p>Let <span class="math inline">\(f(x) =\)</span> sum of digits of <span class="math inline">\(x\)</span>.</p>
 <p>For the constraints of the problem we have that <span class="math inline">\(0 \leq f(x) \leq 9 \cdot 9\)</span>. Then, we have:</p>
-<p><span class="math display">\[\max(0, n - 9 * 9) \leq x \leq n\]</span></p>
+<p><span class="math display">\[\max(0, n - 9 \cdot 9) \leq x \leq n\]</span></p>
 <p>So, our search space is very small, we can just try a brute force approach on this interval.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-D" aria-expanded="false" aria-controls="collapseTwo">

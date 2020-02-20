@@ -19,7 +19,7 @@ paradigms commonly used in programming contests are:
 </div>
 
 Complete search is a general method that can be used to solve almost any
-algorithm problem. It basically try to generate all possible solutions to
+algorithm problem. It basically try to generate all possible solutions of
 a problem in order to do something with them (count number of elements, find
 a particular solution with one property, etc).
 
@@ -95,7 +95,7 @@ int solution2 (int n) {
 If $(x, y, z)$ is a pythagorean triple, then $(kx, ky, kz), k \in \mathbb{N}$ is also a pythagorean triple.
 
 So, if we find $(x, y, z) \mid gcd(x, y, z) = 1$, then the number of triples
-$(kx, ky, kz) \mid 1 \leq kx, ky, kz \leq n$ is $\min(\lfloor n / x \rfloor, \lfloor n / y \rfloor, \lfloor n / z \rfloor )$.
+$(kx, ky, kz) : 1 \leq kx, ky, kz \leq n$ is $\min(\lfloor n / x \rfloor, \lfloor n / y \rfloor, \lfloor n / z \rfloor )$.
 
 If $(x, y, z)$ is a pythagorean triple and $gcd(x, y, z) = 1$, then $(x, y, z)$
 is called a primite pythagorean triple.
@@ -105,13 +105,15 @@ pythagorean triple can be represented by a pair $(a, b) \mid 0 < b < a \land
 gcd(a, b) = 1 \land a$ and $b$ are not both odds in the following way:
 
 $$x = a^2 - b^2$$
-$$y = 2 * a * b$$
-$$z = a * a + b * b$$
+$$y = 2 \cdot a \cdot b$$
+$$z = a \cdot a + b \cdot b$$
+
+(Notice that we can build a right triangle with $x, y, z$).
 
 Moreover, we have:
-$$a * a \leq a * a + b * b \leq z \leq n$$
+$$a \cdot a \leq a \cdot a + b \cdot b \leq z \leq n$$
 
-Then, a can just take values in $[0, \sqrt{n}]$. So we can generate primites $(x, y, z) \land (y, x, z)$ and count how many of
+Then, `a` can just take values in $[0, \sqrt{n}]$. So we can generate primites $(x, y, z) \land (y, x, z)$ and count how many of
 their multiples hold the condition of the problem in $O((\sqrt{n}) \cdot \sqrt{n} \cdot \log n) = O(n \log n)$.
 
 **Note:**
@@ -160,12 +162,12 @@ bool isPrime1 (int n) {
 
 
 #### Second solution
-We notice that if $d | n \to (n / d) | n$. Moreover: 
-$$\text{If } d \not = \sqrt{n} \to (d < \sqrt{n} < (n / d)) \lor ((n / d) < \sqrt{n} < d)$$
+We notice that if $d | n \to \frac{n}{d} | n$. Moreover: 
+$$\text{If } d \not = \sqrt{n} \to (d < \sqrt{n} < \frac{n}{d}) \lor (\frac{n}{d} < \sqrt{n} < d)$$
 
-So we can assume $d < (n / d)$ iterate for every $d < \sqrt{n}$ and if $d | n$
-count two more divisors ($d, n / d$) and handle the special case $d
-= \sqrt{n}$. In this way we can count the number of divisors of $n$ and check if a number if prime in $O(\sqrt{n})$.
+So we can assume $d < \frac{n}{d}$ iterate for every $d < \sqrt{n}$ and if $d | n$
+count two more divisors ($d, \frac{n}{d}$) and handle the special case $d
+= \sqrt{n}$. In this way we can count the number of divisors of $n$ and check if a number is prime in $O(\sqrt{n})$.
 
 ```c++
 bool isPrime2 (int n) {
@@ -185,11 +187,11 @@ bool isPrime2 (int n) {
 <div class="topic">Sieve of Eratosthenes</div>
 
 We want to solve the same problem of the previous section but now we want to
-be able to handle multiples queries in a optimal way. Then, we want to store
-an array where we can get wheter or not a number is prime.
+be able to handle multiples queries in an optimal way. Then, we want to store
+an array where we can get whether or not a number is prime.
 
 We can use a simple idea to achieve that. We will initiate with an array where
-every element is true (it will represent if the number is prime or not). Then
+every element is true (it will represent that the number is prime). Then
 we will iterate from $2$ to $n$ and every time we find a prime number, we set
 to false its multiples that are greater than it.
 
@@ -199,7 +201,7 @@ iteration if $i$ is a prime number it will be set to true, else $\exists \, p$
 (prime) $: p < i \land p | i$, so the array will already be set to false in
 that position.
 
-We can use this idea and implement an algorithm two obtain such array. The
+We can use this idea and implement an algorithm to obtain such array. The
 special cases (i.e $n = 0 \lor n = 1$) can be handle easily. The complexity of
 this solution is $O(n \log \log n)$.
 
@@ -226,7 +228,7 @@ $$\sigma_{0}(n) = \text{ number of divisors of } n$$
 
 We have already written a program that computes the number of divisors in
 $O(n)$ and in $O(\sqrt{n})$. But, we can use an idea similar to the one we used in the previous
-section.
+section to get $\sigma_{0}(x), 1 \leq x \leq n$ efficiently.
 
 ```c++
 vector <int> nDivisors (int n) {
@@ -251,7 +253,7 @@ So, the complexity of our program is $O (n \log n)$.
 
 <div class="topic">$\sigma_{0}(n) = O(\sqrt[3]{n})$ </div>
 
-There are some problems that look like a brute force solution would give a Time
+There are some problems that looks like a brute force solution would give a Time
 Limit veredict. One common example of this kind of problem are the ones where
 you need to do something with the divisors of a number. You will face one
 problem of this kind in one of your daily problems.

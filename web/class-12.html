@@ -319,7 +319,7 @@ $(document).ready(function () {
     </li>
     <li class="dropdown-header">Week 6</li>
     <li>
-      <a href="class-10.html">Contest UTEC-UNI I</a>
+      <a href="class-10.html">Contest UTEC-UNI-UPC I</a>
     </li>
     <li class="dropdown-header">Week 7</li>
     <li>
@@ -354,12 +354,12 @@ $(document).ready(function () {
 
 
 <blockquote>
-<p>“[Insert quote here]”</p>
+<p>“Don’t Repeat Yourself”</p>
 </blockquote>
 <div class="topic">
 Generalized binary search
 </div>
-<p>When we are doing binary search we are basically finding a function <span class="math inline">\(f: \mathbb{D} \to \{0, 1\}\)</span>, we are finding a function that maps the elements of a set <span class="math inline">\(\mathbb{D}\)</span> to <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span> (can be seen as false or true) and <span class="math inline">\(f\)</span> <strong>is always a monotone</strong> function (non-increasing or non-decreasing).</p>
+<p>When we are doing binary search we are basically finding a function <span class="math inline">\(f: \mathbb{D} \to \{0, 1\}\)</span>, we are finding a function that maps the elements of a set <span class="math inline">\(\mathbb{D}\)</span> to <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span> (can be seen as false or true respectively) and <span class="math inline">\(f\)</span> <strong>is always a monotone</strong> function (non-increasing or non-decreasing).</p>
 <p>For example, if we have the array <span class="math inline">\(A = \{b_0, b_1, b_2, \dots, b_{n - 1}\}\)</span> and we are going to do queries over the array to determine whether a number is in <span class="math inline">\(A\)</span> or not we can do these definitions:</p>
 <p><span class="math display">\[\mathbb{D} = \{0, 1, 2, \dots, n\}\]</span> <span class="math display">\[f_p(x) = [p \leq A[x]]\]</span></p>
 <p>That is, <span class="math inline">\(f = f_p\)</span> will be a function that will indicate if <span class="math inline">\(p \leq A[x]\)</span> for <span class="math inline">\(x \in [0, n)\)</span> and as <span class="math inline">\(f\)</span> must be monotone we need to sort <span class="math inline">\(A\)</span> (<strong>why?</strong>). Now, with these definitions and asumming <span class="math inline">\(A\)</span> is sorted, <span class="math inline">\(f\)</span> may looks something like this.</p>
@@ -427,7 +427,7 @@ int main () {
 <p><span class="math display">\[f(x) = [\text{can we obtain median x in at most k operations?}]\]</span></p>
 <p>Let <span class="math inline">\(y\)</span> be the position of the median, then if we have:</p>
 <p><span class="math display">\[a_0, a_1, a_2, \dots, a_y, a_{y + 1}, \dots, a_{n - 1}\]</span></p>
-<p>And we want to get that the new median would be <span class="math inline">\(x\)</span> in the minimum number of operations, then we need to make <span class="math inline">\(x \leq a_i, \forall \, y \leq i \leq n\)</span>. (<strong>why?</strong>). Moreover there is a point <span class="math inline">\(z\)</span> such that:</p>
+<p>And we want <span class="math inline">\(x\)</span> as the new median in the minimum number of operations, then we need to make <span class="math inline">\(x \leq a_i, \forall \, y \leq i \leq n\)</span>. (<strong>why?</strong>). Moreover there is a point <span class="math inline">\(z\)</span> such that:</p>
 <p><span class="math display">\[f(z) = f(z - 1) = \dots = f(median) = 1\]</span> <span class="math display">\[f(z + 1) = f(z + 2) = \dots = f(median + k) = 0\]</span></p>
 <p>So <span class="math inline">\(f\)</span> is monotone and our answer is <span class="math inline">\(z\)</span>. The we can implement the following solution:</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
@@ -469,7 +469,7 @@ int main () {
 <div class="topic">
 Ternary search
 </div>
-<p>Let <span class="math inline">\(f(x)\)</span> be a unimodal function in <span class="math inline">\([l, r]\)</span>, that is, it hols</p>
+<p>Let <span class="math inline">\(f(x)\)</span> be a unimodal function in <span class="math inline">\([l, r]\)</span>, that is, it holds</p>
 <ul>
 <li>The function stricly increases first, reaches a maximum (at a single point or over an interval) and then stricly decreases.</li>
 </ul>
@@ -489,7 +489,7 @@ Ternary search
 <p>So, each time we can reduce the interval where the answer must be. In we split the interval <span class="math inline">\([l, r]\)</span> in three parts, then we will find the answer in <span class="math inline">\(O(\log n)\)</span> and we may have:</p>
 <p><span class="math display">\[m_1 = (2 \cdot l + r) / 3\]</span> <span class="math display">\[m_2 = (l + 2 \cdot r) / 3\]</span></p>
 <p>Try solving the problem at the end of <a href="https://www.hackerearth.com/practice/algorithms/searching/ternary-search/tutorial/">this tutorial</a> to apply what we have learned.</p>
-<p>The idea also works when <span class="math inline">\([l, r] \subset \mathbb{Z}\)</span> with some litle modifications.</p>
+<p>The idea also works when <span class="math inline">\([l, r] \subset \mathbb{Z}\)</span> with some little modifications.</p>
 <p>So far we have study binary and ternary search, yet the D&amp;C paradigm does not reduce only to this. Next, we will show two more scenarios where D&amp;C paradigm comes in handy.</p>
 <div class="topic">
 Merge sort
@@ -575,7 +575,7 @@ int main () {
 <div id="merge-sort" class="section level3">
 <h3>Merge sort</h3>
 <p>The idea of merge sort is very simple:</p>
-<p>Let <span class="math inline">\(vector &lt;int&gt; merge\_sort(vector &lt;int&gt; a)\)</span> be a function that returns the array <code>a</code> sorted, then we can define it recursively, we can split the array <code>a</code> is two disjoint arrays (the optimal is to split it in the middle), sort each new array and then merge then efficiently using the function of the previous subsection. We can implement it this way:</p>
+<p>Let <code>vector &lt;int&gt; merge_sort(vector &lt;int&gt;&amp; a)</code> be a function that returns the array <code>a</code> sorted, then we can define it recursively, we can split the array <code>a</code> in two disjoint arrays (the optimal is to split it in the middle), sort each new array and then merge then efficiently using the function of the previous subsection. We can implement it in this way:</p>
 <pre class="cpp"><code>...
 vector &lt;int&gt; merge_sort (const vector &lt;int&gt;&amp; a) {
   if (a.size() &lt;= 1) return a;
@@ -605,6 +605,7 @@ vector &lt;int&gt; merge_sort (const vector &lt;int&gt;&amp; a) {
   return ret;
 };</code></pre>
 <p><a href="./code/class-12/merge-sort-stl.cpp">Full code</a></p>
+<p><strong>Can we improve the above implementation?</strong></p>
 <p>Now, in order to get the complexity of this algorithm notice that</p>
 <ul>
 <li>We need to run <span class="math inline">\(2^0\)</span> merge function in <span class="math inline">\(O(n / 2^0)\)</span></li>
@@ -617,12 +618,12 @@ vector &lt;int&gt; merge_sort (const vector &lt;int&gt;&amp; a) {
 <div class="row text-center">
 <p><img src="images/class-12/merge-sort.png" /></p>
 </div>
-<p>So, basically, the number of operations that merge sort does (i.e its complexity) is the area of a rectangle with width <span class="math inline">\(O(n)\)</span> and height <span class="math inline">\(O(\log n)\)</span>, then the complexity of merge sort if <span class="math inline">\(O(n \log n)\)</span>.</p>
+<p>So, basically, the number of operations that merge sort does (i.e its complexity) is the area of a rectangle with width <span class="math inline">\(O(n)\)</span> and height <span class="math inline">\(O(\log n)\)</span>, then the complexity of merge sort is <span class="math inline">\(O(n \log n)\)</span>.</p>
 <div class="topic">
 Inductive constructions
 </div>
-<p>In some mathematical induction proofs we use disjoint smalles cases of a problem to solve a larger one (usually doing some kind of constructions). For example:</p>
-<p><strong>Problem:</strong> In a square grid of side length <span class="math inline">\(2^n\)</span>, one unit square is blocked (represented by coloring it black). Your task is to cover the remaining <span class="math inline">\(4^n - 1\)</span> squares with <em>triominos</em>, L-shaped tiles consisting of three squares in the following fashion. The triominos can be rotated by any multiple of <span class="math inline">\(90\)</span> degress. Moreover, the triominos may not overlap each other, nor cover anything outside the grid. Given <span class="math inline">\(1 \leq n \leq 8, 0 \leq x &lt; 2^n \land  0 \leq y &lt; 2^n\)</span>. The black square has coordinates <span class="math inline">\((x, y)\)</span>. Find a valid tiling of the grid.</p>
+<p>In some mathematical induction proofs we use disjoint smaller cases of a problem to solve a larger one (usually doing some kind of constructions). For example:</p>
+<p><strong>Problem:</strong> In a square grid of side length <span class="math inline">\(2^n\)</span>, one unit square is blocked (represented by coloring it black). Your task is to cover the remaining <span class="math inline">\(4^n - 1\)</span> squares with <em>triominos</em>, L-shaped tiles consisting of three squares in the following fashion. The triominos can be rotated by any multiple of <span class="math inline">\(90\)</span> degrees. Moreover, the triominos may not overlap each other, nor cover anything outside the grid. Given <span class="math inline">\(1 \leq n \leq 8, 0 \leq x &lt; 2^n \land  0 \leq y &lt; 2^n\)</span>. The black square has coordinates <span class="math inline">\((x, y)\)</span>. Find a valid tiling of the grid.</p>
 <p>These are the four valid rotations of a triomino.</p>
 <div class="row text-center">
 <p><img src="images/class-12/tiling1.png" /></p>
@@ -636,13 +637,13 @@ Inductive constructions
 </ul>
 <p>First off all let’s prove that there is always a valid tiling by induction:</p>
 <ul>
-<li><p>If <span class="math inline">\(n = 1\)</span> no matter where that black square is, we can always fill the grid with one rotation of a triomino.</p></li>
-<li><p>If <span class="math inline">\(n &gt; 1\)</span> we can divide the grid in four grids of size <span class="math inline">\(2^{n - 1}\)</span>, we can identify in which new grid the black square is and put a triomino in such a way that it have 1 of its square in one different grid and is not in the grid where the black square is. Then, we have to solve the same problem in four smaller instances, but by the inductive hyphotesis we have already the answer for them. This construction idea can be seen in this image:</p>
+<li><p>If <span class="math inline">\(n = 1\)</span> no matter where that black square is, we can always fill the grid with one of the valid rotations of a triomino.</p></li>
+<li><p>If <span class="math inline">\(n &gt; 1\)</span> we can divide the grid in four grids of size <span class="math inline">\(2^{n - 1}\)</span>, we can identify in which new grid the black square is and put a triomino in such a way that it have 1 of its square in one different grid and is not in the grid where the black square is. Then, we have to solve the same problem in four smaller instances, but by the inductive hyphotesis we already have the answer for them. This construction idea can be seen in this image:</p>
 <div class="row text-center">
 <p><img src="images/class-12/triomino.png" /></p>
 </div></li>
 </ul>
-<p>And we can use the construction used in the above prove to implement a solution like this:</p>
+<p>And we can use the construction used in the above proof to implement a solution like this:</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
 using namespace std;

@@ -163,7 +163,7 @@ You may find useful to search
 - [lower_bound as a method](http://www.cplusplus.com/reference/set/set/lower_bound/)
 - [upper_bound as a method](http://www.cplusplus.com/reference/set/set/upper_bound/)
 
-<div class="topic">Binary aearch on the answer</div>
+<div class="topic">Binary search on the answer</div>
 
 As it was mentioned before, binary search is not only useful for finding values in an array, but it also has other uses. In this section we will explore some of these.
 

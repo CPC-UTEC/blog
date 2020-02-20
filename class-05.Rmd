@@ -29,7 +29,7 @@ have fixed $m - 1$ of these variables its usually easy to compute what value the
 variable should be. Evenmore, you have already solve one problem of this kind:
 [Simple equations](./class-04.html#problemA).
 
-Now, let try to solve [this problem](https://codeforces.com/contest/44/problem/B)
+Now, let try to solve [this problem](https://codeforces.com/contest/44/problem/B).
 
 **Problem:** You will receive $n, a, b, c$ . You must find
 
@@ -43,7 +43,7 @@ Its easy to identify that the variables of the problem are $x, y, z$ and if we
 fix two of these variable we can get the third one from the equation, so a brute
 force solution with two loops can solve the problem. Now, in order to choose
 what variables to fix, always prefer working with integers (you'll understand
-better the reason of this in next classes), so we'll fix $y, z$ in $O(b * c)$.
+better the reason of this in next classes), so we'll fix $y, z$ in $O(b \cdot c)$.
 
 
 <!-- Begins problem example01 -->
@@ -106,7 +106,7 @@ You can practice with these problems:
 
 <div class="topic">Simulation with brute force</div>
 
-These kind of problem usually describes a pattern, recurence formula or situation 
+These kind of problems usually describes a pattern, recurrence formula or situation 
 that you can compute easily.
 
 For example, let's begin solving [this problem](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=384).
@@ -117,7 +117,7 @@ $$1 \leq n \leq 5842$$
 
 We need to compute $S = \{2^i \cdot 3 ^j \cdot 5^k \cdot 7 ^l, \quad 0 \leq i, j, k, l \}$. 
 Let's say the maximum value we will compute is $L$, then $i, j, k, l = O(\log L)$. So, if we fix $L$
-we can compute the elements of $S$ that are less than $L$ in $O(\log^4(L))$. We
+we can compute the elements of $S$ that are less than $L$ in $O(\log^4 L)$. We
 can try different values of $L$ until we get more numbers than the
 maximum $n$ in the input (take care of overflow).
 
@@ -177,6 +177,9 @@ int main () {
 </div>
 <!-- ends problem example02 -->
 
+Notice, for example, how    $two \cdot three \geq L$ may produce overflow but $two \geq \frac{L}{three}$ will not.
+
+
 You can practice with these problems:
 
 * [Primary Arithmetic](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=976)
@@ -203,11 +206,11 @@ $$1 \leq n, s \leq 10^{18}$$
 
 At first glance, the problem looks difficult, yet we have
 
-$$0 \leq f(x) \leq 9 * 18$$
-$$\to x - 9 * 18 \leq x - f(x) \leq 9 * 18$$
+$$0 \leq f(x) \leq 9 \cdot 18$$
+$$\to x - 9 \cdot 18 \leq x - f(x) \leq 9 \cdot 18$$
 
-So, we just need to search the answer in $[s, s + 9 * 18]$. What happen with
-a number greater than $s + 9 * 18$ ?
+So, we just need to search the answer in $[s, s + 9 \cdot 18]$. What happen with
+a number greater than $s + 9 \cdot 18$ ?
 
 <!-- Begins problem example03 -->
 <div class="card" id="example03">
@@ -276,11 +279,11 @@ Let's analye by cases on the number of different elements.
 
 * Case 1: All the elements are equals
 
-Then, the answer is -1.
+  Then, the answer is -1.
 
 * Case 2: There are more than 2 different elements.
 
-You can take three of these elements and you will find and answer with them (can you prove it?).
+  You can take three of these elements and you will find and answer with them (can you prove it?).
 
 * Case 3: There are exactly 2 different elements.
 
@@ -769,7 +772,7 @@ Let $f(x) =$ sum of digits of $x$.
 For the constraints of the problem we have that $0 \leq f(x) \leq 9 \cdot 9$.
 Then, we have:
 
-$$\max(0, n - 9 * 9) \leq x \leq n$$
+$$\max(0, n - 9 \cdot 9) \leq x \leq n$$
 
 So, our search space is very small, we can just try a brute force approach on
 this interval.

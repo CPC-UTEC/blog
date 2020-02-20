@@ -319,7 +319,7 @@ $(document).ready(function () {
     </li>
     <li class="dropdown-header">Week 6</li>
     <li>
-      <a href="class-10.html">Contest UTEC-UNI I</a>
+      <a href="class-10.html">Contest UTEC-UNI-UPC I</a>
     </li>
     <li class="dropdown-header">Week 7</li>
     <li>
@@ -363,7 +363,7 @@ Problem solving paradigms
 <div class="center-image">
 <p><img src="images/class-04/programming-paradigms.png" /></p>
 </div>
-<p>Complete search is a general method that can be used to solve almost any algorithm problem. It basically try to generate all possible solutions to a problem in order to do something with them (count number of elements, find a particular solution with one property, etc).</p>
+<p>Complete search is a general method that can be used to solve almost any algorithm problem. It basically try to generate all possible solutions of a problem in order to do something with them (count number of elements, find a particular solution with one property, etc).</p>
 <p>You can find complete search solution in two ways: iterative and recursive. When it is iterative it may be a single loop, two loops, three or more loops, using two pointers, etc. When it is recursive it can be a simple recursive function, it can be a recursive function that search different states with trial and error (backtracking), it may have some kind of prunning in order to not visit every state, etc.</p>
 <p>When solving complete search solutions you will follow some combination of these structures to solve problems.</p>
 <p>When you find complete search in a iterative way it is called a <code>brute force</code> solution. In the next 4 classes we will study more about this kind of solutions. Moreover, mastering this paradigm will help you to understand easily the other ones.</p>
@@ -413,12 +413,13 @@ Pythagorean triples
 <div id="third-solution" class="section level3">
 <h3>Third solution</h3>
 <p>If <span class="math inline">\((x, y, z)\)</span> is a pythagorean triple, then <span class="math inline">\((kx, ky, kz), k \in \mathbb{N}\)</span> is also a pythagorean triple.</p>
-<p>So, if we find <span class="math inline">\((x, y, z) \mid gcd(x, y, z) = 1\)</span>, then the number of triples <span class="math inline">\((kx, ky, kz) \mid 1 \leq kx, ky, kz \leq n\)</span> is <span class="math inline">\(\min(\lfloor n / x \rfloor, \lfloor n / y \rfloor, \lfloor n / z \rfloor )\)</span>.</p>
+<p>So, if we find <span class="math inline">\((x, y, z) \mid gcd(x, y, z) = 1\)</span>, then the number of triples <span class="math inline">\((kx, ky, kz) : 1 \leq kx, ky, kz \leq n\)</span> is <span class="math inline">\(\min(\lfloor n / x \rfloor, \lfloor n / y \rfloor, \lfloor n / z \rfloor )\)</span>.</p>
 <p>If <span class="math inline">\((x, y, z)\)</span> is a pythagorean triple and <span class="math inline">\(gcd(x, y, z) = 1\)</span>, then <span class="math inline">\((x, y, z)\)</span> is called a primite pythagorean triple.</p>
 <p>And there is a property (Euclid’s formula) that says that every primite pythagorean triple can be represented by a pair <span class="math inline">\((a, b) \mid 0 &lt; b &lt; a \land gcd(a, b) = 1 \land a\)</span> and <span class="math inline">\(b\)</span> are not both odds in the following way:</p>
-<p><span class="math display">\[x = a^2 - b^2\]</span> <span class="math display">\[y = 2 * a * b\]</span> <span class="math display">\[z = a * a + b * b\]</span></p>
-<p>Moreover, we have: <span class="math display">\[a * a \leq a * a + b * b \leq z \leq n\]</span></p>
-<p>Then, a can just take values in <span class="math inline">\([0, \sqrt{n}]\)</span>. So we can generate primites <span class="math inline">\((x, y, z) \land (y, x, z)\)</span> and count how many of their multiples hold the condition of the problem in <span class="math inline">\(O((\sqrt{n}) \cdot \sqrt{n} \cdot \log n) = O(n \log n)\)</span>.</p>
+<p><span class="math display">\[x = a^2 - b^2\]</span> <span class="math display">\[y = 2 \cdot a \cdot b\]</span> <span class="math display">\[z = a \cdot a + b \cdot b\]</span></p>
+<p>(Notice that we can build a right triangle with <span class="math inline">\(x, y, z\)</span>).</p>
+<p>Moreover, we have: <span class="math display">\[a \cdot a \leq a \cdot a + b \cdot b \leq z \leq n\]</span></p>
+<p>Then, <code>a</code> can just take values in <span class="math inline">\([0, \sqrt{n}]\)</span>. So we can generate primites <span class="math inline">\((x, y, z) \land (y, x, z)\)</span> and count how many of their multiples hold the condition of the problem in <span class="math inline">\(O((\sqrt{n}) \cdot \sqrt{n} \cdot \log n) = O(n \log n)\)</span>.</p>
 <p><strong>Note:</strong></p>
 <p><span class="math inline">\(gcd(a, b) =\)</span> greatest common divisor of <span class="math inline">\(a\)</span> and <span class="math inline">\(b = \max(d: d | a \land d | b)\)</span></p>
 <pre class="cpp"><code>int solution3 (int n) {
@@ -455,8 +456,8 @@ Primality Test
 </div>
 <div id="second-solution-1" class="section level4">
 <h4>Second solution</h4>
-<p>We notice that if <span class="math inline">\(d | n \to (n / d) | n\)</span>. Moreover: <span class="math display">\[\text{If } d \not = \sqrt{n} \to (d &lt; \sqrt{n} &lt; (n / d)) \lor ((n / d) &lt; \sqrt{n} &lt; d)\]</span></p>
-<p>So we can assume <span class="math inline">\(d &lt; (n / d)\)</span> iterate for every <span class="math inline">\(d &lt; \sqrt{n}\)</span> and if <span class="math inline">\(d | n\)</span> count two more divisors (<span class="math inline">\(d, n / d\)</span>) and handle the special case <span class="math inline">\(d = \sqrt{n}\)</span>. In this way we can count the number of divisors of <span class="math inline">\(n\)</span> and check if a number if prime in <span class="math inline">\(O(\sqrt{n})\)</span>.</p>
+<p>We notice that if <span class="math inline">\(d | n \to \frac{n}{d} | n\)</span>. Moreover: <span class="math display">\[\text{If } d \not = \sqrt{n} \to (d &lt; \sqrt{n} &lt; \frac{n}{d}) \lor (\frac{n}{d} &lt; \sqrt{n} &lt; d)\]</span></p>
+<p>So we can assume <span class="math inline">\(d &lt; \frac{n}{d}\)</span> iterate for every <span class="math inline">\(d &lt; \sqrt{n}\)</span> and if <span class="math inline">\(d | n\)</span> count two more divisors (<span class="math inline">\(d, \frac{n}{d}\)</span>) and handle the special case <span class="math inline">\(d = \sqrt{n}\)</span>. In this way we can count the number of divisors of <span class="math inline">\(n\)</span> and check if a number is prime in <span class="math inline">\(O(\sqrt{n})\)</span>.</p>
 <pre class="cpp"><code>bool isPrime2 (int n) {
   int n_div = 0;
   for (int d = 1; d * d &lt;= n; d++) {
@@ -471,10 +472,10 @@ Primality Test
 <div class="topic">
 Sieve of Eratosthenes
 </div>
-<p>We want to solve the same problem of the previous section but now we want to be able to handle multiples queries in a optimal way. Then, we want to store an array where we can get wheter or not a number is prime.</p>
-<p>We can use a simple idea to achieve that. We will initiate with an array where every element is true (it will represent if the number is prime or not). Then we will iterate from <span class="math inline">\(2\)</span> to <span class="math inline">\(n\)</span> and every time we find a prime number, we set to false its multiples that are greater than it.</p>
+<p>We want to solve the same problem of the previous section but now we want to be able to handle multiples queries in an optimal way. Then, we want to store an array where we can get whether or not a number is prime.</p>
+<p>We can use a simple idea to achieve that. We will initiate with an array where every element is true (it will represent that the number is prime). Then we will iterate from <span class="math inline">\(2\)</span> to <span class="math inline">\(n\)</span> and every time we find a prime number, we set to false its multiples that are greater than it.</p>
 <p>As every prime number have only two divisors (1 and itself), and we are iterating from the number 2, then when we are in the number <span class="math inline">\(i\)</span> in the iteration if <span class="math inline">\(i\)</span> is a prime number it will be set to true, else <span class="math inline">\(\exists \, p\)</span> (prime) <span class="math inline">\(: p &lt; i \land p | i\)</span>, so the array will already be set to false in that position.</p>
-<p>We can use this idea and implement an algorithm two obtain such array. The special cases (i.e <span class="math inline">\(n = 0 \lor n = 1\)</span>) can be handle easily. The complexity of this solution is <span class="math inline">\(O(n \log \log n)\)</span>.</p>
+<p>We can use this idea and implement an algorithm to obtain such array. The special cases (i.e <span class="math inline">\(n = 0 \lor n = 1\)</span>) can be handle easily. The complexity of this solution is <span class="math inline">\(O(n \log \log n)\)</span>.</p>
 <pre class="cpp"><code>vector &lt;bool&gt; sieve (int n) {
   vector &lt;bool&gt; is_prime(n + 1, true);
   is_prime[0] = is_prime[1] = false;
@@ -491,7 +492,7 @@ Sieve of Eratosthenes
 Finding the number of divisors of a number
 </div>
 <p><strong>Note:</strong> <span class="math display">\[\sigma_{0}(n) = \text{ number of divisors of } n\]</span></p>
-<p>We have already written a program that computes the number of divisors in <span class="math inline">\(O(n)\)</span> and in <span class="math inline">\(O(\sqrt{n})\)</span>. But, we can use an idea similar to the one we used in the previous section.</p>
+<p>We have already written a program that computes the number of divisors in <span class="math inline">\(O(n)\)</span> and in <span class="math inline">\(O(\sqrt{n})\)</span>. But, we can use an idea similar to the one we used in the previous section to get <span class="math inline">\(\sigma_{0}(x), 1 \leq x \leq n\)</span> efficiently.</p>
 <pre class="cpp"><code>vector &lt;int&gt; nDivisors (int n) {
   vector &lt;int&gt; n_div(n + 1, 0);
   for (int i = 1; i &lt;= n; i++) {
@@ -508,7 +509,7 @@ Finding the number of divisors of a number
 <div class="topic">
 <span class="math inline">\(\sigma_{0}(n) = O(\sqrt[3]{n})\)</span>
 </div>
-<p>There are some problems that look like a brute force solution would give a Time Limit veredict. One common example of this kind of problem are the ones where you need to do something with the divisors of a number. You will face one problem of this kind in one of your daily problems.</p>
+<p>There are some problems that looks like a brute force solution would give a Time Limit veredict. One common example of this kind of problem are the ones where you need to do something with the divisors of a number. You will face one problem of this kind in one of your daily problems.</p>
 <p>Recommended readings:</p>
 <ul>
 <li><p>Competitive Programming 3, section 3.2 y 5.5.1</p></li>

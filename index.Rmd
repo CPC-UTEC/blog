@@ -79,7 +79,7 @@ These links can help you navigate through the material developed.
   + [Upsolving](https://vjudge.net/contest/355256)
 
 ### *Week 6*
-- [02-10-2020] - Class 10 - Contest UTEC-UNI I
+- [02-10-2020] - Class 10 - Contest UTEC-UNI-UPC I
   + [Theory](./class-10.html)
   + [Contest](https://codeforces.com/group/qWRAoRrTOT/contest/268759)
   + [Solutions](https://codeforces.com/group/qWRAoRrTOT/blog/entry/5475)
@@ -88,9 +88,11 @@ These links can help you navigate through the material developed.
 - [02-17-2020] - Class 11 - Divide and Conquer I
   + [Theory](./class-11.html)
   + [Contest](https://vjudge.net/contest/357719)
+  + [Readings](./schedule.html#class-11)
 
 - [02-19-2020] - Class 12 - Divide and Conquer II
   + [Theory](./class-12.html)
   + [Contest](https://vjudge.net/contest/357719)
+  + [Readings](./schedule.html#class-12)
 
 The repository of this page can be found [here](https://github.com/CP-UTEC/Lessons).

@@ -319,7 +319,7 @@ $(document).ready(function () {
     </li>
     <li class="dropdown-header">Week 6</li>
     <li>
-      <a href="class-10.html">Contest UTEC-UNI I</a>
+      <a href="class-10.html">Contest UTEC-UNI-UPC I</a>
     </li>
     <li class="dropdown-header">Week 7</li>
     <li>
@@ -359,7 +359,7 @@ $(document).ready(function () {
 <div class="topic">
 Two pointers
 </div>
-<p>This technique is usually used in an array. We have a pointer to the first element of the array and to the last. The first pointer will be incresing and the other one decreasing (you may also find variations of this idea). In practice, intead of using a pointer, a <code>int</code> variable to keep track of the index is usually enough.</p>
+<p>This technique is usually used in an array. We have a pointer to the first element of the array and to the last. The first pointer will be increasing and the other one decreasing (you may also find variations of this idea). In practice, intead of using a pointer, a <code>int</code> variable to keep track of the index is usually enough.</p>
 <p>Let’s see this technique with an example:</p>
 <p><strong>Problem:</strong> You are given an array <span class="math inline">\(a\)</span> of <span class="math inline">\(n\)</span> elements. You should output the minimum number of intervals <span class="math inline">\([l_i, r_i] \mid a_i = a_j \forall \, i, j \in [l_i, r_i]\)</span> <span class="math inline">\([l_1, r_1] \cup [l_2, r_2] \cup \dots \cup [l_m, r_m] = [1, n]\)</span>.</p>
 <p><span class="math display">\[1 \leq n \leq 10^5\]</span></p>
@@ -409,8 +409,8 @@ Two pointers
 <p>Let’s use this technique in <a href="https://leetcode.com/problems/two-sum/">this problem</a>:</p>
 <p><strong>Problem (2 sum problem):</strong> You are given an array <span class="math inline">\(a\)</span> of <span class="math inline">\(n\)</span> <strong>positive</strong> elements and an integer <span class="math inline">\(target\)</span>. You should output two numbers <span class="math inline">\(i, j \mid i \not = j \land a_i + a_j = target\)</span>. It is garantee that a solution always exits.</p>
 <p><span class="math display">\[1 \leq n \leq 10^5\]</span> <span class="math display">\[1 \leq target \leq 10^9\]</span></p>
-<p>We can use the same technique + sorting and solve the problem in <span class="math inline">\(O(n \log n)\)</span>.</p>
-<p>First, let’s sort the array and init with <span class="math inline">\(l = 0 \land r = n - 1\)</span>. <span class="math inline">\(l\)</span> would just increase and <span class="math inline">\(r\)</span> would just decrease. Then, by the trichotomy property there are three cases:</p>
+<p>We can use the same technique and sorting to solve the problem in <span class="math inline">\(O(n \log n)\)</span>.</p>
+<p>First, let’s sort the array and initiate with <span class="math inline">\(l = 0 \land r = n - 1\)</span>. <span class="math inline">\(l\)</span> would just increase and <span class="math inline">\(r\)</span> would just decrease. Then, by the trichotomy property there are three cases:</p>
 <ul>
 <li><p><span class="math inline">\(a[l] + a[r] == target\)</span></p>
 <p>Then, we have and answer and our program can finish</p></li>
@@ -475,7 +475,7 @@ Recursion
 </div>
 <p>Imagine you have a funtion <span class="math inline">\(f\)</span> that solves a problem in this way:</p>
 <ul>
-<li>When we are in a state with a specific property, we know how to directly solve the problem</li>
+<li>When we are in a state with a specific property, we know how to directly solve the problem.</li>
 <li>If we are not in a state with the specific property, we can solve the problem using different states of <span class="math inline">\(f\)</span>.</li>
 </ul>
 <p>For example:</p>
@@ -484,7 +484,7 @@ Recursion
 <ul>
 <li><p>Identify a state with a specific property that we can solve easily.</p>
 <p>If <span class="math inline">\(n = 0 \to f(0) = 1\)</span>.</p></li>
-<li><p>Identify how to solve <span class="math inline">\(f(n)\)</span> using different states of <span class="math inline">\(f\)</span> (that are ‘closer’ to the states with a specific property of the above point)</p></li>
+<li><p>Identify how to solve <span class="math inline">\(f(n)\)</span> using different states of <span class="math inline">\(f\)</span> (that are ‘closer’ to the states with a specific property of the above point). For instance:</p></li>
 </ul>
 <p><span class="math display">\[f(n) = \underbrace{1 * 2 * 3 * \dots * (n - 1)}_{\text{f(n - 1)}} * n\]</span> <span class="math display">\[f(n) = n * f(n - 1)\]</span></p>
 <p>Then, we are basically saying that if <span class="math inline">\(n = 0\)</span> we know how to solve the problem, else if we have the answer of <span class="math inline">\(f(n - 1)\)</span> we can use it to solve <span class="math inline">\(f(n)\)</span>.</p>
@@ -509,7 +509,7 @@ Recursion
 <p><img src="images/class-05/Hanoi.jpeg" /></p>
 <p><strong>Source:</strong> <a href="https://en.wikipedia.org/wiki/Tower_of_Hanoi#/media/File:Tower_of_Hanoi.jpeg">Wikipedia</a></p>
 <p><strong>Problem:</strong> You have 3 rods, and a pile of <span class="math inline">\(n\)</span> disks in one rod. Each disk have different diameter, the disks are in order in the stack, the greatest in the button and the smallest on the top. We want to move all the disks to another rod. We can only move the top disk of a stack to another rod if the other rod is empty or the diameter of its top element is greater that the one we are moving. Can you give a sequence of movements to solve this problem ?</p>
-<p>Lets say we have the function <span class="math inline">\(f\)</span> such that <span class="math inline">\(f(source, target, pivot, n)\)</span> moves the <span class="math inline">\(n\)</span> disks that are in the <code>source</code> rod to the <code>target</code> rod. Then, we can say:</p>
+<p>Let’s say we have the function <span class="math inline">\(f\)</span> such that <span class="math inline">\(f(source, target, pivot, n)\)</span> moves the <span class="math inline">\(n\)</span> disks that are in the <code>source</code> rod to the <code>target</code> rod. Then, we can say:</p>
 <p>If I want to move the <span class="math inline">\(n\)</span> disks from <code>source</code> rod to the <code>target</code> rod, first I need to move <span class="math inline">\(n - 1\)</span> disks from <code>source</code> to <code>pivot</code>, then I move the last disk in <code>source</code> to target. After that, we need to move the <span class="math inline">\(n - 1\)</span> disks in <code>pivot</code> to <code>target</code> and we are done. Moreover, if there is only one disk we can direcly move it to <code>target</code>. Then, we can write <span class="math inline">\(f\)</span> in this way:</p>
 <pre class="bw"><code>void f(source, target, pivot, n):
   if n == 1:

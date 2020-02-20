@@ -1,5 +1,5 @@
 ---
-title: "Class 10: Contest UTEC-UNI I"
+title: "Class 10: Contest UTEC-UNI-UPC I"
 date: "02-10-2020"
 ---
 
@@ -21,4 +21,4 @@ The statements in PDF can be found in [English](./files/class-10/statements-Engl
 The solutions are in [this blog](https://codeforces.com/group/qWRAoRrTOT/blog/entry/5475).
 
 You need to be in the Codeforces Group to be able to see the contest and
-solutions. Write us if you want to join it.
+solutions. Try joining the group or write us if you have problems joining it.

@@ -643,7 +643,88 @@ Inductive constructions
 </div></li>
 </ul>
 <p>And we can use the construction used in the above prove to implement a solution like this:</p>
-<pre class="cpp"><code>TO DO</code></pre>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int TOP_LEFT = 0;
+const int TOP_RIGHT = 1;
+const int BOTTON_LEFT = 2;
+const int BOTTON_RIGHT = 3;
+
+struct Rectangle {
+  int x, y;
+  int len;
+  pair &lt;int, int&gt; new_black;
+  Rectangle () {}
+  Rectangle (int x, int y, int len, int position):
+    x(x), y(y), len(len) {
+    switch (position) {
+      case TOP_LEFT:
+        new_black = {x, y}; 
+        break;
+      case TOP_RIGHT:
+        new_black = {x, y + len - 1};
+        break;
+      case BOTTON_LEFT:
+        new_black = {x + len - 1, y};
+        break;
+      case BOTTON_RIGHT:
+        new_black = {x + len - 1, y + len - 1};
+        break;
+      default:
+        break;
+    }
+    
+  }
+  bool has (pair &lt;int, int&gt; black) {
+    return x &lt;= black.first and black.first &lt; x + len and
+           y &lt;= black.second and black.second &lt; y + len;
+  }
+};
+
+char cur_letter = &#39;a&#39;;
+
+void update_cur_letter () {
+  if (cur_letter == &#39;z&#39;) cur_letter = &#39;a&#39;;
+  else cur_letter++;
+}
+
+void solve (Rectangle rect, pair &lt;int, int&gt; black, vector &lt;string&gt;&amp; grid) {
+  if (rect.len == 1) return;
+  vector &lt;Rectangle&gt; sector;
+  int m = rect.len / 2;
+  int x = rect.x;
+  int y = rect.y;
+  sector.emplace_back(x + 0, y + 0, m, BOTTON_RIGHT);
+  sector.emplace_back(x + 0, y + m, m, BOTTON_LEFT);
+  sector.emplace_back(x + m, y + 0, m, TOP_RIGHT);
+  sector.emplace_back(x + m, y + m, m, TOP_LEFT);
+  char ch = cur_letter;
+  update_cur_letter();
+  for (auto s: sector) {
+    if (s.has(black)) {
+      solve(s, black, grid);
+    } else {
+      grid[s.new_black.first][s.new_black.second] = ch;
+      solve(s, s.new_black, grid);
+    }
+  }
+}
+
+int main () {
+  int n, x, y;
+  cin &gt;&gt; n &gt;&gt; x &gt;&gt; y;
+  assert (1 &lt;= n and n &lt; 8);
+  int m = (1 &lt;&lt; n);
+  assert (0 &lt;= x &lt; m);
+  assert (0 &lt;= y &lt; m);
+  vector &lt;string&gt; grid(m, string(m, &#39; &#39;));
+  grid[x][y] = &#39;#&#39;;
+  solve(Rectangle(0, 0, m, -1), pair &lt;int, int&gt;(x, y), grid);
+  for (string&amp; row: grid) cout &lt;&lt; row &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
 <p>Recommended readings:</p>
 <ul>
 <li><a href="https://www.csc.kth.se/~jsannemo/slask/main.pdf">Principles of Algorithmic Problem Solving, section 10.1 and 10.2</a></li>

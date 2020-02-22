@@ -290,3 +290,9 @@ $("#carousel2").carousel();
 $("#carousel3").carousel();
 $("#carousel4").carousel();
 </script>
+
+
+<script>
+$("#gallery-page")
+  .addClass("active");
+</script>

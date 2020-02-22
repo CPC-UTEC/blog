@@ -22,3 +22,23 @@ The solutions are in [this blog](https://codeforces.com/group/qWRAoRrTOT/blog/en
 
 You need to be in the Codeforces Group to be able to see the contest and
 solutions. Try joining the group or write us if you have problems joining it.
+
+<p style="float: none; clear: both;"></p>
+
+<div style="float: right;" class="pt-3">	
+  <button class="continue-link">
+  <a href="./class-11.html">Next</a>
+  </button>
+</div>
+
+<div class="pt-3">
+  <button class="continue-link">
+  <a href="./class-09.html">Previous</a>
+  </button>
+</div>
+
+
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-10').addClass('active');
+</script>

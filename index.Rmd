@@ -23,6 +23,8 @@ We are following this [schedule](./schedule.html).
 
 These links can help you navigate through the material developed.
 
+<div id="classes"></div>
+
 ### *Week 1*
 - [01-06-2020] - Class 01 - Introduction 
   + [Theory](./class-01.html)
@@ -96,3 +98,9 @@ These links can help you navigate through the material developed.
   + [Readings](./schedule.html#class-12)
 
 The repository of this page can be found [here](https://github.com/CP-UTEC/Lessons).
+
+
+<script>
+$("#index-page")
+  .addClass("active");
+</script>

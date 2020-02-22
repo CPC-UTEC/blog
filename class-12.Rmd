@@ -387,7 +387,7 @@ This is a possible tiling for $n = 2$.
 * The problem and images where taken from [Principles of Algorithmic Problem
   Solving, secion 10.1 - page 170](https://www.csc.kth.se/~jsannemo/slask/main.pdf).
 
-First off all let's prove that there is always a valid tiling by induction:
+First of all let's prove that there is always a valid tiling by induction:
 
 - If $n = 1$ no matter where that black square is, we can always fill the grid
   with one of the valid rotations of a triomino.
@@ -506,3 +506,25 @@ You can find the contest [here](https://vjudge.net/contest/357719).
 
 The solutions will be uploaded after the contest.
 
+
+<p style="float: none; clear: both;"></p>
+
+<!--
+<div style="float: right;" class="pt-3">	
+  <button class="continue-link">
+  <a href="./class-04.html">Next</a>
+  </button>
+</div>
+-->
+
+<div class="pt-3">
+  <button class="continue-link">
+  <a href="./class-11.html">Previous</a>
+  </button>
+</div>
+
+
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-12').addClass('active');
+</script>

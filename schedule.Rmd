@@ -9,10 +9,7 @@ title: "Schedule"
   - Standard Template Library (STL)
   - Brute Force
   - Divide and Conquer
-  - Searching in Graphs
-  - Single Source Shortest Path (SSSP)
-  - All Pair Shortest Path (ASPSP)
-  - Minimum Spanning Tree (MST)
+  - Game Theory
 
 ## **Weekly plan**
 
@@ -178,4 +175,7 @@ title: "Schedule"
   + [Topcoder - Binary stride a variant on binary search](https://www.topcoder.com/binary-stride-a-variant-on-binary-search/)
 
 
-
+<script>
+$("#schedule-page")
+  .addClass("active");
+</script>

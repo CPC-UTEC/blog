@@ -304,3 +304,16 @@ int main () {
 </div>
 </div>
 <!-- ends problem C -->
+
+<p style="float: none; clear: both;"></p>
+
+<div style="float: right;" class="pt-3">	
+  <button class="continue-link">
+  <a href="./class-02.html">Next</a>
+  </button>
+</div>
+
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-01').addClass('active');
+</script>

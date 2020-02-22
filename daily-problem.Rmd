@@ -57,7 +57,7 @@ First try it by yourself.
 <div id="collapseProblemproblem-16" class="collapse">
 <div class="card-body solution-body">
 
-### <a href="https://vjudge.net/contest/354182#problem/C" target="_blank">Day 16: DivRem Number</a>
+### <a href="https://diverta2019.contest.atcoder.jp/tasks/diverta2019_d?lang=en" target="_blank">Day 16: DivRem Number</a>
 
 There is some problem in the rendering of the problem. It should say:
 
@@ -77,7 +77,7 @@ $$N = k \cdot m + k$$
 $$N = k \cdot (m + 1)$$
 
 Then, m + 1 must be a divisor of $N$, so we can generate all the divisors of
-$N$ and check if the condition holds in $O(\sqrt{N}).
+$N$ and check if the condition holds in $O(\sqrt{N})$.
 
 
   <!-- begin code -->
@@ -1383,3 +1383,9 @@ int main () {
 </div>
 </div>
 <!-- ends problem 01 -->
+
+
+<script>
+$("#daily-problem-page")
+  .addClass("active");
+</script>

@@ -883,5 +883,22 @@ int main () {
 </div>
 <!-- ends problem E -->
 
+<p style="float: none; clear: both;"></p>
+
+<div style="float: right;" class="pt-3">	
+  <button class="continue-link">
+  <a href="./class-07.html">Next</a>
+  </button>
+</div>
+
+<div class="pt-3">
+  <button class="continue-link">
+  <a href="./class-05.html">Previous</a>
+  </button>
+</div>
 
 
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-06').addClass('active');
+</script>

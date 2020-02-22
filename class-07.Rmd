@@ -420,3 +420,23 @@ Recommended readings:
 You can find the contest [here](https://vjudge.net/contest/354002).
 
 The solutions will be uploaded after the contest.
+
+<p style="float: none; clear: both;"></p>
+
+<div style="float: right;" class="pt-3">	
+  <button class="continue-link">
+  <a href="./class-08.html">Next</a>
+  </button>
+</div>
+
+<div class="pt-3">
+  <button class="continue-link">
+  <a href="./class-06.html">Previous</a>
+  </button>
+</div>
+
+
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-07').addClass('active');
+</script>

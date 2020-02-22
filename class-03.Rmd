@@ -1,5 +1,5 @@
 ---
-title: "Class 03: STL"
+title: "Class 03: Standard Template Library"
 date: "01-13-2020"
 ---
 
@@ -605,3 +605,24 @@ int main () {
 </div>
 </div>
 <!-- ends problem D -->
+
+<p style="float: none; clear: both;"></p>
+
+<div style="float: right;" class="pt-3">	
+  <button class="continue-link">
+  <a href="./class-04.html">Next</a>
+  </button>
+</div>
+
+<div class="pt-3">
+  <button class="continue-link">
+  <a href="./class-02.html">Previous</a>
+  </button>
+</div>
+
+
+
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-03').addClass('active');
+</script>

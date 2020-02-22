@@ -51,4 +51,6 @@ output:
     highlight: textmate
     css: style.css
     include:
-      after_body: footer.html
+      in_header: include-head.html
+      before_body: include-header.html
+      after_body: include-footer.html

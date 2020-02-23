@@ -1,49 +1,5 @@
 name: "Competitive Programming UTEC"
 exclude: ["*.sh", "*.txt"]
-navbar:
-  title: "CP UTEC"
-  left:
-    - text: "Schedule"
-      href: schedule.html
-    - text: "Lessons"
-      menu:
-        - text: Week 1
-        - text: Introduction
-          href: class-01.html
-        - text: Asymptotic Analysis
-          href: class-02.html
-        - text: Week 2
-        - text: STL
-          href: class-03.html
-        - text: Complete Search I
-          href: class-04.html
-        - text: Week 3
-        - text: Complete Search II
-          href: class-05.html
-        - text: Complete Search III
-          href: class-06.html
-        - text: Week 4
-        - text: Complete Search IV
-          href: class-07.html
-        - text: Complete Search V
-          href: class-08.html
-        - text: Week 5
-        - text: Contest I
-          href: class-09.html
-        - text: Week 6
-        - text: Contest UTEC-UNI-UPC I
-          href: class-10.html
-        - text: Week 7
-        - text: Divide and Conquer I
-          href: class-11.html
-        - text: Divide and Conquer II
-          href: class-12.html
-
-  right:
-    - text: "Daily Problem"
-      href: daily-problem.html
-    - text: "Gallery"
-      href: gallery.html
 output_dir: "web"
 output:
   html_document:

@@ -289,18 +289,25 @@ int main () {
 <p style="float: none; clear: both;"></p>
 
 <div style="float: right;" class="pt-3">	
-  <button class="continue-link">
-  <a href="./class-03.html">Next</a>
-  </button>
+  <a class="continue-link" href="./class-03.html" 
+     data-toggle="tooltip" title="Standard Template Library">
+  Next
+  </a>
 </div>
 
 <div class="pt-3">
-  <button class="continue-link">
-  <a href="./class-01.html">Previous</a>
-  </button>
+  <a class="continue-link" href="./class-01.html"
+     data-toggle="tooltip" title="Introduction">
+  Previous
+  </a>
 </div>
 
 <script>
   $('#all-classes').collapse('show');
   $('#class-02').addClass('active');
+  const cur_class = document.getElementById('class-02');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
 </script>

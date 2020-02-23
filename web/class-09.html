@@ -273,7 +273,11 @@ $(document).ready(function () {
       Competitive programming UTEC
     </a>
   </h3>
-  <strong>CP-UTEC</strong>
+  <strong>
+    <a style="text-decoration: none;"href="./index.html">
+    CP-UTEC
+    </a>
+  </strong>
 </div>
 
 <div id="dismiss-left">
@@ -284,19 +288,25 @@ $(document).ready(function () {
   <i class="fa fa-arrow-right"></i>
 </div>
 
-
 <ul class="list-unstyled components">
+
+  <div class="line"></div>
+  
   <li id="index-page">
     <a href="./index.html">
       Home
     </a>
   </li>
 
+  <div class="line"></div>
+
   <li id="schedule-page">
     <a href="./schedule.html">
       Schedule
     </a>
   </li>
+
+  <div class="line"></div>
 
   <li id="classes-page-expanded">
     <a id="classes" href="#all-classes" data-toggle="collapse"
@@ -344,26 +354,34 @@ $(document).ready(function () {
     </ul>
   </li>
 
+  <div class="line"></div>
+
   <li id="classes-page-not-expanded">
-    <a href="./index.html#classes">
+    <a href="./classes.html">
       Classes
     </a>
   </li>
 
+  <div class="line"></div>
 
   <li id="daily-problem-page">
     <a href="./daily-problem.html">
       Daily problem
     </a>
   </li>
-  
+
+  <div class="line"></div>
+
   <li id="gallery-page">
     <a href="./gallery.html">
       Gallery
     </a>
   </li>
 
+  <div class="line"></div>
+
 </ul>
+
 
 <!--
 <ul class="list-unstyled">
@@ -408,14 +426,22 @@ Contest
 <p style="float: none; clear: both;">
 </p>
 <div class="pt-3" style="float: right;">
-<p><button class="continue-link"> <a href="./class-10.html">Next</a> </button></p>
+<p><a class="continue-link" href="./class-10.html" 
+     data-toggle="tooltip" title="Contest UTEC-UNI-UPC I"> Next </a></p>
 </div>
 <div class="pt-3">
-<p><button class="continue-link"> <a href="./class-08.html">Previous</a> </button></p>
+<p><a class="continue-link" href="./class-08.html"
+     data-toggle="tooltip" title="Complete Search V"> Previous </a></p>
 </div>
 <script>
   $('#all-classes').collapse('show');
   $('#class-09').addClass('active');
+  const cur_class = document.getElementById('class-09');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+
 </script>
 
 </div> <!-- ends wrapper -->
@@ -432,6 +458,7 @@ $(document).ready(function () {
     $('#sidebar, #content').removeClass('active');
   });
 
+  $("[data-toggle='tooltip']").tooltip();
 });
 
 </script>

@@ -1,0 +1,83 @@
+---
+title: "Classes"
+---
+
+### *Week 1*
+- [01-06-2020] - Class 01 - Introduction 
+  + [Theory](./class-01.html)
+  + [Contest](https://vjudge.net/contest/350658)
+  + [Solutions](./class-01.html#contest)
+  + [Readings](./schedule.html#class-01)
+
+- [01-08-2020] - Class 02 - Asymptotic Analysis
+  + [Contest](https://vjudge.net/contest/350901)
+  + [Solutions](./class-02.html#contest)
+  + [Readings](./schedule.html#class-02)
+
+### *Week 2*
+- [01-13-2020] - Class 03 - STL
+  + [Theory](./class-03.html)
+  + [Contest](https://vjudge.net/contest/351569)
+  + [Solutions](./class-03.html#contest)
+  + [Readings](./schedule.html#class-03)
+
+- [01-15-2020] - Class 04 - Complete Search I
+  + [Theory](./class-04.html)
+  + [Contest](https://vjudge.net/contest/352372)
+  + [Solutions](./class-04.html#contest)
+  + [Readings](./schedule.html#class-04)
+
+### *Week 3*
+- [01-20-2020] - Class 05 - Complete Search II
+  + [Theory](./class-05.html)
+  + [Contest](https://vjudge.net/contest/353073)
+  + [Readings](./schedule.html#class-05)
+  + [Solutions](./class-05.html#contest)
+
+- [01-22-2020] - Class 06 - Complete Search III
+  + [Theory](./class-06.html)
+  + [Contest](https://vjudge.net/contest/353470)
+  + [Readings](./schedule.html#class-06)
+  + [Solutions](./class-06.html#contest)
+
+### *Week 4*
+- [01-27-2020] - Class 07 - Complete Search IV
+  + [Theory](./class-07.html)
+  + [Contest](https://vjudge.net/contest/354002)
+  + [Readings](./schedule.html#class-07)
+
+- [01-29-2020] - Class 08 - Complete Search V
+  + [Theory](./class-08.html)
+  + [Contest](https://vjudge.net/contest/354334)
+  + [Readings](./schedule.html#class-08)
+
+### *Week 5*
+- [02-03-2020] - Class 09 - Contest I
+  + [Theory](./class-09.html)
+  + [Contest](https://vjudge.net/contest/355171)
+  + [Upsolving](https://vjudge.net/contest/355256)
+
+### *Week 6*
+- [02-10-2020] - Class 10 - Contest UTEC-UNI-UPC I
+  + [Theory](./class-10.html)
+  + [Contest](https://codeforces.com/group/qWRAoRrTOT/contest/268759)
+  + [Solutions](https://codeforces.com/group/qWRAoRrTOT/blog/entry/5475)
+
+### *Week 7*
+- [02-17-2020] - Class 11 - Divide and Conquer I
+  + [Theory](./class-11.html)
+  + [Contest](https://vjudge.net/contest/357719)
+  + [Readings](./schedule.html#class-11)
+
+- [02-19-2020] - Class 12 - Divide and Conquer II
+  + [Theory](./class-12.html)
+  + [Contest](https://vjudge.net/contest/357719)
+  + [Readings](./schedule.html#class-12)
+
+The repository of this page can be found [here](https://github.com/CP-UTEC/Lessons).
+
+
+<script>
+$("#index-page")
+  .addClass("active");
+</script>

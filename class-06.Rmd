@@ -885,20 +885,26 @@ int main () {
 
 <p style="float: none; clear: both;"></p>
 
-<div style="float: right;" class="pt-3">	
-  <button class="continue-link">
-  <a href="./class-07.html">Next</a>
-  </button>
+<div style="float: right;" class="pt-3">
+  <a class="continue-link" href="./class-07.html" 
+     data-toggle="tooltip" title="Complete Search IV">
+  Next
+  </a>
 </div>
 
 <div class="pt-3">
-  <button class="continue-link">
-  <a href="./class-05.html">Previous</a>
-  </button>
+  <a class="continue-link" href="./class-05.html"
+     data-toggle="tooltip" title="Complete Search II">
+  Previous
+  </a>
 </div>
-
 
 <script>
   $('#all-classes').collapse('show');
   $('#class-06').addClass('active');
+  const cur_class = document.getElementById('class-06');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
 </script>

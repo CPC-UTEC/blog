@@ -4,14 +4,14 @@ title: "Schedule"
 
 [PDF version](./schedule.pdf)
 
-## **Topics**
+## Topics
   - Asymptotic Analysis
   - Standard Template Library (STL)
   - Brute Force
   - Divide and Conquer
   - Game Theory
 
-## **Weekly plan**
+## Weekly plan
 
 ### *Week 1*
 

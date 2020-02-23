@@ -25,20 +25,26 @@ solutions. Try joining the group or write us if you have problems joining it.
 
 <p style="float: none; clear: both;"></p>
 
-<div style="float: right;" class="pt-3">	
-  <button class="continue-link">
-  <a href="./class-11.html">Next</a>
-  </button>
+<div style="float: right;" class="pt-3">
+  <a class="continue-link" href="./class-11.html" 
+     data-toggle="tooltip" title="Divide and Conquer I">
+  Next
+  </a>
 </div>
 
 <div class="pt-3">
-  <button class="continue-link">
-  <a href="./class-09.html">Previous</a>
-  </button>
+  <a class="continue-link" href="./class-09.html"
+     data-toggle="tooltip" title="Contest I">
+  Previous
+  </a>
 </div>
-
 
 <script>
   $('#all-classes').collapse('show');
   $('#class-10').addClass('active');
+  const cur_class = document.getElementById('class-10');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
 </script>

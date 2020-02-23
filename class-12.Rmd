@@ -98,7 +98,8 @@ can be used in a great variety of problem. For example in [this problem](https:/
 Here let $median$ be the median of the original array, then we know that the
 maximum median we can get must in in $[median, median + k]$, so $\mathbb{D} = [median, median + k]$ and let $f$ be defined like this:
 
-$$f(x) = [\text{can we obtain median x in at most k operations?}]$$
+
+$f(x) = [$ can we obtain median x in at most k operations? $]$
 
 Let $y$ be the position of the median, then if we have:
 
@@ -107,8 +108,8 @@ $$a_0, a_1, a_2, \dots, a_y, a_{y + 1}, \dots, a_{n - 1}$$
 And we want $x$ as the new median in the minimum number of
 operations, then we need to make $x \leq a_i, \forall \, y \leq i \leq n$. (**why?**). Moreover there is a point $z$ such that:
 
-$$f(z) = f(z - 1) = \dots = f(median) = 1$$
-$$f(z + 1) = f(z + 2) = \dots = f(median + k) = 0$$
+$$f(i) = 1 \quad \forall i \in [median, z]$$
+$$f(i) = 0 \quad \forall i \in [z + 1, median + 1]$$
 
 So $f$ is monotone and our answer is $z$. The we can implement the following solution:
 
@@ -510,21 +511,27 @@ The solutions will be uploaded after the contest.
 <p style="float: none; clear: both;"></p>
 
 <!--
-<div style="float: right;" class="pt-3">	
-  <button class="continue-link">
-  <a href="./class-04.html">Next</a>
-  </button>
+<div style="float: right;" class="pt-3">
+  <a class="continue-link" href="./class-11.html" 
+     data-toggle="tooltip" title="Divide and Conquer I">
+  Next
+  </a>
 </div>
 -->
 
 <div class="pt-3">
-  <button class="continue-link">
-  <a href="./class-11.html">Previous</a>
-  </button>
+  <a class="continue-link" href="./class-11.html"
+     data-toggle="tooltip" title="Divide and Conquer I">
+  Previous
+  </a>
 </div>
-
 
 <script>
   $('#all-classes').collapse('show');
   $('#class-12').addClass('active');
+  const cur_class = document.getElementById('class-12');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
 </script>

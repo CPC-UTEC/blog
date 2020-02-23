@@ -273,7 +273,11 @@ $(document).ready(function () {
       Competitive programming UTEC
     </a>
   </h3>
-  <strong>CP-UTEC</strong>
+  <strong>
+    <a style="text-decoration: none;"href="./index.html">
+    CP-UTEC
+    </a>
+  </strong>
 </div>
 
 <div id="dismiss-left">
@@ -284,19 +288,25 @@ $(document).ready(function () {
   <i class="fa fa-arrow-right"></i>
 </div>
 
-
 <ul class="list-unstyled components">
+
+  <div class="line"></div>
+  
   <li id="index-page">
     <a href="./index.html">
       Home
     </a>
   </li>
 
+  <div class="line"></div>
+
   <li id="schedule-page">
     <a href="./schedule.html">
       Schedule
     </a>
   </li>
+
+  <div class="line"></div>
 
   <li id="classes-page-expanded">
     <a id="classes" href="#all-classes" data-toggle="collapse"
@@ -344,26 +354,34 @@ $(document).ready(function () {
     </ul>
   </li>
 
+  <div class="line"></div>
+
   <li id="classes-page-not-expanded">
-    <a href="./index.html#classes">
+    <a href="./classes.html">
       Classes
     </a>
   </li>
 
+  <div class="line"></div>
 
   <li id="daily-problem-page">
     <a href="./daily-problem.html">
       Daily problem
     </a>
   </li>
-  
+
+  <div class="line"></div>
+
   <li id="gallery-page">
     <a href="./gallery.html">
       Gallery
     </a>
   </li>
 
+  <div class="line"></div>
+
 </ul>
+
 
 <!--
 <ul class="list-unstyled">
@@ -467,11 +485,11 @@ int main () {
 <p>What would have changed if <span class="math inline">\(f_p(x) = [A[x] \leq p]\)</span> ?</p>
 <p>The idea of defining the set <span class="math inline">\(\mathbb{D}\)</span> and the <strong>mononote</strong> function <span class="math inline">\(f\)</span> can be used in a great variety of problem. For example in <a href="https://codeforces.com/contest/1201/problem/C">this problem</a>.</p>
 <p>Here let <span class="math inline">\(median\)</span> be the median of the original array, then we know that the maximum median we can get must in in <span class="math inline">\([median, median + k]\)</span>, so <span class="math inline">\(\mathbb{D} = [median, median + k]\)</span> and let <span class="math inline">\(f\)</span> be defined like this:</p>
-<p><span class="math display">\[f(x) = [\text{can we obtain median x in at most k operations?}]\]</span></p>
+<p><span class="math inline">\(f(x) = [\)</span> can we obtain median x in at most k operations? <span class="math inline">\(]\)</span></p>
 <p>Let <span class="math inline">\(y\)</span> be the position of the median, then if we have:</p>
 <p><span class="math display">\[a_0, a_1, a_2, \dots, a_y, a_{y + 1}, \dots, a_{n - 1}\]</span></p>
 <p>And we want <span class="math inline">\(x\)</span> as the new median in the minimum number of operations, then we need to make <span class="math inline">\(x \leq a_i, \forall \, y \leq i \leq n\)</span>. (<strong>why?</strong>). Moreover there is a point <span class="math inline">\(z\)</span> such that:</p>
-<p><span class="math display">\[f(z) = f(z - 1) = \dots = f(median) = 1\]</span> <span class="math display">\[f(z + 1) = f(z + 2) = \dots = f(median + k) = 0\]</span></p>
+<p><span class="math display">\[f(i) = 1 \quad \forall i \in [median, z]\]</span> <span class="math display">\[f(i) = 0 \quad \forall i \in [z + 1, median + 1]\]</span></p>
 <p>So <span class="math inline">\(f\)</span> is monotone and our answer is <span class="math inline">\(z\)</span>. The we can implement the following solution:</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
@@ -785,18 +803,25 @@ Contest
 <p style="float: none; clear: both;">
 </p>
 <!--
-<div style="float: right;" class="pt-3">    
-  <button class="continue-link">
-  <a href="./class-04.html">Next</a>
-  </button>
+<div style="float: right;" class="pt-3">
+  <a class="continue-link" href="./class-11.html" 
+     data-toggle="tooltip" title="Divide and Conquer I">
+  Next
+  </a>
 </div>
 -->
 <div class="pt-3">
-<p><button class="continue-link"> <a href="./class-11.html">Previous</a> </button></p>
+<p><a class="continue-link" href="./class-11.html"
+     data-toggle="tooltip" title="Divide and Conquer I"> Previous </a></p>
 </div>
 <script>
   $('#all-classes').collapse('show');
   $('#class-12').addClass('active');
+  const cur_class = document.getElementById('class-12');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
 </script>
 </div>
 
@@ -814,6 +839,7 @@ $(document).ready(function () {
     $('#sidebar, #content').removeClass('active');
   });
 
+  $("[data-toggle='tooltip']").tooltip();
 });
 
 </script>

@@ -273,7 +273,11 @@ $(document).ready(function () {
       Competitive programming UTEC
     </a>
   </h3>
-  <strong>CP-UTEC</strong>
+  <strong>
+    <a style="text-decoration: none;"href="./index.html">
+    CP-UTEC
+    </a>
+  </strong>
 </div>
 
 <div id="dismiss-left">
@@ -284,19 +288,25 @@ $(document).ready(function () {
   <i class="fa fa-arrow-right"></i>
 </div>
 
-
 <ul class="list-unstyled components">
+
+  <div class="line"></div>
+  
   <li id="index-page">
     <a href="./index.html">
       Home
     </a>
   </li>
 
+  <div class="line"></div>
+
   <li id="schedule-page">
     <a href="./schedule.html">
       Schedule
     </a>
   </li>
+
+  <div class="line"></div>
 
   <li id="classes-page-expanded">
     <a id="classes" href="#all-classes" data-toggle="collapse"
@@ -344,26 +354,34 @@ $(document).ready(function () {
     </ul>
   </li>
 
+  <div class="line"></div>
+
   <li id="classes-page-not-expanded">
-    <a href="./index.html#classes">
+    <a href="./classes.html">
       Classes
     </a>
   </li>
 
+  <div class="line"></div>
 
   <li id="daily-problem-page">
     <a href="./daily-problem.html">
       Daily problem
     </a>
   </li>
-  
+
+  <div class="line"></div>
+
   <li id="gallery-page">
     <a href="./gallery.html">
       Gallery
     </a>
   </li>
 
+  <div class="line"></div>
+
 </ul>
+
 
 <!--
 <ul class="list-unstyled">
@@ -546,6 +564,7 @@ $(document).ready(function () {
     $('#sidebar, #content').removeClass('active');
   });
 
+  $("[data-toggle='tooltip']").tooltip();
 });
 
 </script>

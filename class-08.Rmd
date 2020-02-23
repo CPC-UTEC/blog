@@ -698,20 +698,26 @@ The solutions will be uploaded after the contest.
 
 <p style="float: none; clear: both;"></p>
 
-<div style="float: right;" class="pt-3">	
-  <button class="continue-link">
-  <a href="./class-09.html">Next</a>
-  </button>
+<div style="float: right;" class="pt-3">
+  <a class="continue-link" href="./class-09.html" 
+     data-toggle="tooltip" title="Contest I">
+  Next
+  </a>
 </div>
 
 <div class="pt-3">
-  <button class="continue-link">
-  <a href="./class-07.html">Previous</a>
-  </button>
+  <a class="continue-link" href="./class-07.html"
+     data-toggle="tooltip" title="Complete Search IV">
+  Previous
+  </a>
 </div>
-
 
 <script>
   $('#all-classes').collapse('show');
   $('#class-08').addClass('active');
+  const cur_class = document.getElementById('class-08');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
 </script>

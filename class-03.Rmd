@@ -609,20 +609,25 @@ int main () {
 <p style="float: none; clear: both;"></p>
 
 <div style="float: right;" class="pt-3">	
-  <button class="continue-link">
-  <a href="./class-04.html">Next</a>
-  </button>
+  <a class="continue-link" href="./class-04.html" 
+     data-toggle="tooltip" title="Complete Search I">
+  Next
+  </a>
 </div>
 
 <div class="pt-3">
-  <button class="continue-link">
-  <a href="./class-02.html">Previous</a>
-  </button>
+  <a class="continue-link" href="./class-02.html"
+     data-toggle="tooltip" title="Asymptotic Analysis">
+  Previous
+  </a>
 </div>
-
-
 
 <script>
   $('#all-classes').collapse('show');
   $('#class-03').addClass('active');
+  const cur_class = document.getElementById('class-03');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
 </script>

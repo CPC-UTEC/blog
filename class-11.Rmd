@@ -196,20 +196,26 @@ The solutions will be uploaded after the contest.
 
 <p style="float: none; clear: both;"></p>
 
-<div style="float: right;" class="pt-3">	
-  <button class="continue-link">
-  <a href="./class-12.html">Next</a>
-  </button>
+<div style="float: right;" class="pt-3">
+  <a class="continue-link" href="./class-12.html" 
+     data-toggle="tooltip" title="Divide and Conquer II">
+  Next
+  </a>
 </div>
 
 <div class="pt-3">
-  <button class="continue-link">
-  <a href="./class-10.html">Previous</a>
-  </button>
+  <a class="continue-link" href="./class-10.html"
+     data-toggle="tooltip" title="Contest UTEC-UNI-UPC I">
+  Previous
+  </a>
 </div>
-
 
 <script>
   $('#all-classes').collapse('show');
   $('#class-11').addClass('active');
+  const cur_class = document.getElementById('class-11');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
 </script>

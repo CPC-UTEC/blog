@@ -575,11 +575,12 @@ Nim values
 <p>We can play this game in <a href="https://www.dotsphinx.com/games/nim/">this link</a>.</p>
 <p>Now, in order to solve this problem first let’s define what is <span class="math inline">\(Nim-sum\)</span>.</p>
 <p><strong>Def. Nim-sum:</strong> The Nim-sum of two non-negative integers is their addition without carry in base 2. That is, if we have:</p>
-<p><span class="math display">\[a = \overline{a_na_{n-1} \dots a_1}\]</span> <span class="math display">\[b = \overline{b_nb_{n-1} \dots b_1}\]</span></p>
+<p><span class="math display">\[a = \overline{a_na_{n-1} \dots a_1}_{(2)}\]</span> <span class="math display">\[b = \overline{b_nb_{n-1} \dots b_1}_{(2)}\]</span></p>
 <p>Filling with zeros as necessary so that <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> have the same number of digits.</p>
 <p>Let <span class="math inline">\(c\)</span> be the Nim-sum of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, then <span class="math inline">\(c_i = (a_i + b_i) \bmod 2\)</span> and it is written as <span class="math inline">\(c = a \oplus b\)</span>.</p>
 <p>That is, <span class="math inline">\(a \oplus b\)</span> is this in C++:</p>
 <pre class="cpp"><code>int c = a ^ b;</code></pre>
+<p>And <span class="math inline">\(\oplus\)</span> is called the xor operator.</p>
 <p>This definition is important because we can use it to characterize the set of winning states using the characteristic property. In fact, it is done in the following theorem:</p>
 </div>
 <div id="boutons-theorem" class="section level3">
@@ -587,6 +588,30 @@ Nim values
 <p>Let <span class="math inline">\(\mathbb{L}\)</span> be the set of losing states and <span class="math inline">\(\mathbb{W}\)</span> the set of winning states. Then, the solution of the game of Nim with piles <span class="math inline">\(x_1, x_2, \dots, x_n\)</span> is characterized in this way:</p>
 <p><span class="math display">\[(x_1, x_2, \dots, x_n) \in \mathbb{L} \leftrightarrow \displaystyle\bigoplus_{1 \leq i \leq n} x_i = 0\]</span></p>
 <p><strong>Proof:</strong></p>
+<ol style="list-style-type: decimal">
+<li>The only terminal position is <span class="math inline">\((0, 0, \dots, 0)\)</span> and <span class="math inline">\(0 \oplus 0 \oplus \dots \oplus 0 = 0\)</span>.</li>
+<li>Let <span class="math inline">\((x_1, x_2, \dots, x_n) \in \mathbb{W}\)</span>, then <span class="math inline">\(\displaystyle\bigoplus_{1 \leq i \leq n} x_i \not = 0\)</span>, so is we write all the numbers in binary representation in a matrix form, there exists a column <span class="math inline">\(k\)</span> (let’s take the leftmost) such that the number of ones in this column is odd. So we can take stones from a pile that have a <span class="math inline">\(1\)</span> in this column. Moreover let <span class="math inline">\(p = \overline{p_{n}p_{n-1}\dots p_{k} \dots p_1}_{(2)}\)</span> be the number of stones taken from this pile, then we can form <span class="math inline">\(p\)</span> in such a way that <span class="math inline">\(p_i = 0, \forall i \geq k\)</span> and <span class="math inline">\(\forall i &lt; k, p_i\)</span> can be <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>, then we can form it in such a way that the Nim-sum of the new state would be 0. In other words, there is a losing state reachable from a winning state.</li>
+<li>Let <span class="math inline">\((x_1, x_2, \dots, x_n) \in \mathbb{L}\)</span>. If we take the pile <span class="math inline">\(k\)</span> and take some stones such that <span class="math inline">\(x_k\)</span> reduces to <span class="math inline">\(x_k&#39; &lt; x_k\)</span>, then the new state have Nim-sum different from zero (<strong>You can prove it by contradiction</strong>).</li>
+</ol>
+<p>We can use the above theorem to solve <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=1106">10165 - Stone Game</a>.</p>
+<p>The statement is basically the game of Nim. Then, this is a possible solution:</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+  int n;
+  while (cin &gt;&gt; n, n != 0) {
+    int nim_sum = 0;
+    for (int i = 0; i &lt; n; i++) {
+      int x;
+      cin &gt;&gt; x;
+      nim_sum ^= x;
+    }
+    puts(nim_sum == 0 ? &quot;No&quot; : &quot;Yes&quot;);
+  }
+  return (0);
+}</code></pre>
 <div class="topic">
 Sprague-Grundy theorem
 </div>

@@ -573,6 +573,20 @@ Nim values
 <h3>The game on Nim</h3>
 <p>There are <span class="math inline">\(n\)</span> piles of stones <span class="math inline">\(x_1, x_2, \dots, x_n\)</span>. There are two players (player A and player B) that are alternating turns. In each turn a player selects a pile (<strong>only one</strong>) and removes at least one chip from it. The winner is the player who removes the last chip. If player A starts the game and both players play optimally, who will be the winner ?</p>
 <p>We can play this game in <a href="https://www.dotsphinx.com/games/nim/">this link</a>.</p>
+<p>Now, in order to solve this problem first let’s define what is <span class="math inline">\(Nim-sum\)</span>.</p>
+<p><strong>Def. Nim-sum:</strong> The Nim-sum of two non-negative integers is their addition without carry in base 2. That is, if we have:</p>
+<p><span class="math display">\[a = \overline{a_na_{n-1} \dots a_1}\]</span> <span class="math display">\[b = \overline{b_nb_{n-1} \dots b_1}\]</span></p>
+<p>Filling with zeros as necessary so that <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> have the same number of digits.</p>
+<p>Let <span class="math inline">\(c\)</span> be the Nim-sum of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, then <span class="math inline">\(c_i = (a_i + b_i) \bmod 2\)</span> and it is written as <span class="math inline">\(c = a \oplus b\)</span>.</p>
+<p>That is, <span class="math inline">\(a \oplus b\)</span> is this in C++:</p>
+<pre class="cpp"><code>int c = a ^ b;</code></pre>
+<p>This definition is important because we can use it to characterize the set of winning states using the characteristic property. In fact, it is done in the following theorem:</p>
+</div>
+<div id="boutons-theorem" class="section level3">
+<h3>Bouton’s theorem</h3>
+<p>Let <span class="math inline">\(\mathbb{L}\)</span> be the set of losing states and <span class="math inline">\(\mathbb{W}\)</span> the set of winning states. Then, the solution of the game of Nim with piles <span class="math inline">\(x_1, x_2, \dots, x_n\)</span> is characterized in this way:</p>
+<p><span class="math display">\[(x_1, x_2, \dots, x_n) \in \mathbb{L} \leftrightarrow \displaystyle\bigoplus_{1 \leq i \leq n} x_i = 0\]</span></p>
+<p><strong>Proof:</strong></p>
 <div class="topic">
 Sprague-Grundy theorem
 </div>

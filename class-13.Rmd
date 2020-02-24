@@ -207,6 +207,39 @@ players play optimally, who will be the winner ?
 
 We can play this game in [this link](https://www.dotsphinx.com/games/nim/).
 
+Now, in order to solve this problem first let's define what is $Nim-sum$.
+
+**Def. Nim-sum:** The Nim-sum of two non-negative integers is their addition
+without carry in base 2. That is, if we have:
+
+$$a = \overline{a_na_{n-1} \dots a_1}$$
+$$b = \overline{b_nb_{n-1} \dots b_1}$$
+
+Filling with zeros as necessary so that $a$ and $b$ have the same number of
+digits.
+
+Let $c$ be the Nim-sum of $a$ and $b$, then $c_i = (a_i + b_i) \bmod 2$ and it
+is written as $c = a \oplus b$.
+
+That is, $a \oplus b$ is this in C++:
+
+```c++
+int c = a ^ b;
+```
+
+This definition is important because we can use it to characterize the set of
+winning states using the characteristic property. In fact, it is done in the
+following theorem:
+
+### Bouton's theorem
+
+Let $\mathbb{L}$ be the set of losing states and $\mathbb{W}$ the set of
+winning states. Then, the solution of the game of Nim with piles $x_1, x_2,
+\dots, x_n$ is characterized in this way:
+
+$$(x_1, x_2, \dots, x_n) \in \mathbb{L} \leftrightarrow \displaystyle\bigoplus_{1 \leq i \leq n} x_i = 0$$
+
+**Proof:**
 
 <div class="topic">Sprague-Grundy theorem</div>
 

@@ -671,9 +671,9 @@ For $N = 4$ the recursion tree of our solution is like this:
 
 <div class="row text-center">
 ![](./images/class-08/n-queen.png)
-</div>
 
 Image taken from [Jeff Erickson - Algorithms - Chapter 2: Backtracking](http://jeffe.cs.illinois.edu/teaching/algorithms/).
+</div>
 
 The complexity of the above solution comes from the equation:
 

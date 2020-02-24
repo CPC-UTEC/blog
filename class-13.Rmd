@@ -291,9 +291,9 @@ solved, 'A simple take-away game', the transitions can be seen in this way:
 
 <div class="row text-center">
 ![](./images/class-13/graph.png)
-</div>
 
-Image taken from Game theory - Thomas S. Ferguson. Page 14
+Image taken from [Game theory - Thomas S. Ferguson. Page 14](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
+</div>
 
 Now, we can compute its grundy numbers and we'll get:
 
@@ -314,6 +314,55 @@ Now, we can compute its grundy numbers and we'll get:
 Then, we get the same result: $n$ is a losing position $\leftrightarrow
 n \equiv 0 \bmod 4$.
 
+And we can even solve [UVA 10404 - Bachet's
+game](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1345)
+but now using the $mex$ function in this way:
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, m;
+vector <int> take;
+vector <int> memo;
+
+const int UNVISITED = -1;
+
+int grundy (int x) {
+  if (x == 0) { // terminal state
+    return 0; // mex 0
+  }
+  if (memo[x] != UNVISITED) { // we have already compute it
+    return memo[x];
+  }
+  set <int> values;
+  for (int t: take) {
+    if (t <= x) {
+      values.insert(grundy(x - t));
+    }
+  }
+  int mex = 0;
+  while (values.count(mex)) mex++;
+  return memo[x] = mex;
+}
+
+int main () {
+  while (cin >> n >> m) {
+    take.resize(m);
+    memo.resize(n + 1, UNVISITED);
+    for (int i = 0; i < m; i++) cin >> take[i];
+    if (grundy(n) != 0) cout << "Stan wins" << '\n';
+    else cout << "Ollie wins" << '\n';
+    take.clear();
+    memo.clear();
+  }
+  return (0);
+}
+```
+
+Now, we are solving each case in $O(nm)$ which is enough to get Accepted veredict.
+
 But the importante of this new interpretation of the characteristic property
 can be better seen in the next section.
 
@@ -323,12 +372,12 @@ In process...
 
 <div class="topic">Extra: About floating point numbers</div>
 
-In process...
 
 Recommended readings:
 
-- [Game theory - Thomas S. Ferguson. Chapter 1-3](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
+- [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
 - [Algorithm Games - Topcoder](https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/)
+- [Game Theory For Competitive Programming](https://stepupanalytics.com/game-theory-for-competitive-programming/)
 
 <div class="topic" id="contest">Contest</div>
 

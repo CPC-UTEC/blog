@@ -395,9 +395,15 @@ $(document).ready(function () {
   </li>
 </ul>
 -->
-
 </nav>
 
+<div id="expand-icon-right">
+  <i class="fa fa-angle-right"></i>
+</div>
+
+<div id="expand-icon-left">
+  <i class="fa fa-angle-left"></i>
+</div>
 
 <!-- Page Content Holder -->
 <div id="content">
@@ -463,6 +469,32 @@ $(document).ready(function () {
   });
 
   $("[data-toggle='tooltip']").tooltip();
+
+  $('#expand-icon-right').on('click', function () {
+    document.getElementById('sidebar').style.width = "90px";
+    document.getElementById('expand-icon-right').style.display = "none";
+    document.getElementById('expand-icon-left').style.display = "block";
+    document.getElementById('content').style.background = "rgba(0,0,0,0.8)";
+    $('#expand-icon-left').addClass('moved');
+    $('#expand-icon-right').addClass('moved');
+  });
+
+  $('#expand-icon-left').on('click', function () {
+    document.getElementById('sidebar').style.width = "0px";
+    document.getElementById('expand-icon-right').style.display = "block";
+    document.getElementById('expand-icon-left').style.display = "none";
+    document.getElementById('content').style.background = "#fafafa";
+    $('#expand-icon-left').removeClass('moved');
+    $('#expand-icon-right').removeClass('moved');
+  });
+
+});
+
+$(window).scroll(function() { 
+  $('#expand-icon-left').css({top: '50vh'});
+  $('#expand-icon-left').css({bottom: '50vh'});
+  $('#expand-icon-right').css({top: '50vh'});
+  $('#expand-icon-right').css({bottom: '50vh'});
 });
 
 </script>

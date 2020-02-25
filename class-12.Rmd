@@ -503,7 +503,7 @@ Recommended readings:
 
 <div class="topic" id="contest">Contest</div>
 
-You can find the contest [here](https://vjudge.net/contest/357719).
+You can find the contest [here](https://vjudge.net/contest/359160).
 
 The solutions will be uploaded after the contest.
 

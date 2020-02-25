@@ -71,13 +71,13 @@ title: "Classes"
 
 - [02-19-2020] - Class 12 - Divide and Conquer II
   + [Theory](./class-12.html)
-  + [Contest](https://vjudge.net/contest/357719)
+  + [Contest](https://vjudge.net/contest/359160)
   + [Readings](./schedule.html#class-12)
 
 ### *Week 8*
 - [02-24-2020] - Class 13 - Game Theory I
   + [Theory](./class-13.html)
-  + [Contest](https://vjudge.net/contest/357719)
+  + [Contest](https://vjudge.net/contest/359163)
   + [Readings](./schedule.html#class-13)
 
 The repository of this page can be found [here](https://github.com/CP-UTEC/Lessons).

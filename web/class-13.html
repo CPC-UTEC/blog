@@ -428,14 +428,14 @@ Introduction
 <li>Set of possible positions</li>
 <li>Initial position</li>
 <li>Set of terminal positions</li>
-<li>Player that start the game</li>
+<li>Player that starts the game</li>
 <li>Function that determines the possible moves from each position</li>
 </ul>
 <p>If the function that determines the possible moves from each position is the same for both players, then we have a <strong>impartial game</strong>, else we have a <strong>partizan game</strong>. For each type (impartial and partizan) there are different strategies to solve them as we can see in the following diagram:</p>
 <div class="row text-center">
 <p><img src="images/class-13/game-theory-classification.png" /></p>
 </div>
-<p>We will focus in study some of these strategies and techniques.</p>
+<p>We will focus our study in these strategies and techniques.</p>
 <div class="topic">
 WL states
 </div>
@@ -446,9 +446,9 @@ WL states
 <p>Let:</p>
 <ul>
 <li><span class="math inline">\(L\)</span>: losing position for player A</li>
-<li><span class="math inline">\(R\)</span>: winning position for player A</li>
+<li><span class="math inline">\(W\)</span>: winning position for player A</li>
 </ul>
-<p>We can define a function <span class="math inline">\(f: \mathbb{N \cup \{0\}} \to \{L, R\}\)</span> such that <span class="math inline">\(f(x)\)</span> indicates what is the result for player A if the game has a pile a <span class="math inline">\(x\)</span> chips.</p>
+<p>We can define a function <span class="math inline">\(f: \mathbb{N \cup \{0\}} \to \{L, W\}\)</span> such that <span class="math inline">\(f(x)\)</span> indicates what is the result for player A if the game has a pile of <span class="math inline">\(x\)</span> chips.</p>
 <p>From these definitions we have:</p>
 <ul>
 <li><span class="math inline">\(f(0) = L\)</span></li>
@@ -465,8 +465,8 @@ WL states
 <li><span class="math inline">\(f(11) = W\)</span></li>
 <li><span class="math inline">\(f(12) = L\)</span></li>
 </ul>
-<p>That is, if there is no chips, then player <span class="math inline">\(A\)</span> loses. If there is <span class="math inline">\(1, 2\)</span> or <span class="math inline">\(3\)</span> chips, then player <span class="math inline">\(A\)</span> can take all the chips in a move and win. If there is <span class="math inline">\(4\)</span> chips no matter how many chips player <span class="math inline">\(A\)</span> takes, because player <span class="math inline">\(B\)</span> can end the game in the next turn. If there is <span class="math inline">\(5, 6\)</span> or <span class="math inline">\(7\)</span> chips, then player <span class="math inline">\(A\)</span> can left just <span class="math inline">\(4\)</span> chips, then no matter how many chips player <span class="math inline">\(B\)</span> takes in its turn, in the next turn player <span class="math inline">\(A\)</span> can take all the remaining chips. <span class="math inline">\(\dots\)</span></p>
-<p>From these we notice that <span class="math inline">\(f(x) = L\)</span> iff <span class="math inline">\(L \equiv 0 \bmod 4\)</span>. Then, we have solved the problem.</p>
+<p>That is, if there are no chips, then player <span class="math inline">\(A\)</span> loses. If there are <span class="math inline">\(1, 2\)</span> or <span class="math inline">\(3\)</span> chips, then player <span class="math inline">\(A\)</span> can take all the chips in a move and win. If there are <span class="math inline">\(4\)</span> chips no matter how many chips player <span class="math inline">\(A\)</span> takes because player <span class="math inline">\(B\)</span> can finish the game in the next turn. If there are <span class="math inline">\(5, 6\)</span> or <span class="math inline">\(7\)</span> chips, then player <span class="math inline">\(A\)</span> can left just <span class="math inline">\(4\)</span> chips, then no matter how many chips player <span class="math inline">\(B\)</span> takes in its turn, in the next turn player <span class="math inline">\(A\)</span> can take all the remaining chips. And so on.</p>
+<p>From these we notice that <span class="math inline">\(f(x) = L \leftrightarrow L \equiv 0 \bmod 4\)</span>. Then, we have solved the problem.</p>
 <p>The idea of defining a function that maps some states to <span class="math inline">\(L, W\)</span> is what is called WL states. Moreover, we can generalize this idea with the following property:</p>
 </div>
 <div id="characteristic-property" class="section level3">
@@ -521,7 +521,7 @@ int main () {
   }
   return (0);
 }</code></pre>
-<p>The solution is correct, but it takes too much time doing the same computations, so we can memorize some results and improve the solution in this way:</p>
+<p>The solution is correct, but it takes too much time doing the same computations, but we can memorize some results and improve the solution in this way:</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
@@ -564,13 +564,13 @@ int main () {
   }
   return (0);
 }</code></pre>
-<p>We are now solving each case in <span class="math inline">\(O(nm)\)</span> which is enough to get Accepted veredict.</p>
+<p>We are now solving each case in <span class="math inline">\(O(nm)\)</span> which is enough to get the accepted veredict.</p>
 <div class="topic">
 The game of Nim
 </div>
-<p><strong>Problem:</strong> There are <span class="math inline">\(n\)</span> piles of stones <span class="math inline">\(x_1, x_2, \dots, x_n\)</span>. There are two players (player A and player B) that are alternating turns. In each turn a player selects a pile (<strong>only one</strong>) and removes at least one chip from it. The winner is the player who removes the last chip. If player A starts the game and both players play optimally, who will be the winner ?</p>
+<p><strong>Problem:</strong> There are <span class="math inline">\(n\)</span> piles of chips <span class="math inline">\(x_1, x_2, \dots, x_n\)</span>. There are two players (player A and player B) that are alternating turns. In each turn a player selects a pile (<strong>only one</strong>) and removes at least one chip from it. The winner is the player who removes the last chip. If player A starts the game and both players play optimally, who will be the winner ?</p>
 <p>We can play this game in <a href="https://www.dotsphinx.com/games/nim/">this link</a>.</p>
-<p>Now, in order to solve this problem first let’s define what is <span class="math inline">\(Nim-sum\)</span>.</p>
+<p>Now, in order to solve this problem first let’s define what is ‘Nim-sum’.</p>
 <p><strong>Def. Nim-sum:</strong> The Nim-sum of two non-negative integers is their addition without carry in base 2. That is, if we have:</p>
 <p><span class="math display">\[a = \overline{a_na_{n-1} \dots a_1}_{(2)}\]</span> <span class="math display">\[b = \overline{b_nb_{n-1} \dots b_1}_{(2)}\]</span></p>
 <p>Filling with zeros as necessary so that <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> have the same number of digits.</p>
@@ -587,8 +587,8 @@ The game of Nim
 <p><strong>Proof:</strong></p>
 <ol style="list-style-type: decimal">
 <li>The only terminal position is <span class="math inline">\((0, 0, \dots, 0)\)</span> and <span class="math inline">\(0 \oplus 0 \oplus \dots \oplus 0 = 0\)</span>.</li>
-<li>Let <span class="math inline">\((x_1, x_2, \dots, x_n) \in \mathbb{W}\)</span>, then <span class="math inline">\(\displaystyle\bigoplus_{1 \leq i \leq n} x_i \not = 0\)</span>, so is we write all the numbers in binary representation in a matrix form, there exists a column <span class="math inline">\(k\)</span> (let’s take the leftmost) such that the number of ones in this column is odd. So we can take stones from a pile that have a <span class="math inline">\(1\)</span> in this column. Moreover let <span class="math inline">\(p = \overline{p_{n}p_{n-1}\dots p_{k} \dots p_1}_{(2)}\)</span> be the number of stones taken from this pile, then we can form <span class="math inline">\(p\)</span> in such a way that <span class="math inline">\(p_i = 0, \forall i \geq k\)</span> and <span class="math inline">\(\forall i &lt; k, p_i\)</span> can be <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>, then we can form it in such a way that the Nim-sum of the new state would be 0. In other words, there is a losing state reachable from a winning state.</li>
-<li>Let <span class="math inline">\((x_1, x_2, \dots, x_n) \in \mathbb{L}\)</span>. If we take the pile <span class="math inline">\(k\)</span> and take some stones such that <span class="math inline">\(x_k\)</span> reduces to <span class="math inline">\(x_k&#39; &lt; x_k\)</span>, then the new state have Nim-sum different from zero (<strong>You can prove it by contradiction</strong>).</li>
+<li>Let <span class="math inline">\((x_1, x_2, \dots, x_n) \in \mathbb{W}\)</span>, then <span class="math inline">\(\displaystyle\bigoplus_{1 \leq i \leq n} x_i \not = 0\)</span>, so is we write all the numbers in binary representation in a matrix form, there exists a column <span class="math inline">\(k\)</span> (let’s take the leftmost) such that the number of ones in this column is odd. So we can take a number of chips from a pile that have a <span class="math inline">\(1\)</span> in this column. Moreover let <span class="math inline">\(p = \overline{p_{n}p_{n-1}\dots p_{k} \dots p_1}_{(2)}\)</span> be the number of chips taken from this pile, then we can form <span class="math inline">\(p\)</span> in such a way that <span class="math inline">\(p_i = 0, \forall i \geq k\)</span> and <span class="math inline">\(\forall i &lt; k, p_i\)</span> can be <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>, then we can form it in such a way that the Nim-sum of the new state would be 0. In other words, there is a losing state reachable from a winning state.</li>
+<li>Let <span class="math inline">\((x_1, x_2, \dots, x_n) \in \mathbb{L}\)</span>. If we take the pile <span class="math inline">\(k\)</span> and take some chips such that <span class="math inline">\(x_k\)</span> reduces to <span class="math inline">\(x_k&#39; &lt; x_k\)</span>, then the new state have Nim-sum different from zero (<strong>You can prove it by contradiction</strong>).</li>
 </ol>
 <p>We can use the above theorem to solve <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=1106">10165 - Stone Game</a>.</p>
 <p>The statement is basically the game of Nim. Then, this is a possible solution:</p>
@@ -613,11 +613,16 @@ int main () {
 Grundy numbers
 </div>
 <p>We can express the characteristic property in a slighty different way. First, let’s define:</p>
-<p><span class="math display">\[mex(state) = \min\{n \geq 0: n \not = mex(state&#39;) \quad \forall state&#39; \text{ reachable
+<p><span class="math display">\[g(state) = \min\{n \geq 0: n \not = g(state&#39;) \quad \forall state&#39; \text{ reachable
 from } state \}\]</span></p>
-<p>In other words, <span class="math inline">\(mex(state)\)</span> is the smallest non-negative integer not found amoung the function <span class="math inline">\(mex\)</span> evaluated in states reachable from <span class="math inline">\(state\)</span>.</p>
-<p>The function <span class="math inline">\(mex\)</span> is known as the <strong>Spragre-Grundy function</strong> or as <strong>minimum excludant</strong> and its values as <strong>grundy numbers</strong> or <strong>Nim values</strong>. And what is nice about this function is that <span class="math inline">\(mex(state) = 0 \leftrightarrow states \text{ is a losing state}\)</span>.</p>
-<p>So, all the problems that we could solve with the characteristic property can now be solved using its grundy numbers. For example, for the first problem we solved, ‘A simple take-away game’, the transitions can be seen in this way:</p>
+<p>In other words, <span class="math inline">\(g(state)\)</span> is the smallest non-negative integer not found amoung the function <span class="math inline">\(g\)</span> evaluated in states reachable from <span class="math inline">\(state\)</span>.</p>
+<p>The function <span class="math inline">\(g\)</span> is known as the <strong>Spragre-Grundy function</strong> and its values as <strong>grundy numbers</strong> or <strong>Nim values</strong>. And what is nice about this function is that <span class="math inline">\(g(state) = 0 \leftrightarrow state \text{ is a losing state}\)</span>.</p>
+<p>Moreover, there exists the function <span class="math inline">\(mex\)</span> (a.k.a minimum excludant) that gives the smallest non-negative integer not found in a set. For example:</p>
+<p><span class="math display">\[mex(\{0, 1, 3, 4, 5\}) = 2\]</span> <span class="math display">\[mex(\{1, 2, 3, 4, 5\}) = 0\]</span> <span class="math display">\[mex(\{3, 4, 5\}) = 0\]</span> <span class="math display">\[mex(\{0, 1\}) = 2\]</span></p>
+<p>Then, we can define <span class="math inline">\(g\)</span> in terms of the <span class="math inline">\(mex\)</span> function in this way:</p>
+<p><span class="math display">\[g(state) = mex\{g(state&#39;) \quad \forall state&#39; \text{ reachable
+from } state \}\]</span></p>
+<p>Now, all the problems that we can solve with the characteristic property can also be solved using its grundy numbers. For example, for the first problem we solved (‘A simple take-away game’) the transitions can be seen in this way:</p>
 <div class="row text-center">
 <p><img src="images/class-13/graph.png" /></p>
 <p>Image taken from <a href="https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf">Game theory - Thomas S. Ferguson. Page 14</a></p>
@@ -680,24 +685,51 @@ int main () {
   }
   return (0);
 }</code></pre>
-<p>Now, we are solving each case in <span class="math inline">\(O(nm \log m)\)</span> which is enough to get Accepted veredict.</p>
+<p>Now, we are solving each case in <span class="math inline">\(O(nm \log m)\)</span> which is enough to get the accepted veredict.</p>
 <p>But the importante of this new interpretation of the characteristic property can be better seen in the next section.</p>
 <div class="topic">
 Sprague-Grundy theorem
 </div>
-<p>So faw we have seen how to solve impartial combinatorial games using WL states and Grundy numbers. Now, what happend if we form a game as the sum of several impartial combinatorial games ? Well, in this case this theorem comes in handy:</p>
+<p>So faw we have seen how to solve impartial combinatorial games using WL states and Grundy numbers. Now, what happend if we form a game as the sum of several impartial combinatorial games ? Well, in this case the following theorem comes in handy:</p>
 </div>
 <div id="the-sprague-grundy-theorem" class="section level3">
 <h3>The Sprague-Grundy theorem</h3>
 <p>Given <span class="math inline">\(n\)</span> impartial combinatorial games, the Sprage-Grundy function of the union of these games is the Nim-sum of the Sprague-Grundy function of these games.</p>
 <p><strong>The proof is left to the reader as an exercise </strong> <i class="far fa-grimace" style="color: black"></i>.</p>
-<p>Now, let’s see an example of this theorem.</p>
+<p>Now, let’s see some examples of this theorem:</p>
+</div>
+<div id="first-problem" class="section level3">
+<h3>First problem</h3>
+<p><strong>Problem:</strong> The problem is the same of ‘A simple take-away game’, but now there are <span class="math inline">\(n\)</span> piles of chips and in each turn a player can select a pile (<strong>only one</strong>) and removes one, two or three chips from this pile.</p>
+<p>Let <span class="math inline">\(x_i\)</span> be the number of chips in the <span class="math inline">\(i\)</span>-th pile. Then, we can solve the problem using WL states or Grundy numbers. Now our state will be <span class="math inline">\((x_1, x_2, x_3, \dots, x_n)\)</span> and from this state we can go to these states (if possible):</p>
+<ul>
+<li><p><span class="math inline">\((x_1 - 1, x_2, x_3, \dots, x_n)\)</span></p></li>
+<li><p><span class="math inline">\((x_1 - 2, x_2, x_3, \dots, x_n)\)</span></p></li>
+<li><p><span class="math inline">\((x_1 - 3, x_2, x_3, \dots, x_n)\)</span></p></li>
+<li><p><span class="math inline">\((x_1, x_2 - 1, x_3, \dots, x_n)\)</span></p></li>
+<li><p><span class="math inline">\((x_1, x_2 - 2, x_3, \dots, x_n)\)</span></p></li>
+<li><p><span class="math inline">\((x_1, x_2 - 3, x_3, \dots, x_n)\)</span></p></li>
+<li><p><span class="math inline">\((x_1, x_2, x_3 - 1, \dots, x_n)\)</span></p></li>
+<li><p><span class="math inline">\((x_1, x_2, x_3 - 2, \dots, x_n)\)</span></p></li>
+<li><p><span class="math inline">\((x_1, x_2, x_3 - 3, \dots, x_n)\)</span></p>
+<p><span class="math inline">\(\vdots\)</span></p></li>
+<li><p><span class="math inline">\((x_1, x_2, x_3, \dots, x_n - 1)\)</span></p></li>
+<li><p><span class="math inline">\((x_1, x_2, x_3, \dots, x_n - 2)\)</span></p></li>
+<li><p><span class="math inline">\((x_1, x_2, x_3, \dots, x_n - 3)\)</span></p></li>
+</ul>
+<p>That is, from every state there are <span class="math inline">\(O(3n) = O(n)\)</span> possible transitions. So, we can calculate the Grundy number of the state <span class="math inline">\((x_1, x_2, x_3, \dots, x_n)\)</span> in <span class="math inline">\(O(n \cdot x_1 \cdot x_2 \cdot \dots \cdot x_n) = O(n x^n)\)</span> where <span class="math inline">\(x = \max(x_1, x_2, \dots, x_n)\)</span>.</p>
+<p>But, if we use the Sprague-Grundy theorem, we can compute the Grundy number of the state <span class="math inline">\((x_1, x_2, \dots, x_n)\)</span> in this way:</p>
+<p><span class="math display">\[g(x_1, x_2, \dots, x_n) = g(x_1) \oplus g(x_2) \oplus \dots \oplus g(x_n)\]</span></p>
+<p>And we can compute all <span class="math inline">\(g(x_1), g(x_2), \dots, g(x_n)\)</span> at the same time using memorization (the first solution we give to <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=1345">UVA 10404 - Bachet’s game</a>) in <span class="math inline">\(O(3x) = O(x)\)</span>. Then, we can compute <span class="math inline">\(g(x_1, x_2, \dots, x_n)\)</span> in <span class="math inline">\(O(x + n)\)</span>. <strong>Can you implement it?</strong></p>
+</div>
+<div id="second-problem" class="section level3">
+<h3>Second problem</h3>
 <p><strong>Problem:</strong> Given a <span class="math inline">\(N \times N\)</span> chessboard with <span class="math inline">\(K\)</span> knights on it. Each knight can move only as shown in the picture below. There can be more than one knight on the same square at the same time. Two players take turns moving and in each turn a player chooses one of the knights and moves it. The player who is not able to make a move is declared the loser. If both players play optimally who will win ?</p>
 <div class="row text-center">
 <p><img src="images/class-13/chess.png" /></p>
 <p>Image and problem taken from <a href="https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/">Algorithm Games - Topcoder</a></p>
 </div>
-<p>In order to solve this problem we can see each knight as a different game, then we have the union of games, so the Grundy number of our game is the Nim-sum of the grundy number of the position of the knights.</p>
+<p>In order to solve this problem we can see each knight as a different game, then we have the union of games, so the Grundy number of our game is the Nim-sum of the grundy number of the positions of the knights.</p>
 <p>In code it may be something like this:</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 

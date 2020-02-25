@@ -6,7 +6,7 @@ title: "Schedule"
 
 ## Topics
   - Asymptotic Analysis
-  - Standard Template Library (STL)
+  - Standard Template Library
   - Brute Force
   - Divide and Conquer
   - Game Theory
@@ -40,7 +40,7 @@ title: "Schedule"
 
 ### *Week 2*
 
-* <div id="class-03">[**Class 3: STL**](./class-03.html)</div>
+* <div id="class-03">[**Class 3: Standard Template Library**](./class-03.html)</div>
   **Topics**
   + Standard Template Library (STL) 
   + Numeric data types and its operations 

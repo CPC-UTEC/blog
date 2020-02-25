@@ -543,7 +543,7 @@ Ternary search
 </ul>
 <p>Then, assuming the first scenario (the second one is analogous), how can we find the maximum value of <span class="math inline">\(f(x) \mid x \in [l, r]\)</span> ?</p>
 <p>For simplicity, let <span class="math inline">\([l, r] \subset \mathbb{R}\)</span>.</p>
-<p>Let <span class="math inline">\(l \leq m1 \leq m2 \leq r\)</span></p>
+<p>Let <span class="math inline">\(l \leq m_1 \leq m_2 \leq r\)</span></p>
 <p>Initially you know that the maximum is in <span class="math inline">\([l, r]\)</span> and by the trichotomy property there are three cases:</p>
 <ul>
 <li><span class="math inline">\(f(m_1) = f(m_2)\)</span>. Then we are done</li>
@@ -551,7 +551,7 @@ Ternary search
 <li><span class="math inline">\(f(m_1) &gt; f(m_2)\)</span>. Then the answer must be in <span class="math inline">\([l, m_2]\)</span> (<strong>why?</strong>).</li>
 </ul>
 <p>So, each time we can reduce the interval where the answer must be. In we split the interval <span class="math inline">\([l, r]\)</span> in three parts, then we will find the answer in <span class="math inline">\(O(\log n)\)</span> and we may have:</p>
-<p><span class="math display">\[m_1 = (2 \cdot l + r) / 3\]</span> <span class="math display">\[m_2 = (l + 2 \cdot r) / 3\]</span></p>
+<p><span class="math display">\[m_1 = \frac{2 \cdot l + r}{3}\]</span> <span class="math display">\[m_2 = \frac{l + 2 \cdot r}{3}\]</span></p>
 <p>Try solving the problem at the end of <a href="https://www.hackerearth.com/practice/algorithms/searching/ternary-search/tutorial/">this tutorial</a> to apply what we have learned.</p>
 <p>The idea also works when <span class="math inline">\([l, r] \subset \mathbb{Z}\)</span> with some little modifications.</p>
 <p>So far we have study binary and ternary search, yet the D&amp;C paradigm does not reduce only to this. Next, we will show two more scenarios where D&amp;C paradigm comes in handy.</p>

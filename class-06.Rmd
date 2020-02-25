@@ -185,7 +185,7 @@ Imagine you have a funtion $f$ that solves a problem in this way:
 
 For example:
 
-$$f(n) = 1 * 2 * 3 * \dots * n$$
+$$f(n) = 1 \times 2 \times 3 \times \dots \times n$$
 
 We want to compute $f(n)$ in a recursive way. Then we need:
 
@@ -196,8 +196,8 @@ We want to compute $f(n)$ in a recursive way. Then we need:
 * Identify how to solve $f(n)$ using different states of $f$ (that are 'closer'
   to the states with a specific property of the above point). For instance:
 
-$$f(n) = \underbrace{1 * 2 * 3 * \dots * (n - 1)}_{\text{f(n - 1)}} * n$$
-$$f(n) = n * f(n - 1)$$
+$$f(n) = \underbrace{1 \times 2 \times 3 \times \dots \times (n - 1)}_{\text{f(n - 1)}} \times n$$
+$$f(n) = n \times f(n - 1)$$
 
 Then, we are basically saying that if $n = 0$ we know how to solve the problem,
 else if we have the answer of $f(n - 1)$ we can use it to solve $f(n)$.
@@ -317,7 +317,7 @@ order to fix that, we can use the properties of modular arithmetic:
 
 $$(x + y) \mod m = (x \mod m + y \mod m) \mod m$$
 $$(x - y) \mod m = (x \mod m - y \mod m) \mod m$$
-$$(x * y) \mod m = (x \mod m * y \mod m) \mod m$$
+$$(x \times y) \mod m = (x \mod m \times y \mod m) \mod m$$
 $$x^n \mod m = (x \mod m)^n \mod m$$
 
 So, we can fix the above code in this way:
@@ -352,7 +352,7 @@ $$
     \begin{cases}
         1       & \quad \text{If } b = 0 \\
         \text{power}(a, \lfloor b / 2 \rfloor) ^ 2  & \quad \text{if } b \mod 2 = 0 \\
-        a * \text{power}(a, \lfloor b / 2 \rfloor) ^ 2 & \quad \text{if } b \mod 2 = 1
+        a \times \text{power}(a, \lfloor b / 2 \rfloor) ^ 2 & \quad \text{if } b \mod 2 = 1
     \end{cases}
 $$
 
@@ -364,7 +364,7 @@ $$
     \begin{cases}
         1       & \quad \text{If } b = 0 \\
         \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2 \mod m & \quad \text{if } b \mod 2 = 0 \\
-        (a * \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2) \mod m & \quad \text{if } b \mod 2 = 1
+        (a \times \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2) \mod m & \quad \text{if } b \mod 2 = 1
     \end{cases}
 $$
 
@@ -406,7 +406,7 @@ Using Fermat's little theorem we have that the inverse of $a$ is $a^{m - 2}$ if 
 
 Now, we can mention one more property of modular arithmetic (if $b^{-1}$ exists).
 
-$$\frac{a}{b} \mod m = ((a \mod m) * (b^{-1} \mod m)) \mod m$$
+$$\frac{a}{b} \mod m = ((a \mod m) \times (b^{-1} \mod m)) \mod m$$
 
 Let's see how it is useful in [this problem](https://vjudge.net/problem/Gym-247724E).
 

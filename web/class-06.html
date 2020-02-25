@@ -543,14 +543,14 @@ Recursion
 <li>If we are not in a state with the specific property, we can solve the problem using different states of <span class="math inline">\(f\)</span>.</li>
 </ul>
 <p>For example:</p>
-<p><span class="math display">\[f(n) = 1 * 2 * 3 * \dots * n\]</span></p>
+<p><span class="math display">\[f(n) = 1 \times 2 \times 3 \times \dots \times n\]</span></p>
 <p>We want to compute <span class="math inline">\(f(n)\)</span> in a recursive way. Then we need:</p>
 <ul>
 <li><p>Identify a state with a specific property that we can solve easily.</p>
 <p>If <span class="math inline">\(n = 0 \to f(0) = 1\)</span>.</p></li>
 <li><p>Identify how to solve <span class="math inline">\(f(n)\)</span> using different states of <span class="math inline">\(f\)</span> (that are ‘closer’ to the states with a specific property of the above point). For instance:</p></li>
 </ul>
-<p><span class="math display">\[f(n) = \underbrace{1 * 2 * 3 * \dots * (n - 1)}_{\text{f(n - 1)}} * n\]</span> <span class="math display">\[f(n) = n * f(n - 1)\]</span></p>
+<p><span class="math display">\[f(n) = \underbrace{1 \times 2 \times 3 \times \dots \times (n - 1)}_{\text{f(n - 1)}} \times n\]</span> <span class="math display">\[f(n) = n \times f(n - 1)\]</span></p>
 <p>Then, we are basically saying that if <span class="math inline">\(n = 0\)</span> we know how to solve the problem, else if we have the answer of <span class="math inline">\(f(n - 1)\)</span> we can use it to solve <span class="math inline">\(f(n)\)</span>.</p>
 <p>In code it is something like this:</p>
 <pre class="cpp"><code>ll f (int n) {
@@ -613,7 +613,7 @@ Modular arithmetic
 long long a = 1e10; // 10^10
 long long your_answer = (a * a) % m;</code></pre>
 <p>Althought we know that the <span class="math inline">\(\%\)</span> operator will give us a result less than <span class="math inline">\(m\)</span>, <span class="math inline">\(a * a\)</span> can not fit in a <code>long long</code> (<span class="math inline">\(10^{20} &gt; 2^{63}\)</span>), so we have <code>overflow</code>. In order to fix that, we can use the properties of modular arithmetic:</p>
-<p><span class="math display">\[(x + y) \mod m = (x \mod m + y \mod m) \mod m\]</span> <span class="math display">\[(x - y) \mod m = (x \mod m - y \mod m) \mod m\]</span> <span class="math display">\[(x * y) \mod m = (x \mod m * y \mod m) \mod m\]</span> <span class="math display">\[x^n \mod m = (x \mod m)^n \mod m\]</span></p>
+<p><span class="math display">\[(x + y) \mod m = (x \mod m + y \mod m) \mod m\]</span> <span class="math display">\[(x - y) \mod m = (x \mod m - y \mod m) \mod m\]</span> <span class="math display">\[(x \times y) \mod m = (x \mod m \times y \mod m) \mod m\]</span> <span class="math display">\[x^n \mod m = (x \mod m)^n \mod m\]</span></p>
 <p>So, we can fix the above code in this way:</p>
 <pre class="cpp"><code>long long your_answer = ((a % m) * (a % m)) % m;</code></pre>
 <p>From the above properties we have:</p>
@@ -632,7 +632,7 @@ Binary exponenciation
     \begin{cases}
         1       &amp; \quad \text{If } b = 0 \\
         \text{power}(a, \lfloor b / 2 \rfloor) ^ 2  &amp; \quad \text{if } b \mod 2 = 0 \\
-        a * \text{power}(a, \lfloor b / 2 \rfloor) ^ 2 &amp; \quad \text{if } b \mod 2 = 1
+        a \times \text{power}(a, \lfloor b / 2 \rfloor) ^ 2 &amp; \quad \text{if } b \mod 2 = 1
     \end{cases}
 \]</span></p>
 <p>Moreover, from the properties of modular arithmetic, we can get <span class="math inline">\(a^b \mod m\)</span> as:</p>
@@ -641,7 +641,7 @@ Binary exponenciation
     \begin{cases}
         1       &amp; \quad \text{If } b = 0 \\
         \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2 \mod m &amp; \quad \text{if } b \mod 2 = 0 \\
-        (a * \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2) \mod m &amp; \quad \text{if } b \mod 2 = 1
+        (a \times \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2) \mod m &amp; \quad \text{if } b \mod 2 = 1
     \end{cases}
 \]</span></p>
 <p>In code:</p>
@@ -668,7 +668,7 @@ ll binpow (ll a, ll b) {
 <p>And as <span class="math inline">\(a^{m - 1} = a \cdot a^{m - 2}\)</span></p>
 <p>Using Fermat’s little theorem we have that the inverse of <span class="math inline">\(a\)</span> is <span class="math inline">\(a^{m - 2}\)</span> if <span class="math inline">\(m\)</span> is prime.</p>
 <p>Now, we can mention one more property of modular arithmetic (if <span class="math inline">\(b^{-1}\)</span> exists).</p>
-<p><span class="math display">\[\frac{a}{b} \mod m = ((a \mod m) * (b^{-1} \mod m)) \mod m\]</span></p>
+<p><span class="math display">\[\frac{a}{b} \mod m = ((a \mod m) \times (b^{-1} \mod m)) \mod m\]</span></p>
 <p>Let’s see how it is useful in <a href="https://vjudge.net/problem/Gym-247724E">this problem</a>.</p>
 <p><strong>Problem:</strong> Compute <span class="math inline">\(S = (1 + a + a^2 + a^3 + \dots + a^k) \mod m\)</span>.</p>
 <p><span class="math display">\[m = 10^9 + 7 \text{ (is prime)}\]</span> <span class="math display">\[1 \leq a \leq 10^{18}\]</span> <span class="math display">\[1 \leq k \leq 10^{18}\]</span></p>

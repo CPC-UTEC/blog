@@ -171,7 +171,7 @@ Then, assuming the first scenario (the second one is analogous), how can we find
 
 For simplicity, let $[l, r] \subset \mathbb{R}$.
 
-Let $l \leq m1 \leq m2 \leq r$
+Let $l \leq m_1 \leq m_2 \leq r$
 
 Initially you know that the maximum is in $[l, r]$ and by the trichotomy
 property there are three cases:
@@ -183,8 +183,8 @@ property there are three cases:
 So, each time we can reduce the interval where the answer must be. In we split
 the interval $[l, r]$ in three parts, then we will find the answer in $O(\log n)$ and we may have:
 
-$$m_1 = (2 \cdot l + r) / 3$$
-$$m_2 = (l + 2 \cdot r) / 3$$
+$$m_1 = \frac{2 \cdot l + r}{3}$$
+$$m_2 = \frac{l + 2 \cdot r}{3}$$
 
 Try solving the problem at the end of [this tutorial](https://www.hackerearth.com/practice/algorithms/searching/ternary-search/tutorial/) to apply what we have learned.
 

@@ -283,7 +283,7 @@ from } state \}$$
 In other words, $mex(state)$ is the smallest non-negative integer not found
 amoung the function $mex$ evaluated in states reachable from $state$.
 
-The function $mex$ is known as the **Spragre-Grundy function** or as **minimum excludant** and its values as **grundy numbers**. And what is nice about this function is that $mex(state) = 0 \leftrightarrow states \text{ is a losing state}$.
+The function $mex$ is known as the **Spragre-Grundy function** or as **minimum excludant** and its values as **grundy numbers** or **Nim values**. And what is nice about this function is that $mex(state) = 0 \leftrightarrow states \text{ is a losing state}$.
 
 So, all the problems that we could solve with the characteristic property can
 now be solved using its grundy numbers. For example, for the first problem we
@@ -361,16 +361,116 @@ int main () {
 }
 ```
 
-Now, we are solving each case in $O(nm)$ which is enough to get Accepted veredict.
+Now, we are solving each case in $O(nm \log m)$ which is enough to get Accepted veredict.
 
 But the importante of this new interpretation of the characteristic property
 can be better seen in the next section.
 
 <div class="topic">Sprague-Grundy theorem</div>
 
-In process...
+So faw we have seen how to solve impartial combinatorial games using WL states
+and Grundy numbers. Now, what happend if we form a game as the sum of several
+ impartial combinatorial games ? Well, in this case this theorem comes in
+ handy:
 
-<div class="topic">Extra: About floating point numbers</div>
+### The Sprague-Grundy theorem
+
+Given $n$ impartial combinatorial games, the Sprage-Grundy function of the
+union of these games is the Nim-sum of the Sprague-Grundy function of these
+games.
+
+**The proof is left to the reader as an exercise ** <i class="far fa-grimace" style="color: black"></i>.
+
+Now, let's see an example of this theorem.
+
+**Problem:** Given a $N \times N$ chessboard with $K$ knights on it. Each
+knight can move only as shown in the picture below. There can be more than one
+knight on the same square at the same time. Two players take turns moving and
+in each turn a player chooses one of the knights and moves it. The player who is not able to make a move is declared the loser. If both players play optimally who will win ?
+
+<div class="row text-center">
+![](./images/class-13/chess.png)
+
+Image and problem taken from [Algorithm Games - Topcoder](https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/)
+</div>
+
+In order to solve this problem we can see each knight as a different game, then
+we have the union of games, so the Grundy number of our game is the Nim-sum of
+the grundy number of the position of the knights.
+
+In code it may be something like this:
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n;
+vector <string> board;
+vector <vector <int>> memo;
+
+const int UNVISITED = -1;
+const vector <int> dr = {1, -1, -2, -2};
+const vector <int> dc = {-2, -2, -1, 1};
+
+int grundy (int r, int c) {
+  if (memo[r][c] != UNVISITED) {
+    return memo[r][c];
+  }
+  set <int> values;
+  for (int d = 0; d < dr.size(); d++) {
+    int nr = r + dr[d];
+    int nc = c + dc[d];
+    if (0 <= min(nr, nc) and max(nr, nc) < n) {
+      values.insert(grundy(nr, nc));
+    }
+  }
+  int mex = 0;
+  while (values.count(mex)) mex++;
+  return memo[r][c] = mex;
+}
+
+int main () {
+  /* Input example
+  8
+  ........
+  ..K..K..
+  .......K
+  ........
+  ...K....
+  ........
+  ....K...
+  ..K.....
+  */
+  cin >> n;
+  board.resize(n);
+  memo = vector <vector <int>> (n, vector <int> (n, UNVISITED));
+  for (int i = 0; i < n; i++) cin >> board[i];
+  vector <int> values;
+  for (int r = 0; r < n; r++) {
+    for (int c = 0; c < n; c++) {
+      if (board[r][c] == 'K') {
+        values.push_back(grundy(r, c));
+      }
+    }
+  }
+  int mex = 0;
+  for (int elem: values) {
+    mex ^= elem;
+  }
+  if (mex == 0) {
+    cout << "The first player is in a losing state" << '\n';
+  } else {
+    cout << "The first player is in a winning state" << '\n';
+  }
+  return (0);
+}
+```
+
+We may have also solve the problem using WL states or just Grundy numbers, but
+then we would have need to analyze around $\binom{N \cdot N}{K}$ possibles
+states (which is a lot), whereas using the Sprague-Grundy theorem we solved
+the problem in $O(N ^ 2)$.
 
 
 Recommended readings:

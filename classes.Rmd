@@ -74,10 +74,16 @@ title: "Classes"
   + [Contest](https://vjudge.net/contest/357719)
   + [Readings](./schedule.html#class-12)
 
+### *Week 8*
+- [02-24-2020] - Class 13 - Game Theory I
+  + [Theory](./class-13.html)
+  + [Contest](https://vjudge.net/contest/357719)
+  + [Readings](./schedule.html#class-13)
+
 The repository of this page can be found [here](https://github.com/CP-UTEC/Lessons).
 
 
 <script>
-$("#index-page")
+$("#classes-page-not-expanded")
   .addClass("active");
 </script>

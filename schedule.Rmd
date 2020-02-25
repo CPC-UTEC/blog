@@ -175,6 +175,20 @@ title: "Schedule"
   + [Topcoder - Binary stride a variant on binary search](https://www.topcoder.com/binary-stride-a-variant-on-binary-search/)
 
 
+### *Week 8*
+* <div id="class-13">[**Class 13: Game Theory I**](./class-13.html)</div>
+  **Topics**
+  + Introduction
+  + WL states
+  + The game of Nim
+  + Grundy numbers
+  + Sprague-Grundy theorem
+
+  **Readings**
+  + [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
+  + [Algorithm Games - Topcoder](https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/)
+  + [Game Theory For Competitive Programming](https://stepupanalytics.com/game-theory-for-competitive-programming/)
+
 <script>
 $("#schedule-page")
   .addClass("active");

@@ -616,7 +616,7 @@ Grundy numbers
 <p><span class="math display">\[mex(state) = \min\{n \geq 0: n \not = mex(state&#39;) \quad \forall state&#39; \text{ reachable
 from } state \}\]</span></p>
 <p>In other words, <span class="math inline">\(mex(state)\)</span> is the smallest non-negative integer not found amoung the function <span class="math inline">\(mex\)</span> evaluated in states reachable from <span class="math inline">\(state\)</span>.</p>
-<p>The function <span class="math inline">\(mex\)</span> is known as the <strong>Spragre-Grundy function</strong> or as <strong>minimum excludant</strong> and its values as <strong>grundy numbers</strong>. And what is nice about this function is that <span class="math inline">\(mex(state) = 0 \leftrightarrow states \text{ is a losing state}\)</span>.</p>
+<p>The function <span class="math inline">\(mex\)</span> is known as the <strong>Spragre-Grundy function</strong> or as <strong>minimum excludant</strong> and its values as <strong>grundy numbers</strong> or <strong>Nim values</strong>. And what is nice about this function is that <span class="math inline">\(mex(state) = 0 \leftrightarrow states \text{ is a losing state}\)</span>.</p>
 <p>So, all the problems that we could solve with the characteristic property can now be solved using its grundy numbers. For example, for the first problem we solved, ‘A simple take-away game’, the transitions can be seen in this way:</p>
 <div class="row text-center">
 <p><img src="images/class-13/graph.png" /></p>
@@ -680,15 +680,90 @@ int main () {
   }
   return (0);
 }</code></pre>
-<p>Now, we are solving each case in <span class="math inline">\(O(nm)\)</span> which is enough to get Accepted veredict.</p>
+<p>Now, we are solving each case in <span class="math inline">\(O(nm \log m)\)</span> which is enough to get Accepted veredict.</p>
 <p>But the importante of this new interpretation of the characteristic property can be better seen in the next section.</p>
 <div class="topic">
 Sprague-Grundy theorem
 </div>
-<p>In process…</p>
-<div class="topic">
-Extra: About floating point numbers
+<p>So faw we have seen how to solve impartial combinatorial games using WL states and Grundy numbers. Now, what happend if we form a game as the sum of several impartial combinatorial games ? Well, in this case this theorem comes in handy:</p>
 </div>
+<div id="the-sprague-grundy-theorem" class="section level3">
+<h3>The Sprague-Grundy theorem</h3>
+<p>Given <span class="math inline">\(n\)</span> impartial combinatorial games, the Sprage-Grundy function of the union of these games is the Nim-sum of the Sprague-Grundy function of these games.</p>
+<p><strong>The proof is left to the reader as an exercise </strong> <i class="far fa-grimace" style="color: black"></i>.</p>
+<p>Now, let’s see an example of this theorem.</p>
+<p><strong>Problem:</strong> Given a <span class="math inline">\(N \times N\)</span> chessboard with <span class="math inline">\(K\)</span> knights on it. Each knight can move only as shown in the picture below. There can be more than one knight on the same square at the same time. Two players take turns moving and in each turn a player chooses one of the knights and moves it. The player who is not able to make a move is declared the loser. If both players play optimally who will win ?</p>
+<div class="row text-center">
+<p><img src="images/class-13/chess.png" /></p>
+<p>Image and problem taken from <a href="https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/">Algorithm Games - Topcoder</a></p>
+</div>
+<p>In order to solve this problem we can see each knight as a different game, then we have the union of games, so the Grundy number of our game is the Nim-sum of the grundy number of the position of the knights.</p>
+<p>In code it may be something like this:</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int n;
+vector &lt;string&gt; board;
+vector &lt;vector &lt;int&gt;&gt; memo;
+
+const int UNVISITED = -1;
+const vector &lt;int&gt; dr = {1, -1, -2, -2};
+const vector &lt;int&gt; dc = {-2, -2, -1, 1};
+
+int grundy (int r, int c) {
+  if (memo[r][c] != UNVISITED) {
+    return memo[r][c];
+  }
+  set &lt;int&gt; values;
+  for (int d = 0; d &lt; dr.size(); d++) {
+    int nr = r + dr[d];
+    int nc = c + dc[d];
+    if (0 &lt;= min(nr, nc) and max(nr, nc) &lt; n) {
+      values.insert(grundy(nr, nc));
+    }
+  }
+  int mex = 0;
+  while (values.count(mex)) mex++;
+  return memo[r][c] = mex;
+}
+
+int main () {
+  /* Input example
+  8
+  ........
+  ..K..K..
+  .......K
+  ........
+  ...K....
+  ........
+  ....K...
+  ..K.....
+  */
+  cin &gt;&gt; n;
+  board.resize(n);
+  memo = vector &lt;vector &lt;int&gt;&gt; (n, vector &lt;int&gt; (n, UNVISITED));
+  for (int i = 0; i &lt; n; i++) cin &gt;&gt; board[i];
+  vector &lt;int&gt; values;
+  for (int r = 0; r &lt; n; r++) {
+    for (int c = 0; c &lt; n; c++) {
+      if (board[r][c] == &#39;K&#39;) {
+        values.push_back(grundy(r, c));
+      }
+    }
+  }
+  int mex = 0;
+  for (int elem: values) {
+    mex ^= elem;
+  }
+  if (mex == 0) {
+    cout &lt;&lt; &quot;The first player is in a losing state&quot; &lt;&lt; &#39;\n&#39;;
+  } else {
+    cout &lt;&lt; &quot;The first player is in a winning state&quot; &lt;&lt; &#39;\n&#39;;
+  }
+  return (0);
+}</code></pre>
+<p>We may have also solve the problem using WL states or just Grundy numbers, but then we would have need to analyze around <span class="math inline">\(\binom{N \cdot N}{K}\)</span> possibles states (which is a lot), whereas using the Sprague-Grundy theorem we solved the problem in <span class="math inline">\(O(N ^ 2)\)</span>.</p>
 <p>Recommended readings:</p>
 <ul>
 <li><a href="https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf">Game theory - Thomas S. Ferguson. Chapter 1-4</a></li>

@@ -132,7 +132,90 @@ If you give up you can find the solution  in [Game theory - Thomas S. Ferguson. 
 
 <div class="topic">Minimax</div>
 
-In process...
+We have already studied some techniques for solving impartial combinatorics
+games, but you may be wondering how to solve partizan games. The fact is that
+we may use WL states or Grundy numbers to solven them, yet a general
+backtracking solution using the characteristic property is better in this kind
+of games because there can be a draw. Then, we need to differenciate a draw,
+a winning state and a losing state. One way to achieve this is to define an
+utility function that assigns a value to each state. For example:
+
+$$
+    \text{utility}(state) =,
+    \begin{cases}
+        1       & \quad \text{If state is a winning state}\\
+        0       & \quad \text{If state is a draw}\\
+       -1       & \quad \text{If state is a losing state}\\
+    \end{cases}
+$$
+
+In a partizan two-player game, as each player may play optimally, there
+would be a player that will try to obtain the maximum utility, whereas the other
+player will try to obtain the minimum utility. In other words, when both players play optimally, basically the first player will try all the moves and will choose the move that gives him the maximum
+utility, then the second player will choose the move that gives the first player
+the minimum possible utility, and so on.
+
+Then, we can implement something like this:
+
+```c++
+namespace Minimax {
+  int utility (State);
+  int minVal (State);
+  int maxVal (State);
+}
+
+namespace Minimax {
+  int utility (State s) {
+    return the weight of the state s
+  }
+
+  int minVal (State s) {
+    if (s is a terminal state) {
+      return utility(s);
+    }
+    // First, assume the worst scenario
+    int ret = max_utility_value;
+    for (State s' reachable from s) {
+      ret = min(ret, maxVal(s'));
+    }
+    return ret;
+  }
+
+  int maxVal (State s) {
+    if (s is a terminal state) {
+      return utility(s);
+    }
+    // First, assume the worst scenario
+    int ret = min_utility_value;
+    for (State s' reachable from s) {
+      ret = max(ret, minVal(s'));
+    }
+    return ret;
+  }
+
+}
+
+```
+
+This idea (basically a simulation of all possible scenarios) is achieved when
+the first player calls `Minimax::maxVal(initial_state)`. As `minVal` calls
+`maxVal` and `maxVal` calls `minVal`, we need to declare the interface of these
+functions and we are grouping them in a namespace to keep them in order. Now,
+using this framework we can solve a variety of problems like chess, go,
+checkers, etc. The only problem is that this solution is exponential, yet it is
+important to understand it as this idea is the base for other solutions.
+
+As an example we can solve the Tic Tac Toe game using this framework. When
+doing it the recursion tree may looks something like this:
+
+<div class="row text-center">
+![](images/class-14/tic-tac-toe.png)
+</div>
+
+Moreover, you may notice that this framework is simply a backtracking, but for
+its importance (and maybe for the [Rumpelstiltskin Principle](https://alum.mit.edu/slice/rumpelstiltskin-principle)) it is called the Minimax algorithm.
+
+You may also be interested in watch [Coding Challenge 154: Tic Tac Toe AI with Minimax Algorithm](https://youtu.be/trKjYdBASyQ) for a visual implementation of the Minimax algorithm for Tic Tac Toe.
 
 <div class="topic">Alpha-Beta prunning</div>
 

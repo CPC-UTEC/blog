@@ -85,7 +85,7 @@ In process...
 
 In process...
 
-<div class="topic">Alpha-Beta Prunning</div>
+<div class="topic">Alpha-Beta prunning</div>
 
 In process...
 
@@ -94,6 +94,7 @@ Recommended readings:
 - [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
 * [Competitive Programmer's Handbook, chapter 25](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
 * [E-maxx Sprague-Grundy theorem. Nim](https://cp-algorithms.com/game_theory/sprague-grundy-nim.html)
+* [Search: Games, Minimax, and Alpha-Beta](https://youtu.be/STjW3eH0Cik)
 
 <div class="topic" id="contest">Contest</div>
 

@@ -1,0 +1,130 @@
+---
+title: "Class 14: Game Theory II"
+date: "02-26-2020"
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+> "Don’t Repeat Yourself"
+
+<div class="topic">Grundy's games</div>
+
+Let $s$ be the current state in a game and $s_1, s_2, \dots, s_n$ the new states where we can go. Then we
+already know that:
+
+$$g(s) = mex(g(s_1), g(s_2), \dots, s(s_n))$$
+
+But, if each $s_i$ can be seen as an **independent** game, then applying the
+Sprague-Grundy theorem we can compute:
+
+$$g(s_i) = g(a_1) \oplus g(a_2) \oplus \dots \oplus g(a_m)$$
+
+Where $a_i$ depends of $s_i$.
+
+This kind of games where a move divides the game into subgames that **are
+independent** of each other are commonly found. Let's call them Grundy's games.
+Here is some examples:
+
+### First problem
+
+Problem taken from [Competitive Programmer's Handbook, chapter 25. Page 240](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf).
+
+**Problem:** The problem is the same as the game of Nim but now, in each turn
+a player can choose a pile and divide it into two non-empty piles such that the
+new two piles are of different size.
+
+We can solve the problem using WL-states or Grundy numbers, but the numbers of
+states are too much (**can you compute it?**). Nevertheless, we can notice that if
+we take pile $s_i$ and divide it into piles of size $a_1 \land a_2 \mid a_1
++ a_2 = s_i$, then we can see $a_1 \land a_2$ as independent subgames. So, we
+  have:
+
+$$g(s_i) = mex(\{a_1 \oplus a_2\} \mid a_1 \not = a_2 \land a_1 + a_2 = s_i)$$
+
+**Can you implement it?**
+
+Problem taken from [E-maxx Sprague-Grundy theorem. Nim](https://cp-algorithms.com/game_theory/sprague-grundy-nim.html#toc-tgt-9)
+
+### Second problem
+
+**Problem:** You have $n$ rectangles in a row. There are two players, in each
+turn a player chooses a rectangle and writes a cross on it. It is forbidden to
+put two crosses next to each other (in adjacent cells). As usual, the player
+without a valid move loses. If both players play optimally. Who is the winner ?
+
+<div class="row text-center">
+![](./images/class-14/cross.png)
+
+Example of an instance of the game when $n = 6$
+</div>
+
+When a player writes a cross in a cell $i \mid 2 \leq i \leq n - 1$ we are
+bassically dividing the game into two **independent** subgames of size $i - 2$
+and $n - i - 1$ because the adjacent cell of the $i$-th rectangle are virtually
+destroyed. Then, taking care of the corner cases (when a player writes a cross
+in the first or last rectangle), we can deduce that $g(n)$ can be expressed in
+this way:
+
+$$g(n) = mex(\{g(n - 1)\} \cup \{g(i - 2) \oplus g(n - i - 1) \mid 2 \leq
+i \leq n - 1 \})$$
+
+Then we can implement this idea in $O(n^2 \log n)$ or in $O(n^2)$. **Can you
+implement it?**
+
+<div class="topic">Staircase Nim</div>
+
+In process...
+
+<div class="topic">Misère games</div>
+
+In process...
+
+<div class="topic">Minimax</div>
+
+In process...
+
+<div class="topic">Alpha-Beta Prunning</div>
+
+In process...
+
+Recommended readings:
+
+- [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
+* [Competitive Programmer's Handbook, chapter 25](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+* [E-maxx Sprague-Grundy theorem. Nim](https://cp-algorithms.com/game_theory/sprague-grundy-nim.html)
+
+<div class="topic" id="contest">Contest</div>
+
+You can find the contest [here](https://vjudge.net/contest/359163).
+
+The solutions will be uploaded after the contest.
+
+<p style="float: none; clear: both;"></p>
+
+<!--
+<div style="float: right;" class="pt-3">
+  <a class="continue-link" href="./class-11.html" 
+     data-toggle="tooltip" title="Divide and Conquer I">
+  Next
+  </a>
+</div>
+-->
+
+<div class="pt-3">
+  <a class="continue-link" href="./class-12.html"
+     data-toggle="tooltip" title="Game Theory I">
+  Previous
+  </a>
+</div>
+
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-14').addClass('active');
+  const cur_class = document.getElementById('class-14');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+</script>

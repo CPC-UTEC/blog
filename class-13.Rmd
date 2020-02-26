@@ -74,7 +74,7 @@ in the next turn. If there are $5, 6$ or $7$ chips, then player $A$ can left
 just $4$ chips, then no matter how many chips player $B$ takes in its turn, in
 the next turn player $A$ can take all the remaining chips. And so on.
 
-From these we notice that $f(x) = L \leftrightarrow L \equiv 0 \bmod 4$. Then, we have
+From these we notice that $f(x) = n \leftrightarrow n \equiv 0 \bmod 4$. Then, we have
 solved the problem.
 
 The idea of defining a function that maps some states to $L, W$ is what is
@@ -213,10 +213,8 @@ without carry in base 2. That is, if we have:
 $$a = \overline{a_na_{n-1} \dots a_1}_{(2)}$$
 $$b = \overline{b_nb_{n-1} \dots b_1}_{(2)}$$
 
-Filling with zeros as necessary so that $a$ and $b$ have the same number of
-digits.
-
-Let $c$ be the Nim-sum of $a$ and $b$, then $c_i = (a_i + b_i) \bmod 2$ and it
+Let $c$ be the Nim-sum of $a$ and $b$ and fill zeros to the left as necessary so that $a$ and $b$ have the same number of
+digits. Then $c_i = (a_i + b_i) \bmod 2$ and it
 is written as $c = a \oplus b$.
 
 That is, $a \oplus b$ is this in C++:
@@ -277,13 +275,13 @@ int main () {
 We can express the characteristic property in a slighty different way. First,
 let's define:
 
-$$g(state) = \min\{n \geq 0: n \not = g(state') \quad \forall state' \text{ reachable
-from } state \}$$
+$$g(state) = \min(n \geq 0: n \not = g(state') \quad \forall state' \text{ reachable
+from } state )$$
 
 In other words, $g(state)$ is the smallest non-negative integer not found
 amoung the function $g$ evaluated in states reachable from $state$.
 
-The function $g$ is known as the **Spragre-Grundy function** and its values as **grundy numbers** or **Nim values**. And what is nice about this function is that $g(state) = 0 \leftrightarrow state \text{ is a losing state}$.
+The function $g$ is known as the **Spragre-Grundy function** and its values as **Grundy numbers** or **Nim values**. And what is nice about this function is that $g(state) = 0 \leftrightarrow state \text{ is a losing state}$.
 
 Moreover, there exists the function $mex$ (a.k.a minimum excludant) that gives
 the smallest non-negative integer not found in a set. For example:
@@ -295,12 +293,12 @@ $$mex(\{0, 1\}) = 2$$
 
 Then, we can define $g$ in terms of the $mex$ function in this way:
 
-$$g(state) = mex\{g(state') \quad \forall state' \text{ reachable
-from } state \}$$
+$$g(state) = mex(g(state') \quad \forall state' \text{ reachable
+from } state )$$
 
 
 Now, all the problems that we can solve with the characteristic property can
-also be solved using its grundy numbers. For example, for the first problem we
+also be solved using its Grundy numbers. For example, for the first problem we
 solved ('A simple take-away game') the transitions can be seen in this way:
 
 <div class="row text-center">
@@ -309,7 +307,7 @@ solved ('A simple take-away game') the transitions can be seen in this way:
 Image taken from [Game theory - Thomas S. Ferguson. Page 14](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
 </div>
 
-Now, we can compute its grundy numbers and we'll get:
+Now, we can compute its Grundy numbers and we'll get:
 
 - $mex(0) = 0$
 - $mex(1) = 1$
@@ -375,7 +373,7 @@ int main () {
 }
 ```
 
-Now, we are solving each case in $O(nm \log m)$ which is enough to get the accepted veredict.
+Now, we are solving each case in $O(nm \log m)$ which is enough to get the accepted veredict. **Can be implemented in $O(nm)$?**
 
 But the importante of this new interpretation of the characteristic property
 can be better seen in the next section.
@@ -447,7 +445,7 @@ Image and problem taken from [Algorithm Games - Topcoder](https://www.topcoder.c
 
 In order to solve this problem we can see each knight as a different game, then
 we have the union of games, so the Grundy number of our game is the Nim-sum of
-the grundy number of the positions of the knights.
+the Grundy number of the positions of the knights.
 
 In code it may be something like this:
 
@@ -538,14 +536,12 @@ The solutions will be uploaded after the contest.
 
 <p style="float: none; clear: both;"></p>
 
-<!--
 <div style="float: right;" class="pt-3">
-  <a class="continue-link" href="./class-11.html" 
-     data-toggle="tooltip" title="Divide and Conquer I">
+  <a class="continue-link" href="./class-14.html" 
+     data-toggle="tooltip" title="Game Theory II">
   Next
   </a>
 </div>
--->
 
 <div class="pt-3">
   <a class="continue-link" href="./class-12.html"

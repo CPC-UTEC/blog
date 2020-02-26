@@ -103,6 +103,12 @@ These links can help you navigate through the material developed.
   + [Contest](https://vjudge.net/contest/359163)
   + [Readings](./schedule.html#class-13)
 
+- [02-26-2020] - Class 14 - Game Theory II
+  + [Theory](./class-14.html)
+  + [Contest](https://vjudge.net/contest/359163)
+  + [Readings](./schedule.html#class-14)
+
+
 The repository of this page can be found [here](https://github.com/CP-UTEC/Lessons).
 
 

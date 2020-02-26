@@ -11,7 +11,7 @@
 
 
 
-<title>Class 01: Introduction</title>
+<title>Class 14: Game Theory II</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
@@ -420,292 +420,89 @@ $(".main-container")
 
 
 
-<h1 class="title toc-ignore">Class 01: Introduction</h1>
-<h4 class="date">01-06-2020</h4>
+<h1 class="title toc-ignore">Class 14: Game Theory II</h1>
+<h4 class="date">02-26-2020</h4>
 
 </div>
 
 
 <blockquote>
-<p>“Art of Thinking”</p>
+<p>“Don’t Repeat Yourself”</p>
 </blockquote>
 <div class="topic">
-What is competitive programming?
+Grundy’s games
 </div>
-<ol style="list-style-type: decimal">
-<li>It’s a sport… <strong>a mind sport</strong></li>
-<li>Participants are given problems and they have to create computer programs to solve them as quickly as they can</li>
-<li>There are many type of problems that we will learn <strong>later</strong>…</li>
-</ol>
+<p>Let <span class="math inline">\(s\)</span> be the current state in a game and <span class="math inline">\(s_1, s_2, \dots, s_n\)</span> the new states where we can go. Then we already know that:</p>
+<p><span class="math display">\[g(s) = mex(g(s_1), g(s_2), \dots, s(s_n))\]</span></p>
+<p>But, if each <span class="math inline">\(s_i\)</span> can be seen as an <strong>independent</strong> game, then applying the Sprague-Grundy theorem we can compute:</p>
+<p><span class="math display">\[g(s_i) = g(a_1) \oplus g(a_2) \oplus \dots \oplus g(a_m)\]</span></p>
+<p>Where <span class="math inline">\(a_i\)</span> depends of <span class="math inline">\(s_i\)</span>.</p>
+<p>This kind of games where a move divides the game into subgames that <strong>are independent</strong> of each other are commonly found. Let’s call them Grundy’s games. Here is some examples:</p>
+<div id="first-problem" class="section level3">
+<h3>First problem</h3>
+<p>Problem taken from <a href="https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf">Competitive Programmer’s Handbook, chapter 25. Page 240</a>.</p>
+<p><strong>Problem:</strong> The problem is the same as the game of Nim but now, in each turn a player can choose a pile and divide it into two non-empty piles such that the new two piles are of different size.</p>
+<p>We can solve the problem using WL-states or Grundy numbers, but the numbers of states are too much (<strong>can you compute it?</strong>). Nevertheless, we can notice that if we take pile <span class="math inline">\(s_i\)</span> and divide it into piles of size <span class="math inline">\(a_1 \land a_2 \mid a_1 + a_2 = s_i\)</span>, then we can see <span class="math inline">\(a_1 \land a_2\)</span> as independent subgames. So, we have:</p>
+<p><span class="math display">\[g(s_i) = mex(\{a_1 \oplus a_2\} \mid a_1 \not = a_2 \land a_1 + a_2 = s_i)\]</span></p>
+<p><strong>Can you implement it?</strong></p>
+<p>Problem taken from <a href="https://cp-algorithms.com/game_theory/sprague-grundy-nim.html#toc-tgt-9">E-maxx Sprague-Grundy theorem. Nim</a></p>
+</div>
+<div id="second-problem" class="section level3">
+<h3>Second problem</h3>
+<p><strong>Problem:</strong> You have <span class="math inline">\(n\)</span> rectangles in a row. There are two players, in each turn a player chooses a rectangle and writes a cross on it. It is forbidden to put two crosses next to each other (in adjacent cells). As usual, the player without a valid move loses. If both players play optimally. Who is the winner ?</p>
+<div class="row text-center">
+<p><img src="images/class-14/cross.png" /></p>
+<p>Example of an instance of the game when <span class="math inline">\(n = 6\)</span></p>
+</div>
+<p>When a player writes a cross in a cell <span class="math inline">\(i \mid 2 \leq i \leq n - 1\)</span> we are bassically dividing the game into two <strong>independent</strong> subgames of size <span class="math inline">\(i - 2\)</span> and <span class="math inline">\(n - i - 1\)</span> because the adjacent cell of the <span class="math inline">\(i\)</span>-th rectangle are virtually destroyed. Then, taking care of the corner cases (when a player writes a cross in the first or last rectangle), we can deduce that <span class="math inline">\(g(n)\)</span> can be expressed in this way:</p>
+<p><span class="math display">\[g(n) = mex(\{g(n - 1)\} \cup \{g(i - 2) \oplus g(n - i - 1) \mid 2 \leq
+i \leq n - 1 \})\]</span></p>
+<p>Then we can implement this idea in <span class="math inline">\(O(n^2 \log n)\)</span> or in <span class="math inline">\(O(n^2)\)</span>. <strong>Can you implement it?</strong></p>
 <div class="topic">
-Topics of the course
+Staircase Nim
 </div>
-<ol style="list-style-type: decimal">
-<li>Asymptotic Analysis</li>
-<li>Standard Template Library (STL)</li>
-<li>Brute Force</li>
-<li>Divide and Conquer</li>
-<li>Searching in Graphs</li>
-<li>Single Source Shortest Path (SSSP)</li>
-<li>All Pair Shortest Path (ASPSP)</li>
-<li>Minimum Spanning Tree (MST)</li>
-</ol>
+<p>In process…</p>
 <div class="topic">
-Virtual Judges
+Misère games
 </div>
-<p><a href="https://codeforces.com/" target="_blank"><img src="images/class-01/codeforces.png" /></a> <a href="https://atcoder.jp/" target="_blank"><img src="images/class-01/atcoder.png" /></a> <a href="https://www.codechef.com/" target="_blank"><img src="images/class-01/codechef.png" /></a> <a href="https://www.spoj.com/" target="_blank"><img src="images/class-01/spoj.png" /></a> <a href="https://www.hackerearth.com/" target="_blank"><img src="images/class-01/hackerearth.png" /></a></p>
+<p>In process…</p>
 <div class="topic">
-Problem structure
+Minimax
 </div>
-<ul>
-<li>Title and limitations</li>
-<li>Description</li>
-<li>Input and Output (I/O)</li>
-<li>Examples</li>
-</ul>
-<div id="example" class="section level3">
-<h3>Example</h3>
-<p><strong>Problem:</strong> You’re given <strong>n</strong> numbers and you’d like to find a pair of numbers with the greatest sum. <br></p>
-<p><strong>Constrains:</strong> <br> - <span class="math inline">\(2 \leq n \leq 10^8\)</span> <br> - Time limit: 1 second <br> - Memory limit per test: 256 megabytes <br></p>
-<p><strong>Input:</strong> <br> The first line of each input a single integer n denoting the number of values. The next lines containg the n values.</p>
-<p><strong>Output:</strong> <br> The greatest sum</p>
-<p><strong>Example:</strong> <br> <em>Input</em> <br> 10</p>
-<p>3 4 2 30 104 1 35 104 239 -1</p>
-<p>2</p>
-<p>3 0</p>
-<p><em>Output</em> <br> 343</p>
-<p>3</p>
+<p>In process…</p>
 <div class="topic">
-Veredicts information
+Alpha-Beta Prunning
 </div>
+<p>In process…</p>
+<p>Recommended readings:</p>
 <ul>
-<li><div style="color: green">
-AC - Accepted
-</div></li>
-<li><div style="color: red">
-WA - Wrong Answer
-</div></li>
-<li><div style="color: blue">
-TLE - Time Limit Exceeded
-</div></li>
-<li><div style="color: orange">
-RE - Runtime Error
-</div></li>
-</ul>
-<p><a href="https://icpcarchive.ecs.baylor.edu/index.php?option=com_content&amp;task=view&amp;id=14&amp;Itemid=30">Other veredicts</a></p>
-<div class="topic">
-Environment setup
-</div>
-<ol style="list-style-type: decimal">
-<li>Choose a IDE or a text editor</li>
-</ol>
-<ul>
-<li><a href="https://www.jetbrains.com/es-es/clion/">CLion</a></li>
-<li><a href="https://www.bloodshed.net/dev/">DevC++</a></li>
-<li><a href="http://www.codeblocks.org/">CodeBlocks</a></li>
-<li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
-<li><a href="https://atom.io/">Atom</a></li>
-<li><a href="https://www.sublimetext.com/">Sublime</a></li>
-<li><a href="https://www.vim.org/">Vim</a></li>
-<li><a href="https://www.gnu.org/software/emacs/">Emacs</a></li>
-</ul>
-<ol start="2" style="list-style-type: decimal">
-<li>Select a programming language allowed in most online judges</li>
-</ol>
-<ul>
-<li>C++</li>
-<li>Python</li>
-<li>Java</li>
-<li>Kotlin</li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li>Always prefer C++ for competitive programming</li>
-</ol>
-<ul>
-<li>Lower Level <span class="math inline">\(\rightarrow\)</span> More control.</li>
-<li>It’s faster.</li>
-<li>Makes better use of memory.</li>
-<li>The <strong>STL Library</strong> is extremaly powerful.</li>
-<li>Almost all learning resources are oriented to C++.</li>
-<li>It has a strong community.</li>
+<li><a href="https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf">Game theory - Thomas S. Ferguson. Chapter 1-4</a></li>
+<li><a href="https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf">Competitive Programmer’s Handbook, chapter 25</a></li>
+<li><a href="https://cp-algorithms.com/game_theory/sprague-grundy-nim.html">E-maxx Sprague-Grundy theorem. Nim</a></li>
 </ul>
 <div id="contest" class="topic">
 Contest
 </div>
-<p>You can find the contest <a href="https://vjudge.net/contest/350658">here</a>.</p>
-<!-- Begins problem A -->
-<div class="card">
-<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
-<!-- title -->
-<i class="fas fa-caret-right"></i>
-<p class="title">
-A: Watermelon
-</p>
-</div>
-<!-- begin body -->
-<div id="collapseProblemA" class="collapse">
-<div id="problem-a-watermelon" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/4/A" target="_blank">Problem A: Watermelon</a></h3>
-<p>The problem is bassically to find</p>
-<p><span class="math inline">\(a, b \mid 1 \leq a, b \leq n / 2 \land 2a + 2b = n\)</span></p>
-<p>The following code use this idea.</p>
-<!-- begin code -->
-<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA1" aria-expanded="false" aria-controls="collapseTwo">
-<!-- title --> <i class="fas fa-caret-right"></i>
-<p class="title">
-Code
-</p>
-</div>
-<div id="codeProblemA1" class="collapse">
-<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-int main () {
-  int n;
-  cin &gt;&gt; n;
-  bool ok = false;
-  for (int a = 1; a &lt;= n / 2; a++) {
-    for (int b = 1; b &lt;= n / 2; b++) {
-      if (2 * a + 2 * b == n) ok = true;
-    }
-  }
-  if (ok) cout &lt;&lt; &quot;YES\n&quot;;
-  else cout &lt;&lt; &quot;NO\n&quot;;
-  return (0);
-}</code></pre>
-</div>
-<p><!-- ends code --></p>
-<p>But, we can take <span class="math inline">\(b = 1\)</span> (why?) and realize that the problem reduces to find:</p>
-<p><span class="math inline">\(a \leq 1 \leq a \leq n / 2 \land 2a = n - 2\)</span></p>
-<p>The following code use this idea.</p>
-<!-- begin code -->
-<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA2" aria-expanded="false" aria-controls="collapseTwo">
-<!-- title --> <i class="fas fa-caret-right"></i>
-<p class="title">
-Code
-</p>
-</div>
-<div id="codeProblemA2" class="collapse">
-<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-int main () {
-  int n;
-  cin &gt;&gt; n;
-  bool ok = false;
-  if (n - 2 &gt;= 2 and n % 2 == 0) ok = true;
-  if (ok) cout &lt;&lt; &quot;YES\n&quot;;
-  else cout &lt;&lt; &quot;NO\n&quot;;
-  return (0);
-}</code></pre>
-</div>
-<p><!-- ends code --></p>
-</div>
-</div>
-</div>
-<!-- ends problem A -->
-<!-- Begins problem B -->
-<div class="card">
-<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
-<!-- title -->
-<i class="fas fa-caret-right"></i>
-<p class="title">
-B: Threatre Square
-</p>
-</div>
-<!-- begin body -->
-<div id="collapseProblemB" class="collapse">
-<div id="problem-b-theatre-square" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1/A" target="_blank">Problem B: Theatre Square</a></h3>
-<p>Basically we need to find <span class="math inline">\(x * y\)</span> where</p>
-<p><span class="math inline">\(x = min\{x \mid x * a \geq n\}\)</span></p>
-<p><span class="math inline">\(y = min\{y \mid y * a \geq m\}\)</span></p>
-<p>Then, <span class="math display">\[x = \lceil \frac{n}{a} \rceil \land y = \lceil \frac{m}{a} \rceil \]</span></p>
-<p>And there is also the property:</p>
-<p><span class="math display">\[\lceil a / b \rceil = \lfloor (a + b - 1) / b \rfloor\]</span></p>
-<p>The following code use this idea.</p>
-<!-- begin code -->
-<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
-<!-- title --> <i class="fas fa-caret-right"></i>
-<p class="title">
-Code
-</p>
-</div>
-<div id="codeProblemB" class="collapse">
-<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-int main () {
-  long long n, m, a;
-  cin &gt;&gt; n &gt;&gt; m &gt;&gt; a;
-  long long x = (n + a - 1) / a;
-  long long y = (m + a - 1) / a;
-  cout &lt;&lt; x * y &lt;&lt; &#39;\n&#39;;
-  return (0);
-}</code></pre>
-</div>
-<p><!-- ends code --></p>
-<p>What happen if we use <code>int</code> instead of <code>long long</code> (try <span class="math inline">\(n = m = 10^9, a = 1\)</span>)</p>
-</div>
-</div>
-</div>
-<!-- ends problem B -->
-<!-- Begins problem C -->
-<div class="card">
-<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
-<!-- title -->
-<i class="fas fa-caret-right"></i>
-<p class="title">
-C: Way Too Long Words
-</p>
-</div>
-<!-- begin body -->
-<div id="collapseProblemC" class="collapse">
-<div id="problem-c-way-too-long-words" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/71/A" target="_blank">Problem C: Way Too Long Words</a></h3>
-<p>Just implement what the problem say.</p>
-<!-- begin code -->
-<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
-<!-- title --> <i class="fas fa-caret-right"></i>
-<p class="title">
-Code
-</p>
-</div>
-<div id="codeProblemC" class="collapse">
-<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-int main () {
-  int tc;
-  cin &gt;&gt; tc;
-  while (tc--) {
-    string s;
-    cin &gt;&gt; s;
-    if (s.size() &gt; 10) cout &lt;&lt; s.front() &lt;&lt; s.size() - 2 &lt;&lt; s.back() &lt;&lt; &#39;\n&#39;;
-    else cout &lt;&lt; s &lt;&lt; &#39;\n&#39;;
-  }
-  return (0);
-}</code></pre>
-</div>
-<p><!-- ends code --></p>
-</div>
-</div>
-</div>
-<!-- ends problem C -->
+<p>You can find the contest <a href="https://vjudge.net/contest/359163">here</a>.</p>
+<p>The solutions will be uploaded after the contest.</p>
 <p style="float: none; clear: both;">
 </p>
-<div class="pt-3" style="float: right;">
-<p><a class="continue-link" href="./class-02.html" 
-     data-toggle="tooltip" title="Asymptotic Analysis"> Next </a></p>
+<!--
+<div style="float: right;" class="pt-3">
+  <a class="continue-link" href="./class-11.html" 
+     data-toggle="tooltip" title="Divide and Conquer I">
+  Next
+  </a>
+</div>
+-->
+<div class="pt-3">
+<p><a class="continue-link" href="./class-12.html"
+     data-toggle="tooltip" title="Game Theory I"> Previous </a></p>
 </div>
 <script>
   $('#all-classes').collapse('show');
-  $('#class-01').addClass('active');
-  const cur_class = document.getElementById('class-01');
+  $('#class-14').addClass('active');
+  const cur_class = document.getElementById('class-14');
   cur_class.scrollIntoView({
     behavior: 'smooth',
     block: 'center'

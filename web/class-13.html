@@ -353,6 +353,9 @@ $(document).ready(function () {
       <li id="class-13">
         <a href="./class-13.html">13. Game Theory I</a>
       </li>
+      <li id="class-14">
+        <a href="./class-14.html">14. Game Theory II</a>
+      </li>
 
     </ul>
   </li>
@@ -472,7 +475,7 @@ WL states
 <li><span class="math inline">\(f(12) = L\)</span></li>
 </ul>
 <p>That is, if there are no chips, then player <span class="math inline">\(A\)</span> loses. If there are <span class="math inline">\(1, 2\)</span> or <span class="math inline">\(3\)</span> chips, then player <span class="math inline">\(A\)</span> can take all the chips in a move and win. If there are <span class="math inline">\(4\)</span> chips no matter how many chips player <span class="math inline">\(A\)</span> takes because player <span class="math inline">\(B\)</span> can finish the game in the next turn. If there are <span class="math inline">\(5, 6\)</span> or <span class="math inline">\(7\)</span> chips, then player <span class="math inline">\(A\)</span> can left just <span class="math inline">\(4\)</span> chips, then no matter how many chips player <span class="math inline">\(B\)</span> takes in its turn, in the next turn player <span class="math inline">\(A\)</span> can take all the remaining chips. And so on.</p>
-<p>From these we notice that <span class="math inline">\(f(x) = L \leftrightarrow L \equiv 0 \bmod 4\)</span>. Then, we have solved the problem.</p>
+<p>From these we notice that <span class="math inline">\(f(x) = n \leftrightarrow n \equiv 0 \bmod 4\)</span>. Then, we have solved the problem.</p>
 <p>The idea of defining a function that maps some states to <span class="math inline">\(L, W\)</span> is what is called WL states. Moreover, we can generalize this idea with the following property:</p>
 </div>
 <div id="characteristic-property" class="section level3">
@@ -579,8 +582,7 @@ The game of Nim
 <p>Now, in order to solve this problem first let’s define what is ‘Nim-sum’.</p>
 <p><strong>Def. Nim-sum:</strong> The Nim-sum of two non-negative integers is their addition without carry in base 2. That is, if we have:</p>
 <p><span class="math display">\[a = \overline{a_na_{n-1} \dots a_1}_{(2)}\]</span> <span class="math display">\[b = \overline{b_nb_{n-1} \dots b_1}_{(2)}\]</span></p>
-<p>Filling with zeros as necessary so that <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> have the same number of digits.</p>
-<p>Let <span class="math inline">\(c\)</span> be the Nim-sum of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, then <span class="math inline">\(c_i = (a_i + b_i) \bmod 2\)</span> and it is written as <span class="math inline">\(c = a \oplus b\)</span>.</p>
+<p>Let <span class="math inline">\(c\)</span> be the Nim-sum of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and fill zeros to the left as necessary so that <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> have the same number of digits. Then <span class="math inline">\(c_i = (a_i + b_i) \bmod 2\)</span> and it is written as <span class="math inline">\(c = a \oplus b\)</span>.</p>
 <p>That is, <span class="math inline">\(a \oplus b\)</span> is this in C++:</p>
 <pre class="cpp"><code>int c = a ^ b;</code></pre>
 <p>And <span class="math inline">\(\oplus\)</span> is called the xor operator.</p>
@@ -619,21 +621,21 @@ int main () {
 Grundy numbers
 </div>
 <p>We can express the characteristic property in a slighty different way. First, let’s define:</p>
-<p><span class="math display">\[g(state) = \min\{n \geq 0: n \not = g(state&#39;) \quad \forall state&#39; \text{ reachable
-from } state \}\]</span></p>
+<p><span class="math display">\[g(state) = \min(n \geq 0: n \not = g(state&#39;) \quad \forall state&#39; \text{ reachable
+from } state )\]</span></p>
 <p>In other words, <span class="math inline">\(g(state)\)</span> is the smallest non-negative integer not found amoung the function <span class="math inline">\(g\)</span> evaluated in states reachable from <span class="math inline">\(state\)</span>.</p>
-<p>The function <span class="math inline">\(g\)</span> is known as the <strong>Spragre-Grundy function</strong> and its values as <strong>grundy numbers</strong> or <strong>Nim values</strong>. And what is nice about this function is that <span class="math inline">\(g(state) = 0 \leftrightarrow state \text{ is a losing state}\)</span>.</p>
+<p>The function <span class="math inline">\(g\)</span> is known as the <strong>Spragre-Grundy function</strong> and its values as <strong>Grundy numbers</strong> or <strong>Nim values</strong>. And what is nice about this function is that <span class="math inline">\(g(state) = 0 \leftrightarrow state \text{ is a losing state}\)</span>.</p>
 <p>Moreover, there exists the function <span class="math inline">\(mex\)</span> (a.k.a minimum excludant) that gives the smallest non-negative integer not found in a set. For example:</p>
 <p><span class="math display">\[mex(\{0, 1, 3, 4, 5\}) = 2\]</span> <span class="math display">\[mex(\{1, 2, 3, 4, 5\}) = 0\]</span> <span class="math display">\[mex(\{3, 4, 5\}) = 0\]</span> <span class="math display">\[mex(\{0, 1\}) = 2\]</span></p>
 <p>Then, we can define <span class="math inline">\(g\)</span> in terms of the <span class="math inline">\(mex\)</span> function in this way:</p>
-<p><span class="math display">\[g(state) = mex\{g(state&#39;) \quad \forall state&#39; \text{ reachable
-from } state \}\]</span></p>
-<p>Now, all the problems that we can solve with the characteristic property can also be solved using its grundy numbers. For example, for the first problem we solved (‘A simple take-away game’) the transitions can be seen in this way:</p>
+<p><span class="math display">\[g(state) = mex(g(state&#39;) \quad \forall state&#39; \text{ reachable
+from } state )\]</span></p>
+<p>Now, all the problems that we can solve with the characteristic property can also be solved using its Grundy numbers. For example, for the first problem we solved (‘A simple take-away game’) the transitions can be seen in this way:</p>
 <div class="row text-center">
 <p><img src="images/class-13/graph.png" /></p>
 <p>Image taken from <a href="https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf">Game theory - Thomas S. Ferguson. Page 14</a></p>
 </div>
-<p>Now, we can compute its grundy numbers and we’ll get:</p>
+<p>Now, we can compute its Grundy numbers and we’ll get:</p>
 <ul>
 <li><span class="math inline">\(mex(0) = 0\)</span></li>
 <li><span class="math inline">\(mex(1) = 1\)</span></li>
@@ -691,7 +693,7 @@ int main () {
   }
   return (0);
 }</code></pre>
-<p>Now, we are solving each case in <span class="math inline">\(O(nm \log m)\)</span> which is enough to get the accepted veredict.</p>
+<p>Now, we are solving each case in <span class="math inline">\(O(nm \log m)\)</span> which is enough to get the accepted veredict. <strong>Can be implemented in <span class="math inline">\(O(nm)\)</span>?</strong></p>
 <p>But the importante of this new interpretation of the characteristic property can be better seen in the next section.</p>
 <div class="topic">
 Sprague-Grundy theorem
@@ -735,7 +737,7 @@ Sprague-Grundy theorem
 <p><img src="images/class-13/chess.png" /></p>
 <p>Image and problem taken from <a href="https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/">Algorithm Games - Topcoder</a></p>
 </div>
-<p>In order to solve this problem we can see each knight as a different game, then we have the union of games, so the Grundy number of our game is the Nim-sum of the grundy number of the positions of the knights.</p>
+<p>In order to solve this problem we can see each knight as a different game, then we have the union of games, so the Grundy number of our game is the Nim-sum of the Grundy number of the positions of the knights.</p>
 <p>In code it may be something like this:</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
@@ -815,14 +817,10 @@ Contest
 <p>The solutions will be uploaded after the contest.</p>
 <p style="float: none; clear: both;">
 </p>
-<!--
-<div style="float: right;" class="pt-3">
-  <a class="continue-link" href="./class-11.html" 
-     data-toggle="tooltip" title="Divide and Conquer I">
-  Next
-  </a>
+<div class="pt-3" style="float: right;">
+<p><a class="continue-link" href="./class-14.html" 
+     data-toggle="tooltip" title="Game Theory II"> Next </a></p>
 </div>
--->
 <div class="pt-3">
 <p><a class="continue-link" href="./class-12.html"
      data-toggle="tooltip" title="Divide and Conquer II"> Previous </a></p>

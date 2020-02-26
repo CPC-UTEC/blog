@@ -45,14 +45,14 @@ $$g(s_i) = mex(\{a_1 \oplus a_2\} \mid a_1 \not = a_2 \land a_1 + a_2 = s_i)$$
 
 **Can you implement it?**
 
-Problem taken from [E-maxx Sprague-Grundy theorem. Nim](https://cp-algorithms.com/game_theory/sprague-grundy-nim.html#toc-tgt-9)
+Problem taken from [E-maxx Sprague-Grundy theorem. Nim](https://cp-algorithms.com/game_theory/sprague-grundy-nim.html#toc-tgt-9).
 
 ### Second problem
 
 **Problem:** You have $n$ rectangles in a row. There are two players, in each
 turn a player chooses a rectangle and writes a cross on it. It is forbidden to
 put two crosses next to each other (in adjacent cells). As usual, the player
-without a valid move loses. If both players play optimally. Who is the winner ?
+without a valid move loses. If both players play optimally. Who will be the winner ?
 
 <div class="row text-center">
 ![](./images/class-14/cross.png)
@@ -75,11 +75,60 @@ implement it?**
 
 <div class="topic">Staircase Nim</div>
 
-In process...
+So far we have learned how the characteristic property allow us to solve
+problems using WL states. Then we learned how Grundy numbers can solve all the
+problems that are solvable using WL states. After that we notice how the Sprague-Grundy theorem solves a much rich variety of problems. Now, one question left is if all the impartial combinatorics games can be solved using the Sprague-Grundy theorem. Sadly, it is not always the best approach, yet we can always start using the characteristic property and seek for improvements. For example, let's try this problem:
+
+Problem taken from [Game theory - Thomas S. Ferguson. Chapter 1. Page 13](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf).
+
+
+**Problem (Staircase Nim):** A staircase of $n$ steps contains chips on some of the steps. Let
+$(x_1, x_2, \dots, x_n)$ denote the position with $x_i$ chips on step $i \mid
+1 \leq i \leq n$. A move in this game consists of moving any positive number
+of chips from any step $i$ to the next lower step $i - 1$. Chips reaching the
+ground (step 0) are removed from play. The game ends when all chips are on the
+ground. Both players play optimally and alternating turns. If the last to move
+wins, who will be the winner ?
+
+We can solve the problem using Grundy numbers or WL states, but the complexity
+would be at least $O(x_1 \cdot x_2 \cdot \dots x_n) = O(x^n)$ where $x = \max(x_1, x_2, \dots, x_n)$. We need something better.
+
+With some trial and error we can notice that if we define our state as the
+coins that are only in odd steps, then all the moves of chips from even
+positions are meaningless because let $i$ be and even number, then if a player
+moves $z$ chips from step $i$ to step $i - 1$, then in the next turn the other
+player can move $z$ chips from step $i - 1$ to step $i - 2$, so the number of
+chips in the odd steps have not changed. Therefore, we only care about the
+chips in odd positions if we define our state in this way. Evenmore, in the
+same fashion of Bouton’s theorem, we can prove that:
+
+$$(x_1, x_2, \dots, x_{n - [n \bmod 2 = 0]}) \in \mathbb{L} \leftrightarrow \displaystyle\bigoplus_{\substack{i = 1\\ i += 2}}^{n}x_i = 0$$
+
+The proof of this affirmation is very similar to the proof of Bouton's theorem,
+but if you need some help you can read [this answer](https://math.stackexchange.com/questions/937495/relationship-between-regular-nim-and-laskers-nim?answertab=active#tab-top).
+
+Now, we can solve our problem in $O(n)$.
+
+Understanding that the definition of our state can affect the complexity of our
+solution is very important. Moreover, it is important to know in advance games like the
+Staircase Nim in order to solve some hard problems (that may require more
+advances techniques) like these:
+
+- [Problem: A Coin Game](https://www.codechef.com/problems/G3). [Editorial](https://www.codechef.com/wiki/tutorial-coin-game).
+- [Problem: Move the Coins](https://www.hackerrank.com/contests/world-codesprint-april/challenges/move-the-coins). [Editorial](https://codeforces.com/blog/entry/44651).
 
 <div class="topic">Misère games</div>
 
-In process...
+So far in all the problem we have solved the winner was the one who makes the
+last move, but what happened when the loser is the one who makes the last move
+? Well, in this kind of games we can not use the Sprague-Grundy theorem, but we
+can use the other approaches to solve them and it may usually requiere an extra
+analysis. This kind of problems are know as misère games, here is an example:
+
+**Problem (Misère Nim):** The problem is the same as the game of Nim, but now it has the misère condition.
+
+First, try to solve this problem by yourself. Try the get the optimal strategy.
+If you give up you can find the solution  in [Game theory - Thomas S. Ferguson. Chapter 1. Page 11](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf).
 
 <div class="topic">Minimax</div>
 
@@ -98,7 +147,7 @@ Recommended readings:
 
 <div class="topic" id="contest">Contest</div>
 
-You can find the contest [here](https://vjudge.net/contest/359163).
+You can find the contest [here](https://vjudge.net/contest/359378).
 
 The solutions will be uploaded after the contest.
 

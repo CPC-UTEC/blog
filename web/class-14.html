@@ -445,11 +445,11 @@ Grundy’s games
 <p>We can solve the problem using WL-states or Grundy numbers, but the numbers of states are too much (<strong>can you compute it?</strong>). Nevertheless, we can notice that if we take pile <span class="math inline">\(s_i\)</span> and divide it into piles of size <span class="math inline">\(a_1 \land a_2 \mid a_1 + a_2 = s_i\)</span>, then we can see <span class="math inline">\(a_1 \land a_2\)</span> as independent subgames. So, we have:</p>
 <p><span class="math display">\[g(s_i) = mex(\{a_1 \oplus a_2\} \mid a_1 \not = a_2 \land a_1 + a_2 = s_i)\]</span></p>
 <p><strong>Can you implement it?</strong></p>
-<p>Problem taken from <a href="https://cp-algorithms.com/game_theory/sprague-grundy-nim.html#toc-tgt-9">E-maxx Sprague-Grundy theorem. Nim</a></p>
+<p>Problem taken from <a href="https://cp-algorithms.com/game_theory/sprague-grundy-nim.html#toc-tgt-9">E-maxx Sprague-Grundy theorem. Nim</a>.</p>
 </div>
 <div id="second-problem" class="section level3">
 <h3>Second problem</h3>
-<p><strong>Problem:</strong> You have <span class="math inline">\(n\)</span> rectangles in a row. There are two players, in each turn a player chooses a rectangle and writes a cross on it. It is forbidden to put two crosses next to each other (in adjacent cells). As usual, the player without a valid move loses. If both players play optimally. Who is the winner ?</p>
+<p><strong>Problem:</strong> You have <span class="math inline">\(n\)</span> rectangles in a row. There are two players, in each turn a player chooses a rectangle and writes a cross on it. It is forbidden to put two crosses next to each other (in adjacent cells). As usual, the player without a valid move loses. If both players play optimally. Who will be the winner ?</p>
 <div class="row text-center">
 <p><img src="images/class-14/cross.png" /></p>
 <p>Example of an instance of the game when <span class="math inline">\(n = 6\)</span></p>
@@ -461,11 +461,25 @@ i \leq n - 1 \})\]</span></p>
 <div class="topic">
 Staircase Nim
 </div>
-<p>In process…</p>
+<p>So far we have learned how the characteristic property allow us to solve problems using WL states. Then we learned how Grundy numbers can solve all the problems that are solvable using WL states. After that we notice how the Sprague-Grundy theorem solves a much rich variety of problems. Now, one question left is if all the impartial combinatorics games can be solved using the Sprague-Grundy theorem. Sadly, it is not always the best approach, yet we can always start using the characteristic property and seek for improvements. For example, let’s try this problem:</p>
+<p>Problem taken from <a href="https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf">Game theory - Thomas S. Ferguson. Chapter 1. Page 13</a>.</p>
+<p><strong>Problem (Staircase Nim):</strong> A staircase of <span class="math inline">\(n\)</span> steps contains chips on some of the steps. Let <span class="math inline">\((x_1, x_2, \dots, x_n)\)</span> denote the position with <span class="math inline">\(x_i\)</span> chips on step <span class="math inline">\(i \mid 1 \leq i \leq n\)</span>. A move in this game consists of moving any positive number of chips from any step <span class="math inline">\(i\)</span> to the next lower step <span class="math inline">\(i - 1\)</span>. Chips reaching the ground (step 0) are removed from play. The game ends when all chips are on the ground. Both players play optimally and alternating turns. If the last to move wins, who will be the winner ?</p>
+<p>We can solve the problem using Grundy numbers or WL states, but the complexity would be at least <span class="math inline">\(O(x_1 \cdot x_2 \cdot \dots x_n) = O(x^n)\)</span> where <span class="math inline">\(x = \max(x_1, x_2, \dots, x_n)\)</span>. We need something better.</p>
+<p>With some trial and error we can notice that if we define our state as the coins that are only in odd steps, then all the moves of chips from even positions are meaningless because let <span class="math inline">\(i\)</span> be and even number, then if a player moves <span class="math inline">\(z\)</span> chips from step <span class="math inline">\(i\)</span> to step <span class="math inline">\(i - 1\)</span>, then in the next turn the other player can move <span class="math inline">\(z\)</span> chips from step <span class="math inline">\(i - 1\)</span> to step <span class="math inline">\(i - 2\)</span>, so the number of chips in the odd steps have not changed. Therefore, we only care about the chips in odd positions if we define our state in this way. Evenmore, in the same fashion of Bouton’s theorem, we can prove that:</p>
+<p><span class="math display">\[(x_1, x_2, \dots, x_{n - [n \bmod 2 = 0]}) \in \mathbb{L} \leftrightarrow \displaystyle\bigoplus_{\substack{i = 1\\ i += 2}}^{n}x_i = 0\]</span></p>
+<p>The proof of this affirmation is very similar to the proof of Bouton’s theorem, but if you need some help you can read <a href="https://math.stackexchange.com/questions/937495/relationship-between-regular-nim-and-laskers-nim?answertab=active#tab-top">this answer</a>.</p>
+<p>Now, we can solve our problem in <span class="math inline">\(O(n)\)</span>.</p>
+<p>Understanding that the definition of our state can affect the complexity of our solution is very important. Moreover, it is important to know in advance games like the Staircase Nim in order to solve some hard problems (that may require more advances techniques) like these:</p>
+<ul>
+<li><a href="https://www.codechef.com/problems/G3">Problem: A Coin Game</a>. <a href="https://www.codechef.com/wiki/tutorial-coin-game">Editorial</a>.</li>
+<li><a href="https://www.hackerrank.com/contests/world-codesprint-april/challenges/move-the-coins">Problem: Move the Coins</a>. <a href="https://codeforces.com/blog/entry/44651">Editorial</a>.</li>
+</ul>
 <div class="topic">
 Misère games
 </div>
-<p>In process…</p>
+<p>So far in all the problem we have solved the winner was the one who makes the last move, but what happened when the loser is the one who makes the last move ? Well, in this kind of games we can not use the Sprague-Grundy theorem, but we can use the other approaches to solve them and it may usually requiere an extra analysis. This kind of problems are know as misère games, here is an example:</p>
+<p><strong>Problem (Misère Nim):</strong> The problem is the same as the game of Nim, but now it has the misère condition.</p>
+<p>First, try to solve this problem by yourself. Try the get the optimal strategy. If you give up you can find the solution in <a href="https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf">Game theory - Thomas S. Ferguson. Chapter 1. Page 11</a>.</p>
 <div class="topic">
 Minimax
 </div>
@@ -484,7 +498,7 @@ Alpha-Beta prunning
 <div id="contest" class="topic">
 Contest
 </div>
-<p>You can find the contest <a href="https://vjudge.net/contest/359163">here</a>.</p>
+<p>You can find the contest <a href="https://vjudge.net/contest/359378">here</a>.</p>
 <p>The solutions will be uploaded after the contest.</p>
 <p style="float: none; clear: both;">
 </p>

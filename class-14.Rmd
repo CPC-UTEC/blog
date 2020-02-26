@@ -7,7 +7,7 @@ date: "02-26-2020"
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
-> "Don’t Repeat Yourself"
+> "Can we do better?"
 
 <div class="topic">Grundy's games</div>
 
@@ -210,6 +210,8 @@ doing it the recursion tree may looks something like this:
 
 <div class="row text-center">
 ![](images/class-14/tic-tac-toe.png)
+
+The image was taken from [this video](https://youtu.be/6ELUvkSkCts?t=435)
 </div>
 
 Moreover, you may notice that this framework is simply a backtracking, but for
@@ -324,7 +326,7 @@ the scope of this course.
 
 Recommended readings:
 
-- [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
+* [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
 * [Competitive Programmer's Handbook, chapter 25](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
 * [E-maxx Sprague-Grundy theorem. Nim](https://cp-algorithms.com/game_theory/sprague-grundy-nim.html)
 * [Search: Games, Minimax, and Alpha-Beta](https://youtu.be/STjW3eH0Cik)

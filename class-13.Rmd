@@ -7,7 +7,7 @@ date: "02-24-2020"
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
-> "Don’t Repeat Yourself"
+> "You don't have to be a mathematician to have a feel for numbers"
 
 <div class="topic">Introduction</div>
 
@@ -524,9 +524,9 @@ the problem in $O(N ^ 2)$.
 
 Recommended readings:
 
-- [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
-- [Algorithm Games - Topcoder](https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/)
-- [Game Theory For Competitive Programming](https://stepupanalytics.com/game-theory-for-competitive-programming/)
+* [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
+* [Algorithm Games - Topcoder](https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/)
+* [Game Theory For Competitive Programming](https://stepupanalytics.com/game-theory-for-competitive-programming/)
 
 <div class="topic" id="contest">Contest</div>
 

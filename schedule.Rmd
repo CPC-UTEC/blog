@@ -2,8 +2,6 @@
 title: "Schedule"
 ---
 
-[PDF version](./schedule.pdf)
-
 ## Topics
   - Asymptotic Analysis
   - Standard Template Library
@@ -188,6 +186,22 @@ title: "Schedule"
   + [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
   + [Algorithm Games - Topcoder](https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/)
   + [Game Theory For Competitive Programming](https://stepupanalytics.com/game-theory-for-competitive-programming/)
+
+* <div id="class-14">[**Class 14: Game Theory II**](./class-14.html)</div>
+  **Topics**
+  + Grundy’s games
+  + Staircase Nim
+  + Misère games
+  + Minimax
+  + Alpha-Beta prunning
+
+  **Readings**
+
+  + [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
+  + [Competitive Programmer's Handbook, chapter 25](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+  + [E-maxx Sprague-Grundy theorem. Nim](https://cp-algorithms.com/game_theory/sprague-grundy-nim.html)
+  + [Search: Games, Minimax, and Alpha-Beta](https://youtu.be/STjW3eH0Cik)
+
 
 <script>
 $("#schedule-page")

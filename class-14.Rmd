@@ -215,11 +215,112 @@ doing it the recursion tree may looks something like this:
 Moreover, you may notice that this framework is simply a backtracking, but for
 its importance (and maybe for the [Rumpelstiltskin Principle](https://alum.mit.edu/slice/rumpelstiltskin-principle)) it is called the Minimax algorithm.
 
-You may also be interested in watch [Coding Challenge 154: Tic Tac Toe AI with Minimax Algorithm](https://youtu.be/trKjYdBASyQ) for a visual implementation of the Minimax algorithm for Tic Tac Toe.
+You may also be interested in watching [Coding Challenge 154: Tic Tac Toe AI with Minimax Algorithm](https://youtu.be/trKjYdBASyQ) for a visual implementation of the Minimax algorithm for Tic Tac Toe.
 
 <div class="topic">Alpha-Beta prunning</div>
 
-In process...
+Now, we known how to solve partizan combinatorial games in exponential time,
+but there is an simple, yet powerful optimization we can do. What
+happen if I am executing `maxVal` function and I already found the maximum
+possible utility ? What happen if I amd executing `minVal` function and
+I already found the minimum possible utility ?
+
+Well, in these scenarios there is no need to keep searching, we already know
+the final utility of our current state, then we can prune the search. This simple
+optimization will improve our solution a little, yet it may usually be enough
+for problems in competitive programming. For example, let's practice this
+optimization solving [The game of 31](https://www.spoj.com/problems/GAME31/).
+
+Try it by yourself for a while. You may end up with something like this:
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int LEN = 100, N_CARDS = 6;
+
+int ct[N_CARDS + 1];
+char moves[LEN];
+bool ans;
+
+namespace Minimax {
+  int minVal ();
+  int maxVal ();
+  void solve ();
+}
+
+namespace Minimax {
+    
+  int sum;
+  const int WIN  =  1;
+  const int FAIL = -1;
+
+  int minVal () {
+    if (sum > 31) return FAIL;
+    int ret = WIN;
+    for (int card = 1; card <= N_CARDS and ret != FAIL; card++) {
+      if (ct[card]) {
+        ct[card]--, sum += card;
+        ret = min(ret, maxVal());
+        ct[card]++, sum -= card;
+      }
+    }
+    return ret;
+  }
+
+  int maxVal () {
+    if (sum > 31) return WIN;
+    int ret = FAIL;
+    for (int card = 1; card <= N_CARDS and ret != WIN; card++) {
+      if (ct[card]) {
+        ct[card]--, sum += card;
+        ret = max(ret, minVal());
+        ct[card]++, sum -= card;
+      }
+    }
+    return ret;
+  }
+
+  void solve () {
+    sum = 0;
+    int id;
+    for (id = 0; moves[id]; id++) {
+      ct[moves[id] - '0']--;
+      sum += moves[id] - '0';
+    }
+    int res = (id & 1) ? minVal() : maxVal();
+    ans = res == WIN;
+  }
+}
+
+
+inline void print () {
+  printf("%s %c\n", moves, "BA"[ans]);
+}
+
+inline bool read () {
+  if (cin.getline(moves, LEN)) return true;
+  return false;
+}
+
+inline void clear () {
+  fill(ct, ct + N_CARDS, 4);
+}
+
+int main () {
+  while (read()) {
+    clear();
+    Minimax::solve();
+    print();
+  }
+  return (0);
+}
+```
+
+This optimization is what is known as Alpha-Beta prunning. In fact, the Minimax
+and Alpha-Beta prunning have even more interesting things, yet this is out of
+the scope of this course.
 
 Recommended readings:
 
@@ -246,7 +347,7 @@ The solutions will be uploaded after the contest.
 -->
 
 <div class="pt-3">
-  <a class="continue-link" href="./class-12.html"
+  <a class="continue-link" href="./class-13.html"
      data-toggle="tooltip" title="Game Theory I">
   Previous
   </a>

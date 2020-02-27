@@ -442,8 +442,10 @@ Fixing variables
 <p>There are some kind of problems when you have some equations on <span class="math inline">\(m\)</span> variables. Its usually a good idea to first try a brute force approach. Find the range of each of the variables, do a loop for each of them, then inside each loop you have the value of that variable fixed, now it is a constant. Moreover, when you have fixed <span class="math inline">\(m - 1\)</span> of these variables its usually easy to compute what value the last variable should be. Evenmore, you have already solve one problem of this kind: <a href="./class-04.html#problemA">Simple equations</a>.</p>
 <p>Now, let try to solve <a href="https://codeforces.com/contest/44/problem/B">this problem</a>.</p>
 <p><strong>Problem:</strong> You will receive <span class="math inline">\(n, a, b, c\)</span> . You must find</p>
-<p><span class="math display">\[|\{(x, y, z) \mid 0 \leq x \leq a \land 0 \leq y \leq b \land 0 \leq z \leq
-c \land \frac{x}{2} + y + 2 z = n \}|\]</span></p>
+<div class="center">
+<p><span class="math display">\[|\{(x, y, z) \mid \\ 0 \leq x \leq a \land \\ 0 \leq y \leq b \land \\ 0 \leq z \leq
+c \land \\ \frac{x}{2} + y + 2 z = n \}|\]</span></p>
+</div>
 <p><span class="math display">\[1 \leq n \leq 10^4\]</span> <span class="math display">\[0 \leq a, b, c \leq 5000\]</span></p>
 <p>Its easy to identify that the variables of the problem are <span class="math inline">\(x, y, z\)</span> and if we fix two of these variable we can get the third one from the equation, so a brute force solution with two loops can solve the problem. Now, in order to choose what variables to fix, always prefer working with integers (you’ll understand better the reason of this in next classes), so we’ll fix <span class="math inline">\(y, z\)</span> in <span class="math inline">\(O(b \cdot c)\)</span>.</p>
 <!-- Begins problem example01 -->
@@ -638,13 +640,13 @@ Case analysis
 <li>Case 3.1: <span class="math inline">\(a_i &lt; a_j\)</span></li>
 </ul>
 <p>If we swap them, the array can not be in increasing order. If the array is not in decreasing order we have an answer, else the array will be of the form:</p>
-<p><span class="math display">\[a_1 = y \geq a_2 = y \geq \dots \geq a_i = y \geq \dots \geq a_j = x \geq \dots \geq a_n =x\]</span></p>
+<p><span class="math display">\[a_1 = y \geq a_2 \geq \dots \geq a_i \geq \dots \geq a_j \geq \dots \geq a_n =x\]</span></p>
 <p>So, if there exists an answer, it must be in <span class="math inline">\([i, j)\)</span> or <span class="math inline">\((i, j]\)</span>. Then, we just need to do the check for a pair of integers <span class="math inline">\((i, i + 1) \mid a_i &lt; a_{i + 1}\)</span>.</p>
 <ul>
 <li>Case 3.2: <span class="math inline">\(a_i &gt; a_j\)</span></li>
 </ul>
 <p>If we swap them, the array can not be in decreasing order. If the array is not in increasing order we have an answer, else the array will be of the form:</p>
-<p><span class="math display">\[a_1 = x \leq a_2 = x \leq \dots \leq a_i = x \leq \dots \leq a_j = y \leq \dots \leq a_n =y\]</span></p>
+<p><span class="math display">\[a_1 = x \leq a_2 \leq \dots \leq a_i \leq \dots \leq a_j \leq \dots \leq a_n =y\]</span></p>
 <p>So, if there exists an answer it must be in <span class="math inline">\([i, j)\)</span> or <span class="math inline">\((i, j]\)</span>. Then, we just need to do the check for a pair of integers <span class="math inline">\((i, i + 1) \mid a_i &gt; a_{i + 1}\)</span>.</p></li>
 </ul>
 <p>Using all these cases we can implement a <span class="math inline">\(O(n \log n)\)</span> solution.</p>
@@ -1148,13 +1150,14 @@ $(document).ready(function () {
 
 });
 
+/*
 $(window).scroll(function() { 
   $('#expand-icon-left').css({top: '50vh'});
   $('#expand-icon-left').css({bottom: '50vh'});
   $('#expand-icon-right').css({top: '50vh'});
   $('#expand-icon-right').css({bottom: '50vh'});
 });
-
+*/
 </script>
 
 <!--

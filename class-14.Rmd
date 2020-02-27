@@ -67,8 +67,10 @@ destroyed. Then, taking care of the corner cases (when a player writes a cross
 in the first or last rectangle), we can deduce that $g(n)$ can be expressed in
 this way:
 
-$$g(n) = mex(\{g(n - 1)\} \cup \{g(i - 2) \oplus g(n - i - 1) \mid 2 \leq
+<div class="center">
+$$g(n) = mex(\{g(n - 1)\} \cup \\ \{g(i - 2) \oplus g(n - i - 1) \mid 2 \leq
 i \leq n - 1 \})$$
+</div>
 
 Then we can implement this idea in $O(n^2 \log n)$ or in $O(n^2)$. **Can you
 implement it?**

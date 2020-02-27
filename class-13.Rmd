@@ -275,8 +275,9 @@ int main () {
 We can express the characteristic property in a slighty different way. First,
 let's define:
 
-$$g(state) = \min(n \geq 0: n \not = g(state') \quad \forall state' \text{ reachable
-from } state )$$
+$$g(state) = \min(n \geq 0: n \not = g(state') \, \forall state \to state')$$
+
+Where $state \to state'$ means that we can go from $state$ to $state'$.
 
 In other words, $g(state)$ is the smallest non-negative integer not found
 amoung the function $g$ evaluated in states reachable from $state$.
@@ -293,9 +294,7 @@ $$mex(\{0, 1\}) = 2$$
 
 Then, we can define $g$ in terms of the $mex$ function in this way:
 
-$$g(state) = mex(g(state') \quad \forall state' \text{ reachable
-from } state )$$
-
+$$g(state) = mex(g(state') \, \forall state \to state')$$
 
 Now, all the problems that we can solve with the characteristic property can
 also be solved using its Grundy numbers. For example, for the first problem we

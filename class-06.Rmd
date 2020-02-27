@@ -350,11 +350,11 @@ Now, the result will always be in $[0, m)$.
 $a^b$ can be expressed in a recursive way.
 
 $$
-    \text{power}(a, b) =,
+    \text{power}(a, b) =
     \begin{cases}
         1       & \quad \text{If } b = 0 \\
-        \text{power}(a, \lfloor b / 2 \rfloor) ^ 2  & \quad \text{if } b \mod 2 = 0 \\
-        a \times \text{power}(a, \lfloor b / 2 \rfloor) ^ 2 & \quad \text{if } b \mod 2 = 1
+        \text{power}(a, \lfloor b / 2 \rfloor) ^ 2  & \, \text{if } b \mod 2 = 0 \\
+        a \times \text{power}(a, \lfloor b / 2 \rfloor) ^ 2 & \, \text{if } b \mod 2 = 1
     \end{cases}
 $$
 
@@ -362,11 +362,11 @@ Moreover, from the properties of modular arithmetic, we can get $a^b \mod m$
 as:
 
 $$
-    \text{binpow}(a, b) =,
+    \text{binpow}(a, b) =
     \begin{cases}
         1       & \quad \text{If } b = 0 \\
-        \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2 \mod m & \quad \text{if } b \mod 2 = 0 \\
-        (a \times \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2) \mod m & \quad \text{if } b \mod 2 = 1
+        \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2 \mod m & \, \text{if } b \mod 2 = 0 \\
+        (a \times \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2) \mod m & \, \text{if } b \mod 2 = 1
     \end{cases}
 $$
 

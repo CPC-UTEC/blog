@@ -251,7 +251,7 @@ $$n \cdot H_{n} < n \log n$$
 
 So, the complexity of our program is $O (n \log n)$.
 
-<div class="topic">$\sigma_{0}(n) = O(\sqrt[3]{n})$ </div>
+<div class="topic" style="font-size: 1.6rem !important; font-weight: bold !important;">$\sigma_{0}(n) = O(\sqrt[3]{n})$ </div>
 
 There are some problems that looks like a brute force solution would give a Time
 Limit veredict. One common example of this kind of problem are the ones where

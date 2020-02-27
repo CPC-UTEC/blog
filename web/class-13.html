@@ -621,15 +621,14 @@ int main () {
 Grundy numbers
 </div>
 <p>We can express the characteristic property in a slighty different way. First, let’s define:</p>
-<p><span class="math display">\[g(state) = \min(n \geq 0: n \not = g(state&#39;) \quad \forall state&#39; \text{ reachable
-from } state )\]</span></p>
+<p><span class="math display">\[g(state) = \min(n \geq 0: n \not = g(state&#39;) \, \forall state \to state&#39;)\]</span></p>
+<p>Where <span class="math inline">\(state \to state&#39;\)</span> means that we can go from <span class="math inline">\(state\)</span> to <span class="math inline">\(state&#39;\)</span>.</p>
 <p>In other words, <span class="math inline">\(g(state)\)</span> is the smallest non-negative integer not found amoung the function <span class="math inline">\(g\)</span> evaluated in states reachable from <span class="math inline">\(state\)</span>.</p>
 <p>The function <span class="math inline">\(g\)</span> is known as the <strong>Spragre-Grundy function</strong> and its values as <strong>Grundy numbers</strong> or <strong>Nim values</strong>. And what is nice about this function is that <span class="math inline">\(g(state) = 0 \leftrightarrow state \text{ is a losing state}\)</span>.</p>
 <p>Moreover, there exists the function <span class="math inline">\(mex\)</span> (a.k.a minimum excludant) that gives the smallest non-negative integer not found in a set. For example:</p>
 <p><span class="math display">\[mex(\{0, 1, 3, 4, 5\}) = 2\]</span> <span class="math display">\[mex(\{1, 2, 3, 4, 5\}) = 0\]</span> <span class="math display">\[mex(\{3, 4, 5\}) = 0\]</span> <span class="math display">\[mex(\{0, 1\}) = 2\]</span></p>
 <p>Then, we can define <span class="math inline">\(g\)</span> in terms of the <span class="math inline">\(mex\)</span> function in this way:</p>
-<p><span class="math display">\[g(state) = mex(g(state&#39;) \quad \forall state&#39; \text{ reachable
-from } state )\]</span></p>
+<p><span class="math display">\[g(state) = mex(g(state&#39;) \, \forall state \to state&#39;)\]</span></p>
 <p>Now, all the problems that we can solve with the characteristic property can also be solved using its Grundy numbers. For example, for the first problem we solved (‘A simple take-away game’) the transitions can be seen in this way:</p>
 <div class="row text-center">
 <p><img src="images/class-13/graph.png" /></p>
@@ -872,13 +871,14 @@ $(document).ready(function () {
 
 });
 
+/*
 $(window).scroll(function() { 
   $('#expand-icon-left').css({top: '50vh'});
   $('#expand-icon-left').css({bottom: '50vh'});
   $('#expand-icon-right').css({top: '50vh'});
   $('#expand-icon-right').css({bottom: '50vh'});
 });
-
+*/
 </script>
 
 <!--

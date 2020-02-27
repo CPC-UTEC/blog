@@ -639,20 +639,20 @@ Binary exponenciation
 </div>
 <p><span class="math inline">\(a^b\)</span> can be expressed in a recursive way.</p>
 <p><span class="math display">\[
-    \text{power}(a, b) =,
+    \text{power}(a, b) =
     \begin{cases}
         1       &amp; \quad \text{If } b = 0 \\
-        \text{power}(a, \lfloor b / 2 \rfloor) ^ 2  &amp; \quad \text{if } b \mod 2 = 0 \\
-        a \times \text{power}(a, \lfloor b / 2 \rfloor) ^ 2 &amp; \quad \text{if } b \mod 2 = 1
+        \text{power}(a, \lfloor b / 2 \rfloor) ^ 2  &amp; \, \text{if } b \mod 2 = 0 \\
+        a \times \text{power}(a, \lfloor b / 2 \rfloor) ^ 2 &amp; \, \text{if } b \mod 2 = 1
     \end{cases}
 \]</span></p>
 <p>Moreover, from the properties of modular arithmetic, we can get <span class="math inline">\(a^b \mod m\)</span> as:</p>
 <p><span class="math display">\[
-    \text{binpow}(a, b) =,
+    \text{binpow}(a, b) =
     \begin{cases}
         1       &amp; \quad \text{If } b = 0 \\
-        \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2 \mod m &amp; \quad \text{if } b \mod 2 = 0 \\
-        (a \times \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2) \mod m &amp; \quad \text{if } b \mod 2 = 1
+        \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2 \mod m &amp; \, \text{if } b \mod 2 = 0 \\
+        (a \times \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2) \mod m &amp; \, \text{if } b \mod 2 = 1
     \end{cases}
 \]</span></p>
 <p>In code:</p>
@@ -1162,13 +1162,14 @@ $(document).ready(function () {
 
 });
 
+/*
 $(window).scroll(function() { 
   $('#expand-icon-left').css({top: '50vh'});
   $('#expand-icon-left').css({bottom: '50vh'});
   $('#expand-icon-right').css({top: '50vh'});
   $('#expand-icon-right').css({bottom: '50vh'});
 });
-
+*/
 </script>
 
 <!--

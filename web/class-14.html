@@ -455,8 +455,10 @@ Grundy’s games
 <p>Example of an instance of the game when <span class="math inline">\(n = 6\)</span></p>
 </div>
 <p>When a player writes a cross in a cell <span class="math inline">\(i \mid 2 \leq i \leq n - 1\)</span> we are bassically dividing the game into two <strong>independent</strong> subgames of size <span class="math inline">\(i - 2\)</span> and <span class="math inline">\(n - i - 1\)</span> because the adjacent cell of the <span class="math inline">\(i\)</span>-th rectangle are virtually destroyed. Then, taking care of the corner cases (when a player writes a cross in the first or last rectangle), we can deduce that <span class="math inline">\(g(n)\)</span> can be expressed in this way:</p>
-<p><span class="math display">\[g(n) = mex(\{g(n - 1)\} \cup \{g(i - 2) \oplus g(n - i - 1) \mid 2 \leq
+<div class="center">
+<p><span class="math display">\[g(n) = mex(\{g(n - 1)\} \cup \\ \{g(i - 2) \oplus g(n - i - 1) \mid 2 \leq
 i \leq n - 1 \})\]</span></p>
+</div>
 <p>Then we can implement this idea in <span class="math inline">\(O(n^2 \log n)\)</span> or in <span class="math inline">\(O(n^2)\)</span>. <strong>Can you implement it?</strong></p>
 <div class="topic">
 Staircase Nim
@@ -701,13 +703,14 @@ $(document).ready(function () {
 
 });
 
+/*
 $(window).scroll(function() { 
   $('#expand-icon-left').css({top: '50vh'});
   $('#expand-icon-left').css({bottom: '50vh'});
   $('#expand-icon-right').css({top: '50vh'});
   $('#expand-icon-right').css({bottom: '50vh'});
 });
-
+*/
 </script>
 
 <!--

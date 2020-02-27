@@ -33,8 +33,10 @@ Now, let try to solve [this problem](https://codeforces.com/contest/44/problem/B
 
 **Problem:** You will receive $n, a, b, c$ . You must find
 
-$$|\{(x, y, z) \mid 0 \leq x \leq a \land 0 \leq y \leq b \land 0 \leq z \leq
-c \land \frac{x}{2} + y + 2 z = n \}|$$
+<div class="center">
+$$|\{(x, y, z) \mid \\ 0 \leq x \leq a \land \\ 0 \leq y \leq b \land \\ 0 \leq z \leq
+c \land \\ \frac{x}{2} + y + 2 z = n \}|$$
+</div>
 
 $$1 \leq n \leq 10^4$$
 $$0 \leq a, b, c \leq 5000$$
@@ -294,7 +296,7 @@ Let's analye by cases on the number of different elements.
   If we swap them, the array can not be in increasing order. If the array is not
   in decreasing order we have an answer, else the array will be of the form:
 
-  $$a_1 = y \geq a_2 = y \geq \dots \geq a_i = y \geq \dots \geq a_j = x \geq \dots \geq a_n =x$$
+  $$a_1 = y \geq a_2 \geq \dots \geq a_i \geq \dots \geq a_j \geq \dots \geq a_n =x$$
 
   So, if there exists an answer, it must be in $[i, j)$ or $(i, j]$. Then, we
   just need to do the check for a pair of integers $(i, i + 1) \mid a_i < a_{i + 1}$.
@@ -304,7 +306,7 @@ Let's analye by cases on the number of different elements.
   If we swap them, the array can not be in decreasing order. If the array is not
   in increasing order we have an answer, else the array will be of the form:
 
-  $$a_1 = x \leq a_2 = x \leq \dots \leq a_i = x \leq \dots \leq a_j = y \leq \dots \leq a_n =y$$
+  $$a_1 = x \leq a_2 \leq \dots \leq a_i \leq \dots \leq a_j \leq \dots \leq a_n =y$$
 
   So, if there exists an answer it must be in $[i, j)$ or $(i, j]$. Then, we
   just need to do the check for a pair of integers $(i, i + 1) \mid a_i > a_{i + 1}$.

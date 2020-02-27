@@ -1,8 +1,8 @@
 body {
   font-size: 1.6rem;
   line-height: 28px;
-  padding-top: 0px !important; */
-  padding-bottom: 0px !important; */
+  /* padding-top: 0px !important; */
+  /* padding-bottom: 0px !important; */
   background: #fafafa !important;
   /* Font taken from Codeforces */
   font-family: verdana, arial, sans-serif;
@@ -66,6 +66,13 @@ a, a:hover, a:focus {
   padding: 5px 5px 5px 5px;
   text-decoration: none !important;
   color: black;
+  display: block;
+  width: 100px;
+  text-align: center;
+}
+
+.img-border p img {
+  border:1px solid black;
 }
 
 /* Gallery */

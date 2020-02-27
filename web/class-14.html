@@ -533,7 +533,7 @@ namespace Minimax {
 </code></pre>
 <p>This idea (basically a simulation of all possible scenarios) is achieved when the first player calls <code>Minimax::maxVal(initial_state)</code>. As <code>minVal</code> calls <code>maxVal</code> and <code>maxVal</code> calls <code>minVal</code>, we need to declare the interface of these functions and we are grouping them in a namespace to keep them in order. Now, using this framework we can solve a variety of problems like chess, go, checkers, etc. The only problem is that this solution is exponential, yet it is important to understand it as this idea is the base for other solutions.</p>
 <p>As an example we can solve the Tic Tac Toe game using this framework. When doing it the recursion tree may looks something like this:</p>
-<div class="row text-center">
+<div class="row text-center img-border">
 <p><img src="images/class-14/tic-tac-toe.png" /></p>
 <p>The image was taken from <a href="https://youtu.be/6ELUvkSkCts?t=435">this video</a></p>
 </div>

@@ -579,8 +579,10 @@ Recursion
 </div>
 <div id="the-tower-of-hanoi" class="section level3">
 <h3>The tower of Hanoi</h3>
+<div class="row text-center img-border">
 <p><img src="images/class-05/Hanoi.jpeg" /></p>
-<p><strong>Source:</strong> <a href="https://en.wikipedia.org/wiki/Tower_of_Hanoi#/media/File:Tower_of_Hanoi.jpeg">Wikipedia</a></p>
+<p>Image taken from <a href="https://en.wikipedia.org/wiki/Tower_of_Hanoi#/media/File:Tower_of_Hanoi.jpeg">Wikipedia</a></p>
+</div>
 <p><strong>Problem:</strong> You have 3 rods, and a pile of <span class="math inline">\(n\)</span> disks in one rod. Each disk have different diameter, the disks are in order in the stack, the greatest in the button and the smallest on the top. We want to move all the disks to another rod. We can only move the top disk of a stack to another rod if the other rod is empty or the diameter of its top element is greater that the one we are moving. Can you give a sequence of movements to solve this problem ?</p>
 <p>Let’s say we have the function <span class="math inline">\(f\)</span> such that <span class="math inline">\(f(source, target, pivot, n)\)</span> moves the <span class="math inline">\(n\)</span> disks that are in the <code>source</code> rod to the <code>target</code> rod. Then, we can say:</p>
 <p>If I want to move the <span class="math inline">\(n\)</span> disks from <code>source</code> rod to the <code>target</code> rod, first I need to move <span class="math inline">\(n - 1\)</span> disks from <code>source</code> to <code>pivot</code>, then I move the last disk in <code>source</code> to target. After that, we need to move the <span class="math inline">\(n - 1\)</span> disks in <code>pivot</code> to <code>target</code> and we are done. Moreover, if there is only one disk we can direcly move it to <code>target</code>. Then, we can write <span class="math inline">\(f\)</span> in this way:</p>

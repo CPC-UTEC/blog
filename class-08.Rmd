@@ -669,7 +669,7 @@ int main () {
 
 For $N = 4$ the recursion tree of our solution is like this:
 
-<div class="row text-center">
+<div class="row text-center img-border">
 ![](./images/class-08/n-queen.png)
 
 Image taken from [Jeff Erickson - Algorithms - Chapter 2: Backtracking](http://jeffe.cs.illinois.edu/teaching/algorithms/).

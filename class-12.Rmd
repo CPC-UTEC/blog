@@ -375,13 +375,13 @@ example:
 
 These are the four valid rotations of a triomino.
 
-<div class="row text-center">
+<div class="row text-center img-border">
 ![](./images/class-12/tiling1.png)
 </div>
 
 This is a possible tiling for $n = 2$.
 
-<div class="row text-center">
+<div class="row text-center img-border">
 ![](./images/class-12/tiling2.png)
 </div>
 

@@ -208,7 +208,7 @@ important to understand it as this idea is the base for other solutions.
 As an example we can solve the Tic Tac Toe game using this framework. When
 doing it the recursion tree may looks something like this:
 
-<div class="row text-center">
+<div class="row text-center img-border">
 ![](images/class-14/tic-tac-toe.png)
 
 The image was taken from [this video](https://youtu.be/6ELUvkSkCts?t=435)

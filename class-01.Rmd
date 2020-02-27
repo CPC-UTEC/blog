@@ -28,11 +28,13 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 <div class="topic">Virtual Judges</div>
 
+<div style="border:1px solid black; background: white;">
 <a href="https://codeforces.com/" target="_blank">![](./images/class-01/codeforces.png)</a>
 <a href="https://atcoder.jp/" target="_blank">![](./images/class-01/atcoder.png)</a>
 <a href="https://www.codechef.com/" target="_blank">![](./images/class-01/codechef.png)</a>
 <a href="https://www.spoj.com/" target="_blank">![](./images/class-01/spoj.png)</a>
 <a href="https://www.hackerearth.com/" target="_blank">![](./images/class-01/hackerearth.png)</a>
+</div>
 
 <div class="topic">Problem structure</div>
 

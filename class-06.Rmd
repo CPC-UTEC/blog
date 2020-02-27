@@ -234,9 +234,11 @@ For example, let's solve the problem of the towers of Hanoi.
 
 ### The tower of Hanoi
 
+<div class="row text-center img-border">
 ![](./images/class-05/Hanoi.jpeg)
 
-**Source:** [Wikipedia](https://en.wikipedia.org/wiki/Tower_of_Hanoi#/media/File:Tower_of_Hanoi.jpeg)
+Image taken from [Wikipedia](https://en.wikipedia.org/wiki/Tower_of_Hanoi#/media/File:Tower_of_Hanoi.jpeg)
+</div>
 
 **Problem:** You have 3 rods, and a pile of $n$ disks in one rod. Each disk have different
 diameter, the disks are in order in the stack, the greatest in the button and

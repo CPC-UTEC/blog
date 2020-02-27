@@ -9,6 +9,10 @@ body {
   text-align: justify;
 }
 
+.title {
+  text-align: left;
+}
+
 a, a:hover, a:focus {
 }
 

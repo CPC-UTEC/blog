@@ -7,7 +7,7 @@ date: "01-29-2020"
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
-> "Like the God of Go"
+> "Like the God of go"
 
 <div class="topic">Power set</div>
 

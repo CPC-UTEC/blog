@@ -7,7 +7,7 @@ date: "01-08-2020"
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
-> "Think Big "
+> "Think big"
 
 <div class="topic" id="contest">Contest</div>
 

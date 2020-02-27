@@ -3,7 +3,7 @@ exclude: ["*.sh", "*.txt"]
 output_dir: "web"
 output:
   html_document:
-    theme: yeti 
+    theme: lumen
     highlight: textmate
     css: style.css
     include:

@@ -7,7 +7,7 @@ date: "01-06-2020"
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
-> "Art of Thinking"
+> "Art of thinking"
 
 <div class="topic">What is competitive programming?</div>
 

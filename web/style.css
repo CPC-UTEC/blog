@@ -389,8 +389,12 @@ a[aria-expanded="true"]::before {
   }
 
   /* MathJax */
-  .math {
-    font-size: 1.0rem;
+  #content p .math {
+    font-size: 1.0rem !important;
+  }
+
+  .paradigms {
+    width: 100%;
   }
 
 }

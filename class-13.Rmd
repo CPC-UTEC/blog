@@ -515,7 +515,7 @@ int main () {
 }
 ```
 
-We may have also solve the problem using WL states or just Grundy numbers, but
+We may have also solved the problem using WL states or just Grundy numbers, but
 then we would have need to analyze around $\binom{N \cdot N}{K}$ possibles
 states (which is a lot), whereas using the Sprague-Grundy theorem we solved
 the problem in $O(N ^ 2)$.

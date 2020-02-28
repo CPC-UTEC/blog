@@ -14,7 +14,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 A programming paradigm is a way to solve problems. The four problem solving
 paradigms commonly used in programming contests are:
 
-<div class="center-image">
+<div class="center-image paradigms">
 ![](./images/class-04/programming-paradigms.png)
 </div>
 

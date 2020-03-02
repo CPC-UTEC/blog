@@ -85,6 +85,11 @@ title: "Classes"
   + [Contest](https://vjudge.net/contest/359378)
   + [Readings](./schedule.html#class-14)
 
+### *Week 9*
+- [03-02-2020] - Class 15 - Contest II
+  + [Theory](./class-15.html)
+  + [Contest](https://vjudge.net/contest/360361)
+
 The repository of this page can be found [here](https://github.com/CP-UTEC/Lessons).
 
 

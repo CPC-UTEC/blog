@@ -14,7 +14,6 @@
 <title>Class 13: Game Theory I</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -713,18 +712,18 @@ Sprague-Grundy theorem
 <p><strong>Problem:</strong> The problem is the same of ‘A simple take-away game’, but now there are <span class="math inline">\(n\)</span> piles of chips and in each turn a player can select a pile (<strong>only one</strong>) and removes one, two or three chips from this pile.</p>
 <p>Let <span class="math inline">\(x_i\)</span> be the number of chips in the <span class="math inline">\(i\)</span>-th pile. Then, we can solve the problem using WL states or Grundy numbers. Now our state will be <span class="math inline">\((x_1, x_2, x_3, \dots, x_n)\)</span> and from this state we can go to these states (if possible):</p>
 <ul>
-<li><p><span class="math inline">\((x_1 - 1, x_2, x_3, \dots, x_n)\)</span></p></li>
-<li><p><span class="math inline">\((x_1 - 2, x_2, x_3, \dots, x_n)\)</span></p></li>
-<li><p><span class="math inline">\((x_1 - 3, x_2, x_3, \dots, x_n)\)</span></p></li>
-<li><p><span class="math inline">\((x_1, x_2 - 1, x_3, \dots, x_n)\)</span></p></li>
-<li><p><span class="math inline">\((x_1, x_2 - 2, x_3, \dots, x_n)\)</span></p></li>
-<li><p><span class="math inline">\((x_1, x_2 - 3, x_3, \dots, x_n)\)</span></p></li>
-<li><p><span class="math inline">\((x_1, x_2, x_3 - 1, \dots, x_n)\)</span></p></li>
-<li><p><span class="math inline">\((x_1, x_2, x_3 - 2, \dots, x_n)\)</span></p></li>
+<li><span class="math inline">\((x_1 - 1, x_2, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1 - 2, x_2, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1 - 3, x_2, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1, x_2 - 1, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1, x_2 - 2, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1, x_2 - 3, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1, x_2, x_3 - 1, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1, x_2, x_3 - 2, \dots, x_n)\)</span></li>
 <li><p><span class="math inline">\((x_1, x_2, x_3 - 3, \dots, x_n)\)</span></p>
 <p><span class="math inline">\(\vdots\)</span></p></li>
-<li><p><span class="math inline">\((x_1, x_2, x_3, \dots, x_n - 1)\)</span></p></li>
-<li><p><span class="math inline">\((x_1, x_2, x_3, \dots, x_n - 2)\)</span></p></li>
+<li><span class="math inline">\((x_1, x_2, x_3, \dots, x_n - 1)\)</span></li>
+<li><span class="math inline">\((x_1, x_2, x_3, \dots, x_n - 2)\)</span></li>
 <li><p><span class="math inline">\((x_1, x_2, x_3, \dots, x_n - 3)\)</span></p></li>
 </ul>
 <p>That is, from every state there are <span class="math inline">\(O(3n) = O(n)\)</span> possible transitions. So, we can calculate the Grundy number of the state <span class="math inline">\((x_1, x_2, x_3, \dots, x_n)\)</span> in <span class="math inline">\(O(n \cdot x_1 \cdot x_2 \cdot \dots \cdot x_n) = O(n x^n)\)</span> where <span class="math inline">\(x = \max(x_1, x_2, \dots, x_n)\)</span>.</p>

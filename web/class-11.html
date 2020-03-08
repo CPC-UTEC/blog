@@ -445,6 +445,12 @@ The divide and conquer paradigm
 <div class="topic">
 Binary search
 </div>
+<div class="rows text-center">
+<div class="figure">
+<img src="images/class-11/binarysearch.jpg" alt="https://www.pinterest.com/pin/761038037007324587/" />
+<p class="caption"><a href="https://www.pinterest.com/pin/761038037007324587/" class="uri">https://www.pinterest.com/pin/761038037007324587/</a></p>
+</div>
+</div>
 <div id="motivation" class="section level3">
 <h3>Motivation</h3>
 <p>Let’s say that you need to find the position of a value in an array. <strong>How would you do it?</strong></p>
@@ -456,19 +462,16 @@ using namespace std;
 int main () {
   int num = 10;
   int x = 20;
-  vector &lt;int&gt; arr = {
-    2, 4, 6, 7, 8, 10, 20, 4034, 4535, 5635435, 577436536
-  };
+  vector &lt;int&gt; arr = {2, 4, 6, 7, 8, 10, 20, 4034, 4535, 5635435, 577436536};
   bool found = false;
-  for (int i = 0; i &lt; arr.size(); i++) {
+  for (int i = 0; i &lt; arr.size() &amp;&amp; !found; i++) {
     if (arr[i] == x) {
       cout &lt;&lt; i + 1 &lt;&lt; endl;
       found = true;
-      break;
     }
   }
   if (not found) {
-    cout &lt;&lt; x &lt;&lt; &quot; is not in the array&quot; &lt;&lt; &#39;\n&#39;;
+    cout &lt;&lt; x &lt;&lt; &quot; is not in the array\n&quot;;
   }
   return (0);
 }</code></pre>
@@ -505,18 +508,53 @@ int binary_search (int* seq, int size, int x) {
   }
   return -1;
 }</code></pre>
+<p>Take a sight to the following problem. <a href="https://www.spoj.com/problems/PAIRS1/">SPOJ - Count the Pairs</a></p>
+<p>Before looking the code, think for few minutes how to use binary search to solve this problem.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+bool bs(int *num,int l,int r,int x){
+  while(l&lt;=r){
+    int med=l+(r-l)/2;
+    if(num[med]==x) return true;
+    if(num[med]&gt;x) r=med-1;
+    else l=med+1;
+  }
+  return false;
+}
+
+int main(){
+
+  int n,k;
+  cin&gt;&gt;n&gt;&gt;k;
+  int num[n];
+
+  for(int &amp;i:num)
+    cin&gt;&gt;num[i];
+
+  sort(num,num+n);
+  int cont=0;
+
+  for(int i=0;i&lt;n;i++){
+    if(bs(num,i+1,n-1,k+num[i]))
+      cont++;
+  }
+
+  cout&lt;&lt;cont&lt;&lt;endl;
+                                                            
+  return 0;
+}</code></pre>
+<p>Take count what is the <strong>range</strong> in the binary method for each value k+num[i].</p>
 <p>Now, what happen if there exists many equal values in the array. What position does the binary method return?</p>
-<pre class="cpp"><code>int arr[] = {
-  2, 4, 6, 7, 8, 10, 10, 10, 20, 4034, 4535, 5635435, 577436536
-};</code></pre>
-<p>In this cases we need more information in order to determine what value we must return. Even though in many problems it doesn’t matter which we pick, in many others it will. For that cases, we are going to work with what is called lower and upper bound.</p>
+<pre class="cpp"><code>int arr[] = {2, 4, 6, 7, 8, 10, 10, 10, 20, 4034, 4535, 5635435, 577436536};</code></pre>
+<p>In this cases we need more information in order to determine what value we have to return. Even though in many problems it doesn’t matter which we pick, in many others it will. For that cases, we are going to work with what is called lower and upper bound.</p>
 <div class"topic">Lower bound</div>
 <p>The <em>lower bound</em> is the first element that does not compare less than the value we are looking for. In simpler words, is the first occurrence of the search value. The following is a possible implementation of lower bound, however, <code>std::lower_bound</code> can simplify things for us.</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
 using namespace std;,
 
-int binary_search (int* arr, int size, int x) {
+int binary_search(int* arr, int size, int x) {
   int left = 0;
   int right = size - 1;
   int pos = -1;
@@ -533,6 +571,12 @@ int binary_search (int* arr, int size, int x) {
   }
   return pos;
 }</code></pre>
+<pre class="cpp"><code>  //If we want to use lower_bound of STL
+  int array[] = {10, 10, 10, 20, 20, 20, 30, 30, 40, 60};
+  cout&lt;&lt;lower_bound(array,array+10,30)-arr&lt;&lt;endl; //3, Return the first position when 30 is.
+
+  vector&lt;int&gt; vec(array,array+10); 
+  cout&lt;&lt;lower_bound(vec.begin(),vec.end(),40)-vec.begin()&lt;&lt;endl; //8, Return the first position when 30 is.</code></pre>
 <div class="topic">
 Upper bound
 </div>
@@ -558,7 +602,64 @@ int binary_search (int* arr, int size, int x) {
   }
   return pos;
 }</code></pre>
-<p>You may find useful to search - <a href="http://www.cplusplus.com/reference/algorithm/lower_bound/">lower_bound as a function</a> - <a href="http://www.cplusplus.com/reference/algorithm/upper_bound/">upper_bound as a function</a> - <a href="http://www.cplusplus.com/reference/set/set/lower_bound/">lower_bound as a method</a> - <a href="http://www.cplusplus.com/reference/set/set/upper_bound/">upper_bound as a method</a></p>
+<pre class="cpp"><code>  //If we want to use upper_bound of STL
+  int array[] = {10, 10, 10, 20, 20, 20, 30, 30, 40, 60};
+  cout&lt;&lt;upper_bound(array,array+10,30)-arr&lt;&lt;endl; //7, Return the first position when 30 is.
+
+  vector&lt;int&gt; vec(array,array+10); 
+  cout&lt;&lt;upper_bound(vec.begin(),vec.end(),40)-vec.begin()&lt;&lt;endl; //8, Return the first position when 30 is.</code></pre>
+<p>Sure you are thinking why we need to add one inside the difference between right and left.</p>
+<p>Take a sight the next example and compute this searching without adding one in med.</p>
+<pre class="cpp"><code>  int array[] = {10, 20};
+  cout&lt;&lt;bs(array,2,20)&lt;&lt;endl; //med here is left + (right - left) / 2;</code></pre>
+<p>There exists a bucle inside the form because med is always 0. So, if we want to solve this inconvenience just adding one and that is all.</p>
+<p>You may find useful to search</p>
+<ul>
+<li><a href="http://www.cplusplus.com/reference/algorithm/lower_bound/">lower_bound as a function</a></li>
+<li><a href="http://www.cplusplus.com/reference/algorithm/upper_bound/">upper_bound as a function</a></li>
+<li><a href="http://www.cplusplus.com/reference/set/set/lower_bound/">lower_bound as a method</a></li>
+<li><a href="http://www.cplusplus.com/reference/set/set/upper_bound/">upper_bound as a method</a></li>
+</ul>
+<p>Now, again :). Let’s see one interesting problem. <img src="https://codeforces.com/problemset/problem/600/B" alt="Less or equal elements" /></p>
+<p>And again, take a few minutes before looking the code.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int bs(int *num,int size,int x){
+  int l=0,r=size-1;
+  while(l&lt;r){
+    int med=l+(r-l+1)/2;
+    if(num[med]&gt;x) r=med-1;
+    else l=med;
+  }
+  return l;
+}
+
+int main() {
+  int n,m,x;
+  cin&gt;&gt;n&gt;&gt;m;
+  int a[n];
+        
+  for(int &amp;i:a)
+      cin&gt;&gt;i;
+        
+  sort(a,a+n);
+    
+  for(int i=0;i&lt;m;i++){
+    cin&gt;&gt;x;
+    if(i&gt;0)
+      cout&lt;&lt;&quot; &quot;;
+    if(x&lt;a[0]){
+      cout&lt;&lt;0;
+      continue;
+    }
+    cout&lt;&lt;bs(a,n,x)+1;
+  }
+
+  cout&lt;&lt;endl;
+                                                
+  return 0;
+}</code></pre>
 <div class="topic">
 Binary search on the answer
 </div>
@@ -577,6 +678,51 @@ Binary search on the answer
 <li>How can we improve this basic solution?</li>
 </ul>
 <p>The key thing is to realize that if we can reach the top with some an initial strength <span class="math inline">\(k_0\)</span>, then any initial strength <span class="math inline">\(k, k &gt; k_0\)</span> can also reach the top. Therefore we can use binary search to look for the minimum value of <span class="math inline">\(k\)</span> that reaches the top from 1 to <span class="math inline">\(r + 1\)</span>. As we can determine for a given <span class="math inline">\(k\)</span> if it is possible to reach the top, then this solution would have a complexity of <span class="math inline">\(O(n \log(r))\)</span>.</p>
+<p>Finally, we would like to show you all an interesting problem. This problem show how combine force brute and binary search in an unexpected way.</p>
+<p>Please, enter the next link and read carefully the problem. <a href="https://www.spoj.com/problems/AGGRCOW/">Aggresive cows</a></p>
+<p>Like always take few minutes before looking the code.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int size=1e5+1;
+int ns[size];
+int n,c;
+
+bool query(int x){
+  int cont=1;
+  int p=ns[0];
+  for(int i=1;i&lt;n;i++){
+    if(ns[i]-p&gt;=x){
+      cont++;
+      p=ns[i];
+    }
+  }
+  if(cont&gt;=c) return true;
+  return false;
+}
+
+int bs(int l,int r){
+  
+  while(l&lt;r){
+    int med=l+(r-l+1)/2;
+    if(query(med)) l=med; 
+    else r=med-1;
+  }
+  return l;
+}
+
+int main() {
+  int t;
+  scanf(&quot;%d&quot;,&amp;t);
+  while(t--){
+    scanf(&quot;%d %d&quot;,&amp;n,&amp;c);
+    for(int i=0;i&lt;n;i++)
+      scanf(&quot;%d&quot;,&amp;ns[i]);
+    sort(ns,ns+n);
+    int l=ns[0],r=ns[n-1];
+    printf(&quot;%d\n&quot;,bs(l,r));
+  }
+  return 0;
+}</code></pre>
 <p>Recommended readings:</p>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=GU7DpgHINWQ">Errichto - Binary search lecture (C++ and Python)</a></li>

@@ -82,21 +82,16 @@ a, a:hover, a:focus {
 }
 
 /* Gallery */
-.carousel-caption {
-  z-index: 10;
+.item {
+  transition:1s;
+  padding:1px;
 }
-
-.carousel .item {
-  height: 300px;
-  background: white;
+.item:hover {
+  filter:grayscale(100%);
+  transform: scale(1.1);
 }
-
-.carousel-inner > .item > img {
-  max-width: 550 !important;
-  height: 100%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.carousel{
+  margin:1px 1px;
 }
 
 /**

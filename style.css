@@ -82,16 +82,17 @@ a, a:hover, a:focus {
 }
 
 /* Gallery */
+#carousel1{
+  display:flex;
+  flex-wrap:wrap;
+}
 .item {
   transition:1s;
-  padding:1px;
+  max-width:100%;
 }
 .item:hover {
   filter:grayscale(100%);
   transform: scale(1.1);
-}
-.carousel{
-  margin:1px 1px;
 }
 
 /**

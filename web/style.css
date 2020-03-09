@@ -81,18 +81,45 @@ a, a:hover, a:focus {
   border:1px solid black;
 }
 
+/**
+ * Based on https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_image_grid_responsive
+ **/
 /* Gallery */
-#carousel1{
-  display:flex;
-  flex-wrap:wrap;
+.gallery{
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+.col{
+   -ms-flex: 25%; /* IE10 */
+   flex: 25%;
+   max-width: 25%;
+   padding: 0 4px;
 }
 .item {
   transition:1s;
   max-width:100%;
+  vertical-align:middle;
 }
 .item:hover {
   filter:grayscale(100%);
   transform: scale(1.1);
+}
+@media screen and (max-width: 800px) {
+  .col{
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .col{
+  -ms-flex: 100%;
+  flex: 100%;
+  max-width: 100%;
+  }
 }
 
 /**

@@ -12,15 +12,23 @@ title: "Gallery"
 
 <div id="carousel1" class="gallery">
 
-  <a href="./images/gallery/contest-UTEC-UNI-I/start/1.jpg" data-lightbox="mygallery" data-title="Picture1"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/1_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/start/2.jpg" data-lightbox="mygallery" data-title="Picture2"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/2_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/start/3.jpg" data-lightbox="mygallery" data-title="Picture3"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/3_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/start/4.jpg" data-lightbox="mygallery" data-title="Picture4"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/4_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/start/5.jpg" data-lightbox="mygallery" data-title="Picture5"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/5_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/start/6.jpg" data-lightbox="mygallery" data-title="Picture6"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/6_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/start/7.jpg" data-lightbox="mygallery" data-title="Picture7"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/7_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/start/8.jpg" data-lightbox="mygallery" data-title="Picture8"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/8_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/start/9.jpg" data-lightbox="mygallery" data-title="Picture9"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/9_small.jpg"></a>
+<div class="col">
+  <a href="./images/gallery/contest-UTEC-UNI-I/start/1.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/1_small.jpg"></a>
+  <a href="./images/gallery/contest-UTEC-UNI-I/start/2.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/2_small.jpg"></a>
+  <a href="./images/gallery/contest-UTEC-UNI-I/start/3.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/3_small.jpg"></a>
+</div>
+<div class="col">
+  <a href="./images/gallery/contest-UTEC-UNI-I/start/4.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/4_small.jpg"></a>
+  <a href="./images/gallery/contest-UTEC-UNI-I/start/5.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/5_small.jpg"></a>
+</div>
+<div class="col">
+  <a href="./images/gallery/contest-UTEC-UNI-I/start/6.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/6_small.jpg"></a>
+  <a href="./images/gallery/contest-UTEC-UNI-I/start/7.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/7_small.jpg"></a>
+</div>
+<div class="col">
+  <a href="./images/gallery/contest-UTEC-UNI-I/start/8.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/8_small.jpg"></a>
+  <a href="./images/gallery/contest-UTEC-UNI-I/start/9.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/start/9_small.jpg"></a>
+</div>
 
 </div>
 
@@ -29,13 +37,20 @@ title: "Gallery"
 
 <div id="carousel2" class="gallery">
 
-  <a href="./images/gallery/contest-UTEC-UNI-I/middle/1.jpg" data-lightbox="mygallery" data-title="Picture1"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/middle/1_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/middle/2.jpg" data-lightbox="mygallery" data-title="Picture2"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/middle/2_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/middle/3.jpg" data-lightbox="mygallery" data-title="Picture3"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/middle/3_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/middle/4.jpg" data-lightbox="mygallery" data-title="Picture4"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/middle/4_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/middle/5.jpg" data-lightbox="mygallery" data-title="Picture5"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/middle/5_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/middle/6.jpg" data-lightbox="mygallery" data-title="Picture6"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/middle/6_small.jpg"></a>
-
+<div class="col">
+  <a href="./images/gallery/contest-UTEC-UNI-I/middle/1.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/middle/1_small.jpg"></a>
+  <a href="./images/gallery/contest-UTEC-UNI-I/middle/2.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/middle/2_small.jpg"></a>
+</div>
+<div class="col">
+  <a href="./images/gallery/contest-UTEC-UNI-I/middle/3.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/middle/3_small.jpg"></a>
+  <a href="./images/gallery/contest-UTEC-UNI-I/middle/4.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/middle/4_small.jpg"></a>
+</div>
+<div class="col">
+  <a href="./images/gallery/contest-UTEC-UNI-I/middle/5.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/middle/5_small.jpg"></a>
+</div>
+<div class="col">
+  <a href="./images/gallery/contest-UTEC-UNI-I/middle/6.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/middle/6_small.jpg"></a>
+</div>
 </div>
 
 
@@ -43,14 +58,23 @@ title: "Gallery"
 
 <div id="carousel3" class="gallery">
 
-  <a href="./images/gallery/contest-UTEC-UNI-I/final/1.jpg" data-lightbox="mygallery" data-title="Picture1"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/final/1_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/final/2.jpg" data-lightbox="mygallery" data-title="Picture2"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/final/2_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/final/3.jpg" data-lightbox="mygallery" data-title="Picture3"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/final/3_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/final/4.jpg" data-lightbox="mygallery" data-title="Picture4"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/final/4_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/final/5.jpg" data-lightbox="mygallery" data-title="Picture5"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/final/5_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/final/6.jpg" data-lightbox="mygallery" data-title="Picture6"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/final/6_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/final/7.jpg" data-lightbox="mygallery" data-title="Picture7"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/final/7_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/final/8.jpg" data-lightbox="mygallery" data-title="Picture8"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/final/8_small.jpg"></a>
+<div class="col">
+
+  <a href="./images/gallery/contest-UTEC-UNI-I/final/1.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/final/1_small.jpg"></a>
+  <a href="./images/gallery/contest-UTEC-UNI-I/final/2.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/final/2_small.jpg"></a>
+</div>
+<div class="col">
+  <a href="./images/gallery/contest-UTEC-UNI-I/final/3.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/final/3_small.jpg"></a>
+  <a href="./images/gallery/contest-UTEC-UNI-I/final/4.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/final/4_small.jpg"></a>
+</div>
+<div class="col">
+  <a href="./images/gallery/contest-UTEC-UNI-I/final/5.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/final/5_small.jpg"></a>
+  <a href="./images/gallery/contest-UTEC-UNI-I/final/6.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/final/6_small.jpg"></a>
+</div>
+<div class="col">
+  <a href="./images/gallery/contest-UTEC-UNI-I/final/7.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/final/7_small.jpg"></a>
+  <a href="./images/gallery/contest-UTEC-UNI-I/final/8.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/final/8_small.jpg"></a>
+</div>
 
 </div>
 
@@ -58,13 +82,20 @@ title: "Gallery"
 #### **After the contest**
 
 <div id="carousel4" class="gallery">
-
-  <a href="./images/gallery/contest-UTEC-UNI-I/ceremony/1.jpg" data-lightbox="mygallery" data-title="Picture1"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/ceremony/1_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/ceremony/2.jpg" data-lightbox="mygallery" data-title="Picture2"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/ceremony/2_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/ceremony/3.jpg" data-lightbox="mygallery" data-title="Picture3"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/ceremony/3_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/ceremony/4.jpg" data-lightbox="mygallery" data-title="Picture4"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/ceremony/4_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/ceremony/5.jpg" data-lightbox="mygallery" data-title="Picture5"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/ceremony/5_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/ceremony/6.jpg" data-lightbox="mygallery" data-title="Picture6"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/ceremony/6_small.jpg"></a>
-  <a href="./images/gallery/contest-UTEC-UNI-I/ceremony/7.jpg" data-lightbox="mygallery" data-title="Picture7"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/ceremony/7_small.jpg"></a>
+<div class="col">
+  <a href="./images/gallery/contest-UTEC-UNI-I/ceremony/1.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/ceremony/1_small.jpg"></a>
+  <a href="./images/gallery/contest-UTEC-UNI-I/ceremony/2.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/ceremony/2_small.jpg"></a>
+</div>
+<div class="col">
+  <a href="./images/gallery/contest-UTEC-UNI-I/ceremony/3.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/ceremony/3_small.jpg"></a>
+  <a href="./images/gallery/contest-UTEC-UNI-I/ceremony/4.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/ceremony/4_small.jpg"></a>
+</div>
+<div class="col">
+  <a href="./images/gallery/contest-UTEC-UNI-I/ceremony/5.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/ceremony/5_small.jpg"></a>
+  <a href="./images/gallery/contest-UTEC-UNI-I/ceremony/6.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/ceremony/6_small.jpg"></a>
+</div>
+<div class="col">
+  <a href="./images/gallery/contest-UTEC-UNI-I/ceremony/7.jpg" data-lightbox="mygallery"><img class="item" src="./images/gallery/contest-UTEC-UNI-I/ceremony/7_small.jpg"></a>
+</div>
 
 </div>

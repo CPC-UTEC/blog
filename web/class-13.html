@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Class 13: Game Theory I</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" type="text/css" href="lib/lightbox.min.css">
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 54px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h2 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h3 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h4 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h5 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h6 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+<div class="wrapper">
+
+<!-- Sidebar Holder -->
+<nav id="sidebar">
+<div class="sidebar-header">
+  <h3 style="text-align: left;">
+    <a style="text-decoration: none;"href="./index.html">
+      Competitive programming UTEC
+    </a>
+  </h3>
+  <strong>
+    <a style="text-decoration: none;"href="./index.html">
+    CP-UTEC
+    </a>
+  </strong>
+</div>
+
+<div id="dismiss-left">
+  <i class="fa fa-arrow-left"></i>
+</div>
+
+<div id="dismiss-right">
+  <i class="fa fa-arrow-right"></i>
+</div>
+
+<ul class="list-unstyled components">
+
+  <div class="line"></div>
+  
+  <li id="index-page">
+    <a href="./index.html">
+      Home
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="schedule-page">
+    <a href="./schedule.html">
+      Schedule
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="classes-page-expanded">
+    <a id="classes" href="#all-classes" data-toggle="collapse"
+      aria-expanded="false">
+      Classes
+    </a>
+    <ul class="collapse list-unstyled" id="all-classes">
+      <li id="class-01">
+        <a href="./class-01.html">1. Introduction</a>
+      </li>
+      <li id="class-02">
+        <a href="./class-02.html">2. Asymptotic Analysis</a>
+      </li>
+      <li id="class-03">
+        <a href="./class-03.html">3. Standard Template Library</a>
+      </li>
+      <li id="class-04">
+        <a href="./class-04.html">4. Complete Search I</a>
+      </li>
+      <li id="class-05">
+        <a href="./class-05.html">5. Complete Search II</a>
+      </li>
+      <li id="class-06">
+        <a href="./class-06.html">6. Complete Search III</a>
+      </li>
+      <li id="class-07">
+        <a href="./class-07.html">7. Complete Search IV</a>
+      </li>
+      <li id="class-08">
+        <a href="./class-08.html">8. Complete Search V</a>
+      </li>
+      <li id="class-09">
+        <a href="./class-09.html">9. Contest I</a>
+      </li>
+      <li id="class-10">
+        <a href="./class-10.html">10. Contest UTEC-UNI-UPC I</a>
+      </li>
+      <li id="class-11">
+        <a href="./class-11.html">11. Divide and Conquer I</a>
+      </li>
+      <li id="class-12">
+        <a href="./class-12.html">12. Divide and Conquer II</a>
+      </li>
+      <li id="class-13">
+        <a href="./class-13.html">13. Game Theory I</a>
+      </li>
+      <li id="class-14">
+        <a href="./class-14.html">14. Game Theory II</a>
+      </li>
+      <li id="class-15">
+        <a href="./class-15.html">15. Contest II</a>
+      </li>
+    </ul>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="classes-page-not-expanded">
+    <a href="./classes.html">
+      Classes
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="daily-problem-page">
+    <a href="./daily-problem.html">
+      Daily problem
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="gallery-page">
+    <a href="./gallery.html">
+      Gallery
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+</ul>
+
+
+<!--
+<ul class="list-unstyled">
+  <li>
+    <a href="https://www.utec.edu.pe/" target="_blank" class="logo">
+      <img src="images/page/utec-logo.png" alt="UTEC logo">
+    </a>
+  </li>
+</ul>
+-->
+</nav>
+
+<div id="expand-icon-right">
+  <i class="fa fa-angle-right"></i>
+</div>
+
+<div id="expand-icon-left">
+  <i class="fa fa-angle-left"></i>
+</div>
+
+<!-- Page Content Holder -->
+<div id="content">
+<script>
+$(".main-container")
+  .removeClass("main-container")
+  .removeClass("container-fluid")
+</script>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Class 13: Game Theory I</h1>
+<h4 class="date">02-24-2020</h4>
+
+</div>
+
+
+<blockquote>
+<p>“You don’t have to be a mathematician to have a feel for numbers”</p>
+</blockquote>
+<div class="topic">
+Introduction
+</div>
+<p>When we talk about game theory in competitive programming we mean combinational game theory. In combinatorial game theory we study combinatorial games, these are two-person games with perfect information and no change moves, and with a win-or-lose outcome. We can define such games using:</p>
+<ul>
+<li>Set of possible positions</li>
+<li>Initial position</li>
+<li>Set of terminal positions</li>
+<li>Player that starts the game</li>
+<li>Function that determines the possible moves from each position</li>
+</ul>
+<p>If the function that determines the possible moves from each position is the same for both players, then we have a <strong>impartial game</strong>, else we have a <strong>partizan game</strong>. For each type (impartial and partizan) there are different strategies to solve them as we can see in the following diagram:</p>
+<div class="row text-center">
+<p><img src="images/class-13/game-theory-classification.png" /></p>
+</div>
+<p>We will focus our study in these strategies and techniques.</p>
+<div class="topic">
+WL states
+</div>
+<div id="a-simple-take-away-game" class="section level3">
+<h3>A simple take-away game</h3>
+<p><strong>Problem:</strong> There is a pile of <span class="math inline">\(n\)</span> chips and two players (player A and player B). They are alternating turns, in each turn a player removes one, two or three chips from the pile. The player that removes the last chip wins. If player A starts the game and both players play optimally, who will be the winner ?</p>
+<p>In order to solve this problem we can use what is called <strong>backward induction</strong>. This technique consists in analyzing a problem from the end back to the begining.</p>
+<p>Let:</p>
+<ul>
+<li><span class="math inline">\(L\)</span>: losing position for player A</li>
+<li><span class="math inline">\(W\)</span>: winning position for player A</li>
+</ul>
+<p>We can define a function <span class="math inline">\(f: \mathbb{N \cup \{0\}} \to \{L, W\}\)</span> such that <span class="math inline">\(f(x)\)</span> indicates what is the result for player A if the game has a pile of <span class="math inline">\(x\)</span> chips.</p>
+<p>From these definitions we have:</p>
+<ul>
+<li><span class="math inline">\(f(0) = L\)</span></li>
+<li><span class="math inline">\(f(1) = W\)</span></li>
+<li><span class="math inline">\(f(2) = W\)</span></li>
+<li><span class="math inline">\(f(3) = W\)</span></li>
+<li><span class="math inline">\(f(4) = L\)</span></li>
+<li><span class="math inline">\(f(5) = W\)</span></li>
+<li><span class="math inline">\(f(6) = W\)</span></li>
+<li><span class="math inline">\(f(7) = W\)</span></li>
+<li><span class="math inline">\(f(8) = L\)</span></li>
+<li><span class="math inline">\(f(9) = W\)</span></li>
+<li><span class="math inline">\(f(10) = W\)</span></li>
+<li><span class="math inline">\(f(11) = W\)</span></li>
+<li><span class="math inline">\(f(12) = L\)</span></li>
+</ul>
+<p>That is, if there are no chips, then player <span class="math inline">\(A\)</span> loses. If there are <span class="math inline">\(1, 2\)</span> or <span class="math inline">\(3\)</span> chips, then player <span class="math inline">\(A\)</span> can take all the chips in a move and win. If there are <span class="math inline">\(4\)</span> chips no matter how many chips player <span class="math inline">\(A\)</span> takes because player <span class="math inline">\(B\)</span> can finish the game in the next turn. If there are <span class="math inline">\(5, 6\)</span> or <span class="math inline">\(7\)</span> chips, then player <span class="math inline">\(A\)</span> can left just <span class="math inline">\(4\)</span> chips, then no matter how many chips player <span class="math inline">\(B\)</span> takes in its turn, in the next turn player <span class="math inline">\(A\)</span> can take all the remaining chips. And so on.</p>
+<p>From these we notice that <span class="math inline">\(f(x) = n \leftrightarrow n \equiv 0 \bmod 4\)</span>. Then, we have solved the problem.</p>
+<p>The idea of defining a function that maps some states to <span class="math inline">\(L, W\)</span> is what is called WL states. Moreover, we can generalize this idea with the following property:</p>
+</div>
+<div id="characteristic-property" class="section level3">
+<h3>Characteristic property</h3>
+<p>WL states are defined recursively by the following three statements:</p>
+<ol style="list-style-type: decimal">
+<li>All terminal positions are <span class="math inline">\(L\)</span> states.</li>
+<li>From every <span class="math inline">\(W\)</span> state, there is at least one move to a <span class="math inline">\(L\)</span> state.</li>
+<li>From every <span class="math inline">\(L\)</span> state, every move is to a <span class="math inline">\(W\)</span> state.</li>
+</ol>
+<p>We can interpret these statements in this way:</p>
+<ol style="list-style-type: decimal">
+<li>If I am in a terminal state, then I have no available moves, so I am in a losing state.</li>
+<li>If I can make that the other player starts its turn in a state where he will lose, then I am in a winning state.</li>
+<li>If I am in a state where no matter what I do, in the next turn the other player have a winning strategy, then I am in a losing state.</li>
+</ol>
+<p>Now, let’s practice solving <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=1345">UVA 10404 - Bachet’s game</a>.</p>
+<p>It is basically a generalized version of ‘A simple take-away game’. The problem is the same, we still have a pile of <span class="math inline">\(n\)</span> chips, but now the set of available moves (how many chips we can take) is variable.</p>
+<p>We can use the characteristic property to solve the problem using backtracking in this way:</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int n, m;
+vector &lt;int&gt; take;
+
+const int L = 0;
+const int W = 1;
+
+int rec (int x) {
+  if (x == 0) { // terminal state
+    return L;
+  }
+  int result = L; // suppose we are in a losing state
+  for (int t: take) {
+    if (t &lt;= x and rec(x - t) == L) {
+      // if there is a move to a losing state
+      // then we are in a winning state
+      result = W;
+    }
+  }
+  return result;
+}
+
+int main () {
+  int n, m;
+  while (cin &gt;&gt; n &gt;&gt; m) {
+    take.resize(m);
+    for (int i = 0; i &lt; m; i++) cin &gt;&gt; take[i];
+    if (rec(n) == W) cout &lt;&lt; &quot;Stan wins&quot; &lt;&lt; &#39;\n&#39;;
+    else cout &lt;&lt; &quot;Ollie wins&quot; &lt;&lt; &#39;\n&#39;;
+  }
+  return (0);
+}</code></pre>
+<p>The solution is correct, but it takes too much time doing the same computations, but we can memorize some results and improve the solution in this way:</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int n, m;
+vector &lt;int&gt; take;
+vector &lt;int&gt; memo;
+
+const int L = 0;
+const int W = 1;
+const int UNVISITED = 2;
+
+int rec (int x) {
+  if (x == 0) { // terminal state
+    return L;
+  }
+  if (memo[x] != UNVISITED) { // we have already compute it
+    return memo[x];
+  }
+  int result = L; // suppose we are in a losing state
+  for (int t: take) {
+    if (t &lt;= x and rec(x - t) == L) {
+      // if there is a move to a losing state
+      // then we are in a winning state
+      result = W;
+    }
+  }
+  return memo[x] = result;
+}
+
+int main () {
+  while (cin &gt;&gt; n &gt;&gt; m) {
+    take.resize(m);
+    memo.resize(n + 1, UNVISITED);
+    for (int i = 0; i &lt; m; i++) cin &gt;&gt; take[i];
+    if (rec(n) == W) cout &lt;&lt; &quot;Stan wins&quot; &lt;&lt; &#39;\n&#39;;
+    else cout &lt;&lt; &quot;Ollie wins&quot; &lt;&lt; &#39;\n&#39;;
+    take.clear();
+    memo.clear();
+  }
+  return (0);
+}</code></pre>
+<p>We are now solving each case in <span class="math inline">\(O(nm)\)</span> which is enough to get the accepted veredict.</p>
+<div class="topic">
+The game of Nim
+</div>
+<p><strong>Problem:</strong> There are <span class="math inline">\(n\)</span> piles of chips <span class="math inline">\(x_1, x_2, \dots, x_n\)</span>. There are two players (player A and player B) that are alternating turns. In each turn a player selects a pile (<strong>only one</strong>) and removes at least one chip from it. The winner is the player who removes the last chip. If player A starts the game and both players play optimally, who will be the winner ?</p>
+<p>We can play this game in <a href="https://www.dotsphinx.com/games/nim/">this link</a>.</p>
+<p>Now, in order to solve this problem first let’s define what is ‘Nim-sum’.</p>
+<p><strong>Def. Nim-sum:</strong> The Nim-sum of two non-negative integers is their addition without carry in base 2. That is, if we have:</p>
+<p><span class="math display">\[a = \overline{a_na_{n-1} \dots a_1}_{(2)}\]</span> <span class="math display">\[b = \overline{b_nb_{n-1} \dots b_1}_{(2)}\]</span></p>
+<p>Let <span class="math inline">\(c\)</span> be the Nim-sum of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and fill zeros to the left as necessary so that <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> have the same number of digits. Then <span class="math inline">\(c_i = (a_i + b_i) \bmod 2\)</span> and it is written as <span class="math inline">\(c = a \oplus b\)</span>.</p>
+<p>That is, <span class="math inline">\(a \oplus b\)</span> is this in C++:</p>
+<pre class="cpp"><code>int c = a ^ b;</code></pre>
+<p>And <span class="math inline">\(\oplus\)</span> is called the xor operator.</p>
+<p>This definition is important because we can use it to characterize the set of winning states using the characteristic property. In fact, it is done in the following theorem:</p>
+</div>
+<div id="boutons-theorem" class="section level3">
+<h3>Bouton’s theorem</h3>
+<p>Let <span class="math inline">\(\mathbb{L}\)</span> be the set of losing states and <span class="math inline">\(\mathbb{W}\)</span> the set of winning states. Then, the solution of the game of Nim with piles <span class="math inline">\(x_1, x_2, \dots, x_n\)</span> is characterized in this way:</p>
+<p><span class="math display">\[(x_1, x_2, \dots, x_n) \in \mathbb{L} \leftrightarrow \displaystyle\bigoplus_{1 \leq i \leq n} x_i = 0\]</span></p>
+<p><strong>Proof:</strong></p>
+<ol style="list-style-type: decimal">
+<li>The only terminal position is <span class="math inline">\((0, 0, \dots, 0)\)</span> and <span class="math inline">\(0 \oplus 0 \oplus \dots \oplus 0 = 0\)</span>.</li>
+<li>Let <span class="math inline">\((x_1, x_2, \dots, x_n) \in \mathbb{W}\)</span>, then <span class="math inline">\(\displaystyle\bigoplus_{1 \leq i \leq n} x_i \not = 0\)</span>, so is we write all the numbers in binary representation in a matrix form, there exists a column <span class="math inline">\(k\)</span> (let’s take the leftmost) such that the number of ones in this column is odd. So we can take a number of chips from a pile that have a <span class="math inline">\(1\)</span> in this column. Moreover let <span class="math inline">\(p = \overline{p_{n}p_{n-1}\dots p_{k} \dots p_1}_{(2)}\)</span> be the number of chips taken from this pile, then we can form <span class="math inline">\(p\)</span> in such a way that <span class="math inline">\(p_i = 0, \forall i \geq k\)</span> and <span class="math inline">\(\forall i &lt; k, p_i\)</span> can be <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>, then we can form it in such a way that the Nim-sum of the new state would be 0. In other words, there is a losing state reachable from a winning state.</li>
+<li>Let <span class="math inline">\((x_1, x_2, \dots, x_n) \in \mathbb{L}\)</span>. If we take the pile <span class="math inline">\(k\)</span> and take some chips such that <span class="math inline">\(x_k\)</span> reduces to <span class="math inline">\(x_k&#39; &lt; x_k\)</span>, then the new state have Nim-sum different from zero (<strong>You can prove it by contradiction</strong>).</li>
+</ol>
+<p>We can use the above theorem to solve <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=1106">10165 - Stone Game</a>.</p>
+<p>The statement is basically the game of Nim. Then, this is a possible solution:</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+  int n;
+  while (cin &gt;&gt; n, n != 0) {
+    int nim_sum = 0;
+    for (int i = 0; i &lt; n; i++) {
+      int x;
+      cin &gt;&gt; x;
+      nim_sum ^= x;
+    }
+    puts(nim_sum == 0 ? &quot;No&quot; : &quot;Yes&quot;);
+  }
+  return (0);
+}</code></pre>
+<div class="topic">
+Grundy numbers
+</div>
+<p>We can express the characteristic property in a slighty different way. First, let’s define:</p>
+<p><span class="math display">\[g(state) = \min(n \geq 0: n \not = g(state&#39;) \, \forall state \to state&#39;)\]</span></p>
+<p>Where <span class="math inline">\(state \to state&#39;\)</span> means that we can go from <span class="math inline">\(state\)</span> to <span class="math inline">\(state&#39;\)</span>.</p>
+<p>In other words, <span class="math inline">\(g(state)\)</span> is the smallest non-negative integer not found amoung the function <span class="math inline">\(g\)</span> evaluated in states reachable from <span class="math inline">\(state\)</span>.</p>
+<p>The function <span class="math inline">\(g\)</span> is known as the <strong>Spragre-Grundy function</strong> and its values as <strong>Grundy numbers</strong> or <strong>Nim values</strong>. And what is nice about this function is that <span class="math inline">\(g(state) = 0 \leftrightarrow state \text{ is a losing state}\)</span>.</p>
+<p>Moreover, there exists the function <span class="math inline">\(mex\)</span> (a.k.a minimum excludant) that gives the smallest non-negative integer not found in a set. For example:</p>
+<p><span class="math display">\[mex(\{0, 1, 3, 4, 5\}) = 2\]</span> <span class="math display">\[mex(\{1, 2, 3, 4, 5\}) = 0\]</span> <span class="math display">\[mex(\{3, 4, 5\}) = 0\]</span> <span class="math display">\[mex(\{0, 1\}) = 2\]</span></p>
+<p>Then, we can define <span class="math inline">\(g\)</span> in terms of the <span class="math inline">\(mex\)</span> function in this way:</p>
+<p><span class="math display">\[g(state) = mex(g(state&#39;) \, \forall state \to state&#39;)\]</span></p>
+<p>Now, all the problems that we can solve with the characteristic property can also be solved using its Grundy numbers. For example, for the first problem we solved (‘A simple take-away game’) the transitions can be seen in this way:</p>
+<div class="row text-center">
+<p><img src="images/class-13/graph.png" /></p>
+<p>Image taken from <a href="https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf">Game theory - Thomas S. Ferguson. Page 14</a></p>
+</div>
+<p>Now, we can compute its Grundy numbers and we’ll get:</p>
+<ul>
+<li><span class="math inline">\(mex(0) = 0\)</span></li>
+<li><span class="math inline">\(mex(1) = 1\)</span></li>
+<li><span class="math inline">\(mex(2) = 2\)</span></li>
+<li><span class="math inline">\(mex(3) = 3\)</span></li>
+<li><span class="math inline">\(mex(4) = 0\)</span></li>
+<li><span class="math inline">\(mex(5) = 1\)</span></li>
+<li><span class="math inline">\(mex(6) = 2\)</span></li>
+<li><span class="math inline">\(mex(7) = 3\)</span></li>
+<li><span class="math inline">\(mex(8) = 0\)</span></li>
+<li><span class="math inline">\(mex(9) = 1\)</span></li>
+<li><span class="math inline">\(mex(10) = 2\)</span></li>
+<li><span class="math inline">\(mex(11) = 3\)</span></li>
+<li><span class="math inline">\(mex(12) = 0\)</span></li>
+</ul>
+<p>Then, we get the same result: <span class="math inline">\(n\)</span> is a losing position <span class="math inline">\(\leftrightarrow n \equiv 0 \bmod 4\)</span>.</p>
+<p>And we can even solve <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=1345">UVA 10404 - Bachet’s game</a> but now using the <span class="math inline">\(mex\)</span> function in this way:</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int n, m;
+vector &lt;int&gt; take;
+vector &lt;int&gt; memo;
+
+const int UNVISITED = -1;
+
+int grundy (int x) {
+  if (x == 0) { // terminal state
+    return 0; // mex 0
+  }
+  if (memo[x] != UNVISITED) { // we have already compute it
+    return memo[x];
+  }
+  set &lt;int&gt; values;
+  for (int t: take) {
+    if (t &lt;= x) {
+      values.insert(grundy(x - t));
+    }
+  }
+  int mex = 0;
+  while (values.count(mex)) mex++;
+  return memo[x] = mex;
+}
+
+int main () {
+  while (cin &gt;&gt; n &gt;&gt; m) {
+    take.resize(m);
+    memo.resize(n + 1, UNVISITED);
+    for (int i = 0; i &lt; m; i++) cin &gt;&gt; take[i];
+    if (grundy(n) != 0) cout &lt;&lt; &quot;Stan wins&quot; &lt;&lt; &#39;\n&#39;;
+    else cout &lt;&lt; &quot;Ollie wins&quot; &lt;&lt; &#39;\n&#39;;
+    take.clear();
+    memo.clear();
+  }
+  return (0);
+}</code></pre>
+<p>Now, we are solving each case in <span class="math inline">\(O(nm \log m)\)</span> which is enough to get the accepted veredict. <strong>Can be implemented in <span class="math inline">\(O(nm)\)</span>?</strong></p>
+<p>But the importante of this new interpretation of the characteristic property can be better seen in the next section.</p>
+<div class="topic">
+Sprague-Grundy theorem
+</div>
+<p>So faw we have seen how to solve impartial combinatorial games using WL states and Grundy numbers. Now, what happend if we form a game as the sum of several impartial combinatorial games ? Well, in this case the following theorem comes in handy:</p>
+</div>
+<div id="the-sprague-grundy-theorem" class="section level3">
+<h3>The Sprague-Grundy theorem</h3>
+<p>Given <span class="math inline">\(n\)</span> impartial combinatorial games, the Sprage-Grundy function of the union of these games is the Nim-sum of the Sprague-Grundy function of these games.</p>
+<p><strong>The proof is left to the reader as an exercise </strong> <i class="far fa-grimace" style="color: black"></i>.</p>
+<p>Now, let’s see some examples of this theorem:</p>
+</div>
+<div id="first-problem" class="section level3">
+<h3>First problem</h3>
+<p><strong>Problem:</strong> The problem is the same of ‘A simple take-away game’, but now there are <span class="math inline">\(n\)</span> piles of chips and in each turn a player can select a pile (<strong>only one</strong>) and removes one, two or three chips from this pile.</p>
+<p>Let <span class="math inline">\(x_i\)</span> be the number of chips in the <span class="math inline">\(i\)</span>-th pile. Then, we can solve the problem using WL states or Grundy numbers. Now our state will be <span class="math inline">\((x_1, x_2, x_3, \dots, x_n)\)</span> and from this state we can go to these states (if possible):</p>
+<ul>
+<li><span class="math inline">\((x_1 - 1, x_2, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1 - 2, x_2, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1 - 3, x_2, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1, x_2 - 1, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1, x_2 - 2, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1, x_2 - 3, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1, x_2, x_3 - 1, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1, x_2, x_3 - 2, \dots, x_n)\)</span></li>
+<li><p><span class="math inline">\((x_1, x_2, x_3 - 3, \dots, x_n)\)</span></p>
+<p><span class="math inline">\(\vdots\)</span></p></li>
+<li><span class="math inline">\((x_1, x_2, x_3, \dots, x_n - 1)\)</span></li>
+<li><span class="math inline">\((x_1, x_2, x_3, \dots, x_n - 2)\)</span></li>
+<li><p><span class="math inline">\((x_1, x_2, x_3, \dots, x_n - 3)\)</span></p></li>
+</ul>
+<p>That is, from every state there are <span class="math inline">\(O(3n) = O(n)\)</span> possible transitions. So, we can calculate the Grundy number of the state <span class="math inline">\((x_1, x_2, x_3, \dots, x_n)\)</span> in <span class="math inline">\(O(n \cdot x_1 \cdot x_2 \cdot \dots \cdot x_n) = O(n x^n)\)</span> where <span class="math inline">\(x = \max(x_1, x_2, \dots, x_n)\)</span>.</p>
+<p>But, if we use the Sprague-Grundy theorem, we can compute the Grundy number of the state <span class="math inline">\((x_1, x_2, \dots, x_n)\)</span> in this way:</p>
+<p><span class="math display">\[g(x_1, x_2, \dots, x_n) = g(x_1) \oplus g(x_2) \oplus \dots \oplus g(x_n)\]</span></p>
+<p>And we can compute all <span class="math inline">\(g(x_1), g(x_2), \dots, g(x_n)\)</span> at the same time using memorization (the first solution we give to <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=1345">UVA 10404 - Bachet’s game</a>) in <span class="math inline">\(O(3x) = O(x)\)</span>. Then, we can compute <span class="math inline">\(g(x_1, x_2, \dots, x_n)\)</span> in <span class="math inline">\(O(x + n)\)</span>. <strong>Can you implement it?</strong></p>
+</div>
+<div id="second-problem" class="section level3">
+<h3>Second problem</h3>
+<p><strong>Problem:</strong> Given a <span class="math inline">\(N \times N\)</span> chessboard with <span class="math inline">\(K\)</span> knights on it. Each knight can move only as shown in the picture below. There can be more than one knight on the same square at the same time. Two players take turns moving and in each turn a player chooses one of the knights and moves it. The player who is not able to make a move is declared the loser. If both players play optimally who will win ?</p>
+<div class="row text-center">
+<p><img src="images/class-13/chess.png" /></p>
+<p>Image and problem taken from <a href="https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/">Algorithm Games - Topcoder</a></p>
+</div>
+<p>In order to solve this problem we can see each knight as a different game, then we have the union of games, so the Grundy number of our game is the Nim-sum of the Grundy number of the positions of the knights.</p>
+<p>In code it may be something like this:</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int n;
+vector &lt;string&gt; board;
+vector &lt;vector &lt;int&gt;&gt; memo;
+
+const int UNVISITED = -1;
+const vector &lt;int&gt; dr = {1, -1, -2, -2};
+const vector &lt;int&gt; dc = {-2, -2, -1, 1};
+
+int grundy (int r, int c) {
+  if (memo[r][c] != UNVISITED) {
+    return memo[r][c];
+  }
+  set &lt;int&gt; values;
+  for (int d = 0; d &lt; dr.size(); d++) {
+    int nr = r + dr[d];
+    int nc = c + dc[d];
+    if (0 &lt;= min(nr, nc) and max(nr, nc) &lt; n) {
+      values.insert(grundy(nr, nc));
+    }
+  }
+  int mex = 0;
+  while (values.count(mex)) mex++;
+  return memo[r][c] = mex;
+}
+
+int main () {
+  /* Input example
+  8
+  ........
+  ..K..K..
+  .......K
+  ........
+  ...K....
+  ........
+  ....K...
+  ..K.....
+  */
+  cin &gt;&gt; n;
+  board.resize(n);
+  memo = vector &lt;vector &lt;int&gt;&gt; (n, vector &lt;int&gt; (n, UNVISITED));
+  for (int i = 0; i &lt; n; i++) cin &gt;&gt; board[i];
+  vector &lt;int&gt; values;
+  for (int r = 0; r &lt; n; r++) {
+    for (int c = 0; c &lt; n; c++) {
+      if (board[r][c] == &#39;K&#39;) {
+        values.push_back(grundy(r, c));
+      }
+    }
+  }
+  int mex = 0;
+  for (int elem: values) {
+    mex ^= elem;
+  }
+  if (mex == 0) {
+    cout &lt;&lt; &quot;The first player is in a losing state&quot; &lt;&lt; &#39;\n&#39;;
+  } else {
+    cout &lt;&lt; &quot;The first player is in a winning state&quot; &lt;&lt; &#39;\n&#39;;
+  }
+  return (0);
+}</code></pre>
+<p>We may have also solved the problem using WL states or just Grundy numbers, but then we would have need to analyze around <span class="math inline">\(\binom{N \cdot N}{K}\)</span> possibles states (which is a lot), whereas using the Sprague-Grundy theorem we solved the problem in <span class="math inline">\(O(N ^ 2)\)</span>.</p>
+<p>Recommended readings:</p>
+<ul>
+<li><a href="https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf">Game theory - Thomas S. Ferguson. Chapter 1-4</a></li>
+<li><a href="https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/">Algorithm Games - Topcoder</a></li>
+<li><a href="https://stepupanalytics.com/game-theory-for-competitive-programming/">Game Theory For Competitive Programming</a></li>
+</ul>
+<div id="contest" class="topic">
+Contest
+</div>
+<p>You can find the contest <a href="https://vjudge.net/contest/359163">here</a>.</p>
+<p>The solutions will be uploaded after the contest.</p>
+<p style="float: none; clear: both;">
+</p>
+<div class="pt-3" style="float: right;">
+<p><a class="continue-link" href="./class-14.html" 
+     data-toggle="tooltip" title="Game Theory II"> Next </a></p>
+</div>
+<div class="pt-3">
+<p><a class="continue-link" href="./class-12.html"
+     data-toggle="tooltip" title="Divide and Conquer II"> Previous </a></p>
+</div>
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-13').addClass('active');
+  const cur_class = document.getElementById('class-13');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+</script>
+</div>
+
+</div> <!-- ends wrapper -->
+</div> <!-- ends content -->
+
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+  $('#dismiss-left').on('click', function () {
+    $('#sidebar, #content').addClass('active');
+  });
+
+  $('#dismiss-right').on('click', function () {
+    $('#sidebar, #content').removeClass('active');
+  });
+
+  $("[data-toggle='tooltip']").tooltip();
+
+  $('#expand-icon-right').on('click', function () {
+    document.getElementById('sidebar').style.width = "90px";
+    document.getElementById('expand-icon-right').style.display = "none";
+    document.getElementById('expand-icon-left').style.display = "block";
+    document.getElementById('content').style.background = "rgba(0,0,0,0.8)";
+    $('#expand-icon-left').addClass('moved');
+    $('#expand-icon-right').addClass('moved');
+  });
+
+  $('#expand-icon-left').on('click', function () {
+    document.getElementById('sidebar').style.width = "0px";
+    document.getElementById('expand-icon-right').style.display = "block";
+    document.getElementById('expand-icon-left').style.display = "none";
+    document.getElementById('content').style.background = "#fafafa";
+    $('#expand-icon-left').removeClass('moved');
+    $('#expand-icon-right').removeClass('moved');
+  });
+
+});
+
+/*
+$(window).scroll(function() { 
+  $('#expand-icon-left').css({top: '50vh'});
+  $('#expand-icon-left').css({bottom: '50vh'});
+  $('#expand-icon-right').css({top: '50vh'});
+  $('#expand-icon-right').css({bottom: '50vh'});
+});
+*/
+</script>
+
+<script type="text/javascript" src="lib/lightbox-plus-jquery.min.js"></script>
+
+<!--
+<footer>
+  <p>Copyright &copy; 2020. Competitive Programming UTEC</p>
+</footer>
+-->
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

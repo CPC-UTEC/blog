@@ -14,9 +14,8 @@
 <title>Class 06: Complete Search III</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -25,6 +24,9 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" type="text/css" href="lib/lightbox.min.css">
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -106,33 +108,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 45px;
+  padding-top: 54px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h2 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h3 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h4 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h5 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h6 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .dropdown-submenu {
   position: relative;
@@ -262,79 +264,160 @@ $(document).ready(function () {
 
 
 
+<div class="wrapper">
 
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">CP UTEC</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li>
-  <a href="schedule.html">Schedule</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Lessons
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Week 1</li>
-    <li>
-      <a href="class-01.html">Introduction</a>
-    </li>
-    <li>
-      <a href="class-02.html">Asymptotic Analysis</a>
-    </li>
-    <li class="dropdown-header">Week 2</li>
-    <li>
-      <a href="class-03.html">STL</a>
-    </li>
-    <li>
-      <a href="class-04.html">Complete Search I</a>
-    </li>
-    <li class="dropdown-header">Week 3</li>
-    <li>
-      <a href="class-05.html">Complete Search II</a>
-    </li>
-    <li>
-      <a href="class-06.html">Complete Search III</a>
-    </li>
-    <li class="dropdown-header">Week 4</li>
-    <li>
-      <a href="class-07.html">Complete Search IV</a>
-    </li>
-    <li>
-      <a href="class-08.html">Complete Search V</a>
-    </li>
-    <li class="dropdown-header">Week 5</li>
-    <li>
-      <a href="class-09.html">Contest I</a>
-    </li>
-    <li class="dropdown-header">Week 6</li>
-    <li>
-      <a href="class-10.html">Contest UTEC-UNI I</a>
-    </li>
-  </ul>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="daily-problem.html">Daily Problem</a>
-</li>
-<li>
-  <a href="gallery.html">Gallery</a>
-</li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container -->
-</div><!--/.navbar -->
+<!-- Sidebar Holder -->
+<nav id="sidebar">
+<div class="sidebar-header">
+  <h3 style="text-align: left;">
+    <a style="text-decoration: none;"href="./index.html">
+      Competitive programming UTEC
+    </a>
+  </h3>
+  <strong>
+    <a style="text-decoration: none;"href="./index.html">
+    CP-UTEC
+    </a>
+  </strong>
+</div>
+
+<div id="dismiss-left">
+  <i class="fa fa-arrow-left"></i>
+</div>
+
+<div id="dismiss-right">
+  <i class="fa fa-arrow-right"></i>
+</div>
+
+<ul class="list-unstyled components">
+
+  <div class="line"></div>
+  
+  <li id="index-page">
+    <a href="./index.html">
+      Home
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="schedule-page">
+    <a href="./schedule.html">
+      Schedule
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="classes-page-expanded">
+    <a id="classes" href="#all-classes" data-toggle="collapse"
+      aria-expanded="false">
+      Classes
+    </a>
+    <ul class="collapse list-unstyled" id="all-classes">
+      <li id="class-01">
+        <a href="./class-01.html">1. Introduction</a>
+      </li>
+      <li id="class-02">
+        <a href="./class-02.html">2. Asymptotic Analysis</a>
+      </li>
+      <li id="class-03">
+        <a href="./class-03.html">3. Standard Template Library</a>
+      </li>
+      <li id="class-04">
+        <a href="./class-04.html">4. Complete Search I</a>
+      </li>
+      <li id="class-05">
+        <a href="./class-05.html">5. Complete Search II</a>
+      </li>
+      <li id="class-06">
+        <a href="./class-06.html">6. Complete Search III</a>
+      </li>
+      <li id="class-07">
+        <a href="./class-07.html">7. Complete Search IV</a>
+      </li>
+      <li id="class-08">
+        <a href="./class-08.html">8. Complete Search V</a>
+      </li>
+      <li id="class-09">
+        <a href="./class-09.html">9. Contest I</a>
+      </li>
+      <li id="class-10">
+        <a href="./class-10.html">10. Contest UTEC-UNI-UPC I</a>
+      </li>
+      <li id="class-11">
+        <a href="./class-11.html">11. Divide and Conquer I</a>
+      </li>
+      <li id="class-12">
+        <a href="./class-12.html">12. Divide and Conquer II</a>
+      </li>
+      <li id="class-13">
+        <a href="./class-13.html">13. Game Theory I</a>
+      </li>
+      <li id="class-14">
+        <a href="./class-14.html">14. Game Theory II</a>
+      </li>
+      <li id="class-15">
+        <a href="./class-15.html">15. Contest II</a>
+      </li>
+    </ul>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="classes-page-not-expanded">
+    <a href="./classes.html">
+      Classes
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="daily-problem-page">
+    <a href="./daily-problem.html">
+      Daily problem
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="gallery-page">
+    <a href="./gallery.html">
+      Gallery
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+</ul>
+
+
+<!--
+<ul class="list-unstyled">
+  <li>
+    <a href="https://www.utec.edu.pe/" target="_blank" class="logo">
+      <img src="images/page/utec-logo.png" alt="UTEC logo">
+    </a>
+  </li>
+</ul>
+-->
+</nav>
+
+<div id="expand-icon-right">
+  <i class="fa fa-angle-right"></i>
+</div>
+
+<div id="expand-icon-left">
+  <i class="fa fa-angle-left"></i>
+</div>
+
+<!-- Page Content Holder -->
+<div id="content">
+<script>
+$(".main-container")
+  .removeClass("main-container")
+  .removeClass("container-fluid")
+</script>
 
 <div class="fluid-row" id="header">
 
@@ -352,7 +435,7 @@ $(document).ready(function () {
 <div class="topic">
 Two pointers
 </div>
-<p>This technique is usually used in an array. We have a pointer to the first element of the array and to the last. The first pointer will be incresing and the other one decreasing (you may also find variations of this idea). In practice, intead of using a pointer, a <code>int</code> variable to keep track of the index is usually enough.</p>
+<p>This technique is usually used in an array. We have a pointer to the first element of the array and to the last. The first pointer will be increasing and the other one decreasing (you may also find variations of this idea). In practice, intead of using a pointer, a <code>int</code> variable to keep track of the index is usually enough.</p>
 <p>Let’s see this technique with an example:</p>
 <p><strong>Problem:</strong> You are given an array <span class="math inline">\(a\)</span> of <span class="math inline">\(n\)</span> elements. You should output the minimum number of intervals <span class="math inline">\([l_i, r_i] \mid a_i = a_j \forall \, i, j \in [l_i, r_i]\)</span> <span class="math inline">\([l_1, r_1] \cup [l_2, r_2] \cup \dots \cup [l_m, r_m] = [1, n]\)</span>.</p>
 <p><span class="math display">\[1 \leq n \leq 10^5\]</span></p>
@@ -402,8 +485,8 @@ Two pointers
 <p>Let’s use this technique in <a href="https://leetcode.com/problems/two-sum/">this problem</a>:</p>
 <p><strong>Problem (2 sum problem):</strong> You are given an array <span class="math inline">\(a\)</span> of <span class="math inline">\(n\)</span> <strong>positive</strong> elements and an integer <span class="math inline">\(target\)</span>. You should output two numbers <span class="math inline">\(i, j \mid i \not = j \land a_i + a_j = target\)</span>. It is garantee that a solution always exits.</p>
 <p><span class="math display">\[1 \leq n \leq 10^5\]</span> <span class="math display">\[1 \leq target \leq 10^9\]</span></p>
-<p>We can use the same technique + sorting and solve the problem in <span class="math inline">\(O(n \log n)\)</span>.</p>
-<p>First, let’s sort the array and init with <span class="math inline">\(l = 0 \land r = n - 1\)</span>. <span class="math inline">\(l\)</span> would just increase and <span class="math inline">\(r\)</span> would just decrease. Then, by the trichotomy property there are three cases:</p>
+<p>We can use the same technique and sorting to solve the problem in <span class="math inline">\(O(n \log n)\)</span>.</p>
+<p>First, let’s sort the array and initiate with <span class="math inline">\(l = 0 \land r = n - 1\)</span>. <span class="math inline">\(l\)</span> would just increase and <span class="math inline">\(r\)</span> would just decrease. Then, by the trichotomy property there are three cases:</p>
 <ul>
 <li><p><span class="math inline">\(a[l] + a[r] == target\)</span></p>
 <p>Then, we have and answer and our program can finish</p></li>
@@ -468,18 +551,18 @@ Recursion
 </div>
 <p>Imagine you have a funtion <span class="math inline">\(f\)</span> that solves a problem in this way:</p>
 <ul>
-<li>When we are in a state with a specific property, we know how to directly solve the problem</li>
+<li>When we are in a state with a specific property, we know how to directly solve the problem.</li>
 <li>If we are not in a state with the specific property, we can solve the problem using different states of <span class="math inline">\(f\)</span>.</li>
 </ul>
 <p>For example:</p>
-<p><span class="math display">\[f(n) = 1 * 2 * 3 * \dots * n\]</span></p>
+<p><span class="math display">\[f(n) = 1 \times 2 \times 3 \times \dots \times n\]</span></p>
 <p>We want to compute <span class="math inline">\(f(n)\)</span> in a recursive way. Then we need:</p>
 <ul>
 <li><p>Identify a state with a specific property that we can solve easily.</p>
 <p>If <span class="math inline">\(n = 0 \to f(0) = 1\)</span>.</p></li>
-<li><p>Identify how to solve <span class="math inline">\(f(n)\)</span> using different states of <span class="math inline">\(f\)</span> (that are ‘closer’ to the states with a specific property of the above point)</p></li>
+<li><p>Identify how to solve <span class="math inline">\(f(n)\)</span> using different states of <span class="math inline">\(f\)</span> (that are ‘closer’ to the states with a specific property of the above point). For instance:</p></li>
 </ul>
-<p><span class="math display">\[f(n) = \underbrace{1 * 2 * 3 * \dots * (n - 1)}_{\text{f(n - 1)}} * n\]</span> <span class="math display">\[f(n) = n * f(n - 1)\]</span></p>
+<p><span class="math display">\[f(n) = \underbrace{1 \times 2 \times 3 \times \dots \times (n - 1)}_{\text{f(n - 1)}} \times n\]</span> <span class="math display">\[f(n) = n \times f(n - 1)\]</span></p>
 <p>Then, we are basically saying that if <span class="math inline">\(n = 0\)</span> we know how to solve the problem, else if we have the answer of <span class="math inline">\(f(n - 1)\)</span> we can use it to solve <span class="math inline">\(f(n)\)</span>.</p>
 <p>In code it is something like this:</p>
 <pre class="cpp"><code>ll f (int n) {
@@ -499,10 +582,12 @@ Recursion
 </div>
 <div id="the-tower-of-hanoi" class="section level3">
 <h3>The tower of Hanoi</h3>
+<div class="row text-center img-border">
 <p><img src="images/class-05/Hanoi.jpeg" /></p>
-<p><strong>Source:</strong> <a href="https://en.wikipedia.org/wiki/Tower_of_Hanoi#/media/File:Tower_of_Hanoi.jpeg">Wikipedia</a></p>
+<p>Image taken from <a href="https://en.wikipedia.org/wiki/Tower_of_Hanoi#/media/File:Tower_of_Hanoi.jpeg">Wikipedia</a></p>
+</div>
 <p><strong>Problem:</strong> You have 3 rods, and a pile of <span class="math inline">\(n\)</span> disks in one rod. Each disk have different diameter, the disks are in order in the stack, the greatest in the button and the smallest on the top. We want to move all the disks to another rod. We can only move the top disk of a stack to another rod if the other rod is empty or the diameter of its top element is greater that the one we are moving. Can you give a sequence of movements to solve this problem ?</p>
-<p>Lets say we have the function <span class="math inline">\(f\)</span> such that <span class="math inline">\(f(source, target, pivot, n)\)</span> moves the <span class="math inline">\(n\)</span> disks that are in the <code>source</code> rod to the <code>target</code> rod. Then, we can say:</p>
+<p>Let’s say we have the function <span class="math inline">\(f\)</span> such that <span class="math inline">\(f(source, target, pivot, n)\)</span> moves the <span class="math inline">\(n\)</span> disks that are in the <code>source</code> rod to the <code>target</code> rod. Then, we can say:</p>
 <p>If I want to move the <span class="math inline">\(n\)</span> disks from <code>source</code> rod to the <code>target</code> rod, first I need to move <span class="math inline">\(n - 1\)</span> disks from <code>source</code> to <code>pivot</code>, then I move the last disk in <code>source</code> to target. After that, we need to move the <span class="math inline">\(n - 1\)</span> disks in <code>pivot</code> to <code>target</code> and we are done. Moreover, if there is only one disk we can direcly move it to <code>target</code>. Then, we can write <span class="math inline">\(f\)</span> in this way:</p>
 <pre class="bw"><code>void f(source, target, pivot, n):
   if n == 1:
@@ -542,7 +627,7 @@ Modular arithmetic
 long long a = 1e10; // 10^10
 long long your_answer = (a * a) % m;</code></pre>
 <p>Althought we know that the <span class="math inline">\(\%\)</span> operator will give us a result less than <span class="math inline">\(m\)</span>, <span class="math inline">\(a * a\)</span> can not fit in a <code>long long</code> (<span class="math inline">\(10^{20} &gt; 2^{63}\)</span>), so we have <code>overflow</code>. In order to fix that, we can use the properties of modular arithmetic:</p>
-<p><span class="math display">\[(x + y) \mod m = (x \mod m + y \mod m) \mod m\]</span> <span class="math display">\[(x - y) \mod m = (x \mod m - y \mod m) \mod m\]</span> <span class="math display">\[(x * y) \mod m = (x \mod m * y \mod m) \mod m\]</span> <span class="math display">\[x^n \mod m = (x \mod m)^n \mod m\]</span></p>
+<p><span class="math display">\[(x + y) \mod m = (x \mod m + y \mod m) \mod m\]</span> <span class="math display">\[(x - y) \mod m = (x \mod m - y \mod m) \mod m\]</span> <span class="math display">\[(x \times y) \mod m = (x \mod m \times y \mod m) \mod m\]</span> <span class="math display">\[x^n \mod m = (x \mod m)^n \mod m\]</span></p>
 <p>So, we can fix the above code in this way:</p>
 <pre class="cpp"><code>long long your_answer = ((a % m) * (a % m)) % m;</code></pre>
 <p>From the above properties we have:</p>
@@ -557,20 +642,20 @@ Binary exponenciation
 </div>
 <p><span class="math inline">\(a^b\)</span> can be expressed in a recursive way.</p>
 <p><span class="math display">\[
-    \text{power}(a, b) =,
+    \text{power}(a, b) =
     \begin{cases}
         1       &amp; \quad \text{If } b = 0 \\
-        \text{power}(a, \lfloor b / 2 \rfloor) ^ 2  &amp; \quad \text{if } b \mod 2 = 0 \\
-        a * \text{power}(a, \lfloor b / 2 \rfloor) ^ 2 &amp; \quad \text{if } b \mod 2 = 1
+        \text{power}(a, \lfloor b / 2 \rfloor) ^ 2  &amp; \, \text{if } b \mod 2 = 0 \\
+        a \times \text{power}(a, \lfloor b / 2 \rfloor) ^ 2 &amp; \, \text{if } b \mod 2 = 1
     \end{cases}
 \]</span></p>
 <p>Moreover, from the properties of modular arithmetic, we can get <span class="math inline">\(a^b \mod m\)</span> as:</p>
 <p><span class="math display">\[
-    \text{binpow}(a, b) =,
+    \text{binpow}(a, b) =
     \begin{cases}
         1       &amp; \quad \text{If } b = 0 \\
-        \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2 \mod m &amp; \quad \text{if } b \mod 2 = 0 \\
-        (a * \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2) \mod m &amp; \quad \text{if } b \mod 2 = 1
+        \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2 \mod m &amp; \, \text{if } b \mod 2 = 0 \\
+        (a \times \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2) \mod m &amp; \, \text{if } b \mod 2 = 1
     \end{cases}
 \]</span></p>
 <p>In code:</p>
@@ -597,7 +682,7 @@ ll binpow (ll a, ll b) {
 <p>And as <span class="math inline">\(a^{m - 1} = a \cdot a^{m - 2}\)</span></p>
 <p>Using Fermat’s little theorem we have that the inverse of <span class="math inline">\(a\)</span> is <span class="math inline">\(a^{m - 2}\)</span> if <span class="math inline">\(m\)</span> is prime.</p>
 <p>Now, we can mention one more property of modular arithmetic (if <span class="math inline">\(b^{-1}\)</span> exists).</p>
-<p><span class="math display">\[\frac{a}{b} \mod m = ((a \mod m) * (b^{-1} \mod m)) \mod m\]</span></p>
+<p><span class="math display">\[\frac{a}{b} \mod m = ((a \mod m) \times (b^{-1} \mod m)) \mod m\]</span></p>
 <p>Let’s see how it is useful in <a href="https://vjudge.net/problem/Gym-247724E">this problem</a>.</p>
 <p><strong>Problem:</strong> Compute <span class="math inline">\(S = (1 + a + a^2 + a^3 + \dots + a^k) \mod m\)</span>.</p>
 <p><span class="math display">\[m = 10^9 + 7 \text{ (is prime)}\]</span> <span class="math display">\[1 \leq a \leq 10^{18}\]</span> <span class="math display">\[1 \leq k \leq 10^{18}\]</span></p>
@@ -661,8 +746,8 @@ A: Brutality
 </div>
 <!-- begin body -->
 <div id="collapseProblemA" class="collapse">
-<div id="brutality" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1107/C" target="_blank">Brutality</a></h3>
+<div class="card-body solution-body">
+<h3 id="brutality"><a href="https://codeforces.com/problemset/problem/1107/C" target="_blank">Brutality</a></h3>
 <p>The optimal strategy is to take equal consecutive elements and take the <span class="math inline">\(k\)</span> highest values. We can implement this idea with two pointers and sorting in <span class="math inline">\(O(n \log n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
@@ -723,8 +808,8 @@ B: Fox and Snake
 </div>
 <!-- begin body -->
 <div id="collapseProblemB" class="collapse">
-<div id="fox-and-snake" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/510/A" target="_blank">Fox and Snake</a></h3>
+<div class="card-body solution-body">
+<h3 id="fox-and-snake"><a href="https://codeforces.com/problemset/problem/510/A" target="_blank">Fox and Snake</a></h3>
 <p>There is a pattern every four rows.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
@@ -781,8 +866,8 @@ C: Counting Chaos
 </div>
 <!-- begin body -->
 <div id="collapseProblemC" class="collapse">
-<div id="counting-chaos" class="section level3 card-body solution-body">
-<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2284" target="_blank">Counting Chaos</a></h3>
+<div class="card-body solution-body">
+<h3 id="counting-chaos"><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2284" target="_blank">Counting Chaos</a></h3>
 <p>Just try all options.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
@@ -853,8 +938,8 @@ D: Mirror, Mirror
 </div>
 <!-- begin body -->
 <div id="collapseProblemD" class="collapse">
-<div id="mirror-mirror" class="section level3 card-body solution-body">
-<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2284" target="_blank">Mirror, Mirror</a></h3>
+<div class="card-body solution-body">
+<h3 id="mirror-mirror"><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2284" target="_blank">Mirror, Mirror</a></h3>
 <p>Just implement what the problem says. Be careful with the implementation.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
@@ -963,8 +1048,8 @@ E: Fractal
 </div>
 <!-- begin body -->
 <div id="collapseProblemE" class="collapse">
-<div id="fractal" class="section level3 card-body solution-body">
-<h3><a href="http://poj.org/problem?id=2083" target="_blank">Fractal</a></h3>
+<div class="card-body solution-body">
+<h3 id="fractal"><a href="http://poj.org/problem?id=2083" target="_blank">Fractal</a></h3>
 <p>You can create a matrix filled with spaces, select a position and start doing the recursion to store the fractal in the matrix. The choice or the initial position and how to do the transition can be obtained by getting a pattern with the first values of <span class="math inline">\(n\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemE" aria-expanded="false" aria-controls="collapseTwo">
@@ -1023,11 +1108,81 @@ int main () {
 </div>
 </div>
 <!-- ends problem E -->
+<p style="float: none; clear: both;">
+</p>
+<div class="pt-3" style="float: right;">
+<p><a class="continue-link" href="./class-07.html" 
+     data-toggle="tooltip" title="Complete Search IV"> Next </a></p>
+</div>
+<div class="pt-3">
+<p><a class="continue-link" href="./class-05.html"
+     data-toggle="tooltip" title="Complete Search II"> Previous </a></p>
+</div>
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-06').addClass('active');
+  const cur_class = document.getElementById('class-06');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+</script>
 </div>
 
+</div> <!-- ends wrapper -->
+</div> <!-- ends content -->
+
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+  $('#dismiss-left').on('click', function () {
+    $('#sidebar, #content').addClass('active');
+  });
+
+  $('#dismiss-right').on('click', function () {
+    $('#sidebar, #content').removeClass('active');
+  });
+
+  $("[data-toggle='tooltip']").tooltip();
+
+  $('#expand-icon-right').on('click', function () {
+    document.getElementById('sidebar').style.width = "90px";
+    document.getElementById('expand-icon-right').style.display = "none";
+    document.getElementById('expand-icon-left').style.display = "block";
+    document.getElementById('content').style.background = "rgba(0,0,0,0.8)";
+    $('#expand-icon-left').addClass('moved');
+    $('#expand-icon-right').addClass('moved');
+  });
+
+  $('#expand-icon-left').on('click', function () {
+    document.getElementById('sidebar').style.width = "0px";
+    document.getElementById('expand-icon-right').style.display = "block";
+    document.getElementById('expand-icon-left').style.display = "none";
+    document.getElementById('content').style.background = "#fafafa";
+    $('#expand-icon-left').removeClass('moved');
+    $('#expand-icon-right').removeClass('moved');
+  });
+
+});
+
+/*
+$(window).scroll(function() { 
+  $('#expand-icon-left').css({top: '50vh'});
+  $('#expand-icon-left').css({bottom: '50vh'});
+  $('#expand-icon-right').css({top: '50vh'});
+  $('#expand-icon-right').css({bottom: '50vh'});
+});
+*/
+</script>
+
+<script type="text/javascript" src="lib/lightbox-plus-jquery.min.js"></script>
+
+<!--
 <footer>
   <p>Copyright &copy; 2020. Competitive Programming UTEC</p>
 </footer>
+-->
 
 
 

@@ -14,9 +14,8 @@
 <title>Class 05: Complete Search II</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -25,6 +24,9 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" type="text/css" href="lib/lightbox.min.css">
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -106,33 +108,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 45px;
+  padding-top: 54px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h2 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h3 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h4 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h5 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h6 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .dropdown-submenu {
   position: relative;
@@ -262,79 +264,160 @@ $(document).ready(function () {
 
 
 
+<div class="wrapper">
 
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">CP UTEC</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li>
-  <a href="schedule.html">Schedule</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Lessons
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Week 1</li>
-    <li>
-      <a href="class-01.html">Introduction</a>
-    </li>
-    <li>
-      <a href="class-02.html">Asymptotic Analysis</a>
-    </li>
-    <li class="dropdown-header">Week 2</li>
-    <li>
-      <a href="class-03.html">STL</a>
-    </li>
-    <li>
-      <a href="class-04.html">Complete Search I</a>
-    </li>
-    <li class="dropdown-header">Week 3</li>
-    <li>
-      <a href="class-05.html">Complete Search II</a>
-    </li>
-    <li>
-      <a href="class-06.html">Complete Search III</a>
-    </li>
-    <li class="dropdown-header">Week 4</li>
-    <li>
-      <a href="class-07.html">Complete Search IV</a>
-    </li>
-    <li>
-      <a href="class-08.html">Complete Search V</a>
-    </li>
-    <li class="dropdown-header">Week 5</li>
-    <li>
-      <a href="class-09.html">Contest I</a>
-    </li>
-    <li class="dropdown-header">Week 6</li>
-    <li>
-      <a href="class-10.html">Contest UTEC-UNI I</a>
-    </li>
-  </ul>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="daily-problem.html">Daily Problem</a>
-</li>
-<li>
-  <a href="gallery.html">Gallery</a>
-</li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container -->
-</div><!--/.navbar -->
+<!-- Sidebar Holder -->
+<nav id="sidebar">
+<div class="sidebar-header">
+  <h3 style="text-align: left;">
+    <a style="text-decoration: none;"href="./index.html">
+      Competitive programming UTEC
+    </a>
+  </h3>
+  <strong>
+    <a style="text-decoration: none;"href="./index.html">
+    CP-UTEC
+    </a>
+  </strong>
+</div>
+
+<div id="dismiss-left">
+  <i class="fa fa-arrow-left"></i>
+</div>
+
+<div id="dismiss-right">
+  <i class="fa fa-arrow-right"></i>
+</div>
+
+<ul class="list-unstyled components">
+
+  <div class="line"></div>
+  
+  <li id="index-page">
+    <a href="./index.html">
+      Home
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="schedule-page">
+    <a href="./schedule.html">
+      Schedule
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="classes-page-expanded">
+    <a id="classes" href="#all-classes" data-toggle="collapse"
+      aria-expanded="false">
+      Classes
+    </a>
+    <ul class="collapse list-unstyled" id="all-classes">
+      <li id="class-01">
+        <a href="./class-01.html">1. Introduction</a>
+      </li>
+      <li id="class-02">
+        <a href="./class-02.html">2. Asymptotic Analysis</a>
+      </li>
+      <li id="class-03">
+        <a href="./class-03.html">3. Standard Template Library</a>
+      </li>
+      <li id="class-04">
+        <a href="./class-04.html">4. Complete Search I</a>
+      </li>
+      <li id="class-05">
+        <a href="./class-05.html">5. Complete Search II</a>
+      </li>
+      <li id="class-06">
+        <a href="./class-06.html">6. Complete Search III</a>
+      </li>
+      <li id="class-07">
+        <a href="./class-07.html">7. Complete Search IV</a>
+      </li>
+      <li id="class-08">
+        <a href="./class-08.html">8. Complete Search V</a>
+      </li>
+      <li id="class-09">
+        <a href="./class-09.html">9. Contest I</a>
+      </li>
+      <li id="class-10">
+        <a href="./class-10.html">10. Contest UTEC-UNI-UPC I</a>
+      </li>
+      <li id="class-11">
+        <a href="./class-11.html">11. Divide and Conquer I</a>
+      </li>
+      <li id="class-12">
+        <a href="./class-12.html">12. Divide and Conquer II</a>
+      </li>
+      <li id="class-13">
+        <a href="./class-13.html">13. Game Theory I</a>
+      </li>
+      <li id="class-14">
+        <a href="./class-14.html">14. Game Theory II</a>
+      </li>
+      <li id="class-15">
+        <a href="./class-15.html">15. Contest II</a>
+      </li>
+    </ul>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="classes-page-not-expanded">
+    <a href="./classes.html">
+      Classes
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="daily-problem-page">
+    <a href="./daily-problem.html">
+      Daily problem
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="gallery-page">
+    <a href="./gallery.html">
+      Gallery
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+</ul>
+
+
+<!--
+<ul class="list-unstyled">
+  <li>
+    <a href="https://www.utec.edu.pe/" target="_blank" class="logo">
+      <img src="images/page/utec-logo.png" alt="UTEC logo">
+    </a>
+  </li>
+</ul>
+-->
+</nav>
+
+<div id="expand-icon-right">
+  <i class="fa fa-angle-right"></i>
+</div>
+
+<div id="expand-icon-left">
+  <i class="fa fa-angle-left"></i>
+</div>
+
+<!-- Page Content Holder -->
+<div id="content">
+<script>
+$(".main-container")
+  .removeClass("main-container")
+  .removeClass("container-fluid")
+</script>
 
 <div class="fluid-row" id="header">
 
@@ -360,12 +443,14 @@ $(document).ready(function () {
 Fixing variables
 </div>
 <p>There are some kind of problems when you have some equations on <span class="math inline">\(m\)</span> variables. Its usually a good idea to first try a brute force approach. Find the range of each of the variables, do a loop for each of them, then inside each loop you have the value of that variable fixed, now it is a constant. Moreover, when you have fixed <span class="math inline">\(m - 1\)</span> of these variables its usually easy to compute what value the last variable should be. Evenmore, you have already solve one problem of this kind: <a href="./class-04.html#problemA">Simple equations</a>.</p>
-<p>Now, let try to solve <a href="https://codeforces.com/contest/44/problem/B">this problem</a></p>
+<p>Now, let try to solve <a href="https://codeforces.com/contest/44/problem/B">this problem</a>.</p>
 <p><strong>Problem:</strong> You will receive <span class="math inline">\(n, a, b, c\)</span> . You must find</p>
-<p><span class="math display">\[|\{(x, y, z) \mid 0 \leq x \leq a \land 0 \leq y \leq b \land 0 \leq z \leq
-c \land \frac{x}{2} + y + 2 z = n \}|\]</span></p>
+<div class="center">
+<p><span class="math display">\[|\{(x, y, z) \mid \\ 0 \leq x \leq a \land \\ 0 \leq y \leq b \land \\ 0 \leq z \leq
+c \land \\ \frac{x}{2} + y + 2 z = n \}|\]</span></p>
+</div>
 <p><span class="math display">\[1 \leq n \leq 10^4\]</span> <span class="math display">\[0 \leq a, b, c \leq 5000\]</span></p>
-<p>Its easy to identify that the variables of the problem are <span class="math inline">\(x, y, z\)</span> and if we fix two of these variable we can get the third one from the equation, so a brute force solution with two loops can solve the problem. Now, in order to choose what variables to fix, always prefer working with integers (you’ll understand better the reason of this in next classes), so we’ll fix <span class="math inline">\(y, z\)</span> in <span class="math inline">\(O(b * c)\)</span>.</p>
+<p>Its easy to identify that the variables of the problem are <span class="math inline">\(x, y, z\)</span> and if we fix two of these variable we can get the third one from the equation, so a brute force solution with two loops can solve the problem. Now, in order to choose what variables to fix, always prefer working with integers (you’ll understand better the reason of this in next classes), so we’ll fix <span class="math inline">\(y, z\)</span> in <span class="math inline">\(O(b \cdot c)\)</span>.</p>
 <!-- Begins problem example01 -->
 <div id="example01" class="card">
 <!-- begin code -->
@@ -421,11 +506,11 @@ int main () {
 <div class="topic">
 Simulation with brute force
 </div>
-<p>These kind of problem usually describes a pattern, recurence formula or situation that you can compute easily.</p>
+<p>These kind of problems usually describes a pattern, recurrence formula or situation that you can compute easily.</p>
 <p>For example, let’s begin solving <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=24&amp;page=show_problem&amp;problem=384">this problem</a>.</p>
 <p><strong>Problem:</strong> A <em>humble number</em> is a number whose only prime factors are <span class="math inline">\(2, 3, 5, 7\)</span>. You will receive a number <span class="math inline">\(n\)</span> and you should output the n-th humble number.</p>
 <p><span class="math display">\[1 \leq n \leq 5842\]</span></p>
-<p>We need to compute <span class="math inline">\(S = \{2^i \cdot 3 ^j \cdot 5^k \cdot 7 ^l, \quad 0 \leq i, j, k, l \}\)</span>. Let’s say the maximum value we will compute is <span class="math inline">\(L\)</span>, then <span class="math inline">\(i, j, k, l = O(\log L)\)</span>. So, if we fix <span class="math inline">\(L\)</span> we can compute the elements of <span class="math inline">\(S\)</span> that are less than <span class="math inline">\(L\)</span> in <span class="math inline">\(O(\log^4(L))\)</span>. We can try different values of <span class="math inline">\(L\)</span> until we get more numbers than the maximum <span class="math inline">\(n\)</span> in the input (take care of overflow).</p>
+<p>We need to compute <span class="math inline">\(S = \{2^i \cdot 3 ^j \cdot 5^k \cdot 7 ^l, \quad 0 \leq i, j, k, l \}\)</span>. Let’s say the maximum value we will compute is <span class="math inline">\(L\)</span>, then <span class="math inline">\(i, j, k, l = O(\log L)\)</span>. So, if we fix <span class="math inline">\(L\)</span> we can compute the elements of <span class="math inline">\(S\)</span> that are less than <span class="math inline">\(L\)</span> in <span class="math inline">\(O(\log^4 L)\)</span>. We can try different values of <span class="math inline">\(L\)</span> until we get more numbers than the maximum <span class="math inline">\(n\)</span> in the input (take care of overflow).</p>
 <!-- Begins problem example02 -->
 <div id="example02" class="card">
 <!-- begin code -->
@@ -477,6 +562,7 @@ int main () {
 <p><!-- ends code --></p>
 </div>
 <!-- ends problem example02 -->
+<p>Notice, for example, how <span class="math inline">\(two \cdot three \geq L\)</span> may produce overflow but <span class="math inline">\(two \geq \frac{L}{three}\)</span> will not.</p>
 <p>You can practice with these problems:</p>
 <ul>
 <li><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=24&amp;page=show_problem&amp;problem=976">Primary Arithmetic</a></li>
@@ -495,8 +581,8 @@ Weak constraints
 <p>Where <span class="math inline">\(f(x) =\)</span> sum of digits of <span class="math inline">\(x\)</span>.</p>
 <p><span class="math display">\[1 \leq n, s \leq 10^{18}\]</span></p>
 <p>At first glance, the problem looks difficult, yet we have</p>
-<p><span class="math display">\[0 \leq f(x) \leq 9 * 18\]</span> <span class="math display">\[\to x - 9 * 18 \leq x - f(x) \leq 9 * 18\]</span></p>
-<p>So, we just need to search the answer in <span class="math inline">\([s, s + 9 * 18]\)</span>. What happen with a number greater than <span class="math inline">\(s + 9 * 18\)</span> ?</p>
+<p><span class="math display">\[0 \leq f(x) \leq 9 \cdot 18\]</span> <span class="math display">\[\to x - 9 \cdot 18 \leq x - f(x) \leq 9 \cdot 18\]</span></p>
+<p>So, we just need to search the answer in <span class="math inline">\([s, s + 9 \cdot 18]\)</span>. What happen with a number greater than <span class="math inline">\(s + 9 \cdot 18\)</span> ?</p>
 <!-- Begins problem example03 -->
 <div id="example03" class="card">
 <!-- begin code -->
@@ -547,27 +633,23 @@ Case analysis
 <p>A first idea would be to fix <span class="math inline">\(i, j\)</span> with two loops and check if the condition holds. This solution is <span class="math inline">\(O(n^3)\)</span>, so it will give us a Time Limit Exceed veredict. We need something better.</p>
 <p>Let’s analye by cases on the number of different elements.</p>
 <ul>
-<li>Case 1: All the elements are equals</li>
-</ul>
-<p>Then, the answer is -1.</p>
-<ul>
-<li>Case 2: There are more than 2 different elements.</li>
-</ul>
-<p>You can take three of these elements and you will find and answer with them (can you prove it?).</p>
-<ul>
+<li><p>Case 1: All the elements are equals</p>
+<p>Then, the answer is -1.</p></li>
+<li><p>Case 2: There are more than 2 different elements.</p>
+<p>You can take three of these elements and you will find and answer with them (can you prove it?).</p></li>
 <li><p>Case 3: There are exactly 2 different elements.</p>
 <p>Let’s fix <span class="math inline">\(x = a_i\)</span> and <span class="math inline">\(y = a_j\)</span>.</p>
 <ul>
 <li>Case 3.1: <span class="math inline">\(a_i &lt; a_j\)</span></li>
 </ul>
 <p>If we swap them, the array can not be in increasing order. If the array is not in decreasing order we have an answer, else the array will be of the form:</p>
-<p><span class="math display">\[a_1 = y \geq a_2 = y \geq \dots \geq a_i = y \geq \dots \geq a_j = x \geq \dots \geq a_n =x\]</span></p>
+<p><span class="math display">\[a_1 = y \geq a_2 \geq \dots \geq a_i \geq \dots \geq a_j \geq \dots \geq a_n =x\]</span></p>
 <p>So, if there exists an answer, it must be in <span class="math inline">\([i, j)\)</span> or <span class="math inline">\((i, j]\)</span>. Then, we just need to do the check for a pair of integers <span class="math inline">\((i, i + 1) \mid a_i &lt; a_{i + 1}\)</span>.</p>
 <ul>
 <li>Case 3.2: <span class="math inline">\(a_i &gt; a_j\)</span></li>
 </ul>
 <p>If we swap them, the array can not be in decreasing order. If the array is not in increasing order we have an answer, else the array will be of the form:</p>
-<p><span class="math display">\[a_1 = x \leq a_2 = x \leq \dots \leq a_i = x \leq \dots \leq a_j = y \leq \dots \leq a_n =y\]</span></p>
+<p><span class="math display">\[a_1 = x \leq a_2 \leq \dots \leq a_i \leq \dots \leq a_j \leq \dots \leq a_n =y\]</span></p>
 <p>So, if there exists an answer it must be in <span class="math inline">\([i, j)\)</span> or <span class="math inline">\((i, j]\)</span>. Then, we just need to do the check for a pair of integers <span class="math inline">\((i, i + 1) \mid a_i &gt; a_{i + 1}\)</span>.</p></li>
 </ul>
 <p>Using all these cases we can implement a <span class="math inline">\(O(n \log n)\)</span> solution.</p>
@@ -739,8 +821,8 @@ A: Kaprekar Numbers
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-A" class="collapse">
-<div id="kaprekar-numbers" class="section level3 card-body solution-body">
-<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=915" target="_blank">Kaprekar Numbers</a></h3>
+<div class="card-body solution-body">
+<h3 id="kaprekar-numbers"><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=915" target="_blank">Kaprekar Numbers</a></h3>
 <p>You can preprocess the Kaprekar numbers in <span class="math inline">\([2, 40000]\)</span> (there are only 19 of them). After that, you can answer each query quickly.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-A" aria-expanded="false" aria-controls="collapseTwo">
@@ -830,8 +912,8 @@ B: Schedule
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-B" class="collapse">
-<div id="schedule" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/31/C" target="_blank">Schedule</a></h3>
+<div class="card-body solution-body">
+<h3 id="schedule"><a href="https://codeforces.com/problemset/problem/31/C" target="_blank">Schedule</a></h3>
 <p>Just try every option.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-B" aria-expanded="false" aria-controls="collapseTwo">
@@ -901,8 +983,8 @@ C: Ranges
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-C" class="collapse">
-<div id="ranges" class="section level3 card-body solution-body">
-<h3><a href="https://www.spoj.com/problems/RRANGE/en/" target="_blank">Ranges</a></h3>
+<div class="card-body solution-body">
+<h3 id="ranges"><a href="https://www.spoj.com/problems/RRANGE/en/" target="_blank">Ranges</a></h3>
 <p>First, if you have this sum:</p>
 <p><span class="math display">\[l + (l + 1) + (l + 2) + \dots + (r - 1) + (r)\]</span></p>
 <p>You can compute it using:</p>
@@ -976,11 +1058,11 @@ D: Classroom Watch
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-D" class="collapse">
-<div id="classroom-watch" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/876/C" target="_blank">Classroom Watch</a></h3>
+<div class="card-body solution-body">
+<h3 id="classroom-watch"><a href="https://codeforces.com/problemset/problem/876/C" target="_blank">Classroom Watch</a></h3>
 <p>Let <span class="math inline">\(f(x) =\)</span> sum of digits of <span class="math inline">\(x\)</span>.</p>
 <p>For the constraints of the problem we have that <span class="math inline">\(0 \leq f(x) \leq 9 \cdot 9\)</span>. Then, we have:</p>
-<p><span class="math display">\[\max(0, n - 9 * 9) \leq x \leq n\]</span></p>
+<p><span class="math display">\[\max(0, n - 9 \cdot 9) \leq x \leq n\]</span></p>
 <p>So, our search space is very small, we can just try a brute force approach on this interval.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-D" aria-expanded="false" aria-controls="collapseTwo">
@@ -1015,10 +1097,80 @@ int main () {
 </div>
 </div>
 <!-- ends problem problem-D -->
+<p style="float: none; clear: both;">
+</p>
+<div class="pt-3" style="float: right;">
+<p><a class="continue-link" href="./class-06.html" 
+     data-toggle="tooltip" title="Complete Search III"> Next </a></p>
+</div>
+<div class="pt-3">
+<p><a class="continue-link" href="./class-04.html"
+     data-toggle="tooltip" title="Complete Search I"> Previous </a></p>
+</div>
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-05').addClass('active');
+  const cur_class = document.getElementById('class-05');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+</script>
 
+</div> <!-- ends wrapper -->
+</div> <!-- ends content -->
+
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+  $('#dismiss-left').on('click', function () {
+    $('#sidebar, #content').addClass('active');
+  });
+
+  $('#dismiss-right').on('click', function () {
+    $('#sidebar, #content').removeClass('active');
+  });
+
+  $("[data-toggle='tooltip']").tooltip();
+
+  $('#expand-icon-right').on('click', function () {
+    document.getElementById('sidebar').style.width = "90px";
+    document.getElementById('expand-icon-right').style.display = "none";
+    document.getElementById('expand-icon-left').style.display = "block";
+    document.getElementById('content').style.background = "rgba(0,0,0,0.8)";
+    $('#expand-icon-left').addClass('moved');
+    $('#expand-icon-right').addClass('moved');
+  });
+
+  $('#expand-icon-left').on('click', function () {
+    document.getElementById('sidebar').style.width = "0px";
+    document.getElementById('expand-icon-right').style.display = "block";
+    document.getElementById('expand-icon-left').style.display = "none";
+    document.getElementById('content').style.background = "#fafafa";
+    $('#expand-icon-left').removeClass('moved');
+    $('#expand-icon-right').removeClass('moved');
+  });
+
+});
+
+/*
+$(window).scroll(function() { 
+  $('#expand-icon-left').css({top: '50vh'});
+  $('#expand-icon-left').css({bottom: '50vh'});
+  $('#expand-icon-right').css({top: '50vh'});
+  $('#expand-icon-right').css({bottom: '50vh'});
+});
+*/
+</script>
+
+<script type="text/javascript" src="lib/lightbox-plus-jquery.min.js"></script>
+
+<!--
 <footer>
   <p>Copyright &copy; 2020. Competitive Programming UTEC</p>
 </footer>
+-->
 
 
 

@@ -11,12 +11,11 @@
 
 
 
-<title>Class 03: STL</title>
+<title>Class 03: Standard Template Library</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -25,6 +24,9 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" type="text/css" href="lib/lightbox.min.css">
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -106,33 +108,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 45px;
+  padding-top: 54px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h2 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h3 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h4 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h5 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h6 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .dropdown-submenu {
   position: relative;
@@ -262,85 +264,166 @@ $(document).ready(function () {
 
 
 
+<div class="wrapper">
 
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">CP UTEC</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li>
-  <a href="schedule.html">Schedule</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Lessons
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Week 1</li>
-    <li>
-      <a href="class-01.html">Introduction</a>
-    </li>
-    <li>
-      <a href="class-02.html">Asymptotic Analysis</a>
-    </li>
-    <li class="dropdown-header">Week 2</li>
-    <li>
-      <a href="class-03.html">STL</a>
-    </li>
-    <li>
-      <a href="class-04.html">Complete Search I</a>
-    </li>
-    <li class="dropdown-header">Week 3</li>
-    <li>
-      <a href="class-05.html">Complete Search II</a>
-    </li>
-    <li>
-      <a href="class-06.html">Complete Search III</a>
-    </li>
-    <li class="dropdown-header">Week 4</li>
-    <li>
-      <a href="class-07.html">Complete Search IV</a>
-    </li>
-    <li>
-      <a href="class-08.html">Complete Search V</a>
-    </li>
-    <li class="dropdown-header">Week 5</li>
-    <li>
-      <a href="class-09.html">Contest I</a>
-    </li>
-    <li class="dropdown-header">Week 6</li>
-    <li>
-      <a href="class-10.html">Contest UTEC-UNI I</a>
-    </li>
-  </ul>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="daily-problem.html">Daily Problem</a>
-</li>
-<li>
-  <a href="gallery.html">Gallery</a>
-</li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container -->
-</div><!--/.navbar -->
+<!-- Sidebar Holder -->
+<nav id="sidebar">
+<div class="sidebar-header">
+  <h3 style="text-align: left;">
+    <a style="text-decoration: none;"href="./index.html">
+      Competitive programming UTEC
+    </a>
+  </h3>
+  <strong>
+    <a style="text-decoration: none;"href="./index.html">
+    CP-UTEC
+    </a>
+  </strong>
+</div>
+
+<div id="dismiss-left">
+  <i class="fa fa-arrow-left"></i>
+</div>
+
+<div id="dismiss-right">
+  <i class="fa fa-arrow-right"></i>
+</div>
+
+<ul class="list-unstyled components">
+
+  <div class="line"></div>
+  
+  <li id="index-page">
+    <a href="./index.html">
+      Home
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="schedule-page">
+    <a href="./schedule.html">
+      Schedule
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="classes-page-expanded">
+    <a id="classes" href="#all-classes" data-toggle="collapse"
+      aria-expanded="false">
+      Classes
+    </a>
+    <ul class="collapse list-unstyled" id="all-classes">
+      <li id="class-01">
+        <a href="./class-01.html">1. Introduction</a>
+      </li>
+      <li id="class-02">
+        <a href="./class-02.html">2. Asymptotic Analysis</a>
+      </li>
+      <li id="class-03">
+        <a href="./class-03.html">3. Standard Template Library</a>
+      </li>
+      <li id="class-04">
+        <a href="./class-04.html">4. Complete Search I</a>
+      </li>
+      <li id="class-05">
+        <a href="./class-05.html">5. Complete Search II</a>
+      </li>
+      <li id="class-06">
+        <a href="./class-06.html">6. Complete Search III</a>
+      </li>
+      <li id="class-07">
+        <a href="./class-07.html">7. Complete Search IV</a>
+      </li>
+      <li id="class-08">
+        <a href="./class-08.html">8. Complete Search V</a>
+      </li>
+      <li id="class-09">
+        <a href="./class-09.html">9. Contest I</a>
+      </li>
+      <li id="class-10">
+        <a href="./class-10.html">10. Contest UTEC-UNI-UPC I</a>
+      </li>
+      <li id="class-11">
+        <a href="./class-11.html">11. Divide and Conquer I</a>
+      </li>
+      <li id="class-12">
+        <a href="./class-12.html">12. Divide and Conquer II</a>
+      </li>
+      <li id="class-13">
+        <a href="./class-13.html">13. Game Theory I</a>
+      </li>
+      <li id="class-14">
+        <a href="./class-14.html">14. Game Theory II</a>
+      </li>
+      <li id="class-15">
+        <a href="./class-15.html">15. Contest II</a>
+      </li>
+    </ul>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="classes-page-not-expanded">
+    <a href="./classes.html">
+      Classes
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="daily-problem-page">
+    <a href="./daily-problem.html">
+      Daily problem
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="gallery-page">
+    <a href="./gallery.html">
+      Gallery
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+</ul>
+
+
+<!--
+<ul class="list-unstyled">
+  <li>
+    <a href="https://www.utec.edu.pe/" target="_blank" class="logo">
+      <img src="images/page/utec-logo.png" alt="UTEC logo">
+    </a>
+  </li>
+</ul>
+-->
+</nav>
+
+<div id="expand-icon-right">
+  <i class="fa fa-angle-right"></i>
+</div>
+
+<div id="expand-icon-left">
+  <i class="fa fa-angle-left"></i>
+</div>
+
+<!-- Page Content Holder -->
+<div id="content">
+<script>
+$(".main-container")
+  .removeClass("main-container")
+  .removeClass("container-fluid")
+</script>
 
 <div class="fluid-row" id="header">
 
 
 
-<h1 class="title toc-ignore">Class 03: STL</h1>
+<h1 class="title toc-ignore">Class 03: Standard Template Library</h1>
 <h4 class="date">01-13-2020</h4>
 
 </div>
@@ -401,7 +484,7 @@ Numeric data types and its operations
 </div>
 <div id="order-or-precedence" class="section level3">
 <h3>Order or precedence</h3>
-<p><code>int &lt; long long &lt; float &lt; double &lt; long double</code></p>
+<p><span class="math display">\[int &lt; long\ long &lt; float &lt; double &lt; long\ double\]</span></p>
 <p>Examples:</p>
 <pre class="cpp"><code>int x = 1;
 long long y = 8;
@@ -475,7 +558,9 @@ for (int i = 0; i &lt; arr.size(); i++) {
 // Delete all the elements - O(n)
 arr.clear();</code></pre>
 <p>You can find the more common methods of vectors and its complexity in this image.</p>
-<p><img src="images/class-02/vector.jpg" /></p>
+<div class="row text-center">
+<p><img src="images/class-03/vector.png" /></p>
+</div>
 <p>A <a href="http://www.cplusplus.com/reference/deque/deque/">deque</a> gives us all the methods of a vector and two more:</p>
 <ul>
 <li><p>push_front: Insert a element in the begining O(1)</p></li>
@@ -524,7 +609,9 @@ S.erase(S.find(-100));
 // Then we can erase the element - O(1)
 // S.erase(it)</code></pre>
 <p>You can find the more common methods of sets and its complexity in this image.</p>
-<p><img src="images/class-02/set.jpg" /></p>
+<div class="row text-center">
+<p><img src="images/class-03/set.png" /></p>
+</div>
 <p>Read about <a href="http://www.cplusplus.com/reference/set/multiset/">multisets</a>.</p>
 <div class="topic">
 Map
@@ -613,8 +700,8 @@ A: Chat Server’s Outgoing Traffic
 </div>
 <!-- begin body -->
 <div id="collapseProblemA" class="collapse">
-<div id="problem-a-chat-servers-outgoing-traffic" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/5/problem/A" target="_blank">Problem A: Chat Server’s Outgoing Traffic</a></h3>
+<div class="card-body solution-body">
+<h3 id="problem-a-chat-servers-outgoing-traffic"><a href="https://codeforces.com/contest/5/problem/A" target="_blank">Problem A: Chat Server’s Outgoing Traffic</a></h3>
 <p>Just implement what the problem says.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
@@ -673,8 +760,8 @@ B: Counting-out Rhyme
 </div>
 <!-- begin body -->
 <div id="collapseProblemB" class="collapse">
-<div id="problem-b-counting-out-rhyme" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/792/B" target="_blank">Problem B: Counting-out Rhyme</a></h3>
+<div class="card-body solution-body">
+<h3 id="problem-b-counting-out-rhyme"><a href="https://codeforces.com/problemset/problem/792/B" target="_blank">Problem B: Counting-out Rhyme</a></h3>
 <p>The constraints are small, just simulate what the problem says.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
@@ -732,8 +819,8 @@ C: Shuffle Hashing
 </div>
 <!-- begin body -->
 <div id="collapseProblemC" class="collapse">
-<div id="problem-c-shuffle-hashing" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1278/A" target="_blank">Problem C: Shuffle Hashing</a></h3>
+<div class="card-body solution-body">
+<h3 id="problem-c-shuffle-hashing"><a href="https://codeforces.com/problemset/problem/1278/A" target="_blank">Problem C: Shuffle Hashing</a></h3>
 <p>If you can construct <code>h</code> from <code>p</code>, then <span class="math inline">\(\exists s_1, s_2, q \mid h = s_1 + q + s_2\)</span></p>
 <p>Then <span class="math inline">\(h[n:n + m] = q\)</span> where <code>n</code> is the length <span class="math inline">\(s_1\)</span> and <code>m</code> the length of<code>p</code>. Then <span class="math inline">\(sort(h[n:n + m]) = sort(p)\)</span>. So, we just need to check if that is true for some value of <span class="math inline">\(n\)</span>.</p>
 <!-- begin code -->
@@ -793,8 +880,8 @@ D: Free spots
 </div>
 <!-- begin body -->
 <div id="collapseProblemD" class="collapse">
-<div id="problem-d-free-spots" class="section level3 card-body solution-body">
-<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1644" target="_blank">Problem D: Free spots</a></h3>
+<div class="card-body solution-body">
+<h3 id="problem-d-free-spots"><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1644" target="_blank">Problem D: Free spots</a></h3>
 <p>For each test we can create a matrix of booleans initialized of false’s. Then, for each query <span class="math inline">\(x_1, y_1, x_2, y_3\)</span> we set to true every element of the matrix in position <span class="math inline">\((r, c) \mid x_1 \leq r \leq x_2 \land y_1 \leq c \leq y_2\)</span>, assumming <span class="math inline">\(x_1 \leq x_2 \land y_1 \leq y_2\)</span>. So, after processing every query, the answer is the number of elements that are false.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
@@ -850,11 +937,81 @@ int main () {
 </div>
 </div>
 <!-- ends problem D -->
+<p style="float: none; clear: both;">
+</p>
+<div class="pt-3" style="float: right;">
+<p><a class="continue-link" href="./class-04.html" 
+     data-toggle="tooltip" title="Complete Search I"> Next </a></p>
+</div>
+<div class="pt-3">
+<p><a class="continue-link" href="./class-02.html"
+     data-toggle="tooltip" title="Asymptotic Analysis"> Previous </a></p>
+</div>
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-03').addClass('active');
+  const cur_class = document.getElementById('class-03');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+</script>
 </div>
 
+</div> <!-- ends wrapper -->
+</div> <!-- ends content -->
+
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+  $('#dismiss-left').on('click', function () {
+    $('#sidebar, #content').addClass('active');
+  });
+
+  $('#dismiss-right').on('click', function () {
+    $('#sidebar, #content').removeClass('active');
+  });
+
+  $("[data-toggle='tooltip']").tooltip();
+
+  $('#expand-icon-right').on('click', function () {
+    document.getElementById('sidebar').style.width = "90px";
+    document.getElementById('expand-icon-right').style.display = "none";
+    document.getElementById('expand-icon-left').style.display = "block";
+    document.getElementById('content').style.background = "rgba(0,0,0,0.8)";
+    $('#expand-icon-left').addClass('moved');
+    $('#expand-icon-right').addClass('moved');
+  });
+
+  $('#expand-icon-left').on('click', function () {
+    document.getElementById('sidebar').style.width = "0px";
+    document.getElementById('expand-icon-right').style.display = "block";
+    document.getElementById('expand-icon-left').style.display = "none";
+    document.getElementById('content').style.background = "#fafafa";
+    $('#expand-icon-left').removeClass('moved');
+    $('#expand-icon-right').removeClass('moved');
+  });
+
+});
+
+/*
+$(window).scroll(function() { 
+  $('#expand-icon-left').css({top: '50vh'});
+  $('#expand-icon-left').css({bottom: '50vh'});
+  $('#expand-icon-right').css({top: '50vh'});
+  $('#expand-icon-right').css({bottom: '50vh'});
+});
+*/
+</script>
+
+<script type="text/javascript" src="lib/lightbox-plus-jquery.min.js"></script>
+
+<!--
 <footer>
   <p>Copyright &copy; 2020. Competitive Programming UTEC</p>
 </footer>
+-->
 
 
 

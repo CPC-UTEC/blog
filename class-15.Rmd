@@ -1,0 +1,44 @@
+---
+title: "Class 15: Contest II"
+date: "03-02-2020"
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+> "The more you know, the more you realize you know nothing"
+
+<div class="topic" id="contest">Contest</div>
+
+You can find the contest [here](https://vjudge.net/contest/360361).
+
+The solutions will be uploaded after the contest.
+
+<p style="float: none; clear: both;"></p>
+
+<!--
+<div style="float: right;" class="pt-3">
+  <a class="continue-link" href="./class-11.html" 
+     data-toggle="tooltip" title="Divide and Conquer I">
+  Next
+  </a>
+</div>
+-->
+
+<div class="pt-3">
+  <a class="continue-link" href="./class-14.html"
+     data-toggle="tooltip" title="Game Theory II">
+  Previous
+  </a>
+</div>
+
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-14').addClass('active');
+  const cur_class = document.getElementById('class-14');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+</script>

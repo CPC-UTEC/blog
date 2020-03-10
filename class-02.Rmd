@@ -7,7 +7,7 @@ date: "01-08-2020"
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
-> "Think Big "
+> "Think big"
 
 Let's say we want to solve the following problem:
 
@@ -342,3 +342,29 @@ int main () {
 </div>
 </div>
 <!-- ends problem E -->
+
+<p style="float: none; clear: both;"></p>
+
+<div style="float: right;" class="pt-3">	
+  <a class="continue-link" href="./class-03.html" 
+     data-toggle="tooltip" title="Standard Template Library">
+  Next
+  </a>
+</div>
+
+<div class="pt-3">
+  <a class="continue-link" href="./class-01.html"
+     data-toggle="tooltip" title="Introduction">
+  Previous
+  </a>
+</div>
+
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-02').addClass('active');
+  const cur_class = document.getElementById('class-02');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+</script>

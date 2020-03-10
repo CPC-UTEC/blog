@@ -1,5 +1,5 @@
 ---
-title: "Class 10: Contest UTEC-UNI I"
+title: "Class 10: Contest UTEC-UNI-UPC I"
 date: "02-10-2020"
 ---
 
@@ -11,7 +11,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 <div class=topic>Contest</div>
 
-In the gallery there are some pictures of the contest.
+In [the gallery](./gallery.html) there are some pictures of the contest.
 
 You can find the contest [here](https://codeforces.com/group/qWRAoRrTOT/contest/268759).
 
@@ -21,4 +21,30 @@ The statements in PDF can be found in [English](./files/class-10/statements-Engl
 The solutions are in [this blog](https://codeforces.com/group/qWRAoRrTOT/blog/entry/5475).
 
 You need to be in the Codeforces Group to be able to see the contest and
-solutions. Write us if you want to join it.
+solutions. Try joining the group or write us if you have problems joining it.
+
+<p style="float: none; clear: both;"></p>
+
+<div style="float: right;" class="pt-3">
+  <a class="continue-link" href="./class-11.html" 
+     data-toggle="tooltip" title="Divide and Conquer I">
+  Next
+  </a>
+</div>
+
+<div class="pt-3">
+  <a class="continue-link" href="./class-09.html"
+     data-toggle="tooltip" title="Contest I">
+  Previous
+  </a>
+</div>
+
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-10').addClass('active');
+  const cur_class = document.getElementById('class-10');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+</script>

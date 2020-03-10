@@ -7,7 +7,7 @@ date: "01-06-2020"
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
-> "Art of Thinking"
+> "Art of thinking"
 
 <div class="topic">What is competitive programming?</div>
 
@@ -28,11 +28,13 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 <div class="topic">Virtual Judges</div>
 
+<div style="border:1px solid black; background: white;">
 <a href="https://codeforces.com/" target="_blank">![](./images/class-01/codeforces.png)</a>
 <a href="https://atcoder.jp/" target="_blank">![](./images/class-01/atcoder.png)</a>
 <a href="https://www.codechef.com/" target="_blank">![](./images/class-01/codechef.png)</a>
 <a href="https://www.spoj.com/" target="_blank">![](./images/class-01/spoj.png)</a>
 <a href="https://www.hackerearth.com/" target="_blank">![](./images/class-01/hackerearth.png)</a>
+</div>
 
 <div class="topic">Problem structure</div>
 
@@ -304,3 +306,22 @@ int main () {
 </div>
 </div>
 <!-- ends problem C -->
+
+<p style="float: none; clear: both;"></p>
+
+<div style="float: right;" class="pt-3">	
+  <a class="continue-link" href="./class-02.html" 
+     data-toggle="tooltip" title="Asymptotic Analysis">
+  Next
+  </a>
+</div>
+
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-01').addClass('active');
+  const cur_class = document.getElementById('class-01');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+</script>

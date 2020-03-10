@@ -7,7 +7,7 @@ date: "01-29-2020"
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
-> "Like the God of Go"
+> "Like the God of go"
 
 <div class="topic">Power set</div>
 
@@ -669,11 +669,11 @@ int main () {
 
 For $N = 4$ the recursion tree of our solution is like this:
 
-<div class="row text-center">
+<div class="row text-center img-border">
 ![](./images/class-08/n-queen.png)
-</div>
 
 Image taken from [Jeff Erickson - Algorithms - Chapter 2: Backtracking](http://jeffe.cs.illinois.edu/teaching/algorithms/).
+</div>
 
 The complexity of the above solution comes from the equation:
 
@@ -695,3 +695,29 @@ You may also be interested in watching this documental of AlphaGo. [Here](https:
 You can find the contest [here](https://vjudge.net/contest/354334).
 
 The solutions will be uploaded after the contest.
+
+<p style="float: none; clear: both;"></p>
+
+<div style="float: right;" class="pt-3">
+  <a class="continue-link" href="./class-09.html" 
+     data-toggle="tooltip" title="Contest I">
+  Next
+  </a>
+</div>
+
+<div class="pt-3">
+  <a class="continue-link" href="./class-07.html"
+     data-toggle="tooltip" title="Complete Search IV">
+  Previous
+  </a>
+</div>
+
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-08').addClass('active');
+  const cur_class = document.getElementById('class-08');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+</script>

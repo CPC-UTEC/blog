@@ -1,0 +1,366 @@
+---
+title: "Class 14: Game Theory II"
+date: "02-26-2020"
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+> "Can we do better?"
+
+<div class="topic">Grundy's games</div>
+
+Let $s$ be the current state in a game and $s_1, s_2, \dots, s_n$ the new states where we can go. Then we
+already know that:
+
+$$g(s) = mex(g(s_1), g(s_2), \dots, s(s_n))$$
+
+But, if each $s_i$ can be seen as an **independent** game, then applying the
+Sprague-Grundy theorem we can compute:
+
+$$g(s_i) = g(a_1) \oplus g(a_2) \oplus \dots \oplus g(a_m)$$
+
+Where $a_i$ depends of $s_i$.
+
+This kind of games where a move divides the game into subgames that **are
+independent** of each other are commonly found. Let's call them Grundy's games.
+Here is some examples:
+
+### First problem
+
+Problem taken from [Competitive Programmer's Handbook, chapter 25. Page 240](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf).
+
+**Problem:** The problem is the same as the game of Nim but now, in each turn
+a player can choose a pile and divide it into two non-empty piles such that the
+new two piles are of different size.
+
+We can solve the problem using WL-states or Grundy numbers, but the numbers of
+states are too much (**can you compute it?**). Nevertheless, we can notice that if
+we take pile $s_i$ and divide it into piles of size $a_1 \land a_2 \mid a_1
++ a_2 = s_i$, then we can see $a_1 \land a_2$ as independent subgames. So, we
+  have:
+
+$$g(s_i) = mex(\{a_1 \oplus a_2\} \mid a_1 \not = a_2 \land a_1 + a_2 = s_i)$$
+
+**Can you implement it?**
+
+Problem taken from [E-maxx Sprague-Grundy theorem. Nim](https://cp-algorithms.com/game_theory/sprague-grundy-nim.html#toc-tgt-9).
+
+### Second problem
+
+**Problem:** You have $n$ rectangles in a row. There are two players, in each
+turn a player chooses a rectangle and writes a cross on it. It is forbidden to
+put two crosses next to each other (in adjacent cells). As usual, the player
+without a valid move loses. If both players play optimally. Who will be the winner ?
+
+<div class="row text-center">
+![](./images/class-14/cross.png)
+
+Example of an instance of the game when $n = 6$
+</div>
+
+When a player writes a cross in a cell $i \mid 2 \leq i \leq n - 1$ we are
+bassically dividing the game into two **independent** subgames of size $i - 2$
+and $n - i - 1$ because the adjacent cell of the $i$-th rectangle are virtually
+destroyed. Then, taking care of the corner cases (when a player writes a cross
+in the first or last rectangle), we can deduce that $g(n)$ can be expressed in
+this way:
+
+<div class="center">
+$$g(n) = mex(\{g(n - 1)\} \cup \\ \{g(i - 2) \oplus g(n - i - 1) \mid 2 \leq
+i \leq n - 1 \})$$
+</div>
+
+Then we can implement this idea in $O(n^2 \log n)$ or in $O(n^2)$. **Can you
+implement it?**
+
+<div class="topic">Staircase Nim</div>
+
+So far we have learned how the characteristic property allow us to solve
+problems using WL states. Then we learned how Grundy numbers can solve all the
+problems that are solvable using WL states. After that we notice how the Sprague-Grundy theorem solves a much rich variety of problems. Now, one question left is if all the impartial combinatorics games can be solved using the Sprague-Grundy theorem. Sadly, it is not always the best approach, yet we can always start using the characteristic property and seek for improvements. For example, let's try this problem:
+
+Problem taken from [Game theory - Thomas S. Ferguson. Chapter 1. Page 13](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf).
+
+
+**Problem (Staircase Nim):** A staircase of $n$ steps contains chips on some of the steps. Let
+$(x_1, x_2, \dots, x_n)$ denote the position with $x_i$ chips on step $i \mid
+1 \leq i \leq n$. A move in this game consists of moving any positive number
+of chips from any step $i$ to the next lower step $i - 1$. Chips reaching the
+ground (step 0) are removed from play. The game ends when all chips are on the
+ground. Both players play optimally and alternating turns. If the last to move
+wins, who will be the winner ?
+
+We can solve the problem using Grundy numbers or WL states, but the complexity
+would be at least $O(x_1 \cdot x_2 \cdot \dots x_n) = O(x^n)$ where $x = \max(x_1, x_2, \dots, x_n)$. We need something better.
+
+With some trial and error we can notice that if we define our state as the
+coins that are only in odd steps, then all the moves of chips from even
+positions are meaningless because let $i$ be and even number, then if a player
+moves $z$ chips from step $i$ to step $i - 1$, then in the next turn the other
+player can move $z$ chips from step $i - 1$ to step $i - 2$, so the number of
+chips in the odd steps have not changed. Therefore, we only care about the
+chips in odd positions if we define our state in this way. Evenmore, in the
+same fashion of Bouton’s theorem, we can prove that:
+
+$$(x_1, x_2, \dots, x_{n - [n \bmod 2 = 0]}) \in \mathbb{L} \leftrightarrow \displaystyle\bigoplus_{\substack{i = 1\\ i += 2}}^{n}x_i = 0$$
+
+The proof of this affirmation is very similar to the proof of Bouton's theorem,
+but if you need some help you can read [this answer](https://math.stackexchange.com/questions/937495/relationship-between-regular-nim-and-laskers-nim?answertab=active#tab-top).
+
+Now, we can solve our problem in $O(n)$.
+
+Understanding that the definition of our state can affect the complexity of our
+solution is very important. Moreover, it is important to know in advance games like the
+Staircase Nim in order to solve some hard problems (that may require more
+advances techniques) like these:
+
+- [Problem: A Coin Game](https://www.codechef.com/problems/G3). [Editorial](https://www.codechef.com/wiki/tutorial-coin-game).
+- [Problem: Move the Coins](https://www.hackerrank.com/contests/world-codesprint-april/challenges/move-the-coins). [Editorial](https://codeforces.com/blog/entry/44651).
+
+<div class="topic">Misère games</div>
+
+So far in all the problem we have solved the winner was the one who makes the
+last move, but what happened when the loser is the one who makes the last move
+? Well, in this kind of games we can not use the Sprague-Grundy theorem, but we
+can use the other approaches to solve them and it may usually requiere an extra
+analysis. This kind of problems are know as misère games, here is an example:
+
+**Problem (Misère Nim):** The problem is the same as the game of Nim, but now it has the misère condition.
+
+First, try to solve this problem by yourself. Try the get the optimal strategy.
+If you give up you can find the solution  in [Game theory - Thomas S. Ferguson. Chapter 1. Page 11](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf).
+
+<div class="topic">Minimax</div>
+
+We have already studied some techniques for solving impartial combinatorics
+games, but you may be wondering how to solve partizan games. The fact is that
+we may use WL states or Grundy numbers to solven them, yet a general
+backtracking solution using the characteristic property is better in this kind
+of games because there can be a draw. Then, we need to differenciate a draw,
+a winning state and a losing state. One way to achieve this is to define an
+utility function that assigns a value to each state. For example:
+
+$$
+    \text{utility}(state) =,
+    \begin{cases}
+        1       & \quad \text{If state is a winning state}\\
+        0       & \quad \text{If state is a draw}\\
+       -1       & \quad \text{If state is a losing state}\\
+    \end{cases}
+$$
+
+In a partizan two-player game, as each player may play optimally, there
+would be a player that will try to obtain the maximum utility, whereas the other
+player will try to obtain the minimum utility. In other words, when both players play optimally, basically the first player will try all the moves and will choose the move that gives him the maximum
+utility, then the second player will choose the move that gives the first player
+the minimum possible utility, and so on.
+
+Then, we can implement something like this:
+
+```c++
+namespace Minimax {
+  int utility (State);
+  int minVal (State);
+  int maxVal (State);
+}
+
+namespace Minimax {
+  int utility (State s) {
+    return the weight of the state s
+  }
+
+  int minVal (State s) {
+    if (s is a terminal state) {
+      return utility(s);
+    }
+    // First, assume the worst scenario
+    int ret = max_utility_value;
+    for (State s' reachable from s) {
+      ret = min(ret, maxVal(s'));
+    }
+    return ret;
+  }
+
+  int maxVal (State s) {
+    if (s is a terminal state) {
+      return utility(s);
+    }
+    // First, assume the worst scenario
+    int ret = min_utility_value;
+    for (State s' reachable from s) {
+      ret = max(ret, minVal(s'));
+    }
+    return ret;
+  }
+
+}
+
+```
+
+This idea (basically a simulation of all possible scenarios) is achieved when
+the first player calls `Minimax::maxVal(initial_state)`. As `minVal` calls
+`maxVal` and `maxVal` calls `minVal`, we need to declare the interface of these
+functions and we are grouping them in a namespace to keep them in order. Now,
+using this framework we can solve a variety of problems like chess, go,
+checkers, etc. The only problem is that this solution is exponential, yet it is
+important to understand it as this idea is the base for other solutions.
+
+As an example we can solve the Tic Tac Toe game using this framework. When
+doing it the recursion tree may looks something like this:
+
+<div class="row text-center img-border">
+![](images/class-14/tic-tac-toe.png)
+
+The image was taken from [this video](https://youtu.be/6ELUvkSkCts?t=435)
+</div>
+
+Moreover, you may notice that this framework is simply a backtracking, but for
+its importance (and maybe for the [Rumpelstiltskin Principle](https://alum.mit.edu/slice/rumpelstiltskin-principle)) it is called the Minimax algorithm.
+
+You may also be interested in watching [Coding Challenge 154: Tic Tac Toe AI with Minimax Algorithm](https://youtu.be/trKjYdBASyQ) for a visual implementation of the Minimax algorithm for Tic Tac Toe.
+
+<div class="topic">Alpha-Beta prunning</div>
+
+Now, we known how to solve partizan combinatorial games in exponential time,
+but there is an simple, yet powerful optimization we can do. What
+happen if I am executing `maxVal` function and I already found the maximum
+possible utility ? What happen if I amd executing `minVal` function and
+I already found the minimum possible utility ?
+
+Well, in these scenarios there is no need to keep searching, we already know
+the final utility of our current state, then we can prune the search. This simple
+optimization will improve our solution a little, yet it may usually be enough
+for problems in competitive programming. For example, let's practice this
+optimization solving [The game of 31](https://www.spoj.com/problems/GAME31/).
+
+Try it by yourself for a while. You may end up with something like this:
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int LEN = 100, N_CARDS = 6;
+
+int ct[N_CARDS + 1];
+char moves[LEN];
+bool ans;
+
+namespace Minimax {
+  int minVal ();
+  int maxVal ();
+  void solve ();
+}
+
+namespace Minimax {
+    
+  int sum;
+  const int WIN  =  1;
+  const int FAIL = -1;
+
+  int minVal () {
+    if (sum > 31) return FAIL;
+    int ret = WIN;
+    for (int card = 1; card <= N_CARDS and ret != FAIL; card++) {
+      if (ct[card]) {
+        ct[card]--, sum += card;
+        ret = min(ret, maxVal());
+        ct[card]++, sum -= card;
+      }
+    }
+    return ret;
+  }
+
+  int maxVal () {
+    if (sum > 31) return WIN;
+    int ret = FAIL;
+    for (int card = 1; card <= N_CARDS and ret != WIN; card++) {
+      if (ct[card]) {
+        ct[card]--, sum += card;
+        ret = max(ret, minVal());
+        ct[card]++, sum -= card;
+      }
+    }
+    return ret;
+  }
+
+  void solve () {
+    sum = 0;
+    int id;
+    for (id = 0; moves[id]; id++) {
+      ct[moves[id] - '0']--;
+      sum += moves[id] - '0';
+    }
+    int res = (id & 1) ? minVal() : maxVal();
+    ans = res == WIN;
+  }
+}
+
+
+inline void print () {
+  printf("%s %c\n", moves, "BA"[ans]);
+}
+
+inline bool read () {
+  if (cin.getline(moves, LEN)) return true;
+  return false;
+}
+
+inline void clear () {
+  fill(ct, ct + N_CARDS, 4);
+}
+
+int main () {
+  while (read()) {
+    clear();
+    Minimax::solve();
+    print();
+  }
+  return (0);
+}
+```
+
+This optimization is what is known as Alpha-Beta prunning. In fact, the Minimax
+and Alpha-Beta prunning have even more interesting things, yet this is out of
+the scope of this course.
+
+Recommended readings:
+
+* [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
+* [Competitive Programmer's Handbook, chapter 25](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+* [E-maxx Sprague-Grundy theorem. Nim](https://cp-algorithms.com/game_theory/sprague-grundy-nim.html)
+* [Search: Games, Minimax, and Alpha-Beta](https://youtu.be/STjW3eH0Cik)
+
+<div class="topic" id="contest">Contest</div>
+
+You can find the contest [here](https://vjudge.net/contest/359378).
+
+The solutions will be uploaded after the contest.
+
+<p style="float: none; clear: both;"></p>
+
+<div style="float: right;" class="pt-3">
+  <a class="continue-link" href="./class-15.html" 
+     data-toggle="tooltip" title="Contest II">
+  Next
+  </a>
+</div>
+
+<div class="pt-3">
+  <a class="continue-link" href="./class-13.html"
+     data-toggle="tooltip" title="Game Theory I">
+  Previous
+  </a>
+</div>
+
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-14').addClass('active');
+  const cur_class = document.getElementById('class-14');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+</script>

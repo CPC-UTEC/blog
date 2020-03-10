@@ -2,19 +2,14 @@
 title: "Schedule"
 ---
 
-[PDF version](./schedule.pdf)
-
-## **Topics**
+## Topics
   - Asymptotic Analysis
-  - Standard Template Library (STL)
+  - Standard Template Library
   - Brute Force
   - Divide and Conquer
-  - Searching in Graphs
-  - Single Source Shortest Path (SSSP)
-  - All Pair Shortest Path (ASPSP)
-  - Minimum Spanning Tree (MST)
+  - Game Theory
 
-## **Weekly plan**
+## Weekly plan
 
 ### *Week 1*
 
@@ -43,7 +38,7 @@ title: "Schedule"
 
 ### *Week 2*
 
-* <div id="class-03">[**Class 3: STL**](./class-03.html)</div>
+* <div id="class-03">[**Class 3: Standard Template Library**](./class-03.html)</div>
   **Topics**
   + Standard Template Library (STL) 
   + Numeric data types and its operations 
@@ -60,7 +55,7 @@ title: "Schedule"
  
 * <div id="class-04">[**Class 4: Complete Search I**](./class-04.html)</div>
   **Topics**
-  + Problem Solving Paradigms
+  + Problem solving paradigms
   + Pythagorean triples
   + Primality Test
   + Sieve of Eratosthenes
@@ -119,7 +114,7 @@ title: "Schedule"
 
   **Readings**
   + Competitive Programming 3, section 2.1 and 2.2.
-  + [Competitive Programming 3, chapter 10](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+  + [Competitive Programmer’s Handbook, chapter 10](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
   + [GPC-UNI Clase 4](https://nbviewer.jupyter.org/github/GPC-UNI/Programacion-Competitiva/blob/master/uni-no-fiis/clase-04/clase-04.ipynb)
   + [GPC-UNI Clase 5](https://nbviewer.jupyter.org/github/GPC-UNI/Programacion-Competitiva/blob/master/uni-no-fiis/clase-05/clase-05.ipynb)
   + [PCUNI-2019 Clase 7](https://nbviewer.jupyter.org/github/TISparta/pcuni-2019/blob/master/clase-07/clase-07.ipynb)
@@ -139,3 +134,76 @@ title: "Schedule"
   + Competitive Programming 3, section 3.2.2, 8.2.1 and 8.2.2.
   + [GeekForGeeks - Backtracking Algorithms](https://www.geeksforgeeks.org/backtracking-algorithms/)
 
+### *Week 5*
+* <div id="class-09">[**Class 9: Contest I**](./class-09.html)</div>
+  **Topics**
+  + Complete search
+
+### *Week 6*
+* <div id="class-10">[**Class 10: Contest UTEC-UNI-UPC I**](./class-10.html)</div>
+  **Topics**
+  + Complete search
+
+### *Week 7*
+* <div id="class-11">[**Class 11: Divide and Conquer I**](./class-11.html)</div>
+  **Topics**
+  + The divide and conquer paradigm 
+  + Binary search
+  + Upper bound
+  + Binary search on the answer
+
+  **Readings**
+  + [Errichto - Binary search lecture (C++ and Python)](https://www.youtube.com/watch?v=GU7DpgHINWQ)
+  + [Topcoder - Binary search](https://www.topcoder.com/community/competitive-programming/tutorials/binary-search/)
+  + [Competitive Programmer's Handbook, chapter 3](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+  + [Principles of Algorithmic Problem Solving, section 10.3](https://www.csc.kth.se/~jsannemo/slask/main.pdf)
+
+* <div id="class-12">[**Class 12: Divide and Conquer II**](./class-11.html)</div>
+  **Topics**
+  + Generalized binary search
+  + Ternary search
+  + Merge sort
+  + Inductive constructions
+
+  **Readings**
+  + [Principles of Algorithmic Problem Solving, section 10.1 and 10.2](https://www.csc.kth.se/~jsannemo/slask/main.pdf)
+  + [E-maxx - Ternary search](https://cp-algorithms.com/num_methods/ternary_search.html)
+  + [HackerEarth - Searching [Tutorial]](https://www.hackerearth.com/practice/algorithms/searching/linear-search/tutorial/)
+  + [PCUNI-2019 clase 16](https://nbviewer.jupyter.org/github/TISparta/pcuni-2019/blob/master/clase-16/clase-16.ipynb)
+  + [Topcoder - Binary stride a variant on binary search](https://www.topcoder.com/binary-stride-a-variant-on-binary-search/)
+
+
+### *Week 8*
+* <div id="class-13">[**Class 13: Game Theory I**](./class-13.html)</div>
+  **Topics**
+  + Introduction
+  + WL states
+  + The game of Nim
+  + Grundy numbers
+  + Sprague-Grundy theorem
+
+  **Readings**
+  + [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
+  + [Algorithm Games - Topcoder](https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/)
+  + [Game Theory For Competitive Programming](https://stepupanalytics.com/game-theory-for-competitive-programming/)
+
+* <div id="class-14">[**Class 14: Game Theory II**](./class-14.html)</div>
+  **Topics**
+  + Grundy’s games
+  + Staircase Nim
+  + Misère games
+  + Minimax
+  + Alpha-Beta prunning
+
+  **Readings**
+
+  + [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
+  + [Competitive Programmer's Handbook, chapter 25](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+  + [E-maxx Sprague-Grundy theorem. Nim](https://cp-algorithms.com/game_theory/sprague-grundy-nim.html)
+  + [Search: Games, Minimax, and Alpha-Beta](https://youtu.be/STjW3eH0Cik)
+
+
+<script>
+$("#schedule-page")
+  .addClass("active");
+</script>

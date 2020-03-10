@@ -14,9 +14,8 @@
 <title>Class 07: Complete Search IV</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -25,6 +24,9 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" type="text/css" href="lib/lightbox.min.css">
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -106,33 +108,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 45px;
+  padding-top: 54px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h2 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h3 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h4 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h5 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h6 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .dropdown-submenu {
   position: relative;
@@ -262,79 +264,160 @@ $(document).ready(function () {
 
 
 
+<div class="wrapper">
 
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">CP UTEC</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li>
-  <a href="schedule.html">Schedule</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Lessons
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Week 1</li>
-    <li>
-      <a href="class-01.html">Introduction</a>
-    </li>
-    <li>
-      <a href="class-02.html">Asymptotic Analysis</a>
-    </li>
-    <li class="dropdown-header">Week 2</li>
-    <li>
-      <a href="class-03.html">STL</a>
-    </li>
-    <li>
-      <a href="class-04.html">Complete Search I</a>
-    </li>
-    <li class="dropdown-header">Week 3</li>
-    <li>
-      <a href="class-05.html">Complete Search II</a>
-    </li>
-    <li>
-      <a href="class-06.html">Complete Search III</a>
-    </li>
-    <li class="dropdown-header">Week 4</li>
-    <li>
-      <a href="class-07.html">Complete Search IV</a>
-    </li>
-    <li>
-      <a href="class-08.html">Complete Search V</a>
-    </li>
-    <li class="dropdown-header">Week 5</li>
-    <li>
-      <a href="class-09.html">Contest I</a>
-    </li>
-    <li class="dropdown-header">Week 6</li>
-    <li>
-      <a href="class-10.html">Contest UTEC-UNI I</a>
-    </li>
-  </ul>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="daily-problem.html">Daily Problem</a>
-</li>
-<li>
-  <a href="gallery.html">Gallery</a>
-</li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container -->
-</div><!--/.navbar -->
+<!-- Sidebar Holder -->
+<nav id="sidebar">
+<div class="sidebar-header">
+  <h3 style="text-align: left;">
+    <a style="text-decoration: none;"href="./index.html">
+      Competitive programming UTEC
+    </a>
+  </h3>
+  <strong>
+    <a style="text-decoration: none;"href="./index.html">
+    CP-UTEC
+    </a>
+  </strong>
+</div>
+
+<div id="dismiss-left">
+  <i class="fa fa-arrow-left"></i>
+</div>
+
+<div id="dismiss-right">
+  <i class="fa fa-arrow-right"></i>
+</div>
+
+<ul class="list-unstyled components">
+
+  <div class="line"></div>
+  
+  <li id="index-page">
+    <a href="./index.html">
+      Home
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="schedule-page">
+    <a href="./schedule.html">
+      Schedule
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="classes-page-expanded">
+    <a id="classes" href="#all-classes" data-toggle="collapse"
+      aria-expanded="false">
+      Classes
+    </a>
+    <ul class="collapse list-unstyled" id="all-classes">
+      <li id="class-01">
+        <a href="./class-01.html">1. Introduction</a>
+      </li>
+      <li id="class-02">
+        <a href="./class-02.html">2. Asymptotic Analysis</a>
+      </li>
+      <li id="class-03">
+        <a href="./class-03.html">3. Standard Template Library</a>
+      </li>
+      <li id="class-04">
+        <a href="./class-04.html">4. Complete Search I</a>
+      </li>
+      <li id="class-05">
+        <a href="./class-05.html">5. Complete Search II</a>
+      </li>
+      <li id="class-06">
+        <a href="./class-06.html">6. Complete Search III</a>
+      </li>
+      <li id="class-07">
+        <a href="./class-07.html">7. Complete Search IV</a>
+      </li>
+      <li id="class-08">
+        <a href="./class-08.html">8. Complete Search V</a>
+      </li>
+      <li id="class-09">
+        <a href="./class-09.html">9. Contest I</a>
+      </li>
+      <li id="class-10">
+        <a href="./class-10.html">10. Contest UTEC-UNI-UPC I</a>
+      </li>
+      <li id="class-11">
+        <a href="./class-11.html">11. Divide and Conquer I</a>
+      </li>
+      <li id="class-12">
+        <a href="./class-12.html">12. Divide and Conquer II</a>
+      </li>
+      <li id="class-13">
+        <a href="./class-13.html">13. Game Theory I</a>
+      </li>
+      <li id="class-14">
+        <a href="./class-14.html">14. Game Theory II</a>
+      </li>
+      <li id="class-15">
+        <a href="./class-15.html">15. Contest II</a>
+      </li>
+    </ul>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="classes-page-not-expanded">
+    <a href="./classes.html">
+      Classes
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="daily-problem-page">
+    <a href="./daily-problem.html">
+      Daily problem
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="gallery-page">
+    <a href="./gallery.html">
+      Gallery
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+</ul>
+
+
+<!--
+<ul class="list-unstyled">
+  <li>
+    <a href="https://www.utec.edu.pe/" target="_blank" class="logo">
+      <img src="images/page/utec-logo.png" alt="UTEC logo">
+    </a>
+  </li>
+</ul>
+-->
+</nav>
+
+<div id="expand-icon-right">
+  <i class="fa fa-angle-right"></i>
+</div>
+
+<div id="expand-icon-left">
+  <i class="fa fa-angle-left"></i>
+</div>
+
+<!-- Page Content Holder -->
+<div id="content">
+<script>
+$(".main-container")
+  .removeClass("main-container")
+  .removeClass("container-fluid")
+</script>
 
 <div class="fluid-row" id="header">
 
@@ -471,7 +554,7 @@ Binary representation
 <p>The computers only manage bits when these are working. So, numbers are represented as bit strings. In this case, we use bit representation of a number for working inside of competitive programming problem.</p>
 <p>Remember, bit representation is a number in base 2.</p>
 <p><span class="math inline">\(X = c_02^0+ c_12^1 + c_22^2 ... + c_k2^k\)</span></p>
-<p>In C++, Java and Python, the int and long long uses 32-bits and 64-bits, respectively.</p>
+<p>In C++, the int and long long uses 32-bits and 64-bits, respectively.</p>
 <p>For example, the number 42 is</p>
 <p>00000000000000000000000000101010</p>
 <p>The leftmost bit, the most significant bit, is the sign of the number. It is 0 for nonnegative numbers and 1 for negative number. The remaining 31 o 63 bits are used for the magnitude of the number. The technique used is called Two’s complement, where we work with nonegative numbers and if we would like to work with negative numbers first inverting all the bits in the number, and then increasing the number by one.</p>
@@ -486,8 +569,26 @@ Binary representation
 <p><span class="math inline">\([ -2^{63},2^{63}-1]\)</span></p>
 <p>Warning with unsigned int and unsigned long.</p>
 <p>With all this, we can use integers to represent a lightweight small set of Boolean values. All set operations then involve only the bitwise manipulation of the corresponding integer, which makes it a much more efficient choice when compared with the C++ STL vector<bool>, bitset, or set<int> options.</p>
+<p>We invite you all to look what happen in Python’s integers. <a href="https://mortada.net/can-integer-operations-overflow-in-python.html">Open Link</a></p>
 <div class="topic">
 Bitwise operations
+</div>
+<p>First, we need to recall how bit operations work.</p>
+The first operator is <strong>AND</strong>. Each bit of the output is 1 if the corresponding bit of A <strong>and</strong> of B is 1, otherwise is 0. Both at Python or C++ AND operator is represented like the symbol <strong>&amp;</strong>.
+<div class="rows text-center">
+<p><img src="images/class-07/andoperator.png" /></p>
+</div>
+The second operator is <strong>OR</strong>. Each bit of the output is 0 if the corresponding bit of A AND of B is 0, otherwise it’s 1. Both at Python or C++ OR operator is represeted like the symbol <strong>|</strong>.
+<div class="rows text-center">
+<p><img src="images/class-07/oroperator.png" /></p>
+</div>
+The third operator is <strong>XOR</strong>. Each bit of the output is the same as the corresponding bit in A if that bit in B is 0, and it’s the complement of the bit in A if that bit in B is 1. Both at Python or C++ XOR operator is represented like the symbol <strong>^</strong>.
+<div class="rows text-center">
+<p><img src="images/class-07/xoroperator.png" /></p>
+</div>
+Finally, complement operator or <strong>NOT</strong>. Return 1 the bit in A is 0 and 0 if the bit is 1. Both at Python or C++ NOT operator is represented like the symbol <strong>~</strong>.
+<div class="rows text-center">
+<p><img src="images/class-07/notA.png" /></p>
 </div>
 <p><strong>Check if i-th bit of n is on:</strong></p>
 <p>In 0-based indexing from right.</p>
@@ -495,12 +596,11 @@ Bitwise operations
 using namespace std;
 
 void  main() {
-  int n;
-  int i=4;
-  cin&gt;&gt;n;
+  int n=48; //00000000000000000000000000110000
+  int i=4; // (1&lt;&lt;4) is equal to 00000000000000000000000000010000
 
   if(n &amp; 1&lt;&lt;i)
-    cout&lt;&lt;&quot;It&#39;s on&quot;&lt;&lt;endl;
+    cout&lt;&lt;&quot;It&#39;s on&quot;&lt;&lt;endl; 
   else
     cout&lt;&lt;&quot;It&#39;s off&quot;&lt;&lt;endl;
 
@@ -512,14 +612,10 @@ void  main() {
 using namespace std;
 
 void  main() {
-  int n;
-  cin&gt;&gt;n;
-  //Here n is 2*n
-  n = n &lt;&lt; 1;
-  //Again n becomes 2*n
-  n &lt;&lt;= 1;
-  //n becomes n/2
-  n &gt;&gt;= 1;
+  int n=7; 00000000000000000000000000000111
+  n = n &lt;&lt; 1; //n is 14, 00000000000000000000000000001110
+  n &lt;&lt;= 1; //now, n is 28, 00000000000000000000000000011100
+  n &gt;&gt;= 1; // n becomes 14
 
   return 0;  
 }</code></pre>
@@ -531,10 +627,8 @@ void  main() {
 
   int n=8;
   n = n | (1&lt;&lt;5);
-  //Now n is 40
-  n |= 1&lt;&lt;2;
-  //Here n is 44
-  cout&lt;&lt;n&lt;&lt;endl;
+  n |= 1&lt;&lt;2; //Now n is 40
+  cout&lt;&lt;n&lt;&lt;endl; //Here n is 44
 
   return 0;  
 }</code></pre>
@@ -546,10 +640,8 @@ void  main() {
 
   int n=44;
   n = n &amp; ~(1&lt;&lt;5); 
-  //Now n is 12
-  n &amp;= ~(1&lt;&lt;2); 
-  //Here n is 8
-  cout&lt;&lt;n&lt;&lt;endl;
+  n &amp;= ~(1&lt;&lt;2);  //Now n is 12
+  cout&lt;&lt;n&lt;&lt;endl; //Here n is 8
 
   return 0;  
 }</code></pre>
@@ -560,10 +652,8 @@ using namespace std;
 void  main() {
 
   int n=14;
-  n = n ^ (1&lt;&lt;1); 
-  //Now n is 15
-  n ^= (1&lt;&lt;1); 
-  //Now n is 14 again 
+  n = n ^ (1&lt;&lt;1); //Now n is 15
+  n ^= (1&lt;&lt;1); //Now n is 14 again 
   cout&lt;&lt;n&lt;&lt;endl;
 
   return 0;  
@@ -589,7 +679,7 @@ using namespace std;
 
 void  main() {
 
-  #set of size 4
+  //set of size 4
   int n=4;
   int setn = (1&lt;&lt;n)-1; 
   //setn is 15, but its binary representing is 1111
@@ -597,21 +687,60 @@ void  main() {
 
   return 0;  
 }</code></pre>
-<p><strong>Note:</strong> There exists built functions of GCC for counting how many bits are on.</p>
-<pre class="cpp"><code>// For integers
-#int __builtin_popcount(int x)
-// For  long long 
-#int __builtin_popcountll(long long x)
-
-#For example
+<p><strong>Note:</strong> There exists built functions of G++ for counting how many bits are on.</p>
+<pre class="cpp"><code>
+//For example
 
 int main(){
-  // We get 2 as result.
-  cout&lt;&lt;__builtin_popcount(12)&lt;&lt;endl;
+  int x=12;
+  cout&lt;&lt;__builtin_popcount(x)&lt;&lt;endl; // 2, the number of 1s in the number 
+  cout&lt;&lt;__builtin_parity(x)&lt;&lt;endl; // 0, the parity of a number 
+  cout&lt;&lt;__builtin_clz(x)&lt;&lt;endl; // 28, the number of zeros at the beginning  
+  cout&lt;&lt;__builtin_ctz(x)&lt;&lt;endl; // 2, the numberz of zeros at the end   
+
+// Also, for kind of variables the functions are changed lightly
+  cout&lt;&lt;__builtin_popcount(x)&lt;&lt;endl; //for integers
+  cout&lt;&lt;__builtin_popcountll(1ll*x)&lt;&lt;endl; //for long long 
   return 0;
 }
 </code></pre>
 <p>We invite all of you to visite <a href="https://www.geeksforgeeks.org/builtin-functions-gcc-compiler/">Built Funcionts of GCC</a>.</p>
+<p><strong>Simple example</strong></p>
+<p>Now, we continue with a simple example where everyone can apply bitwise operations. It is frequent using bitmask with a number n for permutations or set problems. Please look the following link. <a href="https://codeforces.com/problemset/problem/1097/B">Open Link</a></p>
+<p>In this problem, we start pointing zero and we need to check if it is possible rotate the lock’s wheel in some angles in clockwise or counterclockwise way and again point at zero.</p>
+<p>So, we use bitwise for represent a set of size n. If the i-th bit is on we rotate the lock’s wheel in clockwise way, otherwise we rotate in counterclockwise way.</p>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+  int n;
+  cin&gt;&gt;n;
+  int angles[n];
+
+  for(int &amp;i:angles)
+    cin&gt;&gt;i;
+
+  int acum;
+
+  for(int i=0;i&lt;(1&lt;&lt;n);i++){
+    acum=0;
+    for(int j=0;j&lt;n;j++){
+      if(i &amp; (1&lt;&lt;j))
+        acum+=angles[j];
+      else
+        acum-=angles[j];
+
+    if((acum%360)==0){
+      cout&lt;&lt;&quot;YES\n&quot;;
+      break;
+    }
+  }
+
+  if((acum%360)!=0)
+    cout&lt;&lt;&quot;NO\n&quot;;
+  
+  return 0;
+  }</code></pre>
 <div class="topic">
 Brute force on bitmasks
 </div>
@@ -659,7 +788,7 @@ int main () {
 <p>Recommended readings:</p>
 <ul>
 <li>Competitive Programming 3, section 2.1 and 2.2.</li>
-<li><a href="https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf">Competitive Programming 3, chapter 10</a></li>
+<li><a href="https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf">Competitive Programmer’s Handbook, chapter 10</a></li>
 <li><a href="https://nbviewer.jupyter.org/github/GPC-UNI/Programacion-Competitiva/blob/master/uni-no-fiis/clase-04/clase-04.ipynb">GPC-UNI Clase 4</a></li>
 <li><a href="https://nbviewer.jupyter.org/github/GPC-UNI/Programacion-Competitiva/blob/master/uni-no-fiis/clase-05/clase-05.ipynb">GPC-UNI Clase 5</a></li>
 <li><a href="https://nbviewer.jupyter.org/github/TISparta/pcuni-2019/blob/master/clase-07/clase-07.ipynb">PCUNI-2019 Clase 7</a></li>
@@ -670,10 +799,80 @@ Contest
 </div>
 <p>You can find the contest <a href="https://vjudge.net/contest/354002">here</a>.</p>
 <p>The solutions will be uploaded after the contest.</p>
+<p style="float: none; clear: both;">
+</p>
+<div class="pt-3" style="float: right;">
+<p><a class="continue-link" href="./class-08.html" 
+     data-toggle="tooltip" title="Complete Search V"> Next </a></p>
+</div>
+<div class="pt-3">
+<p><a class="continue-link" href="./class-06.html"
+     data-toggle="tooltip" title="Complete Search III"> Previous </a></p>
+</div>
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-07').addClass('active');
+  const cur_class = document.getElementById('class-07');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+</script>
 
+</div> <!-- ends wrapper -->
+</div> <!-- ends content -->
+
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+  $('#dismiss-left').on('click', function () {
+    $('#sidebar, #content').addClass('active');
+  });
+
+  $('#dismiss-right').on('click', function () {
+    $('#sidebar, #content').removeClass('active');
+  });
+
+  $("[data-toggle='tooltip']").tooltip();
+
+  $('#expand-icon-right').on('click', function () {
+    document.getElementById('sidebar').style.width = "90px";
+    document.getElementById('expand-icon-right').style.display = "none";
+    document.getElementById('expand-icon-left').style.display = "block";
+    document.getElementById('content').style.background = "rgba(0,0,0,0.8)";
+    $('#expand-icon-left').addClass('moved');
+    $('#expand-icon-right').addClass('moved');
+  });
+
+  $('#expand-icon-left').on('click', function () {
+    document.getElementById('sidebar').style.width = "0px";
+    document.getElementById('expand-icon-right').style.display = "block";
+    document.getElementById('expand-icon-left').style.display = "none";
+    document.getElementById('content').style.background = "#fafafa";
+    $('#expand-icon-left').removeClass('moved');
+    $('#expand-icon-right').removeClass('moved');
+  });
+
+});
+
+/*
+$(window).scroll(function() { 
+  $('#expand-icon-left').css({top: '50vh'});
+  $('#expand-icon-left').css({bottom: '50vh'});
+  $('#expand-icon-right').css({top: '50vh'});
+  $('#expand-icon-right').css({bottom: '50vh'});
+});
+*/
+</script>
+
+<script type="text/javascript" src="lib/lightbox-plus-jquery.min.js"></script>
+
+<!--
 <footer>
   <p>Copyright &copy; 2020. Competitive Programming UTEC</p>
 </footer>
+-->
 
 
 

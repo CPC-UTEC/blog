@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Class 14: Game Theory II</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" type="text/css" href="lib/lightbox.min.css">
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 54px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h2 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h3 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h4 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h5 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h6 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+<div class="wrapper">
+
+<!-- Sidebar Holder -->
+<nav id="sidebar">
+<div class="sidebar-header">
+  <h3 style="text-align: left;">
+    <a style="text-decoration: none;"href="./index.html">
+      Competitive programming UTEC
+    </a>
+  </h3>
+  <strong>
+    <a style="text-decoration: none;"href="./index.html">
+    CP-UTEC
+    </a>
+  </strong>
+</div>
+
+<div id="dismiss-left">
+  <i class="fa fa-arrow-left"></i>
+</div>
+
+<div id="dismiss-right">
+  <i class="fa fa-arrow-right"></i>
+</div>
+
+<ul class="list-unstyled components">
+
+  <div class="line"></div>
+  
+  <li id="index-page">
+    <a href="./index.html">
+      Home
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="schedule-page">
+    <a href="./schedule.html">
+      Schedule
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="classes-page-expanded">
+    <a id="classes" href="#all-classes" data-toggle="collapse"
+      aria-expanded="false">
+      Classes
+    </a>
+    <ul class="collapse list-unstyled" id="all-classes">
+      <li id="class-01">
+        <a href="./class-01.html">1. Introduction</a>
+      </li>
+      <li id="class-02">
+        <a href="./class-02.html">2. Asymptotic Analysis</a>
+      </li>
+      <li id="class-03">
+        <a href="./class-03.html">3. Standard Template Library</a>
+      </li>
+      <li id="class-04">
+        <a href="./class-04.html">4. Complete Search I</a>
+      </li>
+      <li id="class-05">
+        <a href="./class-05.html">5. Complete Search II</a>
+      </li>
+      <li id="class-06">
+        <a href="./class-06.html">6. Complete Search III</a>
+      </li>
+      <li id="class-07">
+        <a href="./class-07.html">7. Complete Search IV</a>
+      </li>
+      <li id="class-08">
+        <a href="./class-08.html">8. Complete Search V</a>
+      </li>
+      <li id="class-09">
+        <a href="./class-09.html">9. Contest I</a>
+      </li>
+      <li id="class-10">
+        <a href="./class-10.html">10. Contest UTEC-UNI-UPC I</a>
+      </li>
+      <li id="class-11">
+        <a href="./class-11.html">11. Divide and Conquer I</a>
+      </li>
+      <li id="class-12">
+        <a href="./class-12.html">12. Divide and Conquer II</a>
+      </li>
+      <li id="class-13">
+        <a href="./class-13.html">13. Game Theory I</a>
+      </li>
+      <li id="class-14">
+        <a href="./class-14.html">14. Game Theory II</a>
+      </li>
+      <li id="class-15">
+        <a href="./class-15.html">15. Contest II</a>
+      </li>
+    </ul>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="classes-page-not-expanded">
+    <a href="./classes.html">
+      Classes
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="daily-problem-page">
+    <a href="./daily-problem.html">
+      Daily problem
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="gallery-page">
+    <a href="./gallery.html">
+      Gallery
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+</ul>
+
+
+<!--
+<ul class="list-unstyled">
+  <li>
+    <a href="https://www.utec.edu.pe/" target="_blank" class="logo">
+      <img src="images/page/utec-logo.png" alt="UTEC logo">
+    </a>
+  </li>
+</ul>
+-->
+</nav>
+
+<div id="expand-icon-right">
+  <i class="fa fa-angle-right"></i>
+</div>
+
+<div id="expand-icon-left">
+  <i class="fa fa-angle-left"></i>
+</div>
+
+<!-- Page Content Holder -->
+<div id="content">
+<script>
+$(".main-container")
+  .removeClass("main-container")
+  .removeClass("container-fluid")
+</script>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Class 14: Game Theory II</h1>
+<h4 class="date">02-26-2020</h4>
+
+</div>
+
+
+<blockquote>
+<p>“Can we do better?”</p>
+</blockquote>
+<div class="topic">
+Grundy’s games
+</div>
+<p>Let <span class="math inline">\(s\)</span> be the current state in a game and <span class="math inline">\(s_1, s_2, \dots, s_n\)</span> the new states where we can go. Then we already know that:</p>
+<p><span class="math display">\[g(s) = mex(g(s_1), g(s_2), \dots, s(s_n))\]</span></p>
+<p>But, if each <span class="math inline">\(s_i\)</span> can be seen as an <strong>independent</strong> game, then applying the Sprague-Grundy theorem we can compute:</p>
+<p><span class="math display">\[g(s_i) = g(a_1) \oplus g(a_2) \oplus \dots \oplus g(a_m)\]</span></p>
+<p>Where <span class="math inline">\(a_i\)</span> depends of <span class="math inline">\(s_i\)</span>.</p>
+<p>This kind of games where a move divides the game into subgames that <strong>are independent</strong> of each other are commonly found. Let’s call them Grundy’s games. Here is some examples:</p>
+<div id="first-problem" class="section level3">
+<h3>First problem</h3>
+<p>Problem taken from <a href="https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf">Competitive Programmer’s Handbook, chapter 25. Page 240</a>.</p>
+<p><strong>Problem:</strong> The problem is the same as the game of Nim but now, in each turn a player can choose a pile and divide it into two non-empty piles such that the new two piles are of different size.</p>
+<p>We can solve the problem using WL-states or Grundy numbers, but the numbers of states are too much (<strong>can you compute it?</strong>). Nevertheless, we can notice that if we take pile <span class="math inline">\(s_i\)</span> and divide it into piles of size <span class="math inline">\(a_1 \land a_2 \mid a_1 + a_2 = s_i\)</span>, then we can see <span class="math inline">\(a_1 \land a_2\)</span> as independent subgames. So, we have:</p>
+<p><span class="math display">\[g(s_i) = mex(\{a_1 \oplus a_2\} \mid a_1 \not = a_2 \land a_1 + a_2 = s_i)\]</span></p>
+<p><strong>Can you implement it?</strong></p>
+<p>Problem taken from <a href="https://cp-algorithms.com/game_theory/sprague-grundy-nim.html#toc-tgt-9">E-maxx Sprague-Grundy theorem. Nim</a>.</p>
+</div>
+<div id="second-problem" class="section level3">
+<h3>Second problem</h3>
+<p><strong>Problem:</strong> You have <span class="math inline">\(n\)</span> rectangles in a row. There are two players, in each turn a player chooses a rectangle and writes a cross on it. It is forbidden to put two crosses next to each other (in adjacent cells). As usual, the player without a valid move loses. If both players play optimally. Who will be the winner ?</p>
+<div class="row text-center">
+<p><img src="images/class-14/cross.png" /></p>
+<p>Example of an instance of the game when <span class="math inline">\(n = 6\)</span></p>
+</div>
+<p>When a player writes a cross in a cell <span class="math inline">\(i \mid 2 \leq i \leq n - 1\)</span> we are bassically dividing the game into two <strong>independent</strong> subgames of size <span class="math inline">\(i - 2\)</span> and <span class="math inline">\(n - i - 1\)</span> because the adjacent cell of the <span class="math inline">\(i\)</span>-th rectangle are virtually destroyed. Then, taking care of the corner cases (when a player writes a cross in the first or last rectangle), we can deduce that <span class="math inline">\(g(n)\)</span> can be expressed in this way:</p>
+<div class="center">
+<p><span class="math display">\[g(n) = mex(\{g(n - 1)\} \cup \\ \{g(i - 2) \oplus g(n - i - 1) \mid 2 \leq
+i \leq n - 1 \})\]</span></p>
+</div>
+<p>Then we can implement this idea in <span class="math inline">\(O(n^2 \log n)\)</span> or in <span class="math inline">\(O(n^2)\)</span>. <strong>Can you implement it?</strong></p>
+<div class="topic">
+Staircase Nim
+</div>
+<p>So far we have learned how the characteristic property allow us to solve problems using WL states. Then we learned how Grundy numbers can solve all the problems that are solvable using WL states. After that we notice how the Sprague-Grundy theorem solves a much rich variety of problems. Now, one question left is if all the impartial combinatorics games can be solved using the Sprague-Grundy theorem. Sadly, it is not always the best approach, yet we can always start using the characteristic property and seek for improvements. For example, let’s try this problem:</p>
+<p>Problem taken from <a href="https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf">Game theory - Thomas S. Ferguson. Chapter 1. Page 13</a>.</p>
+<p><strong>Problem (Staircase Nim):</strong> A staircase of <span class="math inline">\(n\)</span> steps contains chips on some of the steps. Let <span class="math inline">\((x_1, x_2, \dots, x_n)\)</span> denote the position with <span class="math inline">\(x_i\)</span> chips on step <span class="math inline">\(i \mid 1 \leq i \leq n\)</span>. A move in this game consists of moving any positive number of chips from any step <span class="math inline">\(i\)</span> to the next lower step <span class="math inline">\(i - 1\)</span>. Chips reaching the ground (step 0) are removed from play. The game ends when all chips are on the ground. Both players play optimally and alternating turns. If the last to move wins, who will be the winner ?</p>
+<p>We can solve the problem using Grundy numbers or WL states, but the complexity would be at least <span class="math inline">\(O(x_1 \cdot x_2 \cdot \dots x_n) = O(x^n)\)</span> where <span class="math inline">\(x = \max(x_1, x_2, \dots, x_n)\)</span>. We need something better.</p>
+<p>With some trial and error we can notice that if we define our state as the coins that are only in odd steps, then all the moves of chips from even positions are meaningless because let <span class="math inline">\(i\)</span> be and even number, then if a player moves <span class="math inline">\(z\)</span> chips from step <span class="math inline">\(i\)</span> to step <span class="math inline">\(i - 1\)</span>, then in the next turn the other player can move <span class="math inline">\(z\)</span> chips from step <span class="math inline">\(i - 1\)</span> to step <span class="math inline">\(i - 2\)</span>, so the number of chips in the odd steps have not changed. Therefore, we only care about the chips in odd positions if we define our state in this way. Evenmore, in the same fashion of Bouton’s theorem, we can prove that:</p>
+<p><span class="math display">\[(x_1, x_2, \dots, x_{n - [n \bmod 2 = 0]}) \in \mathbb{L} \leftrightarrow \displaystyle\bigoplus_{\substack{i = 1\\ i += 2}}^{n}x_i = 0\]</span></p>
+<p>The proof of this affirmation is very similar to the proof of Bouton’s theorem, but if you need some help you can read <a href="https://math.stackexchange.com/questions/937495/relationship-between-regular-nim-and-laskers-nim?answertab=active#tab-top">this answer</a>.</p>
+<p>Now, we can solve our problem in <span class="math inline">\(O(n)\)</span>.</p>
+<p>Understanding that the definition of our state can affect the complexity of our solution is very important. Moreover, it is important to know in advance games like the Staircase Nim in order to solve some hard problems (that may require more advances techniques) like these:</p>
+<ul>
+<li><a href="https://www.codechef.com/problems/G3">Problem: A Coin Game</a>. <a href="https://www.codechef.com/wiki/tutorial-coin-game">Editorial</a>.</li>
+<li><a href="https://www.hackerrank.com/contests/world-codesprint-april/challenges/move-the-coins">Problem: Move the Coins</a>. <a href="https://codeforces.com/blog/entry/44651">Editorial</a>.</li>
+</ul>
+<div class="topic">
+Misère games
+</div>
+<p>So far in all the problem we have solved the winner was the one who makes the last move, but what happened when the loser is the one who makes the last move ? Well, in this kind of games we can not use the Sprague-Grundy theorem, but we can use the other approaches to solve them and it may usually requiere an extra analysis. This kind of problems are know as misère games, here is an example:</p>
+<p><strong>Problem (Misère Nim):</strong> The problem is the same as the game of Nim, but now it has the misère condition.</p>
+<p>First, try to solve this problem by yourself. Try the get the optimal strategy. If you give up you can find the solution in <a href="https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf">Game theory - Thomas S. Ferguson. Chapter 1. Page 11</a>.</p>
+<div class="topic">
+Minimax
+</div>
+<p>We have already studied some techniques for solving impartial combinatorics games, but you may be wondering how to solve partizan games. The fact is that we may use WL states or Grundy numbers to solven them, yet a general backtracking solution using the characteristic property is better in this kind of games because there can be a draw. Then, we need to differenciate a draw, a winning state and a losing state. One way to achieve this is to define an utility function that assigns a value to each state. For example:</p>
+<p><span class="math display">\[
+    \text{utility}(state) =,
+    \begin{cases}
+        1       &amp; \quad \text{If state is a winning state}\\
+        0       &amp; \quad \text{If state is a draw}\\
+       -1       &amp; \quad \text{If state is a losing state}\\
+    \end{cases}
+\]</span></p>
+<p>In a partizan two-player game, as each player may play optimally, there would be a player that will try to obtain the maximum utility, whereas the other player will try to obtain the minimum utility. In other words, when both players play optimally, basically the first player will try all the moves and will choose the move that gives him the maximum utility, then the second player will choose the move that gives the first player the minimum possible utility, and so on.</p>
+<p>Then, we can implement something like this:</p>
+<pre class="cpp"><code>namespace Minimax {
+  int utility (State);
+  int minVal (State);
+  int maxVal (State);
+}
+
+namespace Minimax {
+  int utility (State s) {
+    return the weight of the state s
+  }
+
+  int minVal (State s) {
+    if (s is a terminal state) {
+      return utility(s);
+    }
+    // First, assume the worst scenario
+    int ret = max_utility_value;
+    for (State s&#39; reachable from s) {
+      ret = min(ret, maxVal(s&#39;));
+    }
+    return ret;
+  }
+
+  int maxVal (State s) {
+    if (s is a terminal state) {
+      return utility(s);
+    }
+    // First, assume the worst scenario
+    int ret = min_utility_value;
+    for (State s&#39; reachable from s) {
+      ret = max(ret, minVal(s&#39;));
+    }
+    return ret;
+  }
+
+}
+</code></pre>
+<p>This idea (basically a simulation of all possible scenarios) is achieved when the first player calls <code>Minimax::maxVal(initial_state)</code>. As <code>minVal</code> calls <code>maxVal</code> and <code>maxVal</code> calls <code>minVal</code>, we need to declare the interface of these functions and we are grouping them in a namespace to keep them in order. Now, using this framework we can solve a variety of problems like chess, go, checkers, etc. The only problem is that this solution is exponential, yet it is important to understand it as this idea is the base for other solutions.</p>
+<p>As an example we can solve the Tic Tac Toe game using this framework. When doing it the recursion tree may looks something like this:</p>
+<div class="row text-center img-border">
+<p><img src="images/class-14/tic-tac-toe.png" /></p>
+<p>The image was taken from <a href="https://youtu.be/6ELUvkSkCts?t=435">this video</a></p>
+</div>
+<p>Moreover, you may notice that this framework is simply a backtracking, but for its importance (and maybe for the <a href="https://alum.mit.edu/slice/rumpelstiltskin-principle">Rumpelstiltskin Principle</a>) it is called the Minimax algorithm.</p>
+<p>You may also be interested in watching <a href="https://youtu.be/trKjYdBASyQ">Coding Challenge 154: Tic Tac Toe AI with Minimax Algorithm</a> for a visual implementation of the Minimax algorithm for Tic Tac Toe.</p>
+<div class="topic">
+Alpha-Beta prunning
+</div>
+<p>Now, we known how to solve partizan combinatorial games in exponential time, but there is an simple, yet powerful optimization we can do. What happen if I am executing <code>maxVal</code> function and I already found the maximum possible utility ? What happen if I amd executing <code>minVal</code> function and I already found the minimum possible utility ?</p>
+<p>Well, in these scenarios there is no need to keep searching, we already know the final utility of our current state, then we can prune the search. This simple optimization will improve our solution a little, yet it may usually be enough for problems in competitive programming. For example, let’s practice this optimization solving <a href="https://www.spoj.com/problems/GAME31/">The game of 31</a>.</p>
+<p>Try it by yourself for a while. You may end up with something like this:</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+const int LEN = 100, N_CARDS = 6;
+
+int ct[N_CARDS + 1];
+char moves[LEN];
+bool ans;
+
+namespace Minimax {
+  int minVal ();
+  int maxVal ();
+  void solve ();
+}
+
+namespace Minimax {
+    
+  int sum;
+  const int WIN  =  1;
+  const int FAIL = -1;
+
+  int minVal () {
+    if (sum &gt; 31) return FAIL;
+    int ret = WIN;
+    for (int card = 1; card &lt;= N_CARDS and ret != FAIL; card++) {
+      if (ct[card]) {
+        ct[card]--, sum += card;
+        ret = min(ret, maxVal());
+        ct[card]++, sum -= card;
+      }
+    }
+    return ret;
+  }
+
+  int maxVal () {
+    if (sum &gt; 31) return WIN;
+    int ret = FAIL;
+    for (int card = 1; card &lt;= N_CARDS and ret != WIN; card++) {
+      if (ct[card]) {
+        ct[card]--, sum += card;
+        ret = max(ret, minVal());
+        ct[card]++, sum -= card;
+      }
+    }
+    return ret;
+  }
+
+  void solve () {
+    sum = 0;
+    int id;
+    for (id = 0; moves[id]; id++) {
+      ct[moves[id] - &#39;0&#39;]--;
+      sum += moves[id] - &#39;0&#39;;
+    }
+    int res = (id &amp; 1) ? minVal() : maxVal();
+    ans = res == WIN;
+  }
+}
+
+
+inline void print () {
+  printf(&quot;%s %c\n&quot;, moves, &quot;BA&quot;[ans]);
+}
+
+inline bool read () {
+  if (cin.getline(moves, LEN)) return true;
+  return false;
+}
+
+inline void clear () {
+  fill(ct, ct + N_CARDS, 4);
+}
+
+int main () {
+  while (read()) {
+    clear();
+    Minimax::solve();
+    print();
+  }
+  return (0);
+}</code></pre>
+<p>This optimization is what is known as Alpha-Beta prunning. In fact, the Minimax and Alpha-Beta prunning have even more interesting things, yet this is out of the scope of this course.</p>
+<p>Recommended readings:</p>
+<ul>
+<li><a href="https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf">Game theory - Thomas S. Ferguson. Chapter 1-4</a></li>
+<li><a href="https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf">Competitive Programmer’s Handbook, chapter 25</a></li>
+<li><a href="https://cp-algorithms.com/game_theory/sprague-grundy-nim.html">E-maxx Sprague-Grundy theorem. Nim</a></li>
+<li><a href="https://youtu.be/STjW3eH0Cik">Search: Games, Minimax, and Alpha-Beta</a></li>
+</ul>
+<div id="contest" class="topic">
+Contest
+</div>
+<p>You can find the contest <a href="https://vjudge.net/contest/359378">here</a>.</p>
+<p>The solutions will be uploaded after the contest.</p>
+<p style="float: none; clear: both;">
+</p>
+<div class="pt-3" style="float: right;">
+<p><a class="continue-link" href="./class-15.html" 
+     data-toggle="tooltip" title="Contest II"> Next </a></p>
+</div>
+<div class="pt-3">
+<p><a class="continue-link" href="./class-13.html"
+     data-toggle="tooltip" title="Game Theory I"> Previous </a></p>
+</div>
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-14').addClass('active');
+  const cur_class = document.getElementById('class-14');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+</script>
+</div>
+
+</div> <!-- ends wrapper -->
+</div> <!-- ends content -->
+
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+  $('#dismiss-left').on('click', function () {
+    $('#sidebar, #content').addClass('active');
+  });
+
+  $('#dismiss-right').on('click', function () {
+    $('#sidebar, #content').removeClass('active');
+  });
+
+  $("[data-toggle='tooltip']").tooltip();
+
+  $('#expand-icon-right').on('click', function () {
+    document.getElementById('sidebar').style.width = "90px";
+    document.getElementById('expand-icon-right').style.display = "none";
+    document.getElementById('expand-icon-left').style.display = "block";
+    document.getElementById('content').style.background = "rgba(0,0,0,0.8)";
+    $('#expand-icon-left').addClass('moved');
+    $('#expand-icon-right').addClass('moved');
+  });
+
+  $('#expand-icon-left').on('click', function () {
+    document.getElementById('sidebar').style.width = "0px";
+    document.getElementById('expand-icon-right').style.display = "block";
+    document.getElementById('expand-icon-left').style.display = "none";
+    document.getElementById('content').style.background = "#fafafa";
+    $('#expand-icon-left').removeClass('moved');
+    $('#expand-icon-right').removeClass('moved');
+  });
+
+});
+
+/*
+$(window).scroll(function() { 
+  $('#expand-icon-left').css({top: '50vh'});
+  $('#expand-icon-left').css({bottom: '50vh'});
+  $('#expand-icon-right').css({top: '50vh'});
+  $('#expand-icon-right').css({bottom: '50vh'});
+});
+*/
+</script>
+
+<script type="text/javascript" src="lib/lightbox-plus-jquery.min.js"></script>
+
+<!--
+<footer>
+  <p>Copyright &copy; 2020. Competitive Programming UTEC</p>
+</footer>
+-->
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

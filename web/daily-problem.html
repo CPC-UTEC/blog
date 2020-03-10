@@ -14,9 +14,8 @@
 <title>Daily Problem</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -25,6 +24,9 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" type="text/css" href="lib/lightbox.min.css">
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -106,33 +108,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 45px;
+  padding-top: 54px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h2 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h3 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h4 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h5 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .section h6 {
-  padding-top: 50px;
-  margin-top: -50px;
+  padding-top: 59px;
+  margin-top: -59px;
 }
 .dropdown-submenu {
   position: relative;
@@ -262,79 +264,160 @@ $(document).ready(function () {
 
 
 
+<div class="wrapper">
 
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">CP UTEC</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li>
-  <a href="schedule.html">Schedule</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Lessons
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Week 1</li>
-    <li>
-      <a href="class-01.html">Introduction</a>
-    </li>
-    <li>
-      <a href="class-02.html">Asymptotic Analysis</a>
-    </li>
-    <li class="dropdown-header">Week 2</li>
-    <li>
-      <a href="class-03.html">STL</a>
-    </li>
-    <li>
-      <a href="class-04.html">Complete Search I</a>
-    </li>
-    <li class="dropdown-header">Week 3</li>
-    <li>
-      <a href="class-05.html">Complete Search II</a>
-    </li>
-    <li>
-      <a href="class-06.html">Complete Search III</a>
-    </li>
-    <li class="dropdown-header">Week 4</li>
-    <li>
-      <a href="class-07.html">Complete Search IV</a>
-    </li>
-    <li>
-      <a href="class-08.html">Complete Search V</a>
-    </li>
-    <li class="dropdown-header">Week 5</li>
-    <li>
-      <a href="class-09.html">Contest I</a>
-    </li>
-    <li class="dropdown-header">Week 6</li>
-    <li>
-      <a href="class-10.html">Contest UTEC-UNI I</a>
-    </li>
-  </ul>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="daily-problem.html">Daily Problem</a>
-</li>
-<li>
-  <a href="gallery.html">Gallery</a>
-</li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container -->
-</div><!--/.navbar -->
+<!-- Sidebar Holder -->
+<nav id="sidebar">
+<div class="sidebar-header">
+  <h3 style="text-align: left;">
+    <a style="text-decoration: none;"href="./index.html">
+      Competitive programming UTEC
+    </a>
+  </h3>
+  <strong>
+    <a style="text-decoration: none;"href="./index.html">
+    CP-UTEC
+    </a>
+  </strong>
+</div>
+
+<div id="dismiss-left">
+  <i class="fa fa-arrow-left"></i>
+</div>
+
+<div id="dismiss-right">
+  <i class="fa fa-arrow-right"></i>
+</div>
+
+<ul class="list-unstyled components">
+
+  <div class="line"></div>
+  
+  <li id="index-page">
+    <a href="./index.html">
+      Home
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="schedule-page">
+    <a href="./schedule.html">
+      Schedule
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="classes-page-expanded">
+    <a id="classes" href="#all-classes" data-toggle="collapse"
+      aria-expanded="false">
+      Classes
+    </a>
+    <ul class="collapse list-unstyled" id="all-classes">
+      <li id="class-01">
+        <a href="./class-01.html">1. Introduction</a>
+      </li>
+      <li id="class-02">
+        <a href="./class-02.html">2. Asymptotic Analysis</a>
+      </li>
+      <li id="class-03">
+        <a href="./class-03.html">3. Standard Template Library</a>
+      </li>
+      <li id="class-04">
+        <a href="./class-04.html">4. Complete Search I</a>
+      </li>
+      <li id="class-05">
+        <a href="./class-05.html">5. Complete Search II</a>
+      </li>
+      <li id="class-06">
+        <a href="./class-06.html">6. Complete Search III</a>
+      </li>
+      <li id="class-07">
+        <a href="./class-07.html">7. Complete Search IV</a>
+      </li>
+      <li id="class-08">
+        <a href="./class-08.html">8. Complete Search V</a>
+      </li>
+      <li id="class-09">
+        <a href="./class-09.html">9. Contest I</a>
+      </li>
+      <li id="class-10">
+        <a href="./class-10.html">10. Contest UTEC-UNI-UPC I</a>
+      </li>
+      <li id="class-11">
+        <a href="./class-11.html">11. Divide and Conquer I</a>
+      </li>
+      <li id="class-12">
+        <a href="./class-12.html">12. Divide and Conquer II</a>
+      </li>
+      <li id="class-13">
+        <a href="./class-13.html">13. Game Theory I</a>
+      </li>
+      <li id="class-14">
+        <a href="./class-14.html">14. Game Theory II</a>
+      </li>
+      <li id="class-15">
+        <a href="./class-15.html">15. Contest II</a>
+      </li>
+    </ul>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="classes-page-not-expanded">
+    <a href="./classes.html">
+      Classes
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="daily-problem-page">
+    <a href="./daily-problem.html">
+      Daily problem
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+  <li id="gallery-page">
+    <a href="./gallery.html">
+      Gallery
+    </a>
+  </li>
+
+  <div class="line"></div>
+
+</ul>
+
+
+<!--
+<ul class="list-unstyled">
+  <li>
+    <a href="https://www.utec.edu.pe/" target="_blank" class="logo">
+      <img src="images/page/utec-logo.png" alt="UTEC logo">
+    </a>
+  </li>
+</ul>
+-->
+</nav>
+
+<div id="expand-icon-right">
+  <i class="fa fa-angle-right"></i>
+</div>
+
+<div id="expand-icon-left">
+  <i class="fa fa-angle-left"></i>
+</div>
+
+<!-- Page Content Holder -->
+<div id="content">
+<script>
+$(".main-container")
+  .removeClass("main-container")
+  .removeClass("container-fluid")
+</script>
 
 <div class="fluid-row" id="header">
 
@@ -345,6 +428,9 @@ $(document).ready(function () {
 </div>
 
 
+<div id="daily-problem---part-ii" class="section level3">
+<h3><a href="https://vjudge.net/contest/358289">Daily Problem - Part II</a></h3>
+</div>
 <div id="daily-problem---part-i" class="section level3">
 <h3><a href="https://vjudge.net/contest/351983">Daily Problem - Part I</a></h3>
 <!-- Begins problem problem-17 -->
@@ -358,8 +444,8 @@ Day 17: GCD on Blackboard
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-17" class="collapse">
-<div id="day-17-gcd-on-blackboard" class="section level3 card-body solution-body">
-<h3><a href="https://abc125.contest.atcoder.jp/tasks/abc125_c?lang=en" target="_blank">Day 17: GCD on Blackboard</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-17-gcd-on-blackboard"><a href="https://abc125.contest.atcoder.jp/tasks/abc125_c?lang=en" target="_blank">Day 17: GCD on Blackboard</a></h3>
 <p>First try it by yourself.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-17" aria-expanded="false" aria-controls="collapseTwo">
@@ -387,8 +473,8 @@ Day 16: DivRem Number
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-16" class="collapse">
-<div id="day-16-divrem-number" class="section level3 card-body solution-body">
-<h3><a href="https://vjudge.net/contest/354182#problem/C" target="_blank">Day 16: DivRem Number</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-16-divrem-number"><a href="https://diverta2019.contest.atcoder.jp/tasks/diverta2019_d?lang=en" target="_blank">Day 16: DivRem Number</a></h3>
 <p>There is some problem in the rendering of the problem. It should say:</p>
 <p><span class="math display">\[\lfloor \frac{N}{m} \rfloor = N \bmod m\]</span></p>
 <p><strong>Solution:</strong></p>
@@ -397,7 +483,7 @@ Day 16: DivRem Number
 <p>Let <span class="math inline">\(k = \lfloor \frac{N}{m} \rfloor = N \bmod m\)</span></p>
 <p>Then, we have:</p>
 <p><span class="math display">\[N = k \cdot m + k\]</span> <span class="math display">\[N = k \cdot (m + 1)\]</span></p>
-<p>Then, m + 1 must be a divisor of <span class="math inline">\(N\)</span>, so we can generate all the divisors of <span class="math inline">\(N\)</span> and check if the condition holds in $O().</p>
+<p>Then, m + 1 must be a divisor of <span class="math inline">\(N\)</span>, so we can generate all the divisors of <span class="math inline">\(N\)</span> and check if the condition holds in <span class="math inline">\(O(\sqrt{N})\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-16" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title --> <i class="fas fa-caret-right"></i>
@@ -453,8 +539,8 @@ Day 15: ConneR and the A.R.C. Markland-N
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-15" class="collapse">
-<div id="day-15-conner-and-the-a.r.c.-markland-n" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1293/A" target="_blank">Day 15: ConneR and the A.R.C. Markland-N</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-15-conner-and-the-a.r.c.-markland-n"><a href="https://codeforces.com/problemset/problem/1293/A" target="_blank">Day 15: ConneR and the A.R.C. Markland-N</a></h3>
 <p>There are <span class="math inline">\(k\)</span> closed restaurants, thefore we will find the answer in <span class="math inline">\(O(k)\)</span> steps, so a brute force solution in enough.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-15" aria-expanded="false" aria-controls="collapseTwo">
@@ -523,8 +609,8 @@ Day 14: Resale
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-14" class="collapse">
-<div id="day-14-resale" class="section level3 card-body solution-body">
-<h3><a href="https://abc125.contest.atcoder.jp/tasks/abc125_b?lang=en" target="_blank">Day 14: Resale</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-14-resale"><a href="https://abc125.contest.atcoder.jp/tasks/abc125_b?lang=en" target="_blank">Day 14: Resale</a></h3>
 <p>Each element can be added to <span class="math inline">\(X\)</span> or to <span class="math inline">\(Y\)</span>.</p>
 <p>Let <span class="math inline">\(b = b_nb_{n - 1} \dots b_1\)</span> be a bit mask where <span class="math inline">\(b_i = 1\)</span> if the <span class="math inline">\(i-th\)</span> element is taken and <span class="math inline">\(b_i = 0\)</span> if the <span class="math inline">\(i-th\)</span> is not taken, then we realize that all possible masks are <span class="math inline">\(b \in [0, 2 ^n)\)</span>. In this way, we can implement an <span class="math inline">\(O(n 2^n)\)</span> solution and that is enough.</p>
 <!-- begin code -->
@@ -668,8 +754,8 @@ Day 13: Exception Handling
 </div>
 <!-- begin body -->
 <div id="collapseProblem13" class="collapse">
-<div id="day-13-exception-handling" class="section level3 card-body solution-body">
-<h3><a href="https://atcoder.jp/contests/abc134/tasks/abc134_c" target="_blank">Day 13: Exception Handling</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-13-exception-handling"><a href="https://atcoder.jp/contests/abc134/tasks/abc134_c" target="_blank">Day 13: Exception Handling</a></h3>
 <p><strong>First solution:</strong> Notice that the answer will allways be the greatest value or the second greatest value. We can find these values in <span class="math inline">\(O(n)\)</span> or in <span class="math inline">\(O(n \log n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem13" aria-expanded="false" aria-controls="collapseTwo">
@@ -769,8 +855,8 @@ Day 12: Green Bin
 </div>
 <!-- begin body -->
 <div id="collapseProblem12" class="collapse">
-<div id="day-12-green-bin" class="section level3 card-body solution-body">
-<h3><a href="https://abc137.contest.atcoder.jp/tasks/abc137_c?lang=en" target="_blank">Day 12: Green Bin</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-12-green-bin"><a href="https://abc137.contest.atcoder.jp/tasks/abc137_c?lang=en" target="_blank">Day 12: Green Bin</a></h3>
 <p>If <span class="math inline">\(s \land t\)</span> are anagrams, then <span class="math inline">\(sort(all(a)) = sort(all(b))\)</span>. That is, if we sort the letters of a string, we have a representative of a set of anagrams. Moreover, if we have <span class="math inline">\(x\)</span> string of the same anagram class, we can choose <span class="math inline">\(\binom{x}{2}\)</span> indices such that <span class="math inline">\(s_i \land s_j\)</span> are anagrams. In this way, we can implement a solution in <span class="math inline">\(O(N \log N)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem12" aria-expanded="false" aria-controls="collapseTwo">
@@ -829,8 +915,8 @@ Day 11: Blocks
 </div>
 <!-- begin body -->
 <div id="collapseProblem11" class="collapse">
-<div id="day-11-blocks" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/1271/problem/B" target="_blank">Day 11: Blocks</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-11-blocks"><a href="https://codeforces.com/contest/1271/problem/B" target="_blank">Day 11: Blocks</a></h3>
 <p>Each block should end up being black or white. You can fix what color the string will be and try to change it in a loop (if you are in iteration <code>i</code> you have already change <span class="math inline">\(s[0: i - 1]\)</span>, now if <span class="math inline">\(s[i] \not = \text{the color you have fixed}\)</span>, invert <span class="math inline">\(s[i], s[i + 1]\)</span>). In this way you need at most <span class="math inline">\(n - 1\)</span> operations.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem11" aria-expanded="false" aria-controls="collapseTwo">
@@ -896,8 +982,8 @@ Day 10: JOE is on TV!
 </div>
 <!-- begin body -->
 <div id="collapseProblem10" class="collapse">
-<div id="day-10-joe-is-on-tv" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1293/B" target="_blank">Day 10: JOE is on TV!</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-10-joe-is-on-tv"><a href="https://codeforces.com/problemset/problem/1293/B" target="_blank">Day 10: JOE is on TV!</a></h3>
 <p>You can notice that the optimal strategy is that in each turn one opponent fail to answer. Then, our answer is</p>
 <p><span class="math display">\[\frac{1}{n} + \frac{1}{n - 1} + \frac{1}{n - 2} + \dots + \frac{1}{1}\]</span></p>
 <!-- begin code -->
@@ -952,8 +1038,8 @@ Day 09: Number of Triplets
 </div>
 <!-- begin body -->
 <div id="collapseProblem09" class="collapse">
-<div id="day-09-number-of-triplets" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/181/problem/B" target="_blank">Day 09: Number of Triplets</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-09-number-of-triplets"><a href="https://codeforces.com/contest/181/problem/B" target="_blank">Day 09: Number of Triplets</a></h3>
 <p>If you fix <span class="math inline">\(A, C\)</span> with two <code>fors</code>, you can get what value of <span class="math inline">\(B\)</span> you need. Moreover, as all the points are integers, we can check if <span class="math inline">\(A_x + C_x \land A_y + C_y\)</span> are even in order to avoid working with floats. Now, we have fixed <span class="math inline">\(B = ((A_x + C_x) / 2, (A_y + C_y) / 2)\)</span> and we need to check if this point is in the input. We can do it with a set (you’ll get TLE with a map) and solve the problem in <span class="math inline">\(O(n^2 \log n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem09" aria-expanded="false" aria-controls="collapseTwo">
@@ -1009,8 +1095,8 @@ Day 08: Little Quilt
 </div>
 <!-- begin body -->
 <div id="collapseProblem08" class="collapse">
-<div id="day-08-little-quilt" class="section level3 card-body solution-body">
-<h3><a href="https://www.spoj.com/problems/QUILT/en/" target="_blank">Day 08: Little Quilt</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-08-little-quilt"><a href="https://www.spoj.com/problems/QUILT/en/" target="_blank">Day 08: Little Quilt</a></h3>
 <p>Just simulate what the problem says.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem08" aria-expanded="false" aria-controls="collapseTwo">
@@ -1169,8 +1255,8 @@ Day 07: z-sort
 </div>
 <!-- begin body -->
 <div id="collapseProblem07" class="collapse">
-<div id="day-07-z-sort" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/652/B" target="_blank">Day 07: z-sort</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-07-z-sort"><a href="https://codeforces.com/problemset/problem/652/B" target="_blank">Day 07: z-sort</a></h3>
 <p>Sort the array and alternate taking elements (the smallest, the greater, the second smallest, the second greater, …).</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem07" aria-expanded="false" aria-controls="collapseTwo">
@@ -1215,8 +1301,8 @@ Day 06: GeT AC
 </div>
 <!-- begin body -->
 <div id="collapseProblem06" class="collapse">
-<div id="day-06-get-ac" class="section level3 card-body solution-body">
-<h3><a href="https://atcoder.jp/contests/abc122/tasks/abc122_c" target="_blank">Day 06: GeT AC</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-06-get-ac"><a href="https://atcoder.jp/contests/abc122/tasks/abc122_c" target="_blank">Day 06: GeT AC</a></h3>
 <p>We can count how many <code>AC</code> there are in a range using prefix sums and taking care or corner cases.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem06" aria-expanded="false" aria-controls="collapseTwo">
@@ -1276,8 +1362,8 @@ Day 05: Competitive Programmer
 </div>
 <!-- begin body -->
 <div id="collapseProblem05" class="collapse">
-<div id="day-05-competitive-programmer" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/1266/problem/A" target="_blank">Day 05: Competitive Programmer</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-05-competitive-programmer"><a href="https://codeforces.com/contest/1266/problem/A" target="_blank">Day 05: Competitive Programmer</a></h3>
 <p><span class="math inline">\(60 = 3 * 5 * 2 * 2\)</span>. Then, to verify that we can construct a number multiple of <span class="math inline">\(60\)</span> it is enough to verify:</p>
 <ul>
 <li>It is multiple of 3: the sum of digits is multiple of 3</li>
@@ -1352,8 +1438,8 @@ Day 04: 0 or 1 Swap
 </div>
 <!-- begin body -->
 <div id="collapseProblem04" class="collapse">
-<div id="day-04-0-or-1-swap" class="section level3 card-body solution-body">
-<h3><a href="https://atcoder.jp/contests/abc135/tasks/abc135_b" target="_blank">Day 04: 0 or 1 Swap</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-04-0-or-1-swap"><a href="https://atcoder.jp/contests/abc135/tasks/abc135_b" target="_blank">Day 04: 0 or 1 Swap</a></h3>
 <p>Try every <span class="math inline">\(i, j\)</span>. This solution is <span class="math inline">\(O(N^3)\)</span> and as <span class="math inline">\(N \leq 50\)</span> it is enough.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem04" aria-expanded="false" aria-controls="collapseTwo">
@@ -1412,8 +1498,8 @@ Day 03: Brick Break
 </div>
 <!-- begin body -->
 <div id="collapseProblem03" class="collapse">
-<div id="day-03-brick-break" class="section level3 card-body solution-body">
-<h3><a href="https://atcoder.jp/contests/abc148/tasks/abc148_d" target="_blank">Day 03: Brick Break</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-03-brick-break"><a href="https://atcoder.jp/contests/abc148/tasks/abc148_d" target="_blank">Day 03: Brick Break</a></h3>
 <p>The problem is basically to find the largest continuous segment <span class="math inline">\([l, r] \mid a[l + i] = i + 1, 0 \leq i \leq r - l\)</span>. Notice that we can do it in <span class="math inline">\(O(n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem03" aria-expanded="false" aria-controls="collapseTwo">
@@ -1469,8 +1555,8 @@ Day 02: Prime Subtraction
 </div>
 <!-- begin body -->
 <div id="collapseProblem02" class="collapse">
-<div id="day-02-prime-subtraction" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/1238/problem/A" target="_blank">Day 02: Prime Subtraction</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-02-prime-subtraction"><a href="https://codeforces.com/contest/1238/problem/A" target="_blank">Day 02: Prime Subtraction</a></h3>
 <p>If <span class="math inline">\(x - y = 1\)</span> then the answer is no, else, by the fundamental theorem of arithmetic <span class="math inline">\(\exists \, p\)</span> prime <span class="math inline">\(: p | (x - y)\)</span>. So, the answer is yes.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem02" aria-expanded="false" aria-controls="collapseTwo">
@@ -1512,8 +1598,8 @@ Day 01: Superhero Transformation
 </div>
 <!-- begin body -->
 <div id="collapseProblem01" class="collapse">
-<div id="day-01-superhero-transformation" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1111/A" target="_blank">Day 01: Superhero Transformation</a></h3>
+<div class="card-body solution-body">
+<h3 id="day-01-superhero-transformation"><a href="https://codeforces.com/problemset/problem/1111/A" target="_blank">Day 01: Superhero Transformation</a></h3>
 <p>Let <span class="math inline">\(f(c) = 1\)</span> if <code>c</code> is as vowel and <span class="math inline">\(f(c) = 0\)</span> otherwise. Then, the answer is true iff <span class="math inline">\(|s| = |t| \land f(s[i]) = f(t[i]) \quad \forall i \in [0, n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem01" aria-expanded="false" aria-controls="collapseTwo">
@@ -1553,11 +1639,66 @@ int main () {
 </div>
 </div>
 <!-- ends problem 01 -->
+<script>
+$("#daily-problem-page")
+  .addClass("active");
+</script>
 </div>
 
+</div> <!-- ends wrapper -->
+</div> <!-- ends content -->
+
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+  $('#dismiss-left').on('click', function () {
+    $('#sidebar, #content').addClass('active');
+  });
+
+  $('#dismiss-right').on('click', function () {
+    $('#sidebar, #content').removeClass('active');
+  });
+
+  $("[data-toggle='tooltip']").tooltip();
+
+  $('#expand-icon-right').on('click', function () {
+    document.getElementById('sidebar').style.width = "90px";
+    document.getElementById('expand-icon-right').style.display = "none";
+    document.getElementById('expand-icon-left').style.display = "block";
+    document.getElementById('content').style.background = "rgba(0,0,0,0.8)";
+    $('#expand-icon-left').addClass('moved');
+    $('#expand-icon-right').addClass('moved');
+  });
+
+  $('#expand-icon-left').on('click', function () {
+    document.getElementById('sidebar').style.width = "0px";
+    document.getElementById('expand-icon-right').style.display = "block";
+    document.getElementById('expand-icon-left').style.display = "none";
+    document.getElementById('content').style.background = "#fafafa";
+    $('#expand-icon-left').removeClass('moved');
+    $('#expand-icon-right').removeClass('moved');
+  });
+
+});
+
+/*
+$(window).scroll(function() { 
+  $('#expand-icon-left').css({top: '50vh'});
+  $('#expand-icon-left').css({bottom: '50vh'});
+  $('#expand-icon-right').css({top: '50vh'});
+  $('#expand-icon-right').css({bottom: '50vh'});
+});
+*/
+</script>
+
+<script type="text/javascript" src="lib/lightbox-plus-jquery.min.js"></script>
+
+<!--
 <footer>
   <p>Copyright &copy; 2020. Competitive Programming UTEC</p>
 </footer>
+-->
 
 
 

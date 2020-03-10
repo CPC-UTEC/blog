@@ -13,7 +13,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 <div class="topic">Two pointers</div>
 
 This technique is usually used in an array. We have a pointer to the first
-element of the array and to the last. The first pointer will be incresing and
+element of the array and to the last. The first pointer will be increasing and
 the other one decreasing (you may also find variations of this idea). In practice, intead of using a pointer, a `int`
 variable to keep track of the index is usually enough.
 
@@ -91,9 +91,9 @@ should output two numbers $i, j \mid i \not = j \land a_i + a_j = target$. It is
 $$1 \leq n \leq 10^5$$
 $$1 \leq target \leq 10^9$$
 
-We can use the same technique + sorting and solve the problem in $O(n \log n)$.
+We can use the same technique and sorting to solve the problem in $O(n \log n)$.
 
-First, let's sort the array and init with $l = 0 \land r = n - 1$. $l$ would
+First, let's sort the array and initiate with $l = 0 \land r = n - 1$. $l$ would
 just increase and $r$ would just decrease. Then, by the trichotomy property there are
 three cases:
 
@@ -179,13 +179,13 @@ x \not = y \not = z \land a_x + a_y + a_z = target$ ?
 Imagine you have a funtion $f$ that solves a problem in this way:
 
 * When we are in a state with a specific property, we know how to directly solve
-  the problem
+  the problem.
 * If we are not in a state with the specific property, we can solve the problem
   using different states of $f$.
 
 For example:
 
-$$f(n) = 1 * 2 * 3 * \dots * n$$
+$$f(n) = 1 \times 2 \times 3 \times \dots \times n$$
 
 We want to compute $f(n)$ in a recursive way. Then we need:
 
@@ -194,10 +194,10 @@ We want to compute $f(n)$ in a recursive way. Then we need:
   If $n = 0 \to f(0) = 1$.
 
 * Identify how to solve $f(n)$ using different states of $f$ (that are 'closer'
-  to the states with a specific property of the above point)
+  to the states with a specific property of the above point). For instance:
 
-$$f(n) = \underbrace{1 * 2 * 3 * \dots * (n - 1)}_{\text{f(n - 1)}} * n$$
-$$f(n) = n * f(n - 1)$$
+$$f(n) = \underbrace{1 \times 2 \times 3 \times \dots \times (n - 1)}_{\text{f(n - 1)}} \times n$$
+$$f(n) = n \times f(n - 1)$$
 
 Then, we are basically saying that if $n = 0$ we know how to solve the problem,
 else if we have the answer of $f(n - 1)$ we can use it to solve $f(n)$.
@@ -234,9 +234,11 @@ For example, let's solve the problem of the towers of Hanoi.
 
 ### The tower of Hanoi
 
+<div class="row text-center img-border">
 ![](./images/class-05/Hanoi.jpeg)
 
-**Source:** [Wikipedia](https://en.wikipedia.org/wiki/Tower_of_Hanoi#/media/File:Tower_of_Hanoi.jpeg)
+Image taken from [Wikipedia](https://en.wikipedia.org/wiki/Tower_of_Hanoi#/media/File:Tower_of_Hanoi.jpeg)
+</div>
 
 **Problem:** You have 3 rods, and a pile of $n$ disks in one rod. Each disk have different
 diameter, the disks are in order in the stack, the greatest in the button and
@@ -245,7 +247,7 @@ only move the top disk of a stack to another rod if the other rod is empty or
 the diameter of its top element is greater that the one we are moving. Can you
 give a sequence of movements to solve this problem ?
 
-Lets say we have the function $f$ such that $f(source, target, pivot, n)$ moves
+Let's say we have the function $f$ such that $f(source, target, pivot, n)$ moves
 the $n$ disks that are in the `source` rod to the `target` rod. Then, we can
 say:
 
@@ -317,7 +319,7 @@ order to fix that, we can use the properties of modular arithmetic:
 
 $$(x + y) \mod m = (x \mod m + y \mod m) \mod m$$
 $$(x - y) \mod m = (x \mod m - y \mod m) \mod m$$
-$$(x * y) \mod m = (x \mod m * y \mod m) \mod m$$
+$$(x \times y) \mod m = (x \mod m \times y \mod m) \mod m$$
 $$x^n \mod m = (x \mod m)^n \mod m$$
 
 So, we can fix the above code in this way:
@@ -348,11 +350,11 @@ Now, the result will always be in $[0, m)$.
 $a^b$ can be expressed in a recursive way.
 
 $$
-    \text{power}(a, b) =,
+    \text{power}(a, b) =
     \begin{cases}
         1       & \quad \text{If } b = 0 \\
-        \text{power}(a, \lfloor b / 2 \rfloor) ^ 2  & \quad \text{if } b \mod 2 = 0 \\
-        a * \text{power}(a, \lfloor b / 2 \rfloor) ^ 2 & \quad \text{if } b \mod 2 = 1
+        \text{power}(a, \lfloor b / 2 \rfloor) ^ 2  & \, \text{if } b \mod 2 = 0 \\
+        a \times \text{power}(a, \lfloor b / 2 \rfloor) ^ 2 & \, \text{if } b \mod 2 = 1
     \end{cases}
 $$
 
@@ -360,11 +362,11 @@ Moreover, from the properties of modular arithmetic, we can get $a^b \mod m$
 as:
 
 $$
-    \text{binpow}(a, b) =,
+    \text{binpow}(a, b) =
     \begin{cases}
         1       & \quad \text{If } b = 0 \\
-        \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2 \mod m & \quad \text{if } b \mod 2 = 0 \\
-        (a * \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2) \mod m & \quad \text{if } b \mod 2 = 1
+        \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2 \mod m & \, \text{if } b \mod 2 = 0 \\
+        (a \times \text{binpow}(a, \lfloor b / 2 \rfloor) ^ 2) \mod m & \, \text{if } b \mod 2 = 1
     \end{cases}
 $$
 
@@ -406,7 +408,7 @@ Using Fermat's little theorem we have that the inverse of $a$ is $a^{m - 2}$ if 
 
 Now, we can mention one more property of modular arithmetic (if $b^{-1}$ exists).
 
-$$\frac{a}{b} \mod m = ((a \mod m) * (b^{-1} \mod m)) \mod m$$
+$$\frac{a}{b} \mod m = ((a \mod m) \times (b^{-1} \mod m)) \mod m$$
 
 Let's see how it is useful in [this problem](https://vjudge.net/problem/Gym-247724E).
 
@@ -883,5 +885,28 @@ int main () {
 </div>
 <!-- ends problem E -->
 
+<p style="float: none; clear: both;"></p>
 
+<div style="float: right;" class="pt-3">
+  <a class="continue-link" href="./class-07.html" 
+     data-toggle="tooltip" title="Complete Search IV">
+  Next
+  </a>
+</div>
 
+<div class="pt-3">
+  <a class="continue-link" href="./class-05.html"
+     data-toggle="tooltip" title="Complete Search II">
+  Previous
+  </a>
+</div>
+
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-06').addClass('active');
+  const cur_class = document.getElementById('class-06');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+</script>

@@ -23,6 +23,8 @@ We are following this [schedule](./schedule.html).
 
 These links can help you navigate through the material developed.
 
+<div id="classes"></div>
+
 ### *Week 1*
 - [01-06-2020] - Class 01 - Introduction 
   + [Theory](./class-01.html)
@@ -79,9 +81,43 @@ These links can help you navigate through the material developed.
   + [Upsolving](https://vjudge.net/contest/355256)
 
 ### *Week 6*
-- [02-10-2020] - Class 10 - Contest UTEC-UNI I
+- [02-10-2020] - Class 10 - Contest UTEC-UNI-UPC I
   + [Theory](./class-10.html)
   + [Contest](https://codeforces.com/group/qWRAoRrTOT/contest/268759)
   + [Solutions](https://codeforces.com/group/qWRAoRrTOT/blog/entry/5475)
 
+### *Week 7*
+- [02-17-2020] - Class 11 - Divide and Conquer I
+  + [Theory](./class-11.html)
+  + [Contest](https://vjudge.net/contest/357719)
+  + [Readings](./schedule.html#class-11)
+
+- [02-19-2020] - Class 12 - Divide and Conquer II
+  + [Theory](./class-12.html)
+  + [Contest](https://vjudge.net/contest/359160)
+  + [Readings](./schedule.html#class-12)
+
+### *Week 8*
+- [02-24-2020] - Class 13 - Game Theory I
+  + [Theory](./class-13.html)
+  + [Contest](https://vjudge.net/contest/359163)
+  + [Readings](./schedule.html#class-13)
+
+- [02-26-2020] - Class 14 - Game Theory II
+  + [Theory](./class-14.html)
+  + [Contest](https://vjudge.net/contest/359378)
+  + [Readings](./schedule.html#class-14)
+
+
+### *Week 9*
+- [03-02-2020] - Class 15 - Contest II
+  + [Theory](./class-15.html)
+  + [Contest](https://vjudge.net/contest/360361)
+
 The repository of this page can be found [here](https://github.com/CP-UTEC/Lessons).
+
+
+<script>
+$("#index-page")
+  .addClass("active");
+</script>

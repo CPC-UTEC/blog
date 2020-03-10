@@ -9,6 +9,63 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 > "Think Big "
 
+Let's say we want to solve the following problem:
+
+>> Given an array of size $n$, sort the elements in the array.
+
+We quickly come up with a solution, but we don't know how efficient it is. We take a measure that when $n$ is $10^4$ our program takes $1$ ms to run. Given this information try to answer the following questions:
+
+- How long will my program take to run if $n = 10 ^ 5$?
+- How efficient it is to measure the performance of our code manually?
+- How can we compare our solution with other solutions?
+- How can we measure the performance of our code?
+
+<div class="topic" id="contest">Sampling an Extrapolation</div>
+
+A first approach for measuring the performance of our solution is to experimentally take time measurements for different input sizes and trying to analyze the trend that the time follows. An easy way of doing this is by plotting the input size against time to get a function we can then extrapolate. Using this method we can then experimentally compare the different algorithms we want to test, however, to do this we would have to implements all algorithms, as otherwise, it would be impossible to take times.
+
+As you can probably imagine, this is not the most efficient process, as it is very time consuming to do this kind of testing, specially in the scenario of a time based competition as it is competitive programming. This inevitably leads to the question: is there a better way to compare our solutions?
+
+<div class="topic" id="contest">Asymptotic Analysis</div>
+
+A method for defining the mathematical boundaries of the run-time performance or space usage of programs as the input size increases. Useful for estimating the time and space complexity in function of the input size.
+
+Using asymptotic analysis we can easily estimate:
+- Lower Bound - $\Omega(f(n))$ Omega notation
+- Upper Bound - $O(f(n))$ Big oh notation
+- Tight Bound - $\Theta(f(n))$ Theta notation
+
+In this course (and usually in competitive programming) we will only explore big oh analysis, as we usually only care about the worst possible running time of our algorithm. It is better to overestimate complexity and have a extremely fast solution than to underestimate it and have a sometimes slow one.
+
+<div class="topic" id="contest">Big Oh Notation</div>
+
+Big oh notation is the formal way to express the upper bound of the function that represents an algorithms running time. In practice, we will ignore all coefficients and will only care about the functions term of highest order. For example:
+
+- $100n^2 + 1000000n + 505 = O(n^2)$
+- $n^5 + 10^{100}n^4 = O(n^5)$
+- $nlgn + n  = O(nlgn)$
+
+Usually, when solving a problem finding the big oh of a function is a simple as simplifying it to its highest order term. However, a more formal definition of big oh exists:
+
+$ f(n) = O(g(n)) \rightarrow f(n) \leq kg(n)$ for $n > n\_0$ and $k > 0$
+
+This definition says that a function $f(n)$ is considered to have a big oh of $g(n)$ if there exists a value of $k$ such that $kg(n)$ will be greater than $f(n)$ from some value $n_0$ of $n$ onwards. From this definition it is important to note some things:
+
+1. Many functions $g(n)$ can satisfy the condition $f(n) = O(g(n))$
+2. $O(g(n))$ can be seen as the set of all functions that are an upper-bound to function $f(n)$
+3. As $O(g(n))$ represents a set, the equal operator signifies that the function $f(n)$ belongs to set $O(g(n))$
+
+One of the best things about estimating performance using asymptotic analysis is that it is not necessary to implement a solution in order to check if it would work or not. This way, if we have an idea for solving a problem, we can first check if our idea is fast and within the time restrictions, and then implement it, saving us the time of implementing a wrong solution just to realize that it exceeds the time limit when sent.
+
+<div class="topic" id="contest">Space and Time Complexity</div>
+
+When describing the performance of an algorithm, the word complexity is commonly used. Complexity can be considered as the amount of resources my algorithm will consume, and it comes in two ways:
+
+- Time complexity: How long will my program take to run for a given input.
+- Time complexity: How much space will my program consume for a given input.
+
+In many cases there exists a trade-off between space-usage and run-time performance, for this reason it is important to always check the time and space complexity of a solutions before implementing it, to ensure our solutions stays within the allowed bounds.
+
 <div class="topic" id="contest">Contest</div>
 
 You can find the contest [here](https://vjudge.net/contest/350901).

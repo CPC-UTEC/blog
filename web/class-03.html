@@ -477,10 +477,10 @@ Numeric data types and its operations
 <ul>
 <li>addition: x + y</li>
 <li>subtraction: x - y</li>
-<li>multiplication: x * y (what happens if <span class="math inline">\(x = y = 10^9\)</span> and <code>x</code> and <code>y</code> are <code>int</code>)</li>
+<li>multiplication: x * y (what happen if <span class="math inline">\(x = y = 10^9\)</span> and <code>x</code> and <code>y</code> are <code>int</code> ?)</li>
 <li>division: x / y (take care if <code>x</code>, <code>y</code> are <code>int</code> and you want the result in <code>float</code>)</li>
 <li>exponenciation: pow(x, y) (the output is in <code>double</code>)</li>
-<li>module: a % b (what happens if <code>b</code> is zero? why?)</li>
+<li>module: a % b (what happen if <code>b</code> is zero? why?)</li>
 </ul>
 </div>
 <div id="order-or-precedence" class="section level3">
@@ -514,7 +514,7 @@ cout &lt;&lt; s &lt;&lt; &#39;\n&#39;;
 for (char elem: s) {
   cout &lt;&lt; elem;
 }
-cout &lt;&lt; &#39;\n&#39;; // what happens without this line ?
+cout &lt;&lt; &#39;\n&#39;; // what happen without this line ?
 s += &#39;a&#39;; // you can add append a letter or string
 cout &lt;&lt; s.substr(2, 2) &lt;&lt; &#39;\n&#39;; // what does this function do ?
 // The comparisson is like this (take care of not using just one &#39;=&#39; )
@@ -564,8 +564,8 @@ arr.clear();</code></pre>
 </div>
 <p>A <a href="http://www.cplusplus.com/reference/deque/deque/">deque</a> gives us all the methods of a vector and two more:</p>
 <ul>
-<li><p>push_front: Insert a element in the begining O(1)</p></li>
-<li><p>pop_front: Erase the first element O(1)</p></li>
+<li><p>push_front: insert a element in the begining O(1)</p></li>
+<li><p>pop_front: erase the first element O(1)</p></li>
 </ul>
 <p>Read what these functions do:</p>
 <ul>
@@ -651,7 +651,7 @@ my_map.erase(my_map.find(&quot;mundo&quot;));
 <div class="topic">
 Struct
 </div>
-<p>With a <code>struct</code> we can create our own data type which can encapsulate other data type.</p>
+<p>With a <code>struct</code> we can create our own data type which can encapsulate other data types.</p>
 <p><a href="./code/class-03/struct.cpp">Example</a></p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 

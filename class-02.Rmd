@@ -169,10 +169,8 @@ In many cases there exists a trade-off between space-usage and run-time performa
 
 You may also be interested in reading:
 
-+ [Competitive Programmer's Handbook, chapter 2](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
-+ [Learn Data Structures and Algorithms, section Asymptotic analysis](https://www.codechef.com/certification/data-structures-and-algorithms/prepare)
-
-
+- [Competitive Programmer's Handbook, chapter 2](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+- [Learn Data Structures and Algorithms, section Asymptotic analysis](https://www.codechef.com/certification/data-structures-and-algorithms/prepare)
 
 <div class="topic" id="contest">Contest</div>
 

@@ -57,10 +57,10 @@ and simplicity.
 ### Operaciones aritméticas
 - addition: x + y
 - subtraction: x - y
-- multiplication: x * y (what happens if $x = y = 10^9$ and `x` and `y` are `int`)
+- multiplication: x * y (what happen if $x = y = 10^9$ and `x` and `y` are `int` ?)
 - division: x / y (take care if `x`, `y` are `int` and you want the result in `float`)
 - exponenciation: pow(x, y) (the output is in `double`)
-- module: a % b (what happens if `b` is zero? why?)
+- module: a % b (what happen if `b` is zero? why?)
 
 ### Order or precedence
 
@@ -105,7 +105,7 @@ cout << s << '\n';
 for (char elem: s) {
   cout << elem;
 }
-cout << '\n'; // what happens without this line ?
+cout << '\n'; // what happen without this line ?
 s += 'a'; // you can add append a letter or string
 cout << s.substr(2, 2) << '\n'; // what does this function do ?
 // The comparisson is like this (take care of not using just one '=' )
@@ -167,9 +167,9 @@ You can find the more common methods of vectors and its complexity in this image
 A [deque](http://www.cplusplus.com/reference/deque/deque/) gives us all the
 methods of a vector and two more:
 
-- push_front: Insert a element in the begining O(1)
+- push_front: insert a element in the begining O(1)
 
-- pop_front: Erase the first element O(1)
+- pop_front: erase the first element O(1)
 
 Read what these functions do:
 
@@ -269,7 +269,7 @@ The complexity of its operations is the same of a set.
 <div class="topic">Struct</div>
 
 With a `struct` we can create our own data type which can encapsulate other
-data type.
+data types.
 
 [Example](./code/class-03/struct.cpp)
 

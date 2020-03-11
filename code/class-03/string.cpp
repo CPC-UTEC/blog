@@ -18,7 +18,7 @@ int main () {
   for (char elem: s) {
     cout << elem;
   }
-  cout << '\n'; // what happens without this line ?
+  cout << '\n'; // what happen without this line ?
   s += 'a'; // you can add append a letter or string
   cout << s.substr(2, 2) << '\n'; // what does this function do ?
   // The comparisson is like this (take care of not using just one '=' )

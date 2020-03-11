@@ -276,11 +276,102 @@ And that's all. It solves the problem!
 
 Write recursive functions to compute:
 
-* Sum of digits of a number $n$
-* $fib(n)$
-* $C(n, k)$
-* Binary representation of $n$
-* Determinant of a matrix (**Challenge**)
+  * $fib(n)$
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemfib" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemfib" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ll fib (int n) {
+  if (n <= 1) return n;
+  return fib(n - 1) + fib(n - 2);
+}
+int main () {
+  int n = 40;
+  cout << fib(n) << '\n';
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+  * Sum of digits of a number $n$
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemsum-digits" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemsum-digits" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+using namespace std;
+int sumOfDigits (int n) {
+  if (n == 0) return 0;
+  return (n % 10) + sumOfDigits(n / 10);
+}
+int main () {
+  int n = 999;
+  cout << sumOfDigits(n) << endl;
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+  * $C(n, k)$
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemcombinatorics" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemcombinatorics" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ll comb (int n, int m) {
+  if (m == 0) return 1;
+  if (n == m) return 1;
+  return comb(n - 1, m - 1) + comb(n - 1, m);
+}
+int main () {
+  cout << comb(4, 2) << '\n';
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+  * Determinant of a matrix
+
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemdeterminant" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemdeterminant" class="collapse">
+
+```c++
+// This is your challenge
+```
+
+  </div>
+  <!-- ends code -->
 
 <div class="topic">Modular arithmetic</div>
 

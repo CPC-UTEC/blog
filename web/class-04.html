@@ -441,13 +441,13 @@ Problem solving paradigms
 <p><img src="images/class-04/programming-paradigms.png" /></p>
 </div>
 <p>Complete search is a general method that can be used to solve almost any algorithm problem. It basically try to generate all possible solutions of a problem in order to do something with them (count number of elements, find a particular solution with one property, etc).</p>
-<p>You can find complete search solution in two ways: iterative and recursive. When it is iterative it may be a single loop, two loops, three or more loops, using two pointers, etc. When it is recursive it can be a simple recursive function, it can be a recursive function that search different states with trial and error (backtracking), it may have some kind of prunning in order to not visit every state, etc.</p>
+<p>You can find complete search solutions in two ways: iterative and recursive. When it is iterative it may be a single loop, two loops, three or more loops, using two pointers, etc. When it is recursive it can be a simple recursive function, it can be a recursive function that search different states with trial and error (backtracking), it may have some kind of prunning in order to not visit every state, etc.</p>
 <p>When solving complete search solutions you will follow some combination of these structures to solve problems.</p>
 <p>When you find complete search in a iterative way it is called a <code>brute force</code> solution. In the next 4 classes we will study more about this kind of solutions. Moreover, mastering this paradigm will help you to understand easily the other ones.</p>
 <div class="topic">
 Pythagorean triples
 </div>
-<p>Lets start this paradigm solving a simple problem.</p>
+<p>Let’s start this paradigm solving a simple problem.</p>
 <p>A pythagorean triple is a triplet (x,y,z) that satisfies the equation <span class="math inline">\(x^2 + y^2 = z^2\)</span>.</p>
 <p><strong>Problem:</strong> You will receive an integer <span class="math inline">\(n\)</span>. Find the number of pythagorean triples such that <span class="math inline">\(1 \leq x, y, z \leq n\)</span>.</p>
 <p><span class="math display">\[1 \leq n \leq 10^3\]</span></p>
@@ -498,7 +498,7 @@ Pythagorean triples
 <p>Moreover, we have: <span class="math display">\[a \cdot a \leq a \cdot a + b \cdot b \leq z \leq n\]</span></p>
 <p>Then, <code>a</code> can just take values in <span class="math inline">\([0, \sqrt{n}]\)</span>. So we can generate primites <span class="math inline">\((x, y, z) \land (y, x, z)\)</span> and count how many of their multiples hold the condition of the problem in <span class="math inline">\(O((\sqrt{n}) \cdot \sqrt{n} \cdot \log n) = O(n \log n)\)</span>.</p>
 <p><strong>Note:</strong></p>
-<p><span class="math inline">\(gcd(a, b) =\)</span> greatest common divisor of <span class="math inline">\(a\)</span> and <span class="math inline">\(b = \max(d: d | a \land d | b)\)</span></p>
+<p><span class="math inline">\(gcd(a, b) =\)</span> greatest common divisor of <span class="math inline">\(a\)</span> and <span class="math inline">\(b = \max(d: d | a \land d | b \land d &gt; 0)\)</span></p>
 <pre class="cpp"><code>int solution3 (int n) {
   int cnt = 0;
   for (int a = 1; a * a &lt; n; a++) {
@@ -586,7 +586,7 @@ Finding the number of divisors of a number
 <div class="topic" style="font-size: 1.6rem !important; font-weight: bold !important;">
 <span class="math inline">\(\sigma_{0}(n) = O(\sqrt[3]{n})\)</span>
 </div>
-<p>There are some problems that looks like a brute force solution would give a Time Limit veredict. One common example of this kind of problem are the ones where you need to do something with the divisors of a number. You will face one problem of this kind in one of your daily problems.</p>
+<p>There are some problems that looks like a brute force solution would give a Time Limit veredict. One common example of this kind of problem are the ones where you need to do something with the divisors of a number. You will face one problem of this kind in one of your contests.</p>
 <p>Recommended readings:</p>
 <ul>
 <li><p>Competitive Programming 3, section 3.2 y 5.5.1</p></li>

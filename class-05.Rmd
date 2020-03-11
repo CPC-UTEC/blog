@@ -179,7 +179,7 @@ int main () {
 </div>
 <!-- ends problem example02 -->
 
-Notice, for example, how    $two \cdot three \geq L$ may produce overflow but $two \geq \frac{L}{three}$ will not.
+Moreover, notice how    $two \cdot three \geq L$ may produce overflow but $two \geq \frac{L}{three}$ will not.
 
 
 You can practice with these problems:

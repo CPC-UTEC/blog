@@ -23,7 +23,7 @@ algorithm problem. It basically try to generate all possible solutions of
 a problem in order to do something with them (count number of elements, find
 a particular solution with one property, etc).
 
-You can find complete search solution in two ways: iterative and recursive.
+You can find complete search solutions in two ways: iterative and recursive.
 When it is iterative it may be a single loop, two loops, three or more loops,
 using two pointers, etc. When it is recursive it can be a simple recursive
 function, it can be a recursive function that search different states with
@@ -40,7 +40,7 @@ ones.
 
 <div class="topic">Pythagorean triples</div>
 
-Lets start this paradigm solving a simple problem.
+Let's start this paradigm solving a simple problem.
 
 A pythagorean triple is a triplet (x,y,z) that satisfies the equation $x^2 + y^2 = z^2$.
 
@@ -118,7 +118,7 @@ their multiples hold the condition of the problem in $O((\sqrt{n}) \cdot \sqrt{n
 
 **Note:**
 
-$gcd(a, b) =$ greatest common divisor of $a$ and $b = \max(d: d | a \land d | b)$ 
+$gcd(a, b) =$ greatest common divisor of $a$ and $b = \max(d: d | a \land d | b \land d > 0)$ 
 
 ```c++
 int solution3 (int n) {
@@ -256,7 +256,7 @@ So, the complexity of our program is $O (n \log n)$.
 There are some problems that looks like a brute force solution would give a Time
 Limit veredict. One common example of this kind of problem are the ones where
 you need to do something with the divisors of a number. You will face one
-problem of this kind in one of your daily problems.
+problem of this kind in one of your contests.
 
 Recommended readings:
 

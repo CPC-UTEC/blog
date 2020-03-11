@@ -606,12 +606,93 @@ Recursion
 <h3>Exercises</h3>
 <p>Write recursive functions to compute:</p>
 <ul>
-<li>Sum of digits of a number <span class="math inline">\(n\)</span></li>
 <li><span class="math inline">\(fib(n)\)</span></li>
-<li><span class="math inline">\(C(n, k)\)</span></li>
-<li>Binary representation of <span class="math inline">\(n\)</span></li>
-<li>Determinant of a matrix (<strong>Challenge</strong>)</li>
 </ul>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemfib" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemfib" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+ll fib (int n) {
+  if (n &lt;= 1) return n;
+  return fib(n - 1) + fib(n - 2);
+}
+int main () {
+  int n = 40;
+  cout &lt;&lt; fib(n) &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+<ul>
+<li>Sum of digits of a number <span class="math inline">\(n\)</span></li>
+</ul>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemsum-digits" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemsum-digits" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int sumOfDigits (int n) {
+  if (n == 0) return 0;
+  return (n % 10) + sumOfDigits(n / 10);
+}
+int main () {
+  int n = 999;
+  cout &lt;&lt; sumOfDigits(n) &lt;&lt; endl;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+<ul>
+<li><span class="math inline">\(C(n, k)\)</span></li>
+</ul>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemcombinatorics" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemcombinatorics" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+ll comb (int n, int m) {
+  if (m == 0) return 1;
+  if (n == m) return 1;
+  return comb(n - 1, m - 1) + comb(n - 1, m);
+}
+int main () {
+  cout &lt;&lt; comb(4, 2) &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+<ul>
+<li>Determinant of a matrix</li>
+</ul>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemdeterminant" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemdeterminant" class="collapse">
+<pre class="cpp"><code>// This is your challenge</code></pre>
+</div>
+<p><!-- ends code --></p>
 <div class="topic">
 Modular arithmetic
 </div>

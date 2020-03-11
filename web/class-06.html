@@ -14,6 +14,7 @@
 <title>Class 06: Complete Search III</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -697,9 +698,9 @@ typedef long long ll;
 
 const ll m = 1e9 + 7;
 
-ll add (ll a, ll b) { return ((a) % m + (b % m)) % m; }
-ll sub (ll a, ll b) { return (((a) % m - (b % m)) + m) % m; }
-ll mul (ll a, ll b) { return ((a) % m * (b % m)) % m; }
+ll add (ll a, ll b) { return ((a % m) + (b % m)) % m; }
+ll sub (ll a, ll b) { return (((a % m) - (b % m)) + m) % m; }
+ll mul (ll a, ll b) { return ((a % m) * (b % m)) % m; }
 
 ll binpow (ll a, ll b) {
   if (b == 0) return 1;
@@ -746,8 +747,8 @@ A: Brutality
 </div>
 <!-- begin body -->
 <div id="collapseProblemA" class="collapse">
-<div class="card-body solution-body">
-<h3 id="brutality"><a href="https://codeforces.com/problemset/problem/1107/C" target="_blank">Brutality</a></h3>
+<div id="brutality" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1107/C" target="_blank">Brutality</a></h3>
 <p>The optimal strategy is to take equal consecutive elements and take the <span class="math inline">\(k\)</span> highest values. We can implement this idea with two pointers and sorting in <span class="math inline">\(O(n \log n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
@@ -808,8 +809,8 @@ B: Fox and Snake
 </div>
 <!-- begin body -->
 <div id="collapseProblemB" class="collapse">
-<div class="card-body solution-body">
-<h3 id="fox-and-snake"><a href="https://codeforces.com/problemset/problem/510/A" target="_blank">Fox and Snake</a></h3>
+<div id="fox-and-snake" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/510/A" target="_blank">Fox and Snake</a></h3>
 <p>There is a pattern every four rows.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
@@ -866,8 +867,8 @@ C: Counting Chaos
 </div>
 <!-- begin body -->
 <div id="collapseProblemC" class="collapse">
-<div class="card-body solution-body">
-<h3 id="counting-chaos"><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2284" target="_blank">Counting Chaos</a></h3>
+<div id="counting-chaos" class="section level3 card-body solution-body">
+<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2284" target="_blank">Counting Chaos</a></h3>
 <p>Just try all options.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
@@ -938,8 +939,8 @@ D: Mirror, Mirror
 </div>
 <!-- begin body -->
 <div id="collapseProblemD" class="collapse">
-<div class="card-body solution-body">
-<h3 id="mirror-mirror"><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2284" target="_blank">Mirror, Mirror</a></h3>
+<div id="mirror-mirror" class="section level3 card-body solution-body">
+<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2284" target="_blank">Mirror, Mirror</a></h3>
 <p>Just implement what the problem says. Be careful with the implementation.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
@@ -1048,8 +1049,8 @@ E: Fractal
 </div>
 <!-- begin body -->
 <div id="collapseProblemE" class="collapse">
-<div class="card-body solution-body">
-<h3 id="fractal"><a href="http://poj.org/problem?id=2083" target="_blank">Fractal</a></h3>
+<div id="fractal" class="section level3 card-body solution-body">
+<h3><a href="http://poj.org/problem?id=2083" target="_blank">Fractal</a></h3>
 <p>You can create a matrix filled with spaces, select a position and start doing the recursion to store the fractal in the matrix. The choice or the initial position and how to do the transition can be obtained by getting a pattern with the first values of <span class="math inline">\(n\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemE" aria-expanded="false" aria-controls="collapseTwo">
@@ -1144,13 +1145,10 @@ $(document).ready(function () {
     $('#sidebar, #content').removeClass('active');
   });
 
-  $("[data-toggle='tooltip']").tooltip();
-
   $('#expand-icon-right').on('click', function () {
     document.getElementById('sidebar').style.width = "90px";
     document.getElementById('expand-icon-right').style.display = "none";
     document.getElementById('expand-icon-left').style.display = "block";
-    document.getElementById('content').style.background = "rgba(0,0,0,0.8)";
     $('#expand-icon-left').addClass('moved');
     $('#expand-icon-right').addClass('moved');
   });
@@ -1159,21 +1157,12 @@ $(document).ready(function () {
     document.getElementById('sidebar').style.width = "0px";
     document.getElementById('expand-icon-right').style.display = "block";
     document.getElementById('expand-icon-left').style.display = "none";
-    document.getElementById('content').style.background = "#fafafa";
     $('#expand-icon-left').removeClass('moved');
     $('#expand-icon-right').removeClass('moved');
   });
 
 });
 
-/*
-$(window).scroll(function() { 
-  $('#expand-icon-left').css({top: '50vh'});
-  $('#expand-icon-left').css({bottom: '50vh'});
-  $('#expand-icon-right').css({top: '50vh'});
-  $('#expand-icon-right').css({bottom: '50vh'});
-});
-*/
 </script>
 
 <script type="text/javascript" src="lib/lightbox-plus-jquery.min.js"></script>

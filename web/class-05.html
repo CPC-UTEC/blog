@@ -14,6 +14,7 @@
 <title>Class 05: Complete Search II</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -821,8 +822,8 @@ A: Kaprekar Numbers
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-A" class="collapse">
-<div class="card-body solution-body">
-<h3 id="kaprekar-numbers"><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=915" target="_blank">Kaprekar Numbers</a></h3>
+<div id="kaprekar-numbers" class="section level3 card-body solution-body">
+<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=915" target="_blank">Kaprekar Numbers</a></h3>
 <p>You can preprocess the Kaprekar numbers in <span class="math inline">\([2, 40000]\)</span> (there are only 19 of them). After that, you can answer each query quickly.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-A" aria-expanded="false" aria-controls="collapseTwo">
@@ -912,8 +913,8 @@ B: Schedule
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-B" class="collapse">
-<div class="card-body solution-body">
-<h3 id="schedule"><a href="https://codeforces.com/problemset/problem/31/C" target="_blank">Schedule</a></h3>
+<div id="schedule" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/31/C" target="_blank">Schedule</a></h3>
 <p>Just try every option.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-B" aria-expanded="false" aria-controls="collapseTwo">
@@ -983,8 +984,8 @@ C: Ranges
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-C" class="collapse">
-<div class="card-body solution-body">
-<h3 id="ranges"><a href="https://www.spoj.com/problems/RRANGE/en/" target="_blank">Ranges</a></h3>
+<div id="ranges" class="section level3 card-body solution-body">
+<h3><a href="https://www.spoj.com/problems/RRANGE/en/" target="_blank">Ranges</a></h3>
 <p>First, if you have this sum:</p>
 <p><span class="math display">\[l + (l + 1) + (l + 2) + \dots + (r - 1) + (r)\]</span></p>
 <p>You can compute it using:</p>
@@ -1058,8 +1059,8 @@ D: Classroom Watch
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-D" class="collapse">
-<div class="card-body solution-body">
-<h3 id="classroom-watch"><a href="https://codeforces.com/problemset/problem/876/C" target="_blank">Classroom Watch</a></h3>
+<div id="classroom-watch" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/876/C" target="_blank">Classroom Watch</a></h3>
 <p>Let <span class="math inline">\(f(x) =\)</span> sum of digits of <span class="math inline">\(x\)</span>.</p>
 <p>For the constraints of the problem we have that <span class="math inline">\(0 \leq f(x) \leq 9 \cdot 9\)</span>. Then, we have:</p>
 <p><span class="math display">\[\max(0, n - 9 \cdot 9) \leq x \leq n\]</span></p>
@@ -1132,13 +1133,10 @@ $(document).ready(function () {
     $('#sidebar, #content').removeClass('active');
   });
 
-  $("[data-toggle='tooltip']").tooltip();
-
   $('#expand-icon-right').on('click', function () {
     document.getElementById('sidebar').style.width = "90px";
     document.getElementById('expand-icon-right').style.display = "none";
     document.getElementById('expand-icon-left').style.display = "block";
-    document.getElementById('content').style.background = "rgba(0,0,0,0.8)";
     $('#expand-icon-left').addClass('moved');
     $('#expand-icon-right').addClass('moved');
   });
@@ -1147,21 +1145,12 @@ $(document).ready(function () {
     document.getElementById('sidebar').style.width = "0px";
     document.getElementById('expand-icon-right').style.display = "block";
     document.getElementById('expand-icon-left').style.display = "none";
-    document.getElementById('content').style.background = "#fafafa";
     $('#expand-icon-left').removeClass('moved');
     $('#expand-icon-right').removeClass('moved');
   });
 
 });
 
-/*
-$(window).scroll(function() { 
-  $('#expand-icon-left').css({top: '50vh'});
-  $('#expand-icon-left').css({bottom: '50vh'});
-  $('#expand-icon-right').css({top: '50vh'});
-  $('#expand-icon-right').css({bottom: '50vh'});
-});
-*/
 </script>
 
 <script type="text/javascript" src="lib/lightbox-plus-jquery.min.js"></script>

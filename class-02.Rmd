@@ -31,6 +31,7 @@ As you can probably imagine, this is not the most efficient process, as it is ve
 A method for defining the mathematical boundaries of the run-time performance or space usage of programs as the input size increases. Useful for estimating the time and space complexity in function of the input size.
 
 Using asymptotic analysis we can easily estimate:
+
 - Lower Bound - $\Omega(f(n))$ Omega notation
 - Upper Bound - $O(f(n))$ Big oh notation
 - Tight Bound - $\Theta(f(n))$ Theta notation
@@ -45,17 +46,17 @@ Big oh notation is the formal way to express the upper bound of the function tha
 - $n^5 + 10^{100}n^4 = O(n^5)$
 - $nlgn + n  = O(nlgn)$
 
-Usually, when solving a problem finding the big oh of a function is a simple as simplifying it to its highest order term. However, a more formal definition of big oh exists:
+Usually, when solving a problem, finding the big oh of a function is as simple as simplifying it to its highest order term. However, a more formal definition of big oh exists:
 
-$ f(n) = O(g(n)) \rightarrow f(n) \leq kg(n)$ for $n > n\_0$ and $k > 0$
+$$f(n) = O(g(n)) \rightarrow f(n) \leq k \cdot g(n) \quad \forall n > n_0 \, \exists k > 0$$
 
-This definition says that a function $f(n)$ is considered to have a big oh of $g(n)$ if there exists a value of $k$ such that $kg(n)$ will be greater than $f(n)$ from some value $n_0$ of $n$ onwards. From this definition it is important to note some things:
+This definition says that a function $f(n)$ is considered to have a big oh of $g(n)$ if there exists a value of $k$ such that $k \cdot g(n)$ will be greater than $f(n)$ from some value $n_0$ of $n$ onwards. From this definition it is important to note some things:
 
 1. Many functions $g(n)$ can satisfy the condition $f(n) = O(g(n))$
 2. $O(g(n))$ can be seen as the set of all functions that are an upper-bound to function $f(n)$
-3. As $O(g(n))$ represents a set, the equal operator signifies that the function $f(n)$ belongs to set $O(g(n))$
+3. As $O(g(n))$ represents a set, the equal operator means that the function $f(n)$ belongs to set $O(g(n))$
 
-One of the best things about estimating performance using asymptotic analysis is that it is not necessary to implement a solution in order to check if it would work or not. This way, if we have an idea for solving a problem, we can first check if our idea is fast and within the time restrictions, and then implement it, saving us the time of implementing a wrong solution just to realize that it exceeds the time limit when sent.
+One of the best things about estimating performance using asymptotic analysis is that it is not necessary to implement a solution in order to check if it would work or not. This way, if we have an idea for solving a problem, we can first check if our idea is fast and within the time restrictions, and then implement it, saving us the time of implementing a wrong solution just to realize that it exceeds the time limit when is sent.
 
 <div class="topic" id="contest">Space and Time Complexity</div>
 

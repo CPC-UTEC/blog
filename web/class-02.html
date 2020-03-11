@@ -14,6 +14,7 @@
 <title>Class 02: Asymptotic Analysis</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -432,6 +433,62 @@ $(".main-container")
 <blockquote>
 <p>“Think big”</p>
 </blockquote>
+<p>Let’s say we want to solve the following problem:</p>
+<blockquote>
+<blockquote>
+<p>Given an array of size <span class="math inline">\(n\)</span>, sort the elements in the array.</p>
+</blockquote>
+</blockquote>
+<p>We quickly come up with a solution, but we don’t know how efficient it is. We take a measure that when <span class="math inline">\(n\)</span> is <span class="math inline">\(10^4\)</span> our program takes <span class="math inline">\(1\)</span> ms to run. Given this information try to answer the following questions:</p>
+<ul>
+<li>How long will my program take to run if <span class="math inline">\(n = 10 ^ 5\)</span>?</li>
+<li>How efficient it is to measure the performance of our code manually?</li>
+<li>How can we compare our solution with other solutions?</li>
+<li>How can we measure the performance of our code?</li>
+</ul>
+<div id="contest" class="topic">
+Sampling an Extrapolation
+</div>
+<p>A first approach for measuring the performance of our solution is to experimentally take time measurements for different input sizes and trying to analyze the trend that the time follows. An easy way of doing this is by plotting the input size against time to get a function we can then extrapolate. Using this method we can then experimentally compare the different algorithms we want to test, however, to do this we would have to implements all algorithms, as otherwise, it would be impossible to take times.</p>
+<p>As you can probably imagine, this is not the most efficient process, as it is very time consuming to do this kind of testing, specially in the scenario of a time based competition as it is competitive programming. This inevitably leads to the question: is there a better way to compare our solutions?</p>
+<div id="contest" class="topic">
+Asymptotic Analysis
+</div>
+<p>A method for defining the mathematical boundaries of the run-time performance or space usage of programs as the input size increases. Useful for estimating the time and space complexity in function of the input size.</p>
+<p>Using asymptotic analysis we can easily estimate:</p>
+<ul>
+<li>Lower Bound - <span class="math inline">\(\Omega(f(n))\)</span> Omega notation</li>
+<li>Upper Bound - <span class="math inline">\(O(f(n))\)</span> Big oh notation</li>
+<li>Tight Bound - <span class="math inline">\(\Theta(f(n))\)</span> Theta notation</li>
+</ul>
+<p>In this course (and usually in competitive programming) we will only explore big oh analysis, as we usually only care about the worst possible running time of our algorithm. It is better to overestimate complexity and have a extremely fast solution than to underestimate it and have a sometimes slow one.</p>
+<div id="contest" class="topic">
+Big Oh Notation
+</div>
+<p>Big oh notation is the formal way to express the upper bound of the function that represents an algorithms running time. In practice, we will ignore all coefficients and will only care about the functions term of highest order. For example:</p>
+<ul>
+<li><span class="math inline">\(100n^2 + 1000000n + 505 = O(n^2)\)</span></li>
+<li><span class="math inline">\(n^5 + 10^{100}n^4 = O(n^5)\)</span></li>
+<li><span class="math inline">\(nlgn + n = O(nlgn)\)</span></li>
+</ul>
+<p>Usually, when solving a problem, finding the big oh of a function is as simple as simplifying it to its highest order term. However, a more formal definition of big oh exists:</p>
+<p><span class="math display">\[f(n) = O(g(n)) \rightarrow f(n) \leq k \cdot g(n) \quad \forall n &gt; n_0 \, \exists k &gt; 0\]</span></p>
+<p>This definition says that a function <span class="math inline">\(f(n)\)</span> is considered to have a big oh of <span class="math inline">\(g(n)\)</span> if there exists a value of <span class="math inline">\(k\)</span> such that <span class="math inline">\(k \cdot g(n)\)</span> will be greater than <span class="math inline">\(f(n)\)</span> from some value <span class="math inline">\(n_0\)</span> of <span class="math inline">\(n\)</span> onwards. From this definition it is important to note some things:</p>
+<ol style="list-style-type: decimal">
+<li>Many functions <span class="math inline">\(g(n)\)</span> can satisfy the condition <span class="math inline">\(f(n) = O(g(n))\)</span></li>
+<li><span class="math inline">\(O(g(n))\)</span> can be seen as the set of all functions that are an upper-bound to function <span class="math inline">\(f(n)\)</span></li>
+<li>As <span class="math inline">\(O(g(n))\)</span> represents a set, the equal operator means that the function <span class="math inline">\(f(n)\)</span> belongs to set <span class="math inline">\(O(g(n))\)</span></li>
+</ol>
+<p>One of the best things about estimating performance using asymptotic analysis is that it is not necessary to implement a solution in order to check if it would work or not. This way, if we have an idea for solving a problem, we can first check if our idea is fast and within the time restrictions, and then implement it, saving us the time of implementing a wrong solution just to realize that it exceeds the time limit when is sent.</p>
+<div id="contest" class="topic">
+Space and Time Complexity
+</div>
+<p>When describing the performance of an algorithm, the word complexity is commonly used. Complexity can be considered as the amount of resources my algorithm will consume, and it comes in two ways:</p>
+<ul>
+<li>Time complexity: How long will my program take to run for a given input.</li>
+<li>Time complexity: How much space will my program consume for a given input.</li>
+</ul>
+<p>In many cases there exists a trade-off between space-usage and run-time performance, for this reason it is important to always check the time and space complexity of a solutions before implementing it, to ensure our solutions stays within the allowed bounds.</p>
 <div id="contest" class="topic">
 Contest
 </div>
@@ -447,8 +504,8 @@ A: Bit++
 </div>
 <!-- begin body -->
 <div id="collapseProblemA" class="collapse">
-<div class="card-body solution-body">
-<h3 id="problem-a-bit"><a href="https://codeforces.com/problemset/problem/282/A" target="_blank">Problem A: Bit++</a></h3>
+<div id="problem-a-bit" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/282/A" target="_blank">Problem A: Bit++</a></h3>
 <p>The problem is bassically to see if the input is either “X++”, “++X”, “—X” or “X—”.</p>
 <p>The following code use this idea. But, we only look in the middle character because that is enough to verificate.</p>
 <!-- begin code -->
@@ -494,8 +551,8 @@ B: Beautiful Matrix
 </div>
 <!-- begin body -->
 <div id="collapseProblemB" class="collapse">
-<div class="card-body solution-body">
-<h3 id="problem-b-beautiful-matrix"><a href="https://codeforces.com/problemset/problem/263/A" target="_blank">Problem B: Beautiful Matrix</a></h3>
+<div id="problem-b-beautiful-matrix" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/263/A" target="_blank">Problem B: Beautiful Matrix</a></h3>
 <p>Here, we look for what is the difference between row position and column position of the 1 and the matrix’s center (the matrix’s center is in position 3 in axis x and y).</p>
 <p>So, we just need to subtract in absolute value for each axis and adding them.</p>
 <!-- begin code -->
@@ -540,8 +597,8 @@ C: Tram
 </div>
 <!-- begin body -->
 <div id="collapseProblemC" class="collapse">
-<div class="card-body solution-body">
-<h3 id="problem-c-tram"><a href="https://codeforces.com/problemset/problem/116/A" target="_blank">Problem C: Tram</a></h3>
+<div id="problem-c-tram" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/116/A" target="_blank">Problem C: Tram</a></h3>
 <p>In this problem, we need to keep the maximum value of passengers in each stop. With the maximum value we can ensure the minimum capacity of the tram line.</p>
 <p>Also, the max function is a function from Algorithm package. Do not forget, if you include bits/stdc++.h, this includes a lot of packages inside. Some of them is Algorithm, Vector, Set, Map, etc.</p>
 <!-- begin code -->
@@ -585,8 +642,8 @@ D: Elephant
 </div>
 <!-- begin body -->
 <div id="collapseProblemD" class="collapse">
-<div class="card-body solution-body">
-<h3 id="problem-d-elephant"><a href="https://codeforces.com/problemset/problem/617/A" target="_blank">Problem D: Elephant</a></h3>
+<div id="problem-d-elephant" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/617/A" target="_blank">Problem D: Elephant</a></h3>
 <p>For this problem, the elephant can move in steps with width of 1,2,3,4 or 5. So, it is convenient to move with the maximum allowed step if we want to minimize the number of steps to the elephant meet with its friend.</p>
 <p>Here the maximum allowed step if the step less or equal to current distance between the elephant and its friend.</p>
 <p>Also, we work with modular operation to calculate faster the steps.</p>
@@ -634,9 +691,9 @@ E: Even Odds
 </div>
 <!-- begin body -->
 <div id="collapseProblemE" class="collapse">
-<div class="card-body solution-body">
-<h3 id="problem-e-even-odds"><a href="https://codeforces.com/problemset/problem/318/A" target="_blank">Problem E: Even Odds</a></h3>
-<p>Firstly, the problem tells us that the sequence is all odd integers from 1 to n and then all even integers from 1 to n.</p>
+<div id="problem-e-even-odds" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/318/A" target="_blank">Problem E: Even Odds</a></h3>
+<p>Firstly, the problem tells us that the sequence is all odd integers from 1 to n and then all even integers from 1 to n. </p>
 <p>Take care if n is even or odd. In case n is odd, we need to add one element in the odd integers block.</p>
 <p>So, we need to calculate how many odd integers we have. Then we just check if the requested position is before or after of odd integers block.</p>
 <!-- begin code -->
@@ -707,13 +764,10 @@ $(document).ready(function () {
     $('#sidebar, #content').removeClass('active');
   });
 
-  $("[data-toggle='tooltip']").tooltip();
-
   $('#expand-icon-right').on('click', function () {
     document.getElementById('sidebar').style.width = "90px";
     document.getElementById('expand-icon-right').style.display = "none";
     document.getElementById('expand-icon-left').style.display = "block";
-    document.getElementById('content').style.background = "rgba(0,0,0,0.8)";
     $('#expand-icon-left').addClass('moved');
     $('#expand-icon-right').addClass('moved');
   });
@@ -722,21 +776,12 @@ $(document).ready(function () {
     document.getElementById('sidebar').style.width = "0px";
     document.getElementById('expand-icon-right').style.display = "block";
     document.getElementById('expand-icon-left').style.display = "none";
-    document.getElementById('content').style.background = "#fafafa";
     $('#expand-icon-left').removeClass('moved');
     $('#expand-icon-right').removeClass('moved');
   });
 
 });
 
-/*
-$(window).scroll(function() { 
-  $('#expand-icon-left').css({top: '50vh'});
-  $('#expand-icon-left').css({bottom: '50vh'});
-  $('#expand-icon-right').css({top: '50vh'});
-  $('#expand-icon-right').css({bottom: '50vh'});
-});
-*/
 </script>
 
 <script type="text/javascript" src="lib/lightbox-plus-jquery.min.js"></script>

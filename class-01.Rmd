@@ -18,13 +18,10 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 <div class="topic">Topics of the course</div>
 
 1. Asymptotic Analysis
-2. Standard Template Library (STL)
+2. Standard Template Library
 3. Brute Force
 4. Divide and Conquer
-5. Searching in Graphs
-6. Single Source Shortest Path (SSSP)
-7. All Pair Shortest Path (ASPSP)
-8. Minimum Spanning Tree (MST)
+5. Game Theory
 
 <div class="topic">Virtual Judges</div>
 
@@ -102,12 +99,12 @@ The greatest sum
 - Kotlin
 
 3. Always prefer C++ for competitive programming
-- Lower Level $\rightarrow$ More control.
-- It's faster.
-- Makes better use of memory.
-- The **STL Library** is extremaly powerful.
-- Almost all learning resources are oriented to C++.
-- It has a strong community.
+- Lower level $\rightarrow$ More control
+- It's faster
+- Makes better use of memory
+- The STL is extremaly powerful
+- Almost all learning resources in competitive programming are oriented to C++
+- It has a strong community
 
 <div class="topic" id="contest">Contest</div>
 

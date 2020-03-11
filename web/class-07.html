@@ -14,6 +14,7 @@
 <title>Class 07: Complete Search IV</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -439,7 +440,8 @@ Contribution technique
 <p><strong>Problem:</strong> You will receive <span class="math inline">\(n\)</span> points on the plane. Find how many non-degenerate triangles you can build with these points as vertices.</p>
 <p><span class="math display">\[1 \leq n \leq 2000\]</span></p>
 <p>First, we note that we can implement a <span class="math inline">\(O(n^3)\)</span> solution, but we need something better. Then, we remember that if we have three no collinear points, we have a triangule. Moreover, two different points form a line. Using these ideas, we can fix a point and a line that pass throught it. If we fix the point ‘A’ of a triangle, the second vertex ‘B’ can be any other point that pass thought this line. If <span class="math inline">\(x\)</span> points pass on this line, then <span class="math inline">\(n - x\)</span> points are outside, so ‘C’ has <span class="math inline">\(n - x\)</span> options. So, if we fix a point and a line that pass though it we know that this line adds <span class="math inline">\((x - 1) \cdot (n -x)\)</span> to the answer. Then, we can use brute force over it. Nevertheless, we are doing double couting (each point is counted 3 times and in two directions). So, the answer is divided by 6.</p>
-<p>A line is mapped using its direction vector, but we need to work with integers. Check the implementation for more details.</p>
+<p>Moreover, we would like, for example, to work with the vectors <span class="math inline">\(\{ (a, b), (2 \cdot a, 2 \cdot b), (-a, -b), \dots \}\)</span> as if they were an unique vector. For this reason we can use its direction vector, but we need to work with integers. Check the implementation for more details.</p>
+<p>Using these ideas we can implement a <span class="math inline">\(O(n^2 \log n)\)</span> solution.</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
 map&lt;pair&lt;int, int&gt;, int&gt; tri[maxN];
@@ -551,7 +553,7 @@ int main () {
 <div class="topic">
 Binary representation
 </div>
-<p>The computers only manage bits when these are working. So, numbers are represented as bit strings. In this case, we use bit representation of a number for working inside of competitive programming problem.</p>
+<p>The computers only manage bits when these are working. So, numbers are represented as bit strings. In this case, we use bit representation of a number for working in competitive programming problems.</p>
 <p>Remember, bit representation is a number in base 2.</p>
 <p><span class="math inline">\(X = c_02^0+ c_12^1 + c_22^2 ... + c_k2^k\)</span></p>
 <p>In C++, the int and long long uses 32-bits and 64-bits, respectively.</p>
@@ -568,179 +570,165 @@ Binary representation
 <p>and for long long is</p>
 <p><span class="math inline">\([ -2^{63},2^{63}-1]\)</span></p>
 <p>Warning with unsigned int and unsigned long.</p>
-<p>With all this, we can use integers to represent a lightweight small set of Boolean values. All set operations then involve only the bitwise manipulation of the corresponding integer, which makes it a much more efficient choice when compared with the C++ STL vector<bool>, bitset, or set<int> options.</p>
-<p>We invite you all to look what happen in Python’s integers. <a href="https://mortada.net/can-integer-operations-overflow-in-python.html">Open Link</a></p>
+<p>You may also be interested in looking at what happend with Python’s integers. Check <a href="https://mortada.net/can-integer-operations-overflow-in-python.html">this Link</a>.</p>
 <div class="topic">
 Bitwise operations
 </div>
 <p>First, we need to recall how bit operations work.</p>
-The first operator is <strong>AND</strong>. Each bit of the output is 1 if the corresponding bit of A <strong>and</strong> of B is 1, otherwise is 0. Both at Python or C++ AND operator is represented like the symbol <strong>&amp;</strong>.
+The first operator is <strong>AND</strong>. Each bit of the output is 1 if the corresponding bit of A <strong>and</strong> of B is 1, otherwise is 0. Both at Python and C++ the AND operator is represented like the symbol <strong>&amp;</strong>.
 <div class="rows text-center">
 <p><img src="images/class-07/andoperator.png" /></p>
 </div>
-The second operator is <strong>OR</strong>. Each bit of the output is 0 if the corresponding bit of A AND of B is 0, otherwise it’s 1. Both at Python or C++ OR operator is represeted like the symbol <strong>|</strong>.
+The second operator is <strong>OR</strong>. Each bit of the output is 0 if the corresponding bit of A AND of B is 0, otherwise it’s 1. Both at Python and C++ the OR operator is represeted like the symbol <strong>|</strong>.
 <div class="rows text-center">
 <p><img src="images/class-07/oroperator.png" /></p>
 </div>
-The third operator is <strong>XOR</strong>. Each bit of the output is the same as the corresponding bit in A if that bit in B is 0, and it’s the complement of the bit in A if that bit in B is 1. Both at Python or C++ XOR operator is represented like the symbol <strong>^</strong>.
+The third operator is <strong>XOR</strong>. Each bit of the output is the same as the corresponding bit in A if that bit in B is 0, and it’s the complement of the bit in A if that bit in B is 1. Both at Python and C++ the XOR operator is represented like the symbol <strong>^</strong>.
 <div class="rows text-center">
 <p><img src="images/class-07/xoroperator.png" /></p>
 </div>
-Finally, complement operator or <strong>NOT</strong>. Return 1 the bit in A is 0 and 0 if the bit is 1. Both at Python or C++ NOT operator is represented like the symbol <strong>~</strong>.
+Finally, the complement operator or <strong>NOT</strong>. It returns 1 the bit in A is 0 and 0 if the bit is 1. Both at Python and C++ the NOT operator is represented like the symbol <strong>~</strong>.
 <div class="rows text-center">
 <p><img src="images/class-07/notA.png" /></p>
 </div>
 <p><strong>Check if i-th bit of n is on:</strong></p>
 <p>In 0-based indexing from right.</p>
-<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
 using namespace std;
 
-void  main() {
-  int n=48; //00000000000000000000000000110000
-  int i=4; // (1&lt;&lt;4) is equal to 00000000000000000000000000010000
-
-  if(n &amp; 1&lt;&lt;i)
-    cout&lt;&lt;&quot;It&#39;s on&quot;&lt;&lt;endl; 
-  else
-    cout&lt;&lt;&quot;It&#39;s off&quot;&lt;&lt;endl;
-
+int main () {
+  int n = 48; // 00000000000000000000000000110000
+  int i = 4;  // 00000000000000000000000000010000
+  if (n &amp; (1 &lt;&lt; i)) {
+    cout &lt;&lt; &quot;It&#39;s on&quot; &lt;&lt; &#39;\n&#39;;
+  } else {
+    cout &lt;&lt; &quot;It&#39;s off&quot; &lt;&lt; &#39;\n&#39;;
+  }
   return 0;  
 }</code></pre>
 <p><strong>To multiply/divide and integer by 2:</strong></p>
 <p>Shift/right left operation.</p>
-<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
 using namespace std;
 
-void  main() {
-  int n=7; 00000000000000000000000000000111
-  n = n &lt;&lt; 1; //n is 14, 00000000000000000000000000001110
-  n &lt;&lt;= 1; //now, n is 28, 00000000000000000000000000011100
-  n &gt;&gt;= 1; // n becomes 14
-
-  return 0;  
+int main () {
+  int n = 7;   // 00000000000000000000000000000111
+  n = n &lt;&lt; 1;  // 00000000000000000000000000001110
+  n &lt;&lt;= 1;     // 00000000000000000000000000011100
+  n &gt;&gt;= 1;     // 00000000000000000000000000001110
+  return 0;
 }</code></pre>
 <p><strong>To set on the i-th bit:</strong></p>
-<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
 using namespace std;
 
-void  main() {
-
-  int n=8;
-  n = n | (1&lt;&lt;5);
-  n |= 1&lt;&lt;2; //Now n is 40
-  cout&lt;&lt;n&lt;&lt;endl; //Here n is 44
-
+int main () {
+  int n = 8;
+  n = n | (1 &lt;&lt; 5); // n = 40
+  n |= 1 &lt;&lt; 2;      // n = 44
+  cout &lt;&lt; n &lt;&lt; &#39;\n&#39;;
   return 0;  
 }</code></pre>
 <p><strong>To set off the i-th bit:</strong></p>
-<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
 using namespace std;
 
-void  main() {
-
-  int n=44;
-  n = n &amp; ~(1&lt;&lt;5); 
-  n &amp;= ~(1&lt;&lt;2);  //Now n is 12
-  cout&lt;&lt;n&lt;&lt;endl; //Here n is 8
-
-  return 0;  
+int main () {
+  int n = 44;
+  n = n &amp; ~(1 &lt;&lt; 5); 
+  n &amp;= ~(1 &lt;&lt; 2);      // n = 12
+  cout &lt;&lt; n &lt;&lt; &#39;\n&#39;;   // n = 8
+  return 0;
 }</code></pre>
 <p><strong>To toggle the i-th bit:</strong></p>
-<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
 using namespace std;
 
-void  main() {
-
-  int n=14;
-  n = n ^ (1&lt;&lt;1); //Now n is 15
-  n ^= (1&lt;&lt;1); //Now n is 14 again 
-  cout&lt;&lt;n&lt;&lt;endl;
-
+int main () {
+  int n = 14;
+  n = n ^ (1 &lt;&lt; 1); // n = 15
+  n ^= (1 &lt;&lt; 1);    // n = 14
+  cout &lt;&lt; n &lt;&lt; &#39;\n&#39;;
   return 0;  
 }</code></pre>
 <p><strong>To get the value of the least significant bit that is on:</strong> First from the right</p>
-<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
 using namespace std;
 
-void  main() {
-
+int main () {
   int n=14;
-  int leastbit;
-  leastbit = n &amp; (-n); 
-  // t is 2
-  cout&lt;&lt;t&lt;&lt;endl;
-
-  return 0;  
+  int least_bit = n &amp; (-n); 
+  cout &lt;&lt; least_bit &lt;&lt; &#39;\n&#39;;
+  return 0;
 }</code></pre>
 <p><strong>To turn on all bits in a set of size n.</strong></p>
 <p>Be careful with overflows.</p>
-<pre class="cpp"><code>#include&lt;bits/stdc++.h&gt;
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
 using namespace std;
 
-void  main() {
-
-  //set of size 4
-  int n=4;
-  int setn = (1&lt;&lt;n)-1; 
-  //setn is 15, but its binary representing is 1111
-  cout&lt;&lt;setn&lt;&lt;endl;
-
-  return 0;  
+int main () {
+  int n = 4;
+  int setn = (1 &lt;&lt; n) - 1; 
+  // setn is 15, but it&#39;s binary representing is 1111
+  cout &lt;&lt; setn &lt;&lt; &#39;\n&#39;;
+  return 0;
 }</code></pre>
+<p>With all this, we can use integers to represent a lightweight small set of boolean values. All set operations can be computed using bitwise manipulation, which makes it a much more efficient choice when compared with the C++ STL <code>vector &lt;bool&gt;</code>, bitset, or <code>set&lt;int&gt;</code> options.</p>
 <p><strong>Note:</strong> There exists built functions of G++ for counting how many bits are on.</p>
-<pre class="cpp"><code>
-//For example
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
 
-int main(){
+using namespace std;
+
+int main (){
   int x=12;
-  cout&lt;&lt;__builtin_popcount(x)&lt;&lt;endl; // 2, the number of 1s in the number 
-  cout&lt;&lt;__builtin_parity(x)&lt;&lt;endl; // 0, the parity of a number 
-  cout&lt;&lt;__builtin_clz(x)&lt;&lt;endl; // 28, the number of zeros at the beginning  
-  cout&lt;&lt;__builtin_ctz(x)&lt;&lt;endl; // 2, the numberz of zeros at the end   
+  cout &lt;&lt; __builtin_popcount(x) &lt;&lt; &#39;\n&#39;; // 2 - the number of 1s in the number
+  cout &lt;&lt; __builtin_parity(x) &lt;&lt; &#39;\n&#39;; // 0 - the parity of a number 
+  cout &lt;&lt; __builtin_clz(x) &lt;&lt; &#39;\n&#39;; // 28 - the number of zeros at the beginning  
+  cout &lt;&lt; __builtin_ctz(x) &lt;&lt; &#39;\n&#39;; // 2 - the number of zeros at the end
 
-// Also, for kind of variables the functions are changed lightly
-  cout&lt;&lt;__builtin_popcount(x)&lt;&lt;endl; //for integers
-  cout&lt;&lt;__builtin_popcountll(1ll*x)&lt;&lt;endl; //for long long 
+// Also, according to the kind of variables, the functions are changed lightly
+  cout &lt;&lt; __builtin_popcount (x) &lt;&lt; &#39;\n&#39;; // for int
+  cout &lt;&lt; __builtin_popcountll (1LL * x) &lt;&lt; &#39;\n&#39;; // for long long 
   return 0;
 }
 </code></pre>
-<p>We invite all of you to visite <a href="https://www.geeksforgeeks.org/builtin-functions-gcc-compiler/">Built Funcionts of GCC</a>.</p>
+<p>You may be interested in checking <a href="https://www.geeksforgeeks.org/builtin-functions-gcc-compiler/">Built Funcionts of GCC</a>.</p>
 <p><strong>Simple example</strong></p>
-<p>Now, we continue with a simple example where everyone can apply bitwise operations. It is frequent using bitmask with a number n for permutations or set problems. Please look the following link. <a href="https://codeforces.com/problemset/problem/1097/B">Open Link</a></p>
-<p>In this problem, we start pointing zero and we need to check if it is possible rotate the lock’s wheel in some angles in clockwise or counterclockwise way and again point at zero.</p>
-<p>So, we use bitwise for represent a set of size n. If the i-th bit is on we rotate the lock’s wheel in clockwise way, otherwise we rotate in counterclockwise way.</p>
-<pre class="cpp"><code>#include &lt;iostream&gt;
+<p>Now, we continue with a simple example where everyone can apply bitwise operations. It is frequent to use bitmask with a number <code>n</code> for permutations or set problems. Please look the following <a href="https://codeforces.com/problemset/problem/1097/B">link</a>.</p>
+<p>In this problem, we start pointing zero and we need to check if it is possible to rotate the lock’s wheel in some angles in clockwise or counter clockwise way and again point at zero.</p>
+<p>So, we use bitwise for represent a set of size n. If the i-th bit is on we rotate the lock’s wheel in clockwise way, otherwise we rotate in counterclockwise way.</p>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
 using namespace std;
 
-int main() {
-  int n;
-  cin&gt;&gt;n;
-  int angles[n];
+int n;
+vector &lt;int&gt; angle;
 
-  for(int &amp;i:angles)
-    cin&gt;&gt;i;
-
-  int acum;
-
-  for(int i=0;i&lt;(1&lt;&lt;n);i++){
-    acum=0;
-    for(int j=0;j&lt;n;j++){
-      if(i &amp; (1&lt;&lt;j))
-        acum+=angles[j];
-      else
-        acum-=angles[j];
-
-    if((acum%360)==0){
-      cout&lt;&lt;&quot;YES\n&quot;;
-      break;
-    }
+bool check (int mask) {
+  int cur = 0;
+  for (int bit = 0; bit &lt; n; bit++) {
+    if ((mask &gt;&gt; bit) bitand 1) cur += angle[bit];
+    else cur -= angle[bit];
   }
+  return (cur % 360) == 0;
+}
 
-  if((acum%360)!=0)
-    cout&lt;&lt;&quot;NO\n&quot;;
-  
-  return 0;
-  }</code></pre>
+int main () {
+  cin &gt;&gt; n;
+  angle.resize(n);
+  for (int i = 0; i &lt; n; i++) cin &gt;&gt; angle[i];
+  bool ok = false;
+  for (int mask = 0; mask &lt; (1 &lt;&lt; n); mask++) ok |= check(mask);
+  puts(ok ? &quot;YES&quot; : &quot;NO&quot;);
+  return (0);
+}</code></pre>
 <div class="topic">
 Brute force on bitmasks
 </div>
@@ -798,7 +786,232 @@ int main () {
 Contest
 </div>
 <p>You can find the contest <a href="https://vjudge.net/contest/354002">here</a>.</p>
-<p>The solutions will be uploaded after the contest.</p>
+<!-- Begins problem A -->
+<div id="A" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+A: Nice Garland
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div id="nice-garland" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1108/C" target="_blank">Nice Garland</a></h3>
+<p>If we fix the first three elements, we can know how all the sequence should be. Then we can try to find the answer in all the permutations of the string “RGB”.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemA" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  int n;
+  cin &gt;&gt; n;
+  string s;
+  cin &gt;&gt; s;
+  vector &lt;char&gt; p = {0, 1, 2};
+  string X = &quot;RGB&quot;;
+  int mn = INT_MAX;
+  string ans;
+  do {
+    int cnt = 0;
+    for (int i = 0; i &lt; 3 and i &lt; s.size(); i++) {
+      for (int j = i; j &lt; s.size(); j += 3) {
+        cnt += s[j] != X[p[i]];
+      }
+    }
+    if (cnt &lt; mn) {
+      mn = cnt;
+      string ret = &quot;&quot;;
+      for (int k = 0; k &lt; s.size(); k++) {
+        ret += X[p[k % 3]];
+      }
+      ans = ret;
+    }
+  } while (next_permutation(begin(p), end(p)));
+  cout &lt;&lt; mn &lt;&lt; endl;
+  cout &lt;&lt; ans &lt;&lt; endl;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+<!-- Begins problem B -->
+<div id="B" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+B: Petr and a Combination Lock
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div id="petr-and-a-combination-lock" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1097/B" target="_blank">Petr and a Combination Lock</a></h3>
+<p>Each angle can be used to rotate in a clockwise or counterclockwise direction (i.e each angle have two options), then we can use a mask with <span class="math inline">\(n\)</span> bits to simulate all possible states.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemB" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int n;
+vector &lt;int&gt; angle;
+
+bool check (int mask) {
+  int cur = 0;
+  for (int bit = 0; bit &lt; n; bit++) {
+    if ((mask &gt;&gt; bit) bitand 1) cur += angle[bit];
+    else cur -= angle[bit];
+  }
+  return (cur % 360) == 0;
+}
+
+int main () {
+  cin &gt;&gt; n;
+  angle.resize(n);
+  for (int i = 0; i &lt; n; i++) cin &gt;&gt; angle[i];
+  bool ok = false;
+  for (int mask = 0; mask &lt; (1 &lt;&lt; n); mask++) ok |= check(mask);
+  puts(ok ? &quot;YES&quot; : &quot;NO&quot;);
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+<!-- Begins problem C -->
+<div id="C" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+C: Splitting Numbers
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div id="splitting-numbers" class="section level3 card-body solution-body">
+<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3084" target="_blank">Splitting Numbers</a></h3>
+<p>Just simulate what the problem says.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemC" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main () {
+  int num;
+  while (cin &gt;&gt; num, num != 0) {
+    int num1 = 0;
+    int num2 = 0;
+    int cnt = 0;
+    for (int bit = 0; bit &lt; 32; bit++) {
+      if (not ((num &gt;&gt; bit) &amp; 1)) continue;
+      if (cnt &amp; 1) num2 |= (1 &lt;&lt; bit);
+      else num1 |= (1 &lt;&lt; bit);
+      cnt++;
+    }
+    cout &lt;&lt; num1 &lt;&lt; &#39; &#39; &lt;&lt; num2 &lt;&lt; &#39;\n&#39;;
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem C -->
+<!-- Begins problem D -->
+<div id="D" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+D: Number of Parallelograms
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemD" class="collapse">
+<div id="number-of-parallelograms" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/660/D" target="_blank">Number of Parallelograms</a></h3>
+<p>We can say that <span class="math inline">\(\square ABCD\)</span> is a parallelogram if and only if <span class="math inline">\(\overrightarrow{AB} = \overrightarrow{CD}\)</span>. Then, you can store all the possible vectors that you can form with these points, now if there are <span class="math inline">\(x\)</span> vectors <span class="math inline">\(\overrightarrow{AB}\)</span>, you can form <span class="math inline">\(\binom{x}{2} / 4\)</span> parallelograms.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemD" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin &gt;&gt; n;
+  map &lt;pii, int&gt; mp;
+  vector &lt;pii&gt; p (n);
+  for (int i = 0; i &lt; n; i++) cin &gt;&gt; p[i].first &gt;&gt; p[i].second;
+  for (int i = 0; i &lt; n; i++) {
+    for (int j = 0; j &lt; n; j++) {
+      if (i == j) continue;
+      pii v;
+      v.first = p[i].first - p[j].first;
+      v.second = p[i].second - p[j].second;
+      mp[v]++;
+    }
+  }
+  ll ans = 0;
+  for (auto pp: mp) ans += 1LL * pp.second * (pp.second - 1) / 2;
+  cout &lt;&lt; ans / 4 &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem D -->
 <p style="float: none; clear: both;">
 </p>
 <div class="pt-3" style="float: right;">
@@ -834,13 +1047,10 @@ $(document).ready(function () {
     $('#sidebar, #content').removeClass('active');
   });
 
-  $("[data-toggle='tooltip']").tooltip();
-
   $('#expand-icon-right').on('click', function () {
     document.getElementById('sidebar').style.width = "90px";
     document.getElementById('expand-icon-right').style.display = "none";
     document.getElementById('expand-icon-left').style.display = "block";
-    document.getElementById('content').style.background = "rgba(0,0,0,0.8)";
     $('#expand-icon-left').addClass('moved');
     $('#expand-icon-right').addClass('moved');
   });
@@ -849,21 +1059,12 @@ $(document).ready(function () {
     document.getElementById('sidebar').style.width = "0px";
     document.getElementById('expand-icon-right').style.display = "block";
     document.getElementById('expand-icon-left').style.display = "none";
-    document.getElementById('content').style.background = "#fafafa";
     $('#expand-icon-left').removeClass('moved');
     $('#expand-icon-right').removeClass('moved');
   });
 
 });
 
-/*
-$(window).scroll(function() { 
-  $('#expand-icon-left').css({top: '50vh'});
-  $('#expand-icon-left').css({bottom: '50vh'});
-  $('#expand-icon-right').css({top: '50vh'});
-  $('#expand-icon-right').css({bottom: '50vh'});
-});
-*/
 </script>
 
 <script type="text/javascript" src="lib/lightbox-plus-jquery.min.js"></script>

@@ -14,6 +14,7 @@
 <title>Class 15: Contest II</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -476,13 +477,10 @@ $(document).ready(function () {
     $('#sidebar, #content').removeClass('active');
   });
 
-  $("[data-toggle='tooltip']").tooltip();
-
   $('#expand-icon-right').on('click', function () {
     document.getElementById('sidebar').style.width = "90px";
     document.getElementById('expand-icon-right').style.display = "none";
     document.getElementById('expand-icon-left').style.display = "block";
-    document.getElementById('content').style.background = "rgba(0,0,0,0.8)";
     $('#expand-icon-left').addClass('moved');
     $('#expand-icon-right').addClass('moved');
   });
@@ -491,21 +489,12 @@ $(document).ready(function () {
     document.getElementById('sidebar').style.width = "0px";
     document.getElementById('expand-icon-right').style.display = "block";
     document.getElementById('expand-icon-left').style.display = "none";
-    document.getElementById('content').style.background = "#fafafa";
     $('#expand-icon-left').removeClass('moved');
     $('#expand-icon-right').removeClass('moved');
   });
 
 });
 
-/*
-$(window).scroll(function() { 
-  $('#expand-icon-left').css({top: '50vh'});
-  $('#expand-icon-left').css({bottom: '50vh'});
-  $('#expand-icon-right').css({top: '50vh'});
-  $('#expand-icon-right').css({bottom: '50vh'});
-});
-*/
 </script>
 
 <script type="text/javascript" src="lib/lightbox-plus-jquery.min.js"></script>

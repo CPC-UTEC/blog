@@ -433,9 +433,9 @@ typedef long long ll;
 
 const ll m = 1e9 + 7;
 
-ll add (ll a, ll b) { return ((a) % m + (b % m)) % m; }
-ll sub (ll a, ll b) { return (((a) % m - (b % m)) + m) % m; }
-ll mul (ll a, ll b) { return ((a) % m * (b % m)) % m; }
+ll add (ll a, ll b) { return ((a % m) + (b % m)) % m; }
+ll sub (ll a, ll b) { return (((a % m) - (b % m)) + m) % m; }
+ll mul (ll a, ll b) { return ((a % m) * (b % m)) % m; }
 
 ll binpow (ll a, ll b) {
   if (b == 0) return 1;

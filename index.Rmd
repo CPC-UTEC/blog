@@ -6,9 +6,9 @@ Here you can find the material developed in this training and a [collection of
 images](./gallery.html).
 
 ## **Couches**
-- José Leonidas García Gonzales - jose.garcia@utec.edu.pe
-- Giordano Mitchell Alvitez Falcon - giordano.alvitez@utec.edu.pe
-- Jorge Ignacio Fiestas Lavezzolo - jorge.fiestas@utec.edu.pe
+- José Leonidas García Gonzales - [\@TISparta](https://github.com/TISparta/) - jose.garcia@utec.edu.pe
+- Giordano Mitchell Alvitez Falcon - [\@GioCS17](https://github.com/GioCS17) - giordano.alvitez@utec.edu.pe
+- Jorge Ignacio Fiestas Lavezzolo - [\@Jorgefiestas](https://github.com/Jorgefiestas) - jorge.fiestas@utec.edu.pe
 
 ## **Classes**
 
@@ -33,6 +33,7 @@ These links can help you navigate through the material developed.
   + [Readings](./schedule.html#s-class-01)
 
 - [01-08-2020] - Class 02 - Asymptotic Analysis
+  + [Theory](./class-02.html)
   + [Contest](https://vjudge.net/contest/350901)
   + [Solutions](./class-02.html#contest)
   + [Readings](./schedule.html#s-class-02)
@@ -115,7 +116,6 @@ These links can help you navigate through the material developed.
   + [Contest](https://vjudge.net/contest/360361)
 
 The repository of this page can be found [here](https://github.com/CP-UTEC/Lessons).
-
 
 <script>
 $("#index-page")

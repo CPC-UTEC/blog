@@ -10,6 +10,7 @@ title: "Classes"
   + [Readings](./schedule.html#s-class-01)
 
 - [01-08-2020] - Class 02 - Asymptotic Analysis
+  + [Theory](./class-02.html)
   + [Contest](https://vjudge.net/contest/350901)
   + [Solutions](./class-02.html#contest)
   + [Readings](./schedule.html#s-class-02)

@@ -87,7 +87,7 @@ Another useful data type is `string`.
 In [cplusplus.com](http://www.cplusplus.com/reference/string/string/) you will
 find a reference of how to work with strings.
 
-[Example](./code/class-02/string.cpp)
+[Example](./code/class-03/string.cpp)
 
 ```c++
 string s;
@@ -120,7 +120,7 @@ know how to use it.
 In [cplusplus.com](http://www.cplusplus.com/reference/vector/vector/) you will
 find a reference of how to work with vectors.
 
-[Example](./code/class-02/vector.cpp)
+[Example](./code/class-03/vector.cpp)
 
 ```c++
 vector <int> arr;
@@ -187,7 +187,7 @@ Question: How would you declare a matrix ?
 In [cplusplus.com](http://www.cplusplus.com/reference/set/set/) you will find
 a reference of how to work with sets.
 
-[Example](./code/class-02/set.cpp)
+[Example](./code/class-03/set.cpp)
 
 ```c++
 set <int> S;
@@ -231,7 +231,7 @@ Read about [multisets](http://www.cplusplus.com/reference/set/multiset/).
 In [cplusplus.com](http://www.cplusplus.com/reference/map/map/) you will find
 a reference of how to work with maps.
 
-[Example](./code/class-02/map.cpp)
+[Example](./code/class-03/map.cpp)
 
 ```c++
 map <string, int> my_map;
@@ -271,7 +271,7 @@ The complexity of its operations is the same of a set.
 With a `struct` we can create our own data type which can encapsulate other
 data type.
 
-[Example](./code/class-02/struct.cpp)
+[Example](./code/class-03/struct.cpp)
 
 ```c++
 #include <bits/stdc++.h>

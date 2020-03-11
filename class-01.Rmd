@@ -157,7 +157,7 @@ int main () {
   </div>
   <!-- ends code -->
 
-But, we can take $b = 1$ (why?) and realize that the problem reduces to find:
+But, we can take $b = 1$ (**why?**) and realize that the problem reduces to find:
 
 $a \leq 1 \leq a \leq n / 2 \land 2a = n - 2$
 

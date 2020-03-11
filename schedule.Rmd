@@ -36,7 +36,13 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
   + [An awesome list for competitive programming](https://codeforces.com/blog/entry/23054)
 
 * <div id="s-class-02">[**Class 2: Asymptotic Analysis**](./class-02.html)</div>
-  
+  **Topics:**
+  - Motivation
+  - Sampling an extrapolation
+  - Big Oh notation
+  - Asymptotic Analysis
+  - Space and Time Complexity
+
   **Readings**
   + [Competitive Programmer's Handbook, chapter 2](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
   + [Learn Data Structures and Algorithms, section Asymptotic analysis](https://www.codechef.com/certification/data-structures-and-algorithms/prepare)

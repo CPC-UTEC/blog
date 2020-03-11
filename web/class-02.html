@@ -439,56 +439,194 @@ $(".main-container")
 <p>Given an array of size <span class="math inline">\(n\)</span>, sort the elements in the array.</p>
 </blockquote>
 </blockquote>
-<p>We quickly come up with a solution, but we don’t know how efficient it is. We take a measure that when <span class="math inline">\(n\)</span> is <span class="math inline">\(10^4\)</span> our program takes <span class="math inline">\(1\)</span> ms to run. Given this information try to answer the following questions:</p>
+<p>We quickly come up with a solution, but we don’t know how efficient it is.</p>
 <ul>
-<li>How long will my program take to run if <span class="math inline">\(n = 10 ^ 5\)</span>?</li>
+<li>How long will my program take to run for <span class="math inline">\(n = 10 ^ 5\)</span>?</li>
 <li>How efficient it is to measure the performance of our code manually?</li>
 <li>How can we compare our solution with other solutions?</li>
 <li>How can we measure the performance of our code?</li>
 </ul>
 <div id="contest" class="topic">
-Sampling an Extrapolation
+Sampling an extrapolation
 </div>
-<p>A first approach for measuring the performance of our solution is to experimentally take time measurements for different input sizes and trying to analyze the trend that the time follows. An easy way of doing this is by plotting the input size against time to get a function we can then extrapolate. Using this method we can then experimentally compare the different algorithms we want to test, however, to do this we would have to implements all algorithms, as otherwise, it would be impossible to take times.</p>
+<p>A first approach for measuring the performance of our solution is to experimentally take time measurements for different input sizes and trying to analyze the trend that the time follows. An easy way of doing this is by plotting the input size against time to get a function we can then extrapolate. Using this method we can then experimentally compare the different algorithms we want to test. However, to do this we would have to implement all algorithms or it would be impossible to take times.</p>
+<p>For example, if we would like to measure the time performance of this function:</p>
+<pre class="cpp"><code>vector &lt;bool&gt; sieve (int n) {
+  vector &lt;bool&gt; is_prime(n, true);
+  is_prime[0] = is_prime[1] = false;
+  for (int i = 2; i &lt; n; i++) {
+    if (!is_prime[i]) continue;
+    for (int j = i + i; j &lt; n; j += i) {
+      is_prime[j] = false;
+    }
+  }
+  return is_prime;
+}</code></pre>
+<p>We can run the program for different values of <span class="math inline">\(n\)</span> and take times. We can even write a program <a href="./code/class-02/sieve-times.cpp">like this</a> and get this data:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">n</th>
+<th align="center">time (s)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1000000</td>
+<td align="center">0.099296</td>
+</tr>
+<tr class="even">
+<td align="center">1100000</td>
+<td align="center">0.092526</td>
+</tr>
+<tr class="odd">
+<td align="center">1200000</td>
+<td align="center">0.098912</td>
+</tr>
+<tr class="even">
+<td align="center">1300000</td>
+<td align="center">0.108183</td>
+</tr>
+<tr class="odd">
+<td align="center">1400000</td>
+<td align="center">0.118805</td>
+</tr>
+<tr class="even">
+<td align="center">1500000</td>
+<td align="center">0.121858</td>
+</tr>
+<tr class="odd">
+<td align="center">1600000</td>
+<td align="center">0.127802</td>
+</tr>
+<tr class="even">
+<td align="center">1700000</td>
+<td align="center">0.133683</td>
+</tr>
+<tr class="odd">
+<td align="center">1800000</td>
+<td align="center">0.142920</td>
+</tr>
+<tr class="even">
+<td align="center">1900000</td>
+<td align="center">0.157752</td>
+</tr>
+</tbody>
+</table>
+<p>Then, we can extrapolate a function from these points. Let</p>
+<p><span class="math display">\[f(x) = \text{aprox. running time of sieve(x)}\]</span></p>
 <p>As you can probably imagine, this is not the most efficient process, as it is very time consuming to do this kind of testing, specially in the scenario of a time based competition as it is competitive programming. This inevitably leads to the question: is there a better way to compare our solutions?</p>
+<div id="contest" class="topic">
+Big Oh notation
+</div>
+<p>Our programs consists of a sequence of instructions. Now, let’s call a instruction as basic if is it one of the following cases:</p>
+<ul>
+<li>It creates a variable or assigns a primite value to it</li>
+<li>It does an arithmetic operation (<span class="math inline">\(+, -, *, /, %\)</span>)</li>
+<li>It calls a function</li>
+<li>It does bitwise operations (and, or, xor, not)</li>
+</ul>
+<p>Now, let’s focus on finding a function <span class="math inline">\(g\)</span> defined as:</p>
+<p><span class="math display">\[g(x) = \text{# basic operations our program does for input } x\]</span></p>
+<p>Now, consider that <span class="math inline">\(T = 10^8\)</span> is the number of basic operations our computer can execute in a second. Then, we can say:</p>
+<p><span class="math display">\[f(x) \approx \frac{g(x)}{T}\]</span></p>
+<p>But, we can get <span class="math inline">\(g(x)\)</span> just analyzing our code, then we can estimate <span class="math inline">\(f(x)\)</span> without executing our program. Nevertheless, <span class="math inline">\(g(x)\)</span> will usually have this form:</p>
+<p><span class="math display">\[g(x) = a_n x^m + a_{m - 1} x^{m - 1} \dots a_1 x + a_0\]</span></p>
+<p>It may take a lot of time to manually get <span class="math inline">\(g(x)\)</span>, but we notice that as <span class="math inline">\(x\)</span> increases, the value of <span class="math inline">\(g(x)\)</span> is dominated by its <strong>most significant term</strong>, then we can consider:</p>
+<p><span class="math display">\[g(x) \approx x^m\]</span></p>
+<p>And we say that <span class="math inline">\(g(x) \in O(x^m)\)</span>. But, for simplicity let’s write it as <span class="math inline">\(g(x) = O(x^m)\)</span>.</p>
+<div id="examples" class="section level3">
+<h3>Examples:</h3>
+<ul>
+<li><span class="math inline">\(g(n) = 100n^2 + 1000000n + 505 = O(n^2)\)</span></li>
+<li><span class="math inline">\(g(n) = n^5 + 10^{100}n^4 = O(n^5)\)</span></li>
+<li><span class="math inline">\(g(n) = 5n + 12 = O(n)\)</span></li>
+<li><span class="math inline">\(g(n) = 100.1 n ^ 2 + \pi n + 1 = O(n^2)\)</span></li>
+<li><span class="math inline">\(g(n) = 100 = O(1)\)</span></li>
+</ul>
+<p>Here we are using Big Oh notation. It is the formal way to express the upper bound of the function. Usually, when solving a problem, finding the big oh of a function is as simple as simplifying it to its highest order term. However, a more formal definition of Big Oh exists:</p>
+<p><span class="math display">\[f(n) = O(g(n)) \rightarrow f(n) \leq c \cdot g(n) \quad \forall n &gt; n_0 \, \exists c &gt; 0\]</span></p>
+<div class="row text-center">
+<p><img style="max-height: 400px;" src="images/class-02/big-oh.png"></p>
+</div>
+<p>This definition says that a function <span class="math inline">\(f(n)\)</span> is considered to have a Big Oh of <span class="math inline">\(g(n)\)</span> if there exists a value of <span class="math inline">\(c\)</span> such that <span class="math inline">\(c \cdot g(n)\)</span> will be greater than <span class="math inline">\(f(n)\)</span> from some value <span class="math inline">\(n_0\)</span> of <span class="math inline">\(n\)</span> onwards. From this definition it is important to note some things:</p>
+<ol style="list-style-type: decimal">
+<li>Many functions <span class="math inline">\(g(n)\)</span> can satisfy the condition <span class="math inline">\(f(n) = O(g(n))\)</span></li>
+<li><span class="math inline">\(O(g(n))\)</span> can be seen as the set of all functions that are an upper-bound to function <span class="math inline">\(f(n)\)</span></li>
+<li>As <span class="math inline">\(O(g(n))\)</span> represents a set, then we should say <span class="math inline">\(f(n) \in O(g(n))\)</span>, but it is usually written as <span class="math inline">\(f(n) = O(g(n))\)</span> for simplicity.</li>
+</ol>
+</div>
+<div id="more-examples" class="section level3">
+<h3>More examples:</h3>
+<ul>
+<li><span class="math inline">\(g(n) = nlgn + n = O(nlgn)\)</span></li>
+<li><span class="math inline">\(g(n) = n! + n^2 = O(n!)\)</span></li>
+<li><span class="math inline">\(g(n) = 2^n + n^5 = O(2^n)\)</span></li>
+<li><span class="math inline">\(g(n) = n \log n + n = O(n \log n)\)</span></li>
+<li><span class="math inline">\(g(n) = n \sqrt{n} + n^2 = O(n^2)\)</span></li>
+</ul>
+<p>One of the best things about estimating performance using asymptotic analysis is that it is not necessary to implement a solution in order to check if it would work or not. This way, if we have an idea for solving a problem, we can first check if our idea is fast and within the time restrictions, and then implement it, saving us the time of implementing a wrong solution just to realize that it exceeds the time limit when is sent.</p>
+<p>Moreover, in competitive programming we usually can know the expected complexity of a valid solution according to the constrains of the problem. For example:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">input size</th>
+<th align="center">usually valid time complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(n \leq 10\)</span></td>
+<td align="center"><span class="math inline">\(O(n!)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(n \leq 20\)</span></td>
+<td align="center"><span class="math inline">\(O(2^n)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(n \leq 500\)</span></td>
+<td align="center"><span class="math inline">\(O(n^3)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(n \leq 5000\)</span></td>
+<td align="center"><span class="math inline">\(O(n^2)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(n \leq 10^6\)</span></td>
+<td align="center"><span class="math inline">\(O(n) \text{ or } O(n \log n)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(n &gt; 10^6\)</span></td>
+<td align="center"><span class="math inline">\(O(1) \text{ or } O(\log n)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Source: <a href="https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf">Antti Laaksonen.Competitive programmer’s handbook - chapter 2</a></p>
 <div id="contest" class="topic">
 Asymptotic Analysis
 </div>
-<p>A method for defining the mathematical boundaries of the run-time performance or space usage of programs as the input size increases. Useful for estimating the time and space complexity in function of the input size.</p>
+<p>It is a method for defining the mathematical boundaries of the run-time performance or space usage of programs as the input size increases. Useful for estimating the time and space complexity in function of the input size.</p>
 <p>Using asymptotic analysis we can easily estimate:</p>
 <ul>
 <li>Lower Bound - <span class="math inline">\(\Omega(f(n))\)</span> Omega notation</li>
-<li>Upper Bound - <span class="math inline">\(O(f(n))\)</span> Big oh notation</li>
+<li>Upper Bound - <span class="math inline">\(O(f(n))\)</span> Big Oh notation</li>
 <li>Tight Bound - <span class="math inline">\(\Theta(f(n))\)</span> Theta notation</li>
 </ul>
 <p>In this course (and usually in competitive programming) we will only explore big oh analysis, as we usually only care about the worst possible running time of our algorithm. It is better to overestimate complexity and have a extremely fast solution than to underestimate it and have a sometimes slow one.</p>
 <div id="contest" class="topic">
-Big Oh Notation
-</div>
-<p>Big oh notation is the formal way to express the upper bound of the function that represents an algorithms running time. In practice, we will ignore all coefficients and will only care about the functions term of highest order. For example:</p>
-<ul>
-<li><span class="math inline">\(100n^2 + 1000000n + 505 = O(n^2)\)</span></li>
-<li><span class="math inline">\(n^5 + 10^{100}n^4 = O(n^5)\)</span></li>
-<li><span class="math inline">\(nlgn + n = O(nlgn)\)</span></li>
-</ul>
-<p>Usually, when solving a problem, finding the big oh of a function is as simple as simplifying it to its highest order term. However, a more formal definition of big oh exists:</p>
-<p><span class="math display">\[f(n) = O(g(n)) \rightarrow f(n) \leq k \cdot g(n) \quad \forall n &gt; n_0 \, \exists k &gt; 0\]</span></p>
-<p>This definition says that a function <span class="math inline">\(f(n)\)</span> is considered to have a big oh of <span class="math inline">\(g(n)\)</span> if there exists a value of <span class="math inline">\(k\)</span> such that <span class="math inline">\(k \cdot g(n)\)</span> will be greater than <span class="math inline">\(f(n)\)</span> from some value <span class="math inline">\(n_0\)</span> of <span class="math inline">\(n\)</span> onwards. From this definition it is important to note some things:</p>
-<ol style="list-style-type: decimal">
-<li>Many functions <span class="math inline">\(g(n)\)</span> can satisfy the condition <span class="math inline">\(f(n) = O(g(n))\)</span></li>
-<li><span class="math inline">\(O(g(n))\)</span> can be seen as the set of all functions that are an upper-bound to function <span class="math inline">\(f(n)\)</span></li>
-<li>As <span class="math inline">\(O(g(n))\)</span> represents a set, the equal operator means that the function <span class="math inline">\(f(n)\)</span> belongs to set <span class="math inline">\(O(g(n))\)</span></li>
-</ol>
-<p>One of the best things about estimating performance using asymptotic analysis is that it is not necessary to implement a solution in order to check if it would work or not. This way, if we have an idea for solving a problem, we can first check if our idea is fast and within the time restrictions, and then implement it, saving us the time of implementing a wrong solution just to realize that it exceeds the time limit when is sent.</p>
-<div id="contest" class="topic">
 Space and Time Complexity
 </div>
-<p>When describing the performance of an algorithm, the word complexity is commonly used. Complexity can be considered as the amount of resources my algorithm will consume, and it comes in two ways:</p>
+<p>When describing the performance of an algorithm, the word complexity is commonly used. Complexity can be considered as the amount of resources my algorithm will consume, and it comes in two common ways:</p>
 <ul>
 <li>Time complexity: How long will my program take to run for a given input.</li>
-<li>Time complexity: How much space will my program consume for a given input.</li>
+<li>Space complexity: How much space will my program consume for a given input.</li>
 </ul>
-<p>In many cases there exists a trade-off between space-usage and run-time performance, for this reason it is important to always check the time and space complexity of a solutions before implementing it, to ensure our solutions stays within the allowed bounds.</p>
+<p>In many cases there exists a trade-off between space-usage and run-time performance, for this reason it is important to always check the time and space complexity of a solutions before implementing it to ensure our solutions stays within the allowed bounds.</p>
+<p>You may also be interested in reading:</p>
+<ul>
+<li><a href="https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf">Competitive Programmer’s Handbook, chapter 2</a></li>
+<li><a href="https://www.codechef.com/certification/data-structures-and-algorithms/prepare">Learn Data Structures and Algorithms, section Asymptotic analysis</a></li>
+</ul>
 <div id="contest" class="topic">
 Contest
 </div>
@@ -521,17 +659,15 @@ Code
 using namespace std;
 
 int main () {
-  int n,x=0;
-  cin&gt;&gt;n;
+  int n, x = 0;
+  cin &gt;&gt; n;
   string sta;
-  while(n--){
-    cin&gt;&gt;sta;
-    if(sta[1]==&#39;+&#39;)
-        x++;
-    else
-        x--;
+  while (n--) {
+    cin &gt;&gt; sta;
+      if (sta[1] == &#39;+&#39;) x++;
+      else x--;
   }
-  cout&lt;&lt;x&lt;&lt;endl;
+  cout &lt;&lt; x &lt;&lt; &#39;\n&#39;;
   return (0);
 }</code></pre>
 </div>
@@ -554,7 +690,7 @@ B: Beautiful Matrix
 <div id="problem-b-beautiful-matrix" class="section level3 card-body solution-body">
 <h3><a href="https://codeforces.com/problemset/problem/263/A" target="_blank">Problem B: Beautiful Matrix</a></h3>
 <p>Here, we look for what is the difference between row position and column position of the 1 and the matrix’s center (the matrix’s center is in position 3 in axis x and y).</p>
-<p>So, we just need to subtract in absolute value for each axis and adding them.</p>
+<p>So, we just need to subtract in absolute value for each axis and add them.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title --> <i class="fas fa-caret-right"></i>
@@ -568,16 +704,17 @@ Code
 using namespace std;
 
 int main () {
-  int num;
-  for(int i=1;i&lt;6;i++){
-    for(int j=1;j&lt;6;j++){
-        cin&gt;&gt;num;
-        if(num){
-            cout&lt;&lt;abs(i-3)+abs(j-3)&lt;&lt;endl;
-            i=j=6;
-        }
+  int ans;
+  for (int i = 1; i &lt; 6; i++) {
+    for (int j = 1; j &lt; 6; j++) {
+      int num;
+      cin &gt;&gt; num;
+      if (num) {
+        ans = abs(i - 3) + abs(j - 3);
+      }
     }
   }
+  cout &lt;&lt; ans &lt;&lt; &#39;\n&#39;;
   return 0;
 }</code></pre>
 </div>
@@ -600,7 +737,6 @@ C: Tram
 <div id="problem-c-tram" class="section level3 card-body solution-body">
 <h3><a href="https://codeforces.com/problemset/problem/116/A" target="_blank">Problem C: Tram</a></h3>
 <p>In this problem, we need to keep the maximum value of passengers in each stop. With the maximum value we can ensure the minimum capacity of the tram line.</p>
-<p>Also, the max function is a function from Algorithm package. Do not forget, if you include bits/stdc++.h, this includes a lot of packages inside. Some of them is Algorithm, Vector, Set, Map, etc.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title --> <i class="fas fa-caret-right"></i>
@@ -614,15 +750,14 @@ Code
 using namespace std;
 
 int main () {
-  int n,a,b,temp=0,maxi=0;
-  cin&gt;&gt;n;
-  while(n--){
-    cin&gt;&gt;a&gt;&gt;b;
-    temp+=b-a;
-    maxi=max(maxi,temp);
+  int n, a, b, temp = 0, maxi = 0;
+  cin &gt;&gt; n;
+  while (n--) {
+    cin &gt;&gt; a &gt;&gt; b;
+    temp += b - a;
+    maxi = max(maxi, temp);
   }
-  cout&lt;&lt;max&lt;&lt;endl;
-
+  cout &lt;&lt; max &lt;&lt; &#39;\n&#39;;
   return 0;
 }</code></pre>
 </div>
@@ -644,8 +779,8 @@ D: Elephant
 <div id="collapseProblemD" class="collapse">
 <div id="problem-d-elephant" class="section level3 card-body solution-body">
 <h3><a href="https://codeforces.com/problemset/problem/617/A" target="_blank">Problem D: Elephant</a></h3>
-<p>For this problem, the elephant can move in steps with width of 1,2,3,4 or 5. So, it is convenient to move with the maximum allowed step if we want to minimize the number of steps to the elephant meet with its friend.</p>
-<p>Here the maximum allowed step if the step less or equal to current distance between the elephant and its friend.</p>
+<p>For this problem, the elephant can move in steps with width of 1, 2, 3, 4 or 5. So, it is convenient to move with the maximum allowed step if we want to minimize the number of steps to the elephant meet with its friend.</p>
+<p>Here the maximum allowed step is the step less or equal to the current distance between the elephant and its friend.</p>
 <p>Also, we work with modular operation to calculate faster the steps.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
@@ -660,18 +795,16 @@ Code
 using namespace std;
 
 int main () {
- int x;
- int steps=0;
- cin&gt;&gt;x;
- for(int i=5;i&gt;0;i--){
-    if(x&gt;=i){
-        steps+=x/i;
-        x%=i;
-                             
-        }
- }
- cout&lt;&lt;steps&lt;&lt;endl;
-
+  int x;
+  int steps = 0;
+  cin &gt;&gt; x;
+  for (int i = 5; i &gt; 0; i--){
+    if (x &gt;= i) {
+      steps += x / i;
+      x % = i;
+    }
+  }
+  cout &lt;&lt; steps &lt;&lt; &#39;\n&#39;;
   return 0;
 }</code></pre>
 </div>
@@ -709,18 +842,15 @@ Code
 using namespace std;
 
 int main () {
-
-  long long num,k;
-  cin&gt;&gt;num&gt;&gt;k;
-  long long aux=num/2;
-  if(num%2!=0)
-     aux++;
-
-  if(k&gt;aux)
-     cout&lt;&lt;2*(k-aux)&lt;&lt;endl;
-  else
-     cout&lt;&lt;2*(k-1)+1&lt;&lt;endl;
-
+  long long num, k;
+  cin &gt;&gt; num &gt;&gt; k;
+  long long aux = num / 2;
+  if (num % 2 != 0) aux++;
+  if (k &gt; aux) {
+    cout &lt;&lt; 2 * (k - aux) &lt;&lt; &#39;\n&#39;;
+  } else {
+    cout &lt;&lt; 2 * (k - 1) + 1 &lt;&lt; &#39;\n&#39;;
+  }
   return 0;
 }</code></pre>
 </div>
@@ -748,6 +878,7 @@ int main () {
     block: 'center'
   });
 </script>
+</div>
 
 </div> <!-- ends wrapper -->
 </div> <!-- ends content -->

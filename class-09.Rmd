@@ -17,6 +17,425 @@ The solutions will be uploaded after the contest.
 
 The upsolving contest is [here](https://vjudge.net/contest/355256).
 
+
+<!-- Begins problem A -->
+<div class="card" id="A">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">A: Fifty-Fifty</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://abc132.contest.atcoder.jp/tasks/abc132_a?lang=en" target="_blank">Fifty-Fifty</a>
+
+Is you sort the string you dont need to do a lot of checks.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemA" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair <int, int> pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  string s;
+  cin >> s;
+  sort(all(s));
+  if (s[0] == s[1] and s[2] == s[3] and s[1] != s[2]) cout << "Yes\n";
+  else cout << "No\n";
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+
+
+
+<!-- Begins problem B -->
+<div class="card" id="B">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">B: Handstand 2</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://abc152.contest.atcoder.jp/tasks/abc152_d?lang=en" target="_blank">Handstand 2</a>
+
+We can fix the first and last digit and generate the number that hold the
+conditions.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemB" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+     
+int intPower (int a, int b) {
+  int ret = 1;
+  while (b--) {
+    ret *= a;
+  }
+  return ret;
+}
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin >> n;
+  ll ans = 0;
+  for (int a = 1; a <= 9; a++) {
+    for (int b = 1; b <= 9; b++) {
+      set <int> left, right;
+      if (a == b and a <= n) {
+        left.insert(a);
+        right.insert(a);
+      }
+      for (int d = 0; d <= 4; d++) {
+        int p = intPower(10, d);
+        for (int center = 0; center < p; center++) {
+          int num1 = a * 10 * p + 10 * center + b;
+          int num2 = b * 10 * p + 10 * center + a;
+          if (num1 <= n) left.insert(num1);
+          if (num2 <= n) right.insert(num2);
+        }
+      }
+      ans += 1LL * sz(left) * sz(right);
+    }
+  }
+  cout << ans << '\n';
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+
+
+
+<!-- Begins problem C -->
+<div class="card" id="C">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">C: Count Order</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://abc150.contest.atcoder.jp/tasks/abc150_c?lang=en" target="_blank">Count Order</a>
+
+We can just generate all possible permutations and find the indices of the
+given permutations.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemC" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+     
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin >> n;
+  vector <int> p(n);
+  vector <int> q(n);
+  for (int& elem: p) cin >> elem;
+  for (int& elem: q) cin >> elem;
+  vector <int> perm(n);
+  iota(all(perm), 1);
+  int a = -1;
+  int b = -1;
+  int index = 1;
+  do {
+    if (perm == p) a = index;
+    if (perm == q) b = index;
+    index++;
+  } while (next_permutation(all(perm)));
+  cout << abs(a - b) << '\n';
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem C -->
+
+
+
+<!-- Begins problem D -->
+<div class="card" id="D">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">D: Next Alphabet</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemD" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://abc151.contest.atcoder.jp/tasks/abc151_a?lang=en" target="_blank">Next Alphabet</a>
+
+A char is stored as an int that represents its ascii representation and the
+letters "abc..z" are continuous. We can use that fact to void a lot of ifs.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemD" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  char ch;
+  cin >> ch;
+  cout << char(ch + 1) << '\n';
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem D -->
+
+
+
+<!-- Begins problem E -->
+<div class="card" id="E">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemE" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">E: Equal Sums</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemE" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/988/C" target="_blank">Equal Sums</a>
+
+For a sequence $seq_i = a_1, a_2, \dots, a_n$ let $sum = a_1 + a_2 + \dots + a_n$.
+
+We can store in a map $(sum - a[j]) \to [(i, j)]$
+
+Then if there are two sequence that holds the conditions, they must have been added to
+the map.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemE" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemE" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+typedef vector <pii> vpii;
+typedef vector <pll> vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int k;
+  cin >> k;
+  map <int, vpii> mp;
+  for (int i = 1; i <= k; i++) {
+    int n;
+    cin >> n;
+    vi arr(n);
+    for (int& elem: arr) cin >> elem;
+    int sum = accumulate(all(arr), 0);
+    for (int j = 0; j < n; j++) {
+      if (mp[sum - arr[j]].empty() or
+          mp[sum - arr[j]].back().first != i) {
+        mp[sum - arr[j]].pb(pii(i, j + 1));
+      }
+    }
+  }
+  for (auto row: mp) {
+    if (sz(row.second) >= 2) {
+      auto pp = row.second[0];
+      auto qq = row.second[1];
+      cout << "YES\n";
+      cout << pp.first << ' ' << pp.second << '\n';
+      cout << qq.first << ' ' << qq.second << '\n';
+      return (0);
+    }
+  }
+  cout << "NO\n";
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem E -->
+
+
+
+<!-- Begins problem F -->
+<div class="card" id="F">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemF" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">F: RGB Boxes</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemF" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://diverta2019.contest.atcoder.jp/tasks/diverta2019_b?lang=en" target="_blank">RGB Boxes</a>
+
+Fix the number of red and green boxes, then you can compute how many blue boxes
+you need.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemF" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemF" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+#define all(A) begin(A), end(A)
+#define sz(A) int(A.size())
+
+using namespace std;
+
+typedef long long ll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int r, g, b, n;
+  cin >> r >> g >> b >> n;
+  int ans = 0;
+  for (int i = 0; i <= n / r + 1; i++) {
+    for (int j = 0; j <= n / g + 1; j++) {
+      int k = n - i * r - j * g;
+      if (k >= 0 and k % b == 0) {
+        ans++;
+      }
+    }
+  }
+  cout << ans << endl;
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem F -->
+
+
+
+
 <p style="float: none; clear: both;"></p>
 
 <div style="float: right;" class="pt-3">

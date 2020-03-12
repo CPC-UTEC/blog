@@ -167,7 +167,7 @@ When describing the performance of an algorithm, the word complexity is commonly
 
 In many cases there exists a trade-off between space-usage and run-time performance, for this reason it is important to always check the time and space complexity of a solutions before implementing it to ensure our solutions stays within the allowed bounds.
 
-You may also be interested in reading:
+Recommended readings:
 
 - [Competitive Programmer's Handbook, chapter 2](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
 - [Learn Data Structures and Algorithms, section Asymptotic analysis](https://www.codechef.com/certification/data-structures-and-algorithms/prepare)

@@ -688,13 +688,410 @@ Recommended readings:
 * Competitive Programming 3, section 3.2.2, 8.2.1 and 8.2.2.
 * [GeekForGeeks - Backtracking Algorithms](https://www.geeksforgeeks.org/backtracking-algorithms/)
 
-You may also be interested in watching this documental of AlphaGo. [Here](https://youtu.be/8tq1C8spV_g) is the trailer.
 
 <div class="topic" id="contest">Contest</div>
 
 You can find the contest [here](https://vjudge.net/contest/354334).
 
-The solutions will be uploaded after the contest.
+
+<!-- Begins problem A -->
+<div class="card" id="A">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">A: CD</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=565" target="_blank">CD</a>
+
+Each element can be taken or not, then a backtracking solution will give us the
+answer and keet the initial order of the items.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemA" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+using namespace std;
+ 
+int main () {
+  int n;
+  while (cin >> n) {
+    int m;
+    cin >> m;
+    vector <int> arr(m);
+    for (int& elem: arr) cin >> elem;
+    vector <int> take;
+    vector <int> ans;
+    int sum = 0;
+    int best_sum = 0;
+
+    function <void(int)> backtrack = [&] (int pos) -> void {
+      if (sum > best_sum or (sum == best_sum and ans.size() < take.size())) {
+        best_sum = sum;
+        ans = take;
+      }
+      if (pos == m) return;
+      // do not take it
+      backtrack(pos + 1);
+      if (sum + arr[pos] > n) return;
+      // take it
+      take.push_back(arr[pos]);
+      sum += arr[pos];
+      backtrack(pos + 1);
+      take.pop_back();
+      sum -= arr[pos];
+    };
+
+    backtrack(0);
+    for (int elem: ans) cout << elem << ' ';
+    cout << "sum:" << best_sum << '\n';
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+
+
+
+<!-- Begins problem B -->
+<div class="card" id="B">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">B: Hanoi Tower Troubles Again!</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1217" target="_blank">Hanoi Tower Troubles Again!</a>
+
+There is a greedy approach, you can put a ball in the first pile where you can
+do it.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemB" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  const int N = 1e5;
+  vector <bool> is_sq(N, false);
+  for (int i = 0; i * i < N; i++) is_sq[i * i] = true;
+  int tc;
+  cin >> tc;
+  while (tc--) {
+    int n;
+    cin >> n;
+    vector <vector <int>> pile(n);
+    int ans = 0;
+    int cur = 0;
+
+    function <void(int)> rec = [&] (int num) -> void {
+      ans = max(ans, cur);
+      for (int i = 0; i < n; i++) {
+        if (pile[i].empty() or is_sq[pile[i].back() + num]) {
+          cur += 1;
+          pile[i].push_back(num);
+          rec(num + 1);
+          break;
+        }
+      }
+    };
+
+    rec(1);
+    cout << ans << '\n';
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+
+
+
+<!-- Begins problem C -->
+<div class="card" id="C">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">C: Marcus</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1393" target="_blank">Marcus</a>
+
+Identify the initial point and then search on the grid using backtracking.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemC" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  const vector <int> dr = {-1, 0, 0};
+  const vector <int> dc = {0, -1, 1};
+  const vector <string> option = {"forth", "left", "right"};
+  const string word = "IEHOVA#";
+  int tc;
+  cin >> tc;
+  while (tc--) {
+    int n, m;
+    cin >> n >> m;
+    vector <string> ans;
+    vector <string> take;
+    vector <string> grid(n);
+    for (int i = 0; i < n; i++) cin >> grid[i];
+
+    function <void(int,int)> backtrack = [&] (int r, int c) -> void {
+      if (take.size() == 7) {
+        ans = take;
+        return;
+      }
+      for (int d = 0; d < 3; d++) {
+        if (!ans.empty()) return;
+        int nr = r + dr[d];
+        int nc = c + dc[d];
+        if (not (0 <= min(nr, nc) and nr < n and nc < m)) continue;
+        if (grid[nr][nc] != word[take.size()]) continue;
+        take.push_back(option[d]);
+        backtrack(nr, nc);
+        take.pop_back();
+      }
+    };
+
+    for (int r = 0; r < n; r++) {
+      for (int c = 0; c < m; c++) {
+        if (grid[r][c] == '@') {
+          backtrack(r, c);
+        }
+      }
+    }
+    for (int i = 0; i < 7; i++) {
+      cout << ans[i] << " \n"[i == 6];
+    }
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem C -->
+
+
+
+<!-- Begins problem D -->
+<div class="card" id="D">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">D: Back to the 8-Queens</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemD" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2026" target="_blank">Back to the 8-Queens</a>
+
+There are just 92 valid configurations, we can generate all of them using
+backtracking and do a simple linear search to get the answer for each query.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemD" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 8;
+vector <pair <int, int>> queen;
+vector <vector <pair <int, int>>> solution;
+
+bool valid (int r, int c) {
+  for (auto pp: queen) {
+    // if same row or same column or same diagonal
+    if ((pp.first == r) or
+        (pp.second == c) or
+        (abs(r - pp.first) == abs(c - pp.second))) {
+      return false;
+    }
+  }
+  return true;
+}
+
+void backtrack (int c) {
+  if (c == N + 1) {
+    solution.push_back(queen);
+    return;
+  }
+  for (int r = 1; r <= N; r++) {
+    if (valid(r, c)) {
+      queen.push_back({r, c});
+      backtrack(c + 1);
+      queen.pop_back();
+    }
+  }
+}
+
+int main () {
+  backtrack(1);
+  vector <int> row(N);
+  int tc = 0;
+  while (cin >> row[0]) {
+    for (int i = 1; i < N; i++) cin >> row[i];
+    int ans = INT_MAX;
+    for (auto sol: solution) {
+      int need = 0;
+      for (int i = 0; i < N; i++) {
+        need += (row[i] != sol[i].first);
+      }
+      ans = min(ans, need);
+    }
+    cout << "Case " << ++tc << ": " << ans << '\n';
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem D -->
+
+
+
+<!-- Begins problem E -->
+<div class="card" id="E">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemE" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">E: Boggle Blitz</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemE" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=428" target="_blank">Boggle Blitz</a>
+
+Just use backtracking to do a complete search.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemE" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemE" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int tc;
+  cin >> tc;
+  for (int t = 0; t < tc; t++) {
+    if (t) cout << '\n';
+    int n;
+    cin >> n;
+    vector <string> grid(n);
+    for (int i = 0; i < n; i++) cin >> grid[i];
+    vector <string> ans;
+    string word = "";
+
+    function <void(int,int,char)> backtrack = [&] (int r, int c, char last) -> void {
+      if (3 <= word.size()) {
+        ans.push_back(word);
+      }
+      for (int dr = -1; dr <= 1; dr++) {
+        for (int dc = -1; dc <= 1; dc++) {
+          if (dr == 0 and dc == 0) continue;
+          int nr = r + dr;
+          int nc = c + dc;
+          if (not (0 <= min(nr, nc) and max(nr, nc) < n)) continue;
+          if (grid[nr][nc] <= last) continue;
+          word += grid[nr][nc];
+          backtrack(nr, nc, grid[nr][nc]);
+          word.pop_back();
+        }
+      }
+    };
+
+    for (int r = 0; r < n; r++) {
+      for (int c = 0; c < n; c++) {
+        word += grid[r][c];
+        backtrack(r, c, grid[r][c]);
+        word.pop_back();
+      }
+    }
+    sort(begin(ans), end(ans), [&] (const string& x, const string& y) {
+      if (x.size() != y.size()) return x.size() < y.size();
+      return x < y;  
+    });
+    // delete duplicates
+    ans.erase(unique(begin(ans), end(ans)), end(ans));
+    for (auto& word: ans) cout << word << '\n';
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem E -->
+
+
+
 
 <p style="float: none; clear: both;"></p>
 

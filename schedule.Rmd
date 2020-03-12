@@ -44,6 +44,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
   - Space and Time Complexity
 
   **Readings**
+  + [Antti  Laaksonen.Competitive  programmer’s  handbook - chapter 1 and 4](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
   + [Competitive Programmer's Handbook, chapter 2](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
   + [Learn Data Structures and Algorithms, section Asymptotic analysis](https://www.codechef.com/certification/data-structures-and-algorithms/prepare)
 

@@ -106,6 +106,14 @@ The greatest sum
 - Almost all learning resources in competitive programming are oriented to C++
 - It has a strong community
 
+Recommended readings:
+
+- [Training Camp Argentina 2019. Nivel Inicial. E/S + Intro](https://tc-arg.tk/pdfs/2019/ipc.pdf)
+- [Competitive Programming 3, chapter 1](https://cpbook.net/)
+- [Errichto - How to test your solutions in Competitive Programming, on Linux](https://www.youtube.com/watch?v=JXTVOyQpSGM)
+- [An awesome list for competitive programming](https://codeforces.com/blog/entry/23054)
+
+
 <div class="topic" id="contest">Contest</div>
 
 You can find the contest [here](https://vjudge.net/contest/350658).

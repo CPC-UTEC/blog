@@ -45,11 +45,13 @@ title: "Classes"
 - [01-27-2020] - Class 07 - Complete Search IV
   + [Theory](./class-07.html)
   + [Contest](https://vjudge.net/contest/354002)
+  + [Solutions](./class-07.html#contest)
   + [Readings](./schedule.html#s-class-07)
 
 - [01-29-2020] - Class 08 - Complete Search V
   + [Theory](./class-08.html)
   + [Contest](https://vjudge.net/contest/354334)
+  + [Solutions](./class-08.html#contest)
   + [Readings](./schedule.html#s-class-08)
 
 ### *Week 5*
@@ -57,6 +59,7 @@ title: "Classes"
   + [Theory](./class-09.html)
   + [Contest](https://vjudge.net/contest/355171)
   + [Upsolving](https://vjudge.net/contest/355256)
+  + [Solutions](./class-09.html#contest)
 
 ### *Week 6*
 - [02-10-2020] - Class 10 - Contest UTEC-UNI-UPC I

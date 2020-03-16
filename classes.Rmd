@@ -71,11 +71,13 @@ title: "Classes"
 - [02-17-2020] - Class 11 - Divide and Conquer I
   + [Theory](./class-11.html)
   + [Contest](https://vjudge.net/contest/357719)
+  + [Solutions](./class-11.html#contest)
   + [Readings](./schedule.html#s-class-11)
 
 - [02-19-2020] - Class 12 - Divide and Conquer II
   + [Theory](./class-12.html)
   + [Contest](https://vjudge.net/contest/359160)
+  + [Solutions](./class-12.html#contest)
   + [Readings](./schedule.html#s-class-12)
 
 ### *Week 8*

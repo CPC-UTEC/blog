@@ -11,7 +11,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 <div class="topic">The divide and conquer paradigm</div>
 
-The main idea of *Divide and Conquer* is that we can tackle a big problem by solving smaller sub-problems and then merging these solutions together to get an answer. The interesting part is that if we can find disjoint sub-problems that are similar to the original problem, then we may use divide and conquer to solve the smaller problems.
+The main idea of *Divide and Conquer* is that we can tackle a big problem by solving smaller disjoint sub-problems and then merging these solutions together to get an answer. The interesting part is that if we can find disjoint sub-problems that are similar to the original problem, then we can use recursion.
 
 There are usually three steps in divide and conquer:
 
@@ -24,14 +24,16 @@ Today we will learn about one of the most popular Divide and Conquer algorithms:
 <div class="topic">Binary search</div>
 
 <div class="rows text-center">
-  ![https://www.pinterest.com/pin/761038037007324587/](./images/class-11/binarysearch.jpg)
+  ![](./images/class-11/binarysearch.jpg)
+
+Image taken from [Pinterest](https://www.pinterest.com/pin/761038037007324587/)
 </div>
 
 ### Motivation
 
 Let's say that you need to find the position of a value in an array. **How would you do it?**
 
-The most intuitive way of approaching this problem is to go through all elements in the array and check if it is the one you are looking for.
+The most intuitive way of approaching this problem is to go through all elements in the array and check if it is the one you are looking for (linear search).
 
 ```c++
 #include <bits/stdc++.h>
@@ -45,22 +47,22 @@ int main () {
   bool found = false;
   for (int i = 0; i < arr.size() && !found; i++) {
     if (arr[i] == x) {
-      cout << i + 1 << endl;
+      cout << i + 1 << '\n';
       found = true;
     }
   }
-  if (not found) {
+  if (!found) {
     cout << x << " is not in the array\n";
   }
   return (0);
 }
 ```
 
-It is very simple to see that this approach has a complexity of $O(n)$. In general, this complexity is pretty good, however looking for a specific element in an array is a basic operation that usually needs to be done more than once. What happens if we do this linear search thousands of times? How many times can we do it without exceeding the time limit? **Is there a better way?**
+This approach has a complexity of $O(n)$. In general, this complexity is pretty good, however looking for a specific element in an array is a basic operation that usually needs to be done more than once. What happens if we do this linear search thousands of times? How many times can we do it without exceeding the time limit? **Is there a better way?**
 
 ### Binary search
 
-There is a better way and it's called *Binary Search*. This is one of the most basic and powerful concepts. It can be used in thousands of algorithms to boost up the performance significantly. Most importantly, as we will see, its uses go beyond searching for an element in an array. The only condition that needs to hold for binary search to work is that the array (or our search domain) must be sorted.
+There is a better way and it's called *Binary Search*. This is one of the most basic and powerful concepts. It can be used in thousands of algorithms to boosts up the performance significantly. Most importantly, as we will see, its uses go beyond searching for an element in an array. The only condition that needs to hold for binary search to work is that the array (or our search domain) must be sorted.
 
 - **Divide:** We can compare our value to the element in the middle of the array. As the array is sorted this will tell us if the element is to the right or the left of the middle.
 - **Conquer:** We can now search for the element in the corresponding half of the array.
@@ -80,61 +82,59 @@ int binary_search (int* seq, int size, int x) {
     int med = left + (right - left) / 2;
     if (arr[med] == x) {
       return med;
-	  }
-	  else if (arr[med] > x) {
+    } else if (arr[med] > x) {
       right = med - 1;
-	  }
-    else {
+    } else {
       left = med + 1;
-	  }
+    }
   }
   return -1;
 }
 ```
 
-Take a sight to the following problem.
+Take a sight to the following problem:
 [SPOJ - Count the Pairs](https://www.spoj.com/problems/PAIRS1/)
 
 Before looking the code, think for few minutes how to use binary search to solve this problem.
 
 ```c++
 #include <bits/stdc++.h>
+
 using namespace std;
 
-bool bs(int *num,int l,int r,int x){
-  while(l<=r){
-    int med=l+(r-l)/2;
-    if(num[med]==x) return true;
-    if(num[med]>x) r=med-1;
-    else l=med+1;
+bool bs (int *num, int l, int r, int x) {
+  while (l <= r) {
+    int med = l + (r - l) / 2;
+    if (num[med] == x) return true;
+    if (num[med] > x) r = med - 1;
+    else l = med + 1;
   }
   return false;
 }
 
-int main(){
-
-  int n,k;
-  cin>>n>>k;
+int main () {
+  int n, k;
+  cin >> n >> k;
   int num[n];
 
-  for(int &i:num)
-    cin>>num[i];
+  for(int& i: num) cin >> num[i];
 
-  sort(num,num+n);
-  int cont=0;
+  sort(num, num + n);
+  int cont = 0;
 
-  for(int i=0;i<n;i++){
-    if(bs(num,i+1,n-1,k+num[i]))
+  for (int i = 0; i < n; i++) {
+    if (bs(num, i + 1, n - 1, k + num[i])) {
       cont++;
+    }
   }
 
-  cout<<cont<<endl;
+  cout << cont << '\n';
                                                             
   return 0;
 }
 ```
 
-Take count what is the **range** in the binary method for each value k+num[i].
+Take count what is the **range** in the binary method for each value $k + num[i]$.
 
 Now, what happen if there exists many equal values in the array. What position does the binary method return?
 
@@ -142,9 +142,9 @@ Now, what happen if there exists many equal values in the array. What position d
 int arr[] = {2, 4, 6, 7, 8, 10, 10, 10, 20, 4034, 4535, 5635435, 577436536};
 ```
 
-In this cases we need more information in order to determine what value we have to return. Even though in many problems it doesn't matter which we pick, in many others it will. For that cases, we are going to work with what is called lower and upper bound.
+In this cases we need more information in order to determine what value we have to return. Even though in many problems it doesn't matter which we pick, in many others it will. For those cases, we are going to work with what is called lower and upper bound.
 
-<div class"topic">Lower bound</div>
+<div class="topic">Lower bound</div>
 
 The *lower bound* is the first element that does not compare less than the value we are looking for. In simpler words, is the first occurrence of the search value. The following is a possible implementation of lower bound, however, `std::lower_bound` can simplify things for us.
 
@@ -164,21 +164,22 @@ int binary_search(int* arr, int size, int x) {
     }
     if (arr[med] >= x) {
       right = med;
-	  } else {
+    } else {
       left = med + 1;
-	  }
+    }
   }
   return pos;
 }
 ```
 
 ```c++
-  //If we want to use lower_bound of STL
+  // If we want to use lower_bound of STL
   int array[] = {10, 10, 10, 20, 20, 20, 30, 30, 40, 60};
-  cout<<lower_bound(array,array+10,30)-arr<<endl; //3, Return the first position when 30 is.
-
-  vector<int> vec(array,array+10); 
-  cout<<lower_bound(vec.begin(),vec.end(),40)-vec.begin()<<endl; //8, Return the first position when 30 is.
+  // 3: returns the first position where 30 is
+  cout << lower_bound(array, array + 10, 30) - arr << '\n'; 
+  vector <int> vec(array, array + 10);
+  // 8: returns the first position where 30 is.
+  cout << lower_bound(vec.begin(), vec.end(), 40) - vec.begin() << '\n';
 ```
 <div class="topic">Upper bound</div>
 
@@ -202,30 +203,33 @@ int binary_search (int* arr, int size, int x) {
       right = med - 1;
     } else {
       left = med;
-	  }
+    }
   }
   return pos;
 }
 ```
 
 ```c++
-  //If we want to use upper_bound of STL
+  // If we want to use upper_bound of STL
   int array[] = {10, 10, 10, 20, 20, 20, 30, 30, 40, 60};
-  cout<<upper_bound(array,array+10,30)-arr<<endl; //7, Return the first position when 30 is.
-
-  vector<int> vec(array,array+10); 
-  cout<<upper_bound(vec.begin(),vec.end(),40)-vec.begin()<<endl; //8, Return the first position when 30 is.
+  // 7: returns the first position where 30 is
+  cout << upper_bound(array, array + 10, 30) - arr << '\n';
+  vector <int> vec(array, array + 10);
+  // 8: returns the first position when 30 is.
+  cout << upper_bound(vec.begin(), vec.end(), 40) - vec.begin() << '\n';
 ```
+
 Sure you are thinking why we need to add one inside the difference between right and left.
 
 Take a sight the next example and compute this searching without adding one in med. 
 
 ```c++
   int array[] = {10, 20};
-  cout<<bs(array,2,20)<<endl; //med here is left + (right - left) / 2;
+  // med here is left + (right - left) / 2
+  cout << bs(array, 2, 20) << '\n';
 ```
 
-There exists a bucle inside the form because med is always 0. So, if we want to solve this inconvenience just adding one and that is all.
+There exists a bucle inside the form because med is always 0. So, if we want to solve this inconvenience just add one and that is all.
 
 You may find useful to search
 
@@ -234,46 +238,45 @@ You may find useful to search
 - [lower_bound as a method](http://www.cplusplus.com/reference/set/set/lower_bound/)
 - [upper_bound as a method](http://www.cplusplus.com/reference/set/set/upper_bound/)
 
-Now, again :). Let's see one interesting problem. ![Less or equal elements](https://codeforces.com/problemset/problem/600/B)
+Now, let's see one interesting problem: [Less or equal elements](https://codeforces.com/problemset/problem/600/B)
 
 And again, take a few minutes before looking the code.
 
 ```c++
 #include <bits/stdc++.h>
+
 using namespace std;
 
-int bs(int *num,int size,int x){
-  int l=0,r=size-1;
-  while(l<r){
-    int med=l+(r-l+1)/2;
-    if(num[med]>x) r=med-1;
-    else l=med;
+int bs (int* num, int size, int x){
+  int l = 0, r = size - 1;
+  while (l < r) {
+    int med = l + (r - l + 1) / 2;
+    if (num[med] > x) r = med - 1;
+    else l = med;
   }
   return l;
 }
 
-int main() {
-  int n,m,x;
-  cin>>n>>m;
+int main () {
+  int n, m, x;
+  cin >> n >> m;
   int a[n];
         
-  for(int &i:a)
-      cin>>i;
+  for (int& i: a) cin >> i;
         
-  sort(a,a+n);
+  sort(a, a + n);
     
-  for(int i=0;i<m;i++){
-    cin>>x;
-    if(i>0)
-      cout<<" ";
-    if(x<a[0]){
-      cout<<0;
+  for (int i = 0; i < m; i++) {
+    cin >> x;
+    if (i > 0) cout << " ";
+    if (x < a[0]) {
+      cout << 0;
       continue;
     }
-    cout<<bs(a,n,x)+1;
+    cout << bs(a, n, x) + 1;
   }
 
-  cout<<endl;
+  cout << endl;
                                                 
   return 0;
 }
@@ -281,12 +284,12 @@ int main() {
 
 <div class="topic">Binary search on the answer</div>
 
-As it was mentioned before, binary search is not only useful for finding values in an array, but it also has other uses. In this section we will explore some of these.
+As it was mentioned before, binary search is not only useful for finding values in an array, but it also has other uses. In this section we will explore some of these variations.
 
 ### Solving an equation
 
 Let's say we want to solve the equation: $f(x) = ax^3 + bx^2 + cx + d = e$, where $a, b, c, d, e > 0$. The answer must be right to 4 decimal places. How can we do this efficiently?
-We can use binary search to solve this in $O(logn)$ time. The key idea is to realize that $f$ is a increasing function, and therefore $x_a \leq x_b \rightarrow f(x_a) \leq f(x_b)$. Therefore we can run a binary search in $x$ in order to find the answer. However our binary search will be slightly different as now we don't need to find a precise answer, but one with a precision of 4 decimal places. This means that we want to find an x such that $|e - f(x)| < 0.0001$.
+We can use binary search to solve this in $O(\log n)$ time. The key idea is to realize that $f$ is an non-decreasing function, then $x_a \leq x_b \rightarrow f(x_a) \leq f(x_b)$. Therefore, we can run a binary search in $x$ in order to find the answer. However our binary search will be slightly different as now we don't need to find a precise answer, but one with a precision of 4 decimal places. This means that we want to find an x such that $|e - f(x)| < 0.0001$.
 
 ### Searching for the Answer
 
@@ -295,56 +298,57 @@ Let's consider [this problem](https://onlinejudge.org/external/120/12032.pdf).
 - What would be the brute force approach?
 - How can we improve this basic solution?
 
-The key thing is to realize that if we can reach the top with some an initial strength $k_0$, then any initial strength $k, k > k_0$ can also reach the top. Therefore we can use binary search to look for the minimum value of $k$ that reaches the top from 1 to $r + 1$. As we can determine for a given $k$ if it is possible to reach the top, then this solution would have a complexity of $O(n \log(r))$.
+The key thing is to realize that if we can reach the top with an initial strength $k_0$, then any initial strength $k, k > k_0$ can also reach the top. Therefore we can use binary search to look for the minimum value of $k$ that reaches the top from 1 to $r + 1$. As we can determine for a given $k$ if it is possible to reach the top, then this solution would have a complexity of $O(n \log(r))$.
 
 
-Finally, we would like to show you all an interesting problem. This problem show how combine force brute and binary search in an unexpected way.
+Finally, we would like to show you an interesting problem. This problem shows how to combine force brute and binary search in an unexpected way.
 
-Please, enter the next link and read carefully the problem.
-[Aggresive cows](https://www.spoj.com/problems/AGGRCOW/)
+Please, enter the next link and read carefully the problem:
+[Aggresive cows](https://www.spoj.com/problems/AGGRCOW/).
 
 Like always take few minutes before looking the code.
 
 ```c++
 #include <bits/stdc++.h>
-using namespace std;
-const int size=1e5+1;
-int ns[size];
-int n,c;
 
-bool query(int x){
-  int cont=1;
-  int p=ns[0];
-  for(int i=1;i<n;i++){
-    if(ns[i]-p>=x){
+using namespace std;
+
+const int size = 1e5 + 1;
+int ns[size];
+int n, c;
+
+bool query (int x) {
+  int cont = 1;
+  int p = ns[0];
+  for (int i = 1; i < n; i++) {
+    if (ns[i] - p >= x) {
       cont++;
-      p=ns[i];
+      p = ns[i];
     }
   }
-  if(cont>=c) return true;
+  if (cont >= c) return true;
   return false;
 }
 
 int bs(int l,int r){
   
-  while(l<r){
-    int med=l+(r-l+1)/2;
-    if(query(med)) l=med; 
-    else r=med-1;
+  while (l < r) {
+    int med = l + (r - l + 1) / 2;
+    if (query(med)) l = med; 
+    else r = med - 1;
   }
   return l;
 }
 
 int main() {
   int t;
-  scanf("%d",&t);
+  scanf("%d", &t);
   while(t--){
-    scanf("%d %d",&n,&c);
-    for(int i=0;i<n;i++)
-      scanf("%d",&ns[i]);
-    sort(ns,ns+n);
-    int l=ns[0],r=ns[n-1];
-    printf("%d\n",bs(l,r));
+    scanf("%d %d", &n, &c);
+    for(int i = 0; i < n; i++) scanf("%d", &ns[i]);
+    sort(ns, ns + n);
+    int l = ns[0], r = ns[n - 1];
+    printf("%d\n", bs(l,r));
   }
   return 0;
 }
@@ -361,7 +365,563 @@ Recommended readings:
 
 You can find the contest [here](https://vjudge.net/contest/357719).
 
-The solutions will be uploaded after the contest.
+
+<!-- Begins problem A -->
+<div class="card" id="A">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">A: Easy Calculation</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://www.spoj.com/problems/TRIGALGE/en/" target="_blank">Easy Calculation</a>
+
+For the statement you can notice that there is just one answer, then 
+$A \cdot x + B \cdot \sin(x) - C = 0$ must have a change of sign around x, we
+can find it with binary search.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemA" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+typedef vector <pii> vpii;
+typedef vector <pll> vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int tc;
+  cin >> tc;
+  while (tc--) {
+    int a, b, c;
+    cin >> a >> b >> c;
+    double l = -1e9, r = 1e9;
+    for (int it = 0; it < 100; it++) {
+      double m = (l + r) / 2.0;
+      if (a * m + b * sin(m) - c < 0) l = m;
+      else r = m;
+    }
+    cout << fixed << setprecision(6) << l << '\n';
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+
+
+
+
+<!-- Begins problem B -->
+<div class="card" id="B">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">B: Frodo and pillows</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/contest/760/problem/B" target="_blank">Frodo and pillows</a>
+
+If you put $x$ pillows in Frodo's position, then the optimal is to put $x - 1$
+pillows to its left and right, $x - 2$ to the next position to the left and
+right, and so on. Moreover, if we can put $x$ pillows in Frodo's position with
+this strategy, we
+can put $x - 1$ pillows, too. Then, we can fix the number of pillows with binary
+search and calculate how many pillows are needed.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemB" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+typedef vector <pii> vpii;
+typedef vector <pll> vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n, m, k;
+  cin >> n >> m >> k;
+  int l = 1, r = m;
+  auto sum = [&] (ll val, ll pos) {
+    ll sum = val * (val + 1) / 2;
+    if (pos <= val) {
+      sum -= (val - pos) * (val - pos + 1) / 2;
+    } else {
+      sum += pos - val;
+    }
+    return sum;
+  };
+  auto check = [&] (int val) {
+    return (val + sum(val - 1, k - 1) + sum(val - 1, n - k) <= m);
+  };
+  while (l != r) {
+    int m = (l + r + 1) / 2;
+    if (check(m)) l = m;
+    else r = m - 1;
+  }
+  cout << l << '\n';
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+
+
+
+
+<!-- Begins problem C -->
+<div class="card" id="C">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">C: Sagheer and Nubian Market</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/contest/812/problem/C" target="_blank">Sagheer and Nubian Market</a>
+
+If you fix the value of $k$ you can compute the cost of each item and take the
+minimum
+$k$ prices. Moreover, if you can buy $k$ items, you can buy $k - 1$ items, too.
+Then, we can find $k$ using binary search.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemC" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+typedef vector <pii> vpii;
+typedef vector <pll> vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n, s;
+  cin >> n >> s;
+  vector <int> arr(n);
+  for (int& elem: arr) cin >> elem;
+  auto get = [&] (int k) {
+    vector <ll> n_arr(n);
+    for (int i = 0; i < n; i++) n_arr[i] = arr[i] + 1LL * (i + 1) * k;
+    sort(all(n_arr));
+    return accumulate(begin(n_arr), begin(n_arr) + k, 0LL);
+  };
+  int l = 0, r = n;
+  while (l != r) {
+    int m = (l + r + 1) / 2;
+    if (get(m) <= s) l = m;
+    else r = m - 1;
+  }
+  cout << l << ' ' << get(l) << '\n';
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem C -->
+
+
+
+
+<!-- Begins problem D -->
+<div class="card" id="D">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">D: Modified GCD</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemD" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/75/C" target="_blank">Modified GCD</a>
+
+We can find the divisor of $a$ and $b$, then for each query iterate for the
+divisors of $a$, and for each divisor of $a$ that is in $[l, r]$ check if it is
+in the divisors of $b$ using binary search.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemD" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+typedef vector <pii> vpii;
+typedef vector <pll> vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int a, b;
+  cin >> a >> b;
+  auto getDivisors = [&] (int num) {
+    vi div;
+    for (int d = 1; d * d <= num; d++) {
+      if (num % d) continue;
+      div.pb(d);
+      if (d * d != num) div.pb(num / d);
+    }
+    return div;
+  };
+  vi div_a = getDivisors(a);
+  vi div_b = getDivisors(b);
+  sort(all(div_b));
+  int q;
+  cin >> q;
+  while (q--) {
+    int l, r;
+    cin >> l >> r;
+    int ans = -1;
+    for (int d: div_a) {
+      if (not (l <= d and d <= r)) continue;
+      if (binary_search(all(div_b), d)) {
+        ans = max(ans, d);
+      }
+    }
+    cout << ans << '\n';
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem D -->
+
+
+
+
+<!-- Begins problem E -->
+<div class="card" id="E">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemE" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">E: Solve it</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemE" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1282" target="_blank">Solve it</a>
+
+There must be a change of sign around $x$, then we can find the value of $x$
+using binary search and check if the $x$ found holds the equation.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemE" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemE" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+typedef vector <pii> vpii;
+typedef vector <pll> vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  double p, q, r, s, t, u;
+  while (cin >> p >> q >> r >> s >> t >> u) {
+    auto eval = [&] (double x) {
+      return p * exp(-x) + 
+             q * sin(x) + 
+             r * cos(x) +
+             s * tan(x) +
+             t * x * x +
+             u;
+    };
+    double l = 0, r = 1;
+    for (int it = 0; it < 100; it++) {
+      double m = (l + r) / 2.0;
+      if (eval(m) > 0) l = m;
+      else r = m;
+    }
+    const double EPS = 1e-8;
+    if (abs(eval(l)) < EPS) {
+      cout << fixed << setprecision(4) << l << '\n';
+    } else {
+      cout << "No solution\n";
+    }
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem E -->
+
+
+
+
+<!-- Begins problem F -->
+<div class="card" id="F">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemF" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">F: The Stern-Brocot Number System</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemF" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1018" target="_blank">The Stern-Brocot Number System</a>
+
+It holds:
+
+$$\frac{a}{b} < \frac{c}{d} \to ad < bc$$
+    
+$$ad < bc \to ad + ab < bc + ab \to a(b + d) < b(a + c) \to \frac{a}{b} < \frac{a + c}{b + d}$$
+    
+$$ad < bc \to ad + cd < bc + cd \to (a + c)d < (b + d)c \to \frac{a + c}{b + d} < \frac{c}{d} $$
+    
+$$\to \frac{a}{b} < \frac{a + c}{b + d} < \frac{c}{d} $$
+    
+Initialiy we have: $\frac{a}{b} = \frac{0}{1}, \frac{c}{d} = \frac{1}{0}$
+    
+Then, using the above property we can know where should we go and as in each step the numerator or denominator of one bound is increasing, the algorithm will finish in $O(n + m)$ where $n, m$ is the numerator and denominator given.
+    
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemF" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemF" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main () {
+  int n, m;
+  while (cin >> n >> m) {
+    if (n == 1 and m == 1) break;
+    int a = 0, b = 1;
+    int c = 1, d = 0;
+    while (true) {
+      int p = a + c;
+      int q = b + d;
+      if (p == n and q == m) {
+        break;
+      }
+      if (p * m < q * n) {
+        cout << 'R';
+        a = p, b = q;
+      } else {
+        cout << 'L';
+        c = p, d = q;
+      }
+    }
+    cout << '\n';
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem F -->
+
+
+
+<!-- Begins problem G -->
+<div class="card" id="G">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemG" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">G: K-Dominant Character</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemG" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/888/C" target="_blank">K-Dominant Character</a>
+
+We can fix each different letter of the given string, then for each letter if it is
+a $k$-dominant character, then it is also a $(k + 1)$-dominant character, then we
+can use binary search and the idea of cummulative sums to get the minimum $k$
+for each letter.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemG" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemG" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair <int, int> pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  string s;
+  cin >> s;
+  set <char> sigma(all(s));
+  int ans = sz(s);
+  auto check = [&] (int m, char c) {
+    vector <int> frec(30, 0);
+    for (int i = 0; i < m; i++) frec[s[i] - 'a']++;
+    bool ok = (frec[c - 'a'] > 0);
+    for (int i = m; i < sz(s); i++) {
+      frec[s[i - m] - 'a']--;
+      frec[s[i] - 'a']++;
+      ok &= (frec[c - 'a'] > 0);
+    }
+    return ok;
+  };
+  for (char c: sigma) {
+    int l = 1, r = sz(s);
+    while (l != r) {
+      int m = (l + r) / 2;
+      if (check(m, c)) r = m;
+      else l = m + 1;
+    }
+    ans = min(ans, l);
+  }
+  cout << ans << '\n';
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem G -->
+
+
+
+
+
 
 <p style="float: none; clear: both;"></p>
 

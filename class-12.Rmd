@@ -11,7 +11,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 <div class="topic">Generalized binary search</div>
 
-When we are doing binary search we are basically finding a function $f: \mathbb{D} \to \{0, 1\}$, we are finding a function that maps the elements of a set $\mathbb{D}$ to $0$ or $1$ (can be seen as false or true respectively) and $f$ **is always a monotone** function (non-increasing or non-decreasing).
+When we are doing binary search we are basically finding a function $f: \mathbb{D} \to \{0, 1\}$. We are finding a function that maps the elements of a set $\mathbb{D}$ to $0$ or $1$ (can be seen as false or true respectively) and $f$ **is always a monotone** function (non-increasing or non-decreasing).
 
 For example, if we have the array $A = \{b_0, b_1, b_2, \dots, b_{n - 1}\}$ and we
 are going to do queries over the array to determine whether a number is in $A$
@@ -30,7 +30,7 @@ looks something like this.
 </div>
 
 Then, if $p$ is in the array $A$, it must hold that $A[z] = p$, so now our
-problem is to find the first element where $f(x) = 1$, that is $z$ and we can
+problem is to find the first element where $f(x) = 1$ and we can
 compute it using divide and conquer.
 
 ```c++
@@ -93,10 +93,10 @@ int main () {
 What would have changed if $f_p(x) = [A[x] \leq p]$ ?
 
 The idea of defining the set $\mathbb{D}$ and the **mononote** function $f$
-can be used in a great variety of problem. For example in [this problem](https://codeforces.com/contest/1201/problem/C).
+can be used in a great variety of problems. For example in [this problem](https://codeforces.com/contest/1201/problem/C).
 
 Here let $median$ be the median of the original array, then we know that the
-maximum median we can get must in in $[median, median + k]$, so $\mathbb{D} = [median, median + k]$ and let $f$ be defined like this:
+maximum median we can get must be in in $[median, median + k]$, so $\mathbb{D} = [median, median + k]$ and let $f$ be defined like this:
 
 
 $f(x) = [$ can we obtain median x in at most k operations? $]$
@@ -106,7 +106,7 @@ Let $y$ be the position of the median, then if we have:
 $$a_0, a_1, a_2, \dots, a_y, a_{y + 1}, \dots, a_{n - 1}$$
 
 And we want $x$ as the new median in the minimum number of
-operations, then we need to make $x \leq a_i, \forall \, y \leq i \leq n$. (**why?**). Moreover there is a point $z$ such that:
+operations, then we need to make $x \leq a_i, \forall \, y \leq i \leq n$. (**why?**). Moreover, there is a point $z$ such that:
 
 $$f(i) = 1 \quad \forall i \in [median, z]$$
 $$f(i) = 0 \quad \forall i \in [z + 1, median + 1]$$
@@ -155,7 +155,7 @@ have, for example, $\mathbb{D} \subset \mathbb{R}$.
 
 Moreover, if you have problems determining how to compute $m$, always think of
 what do you want to do when $l + 1 = r$. You want that $m = l \lor m = r$ and
-then you will find if you need to compute $m = (l + r) / 2$ or $l = (l + r + 1) / 2$ and how to update $l, r$.
+then you will find if you need to compute $m = (l + r) / 2$ or $m = (l + r + 1) / 2$ and how to update $l, r$.
 
 <div class="topic">Ternary search</div>
 
@@ -186,12 +186,46 @@ the interval $[l, r]$ in three parts, then we will find the answer in $O(\log n)
 $$m_1 = \frac{2 \cdot l + r}{3}$$
 $$m_2 = \frac{l + 2 \cdot r}{3}$$
 
-Try solving the problem at the end of [this tutorial](https://www.hackerearth.com/practice/algorithms/searching/ternary-search/tutorial/) to apply what we have learned.
+The idea also works when $[l, r] \subset \mathbb{Z}$ with some little modifications, but in these cases it is easier to use binary search because we just need to find the first $x$ where $f(x) \leq f(x + 1)$.
 
-The idea also works when $[l, r] \subset \mathbb{Z}$ with some little modifications.
+### Convex functions
+
+We say that a real-valued function is convex if the line segment between any
+two points on the graph of the function lies above or on the graph. More
+formally, we have:
+
+**Definition 1:** A set $X$ is convex if $\forall x_1, x_2 \in X, \forall t \in [0, 1]: t \cdot x_1 + (1 - t) \cdot x_2 \in X$.
+
+**Definition 2:** Let $f: X \to \mathbb{R}$ be a function where $X$ is a convex
+set, then $f$ is convex if $\forall x_1, x_2 \in X, \forall t \in [0, 1]: f(t \cdot x_1 + (1 - t) \cdot x_2) \leq t f(x_1) + (1 - t) \cdot f(x_2)$.
+
+Moreover, we have some interesting properties. Let $f, g$ be convex functions, then we have:
+
+* $f + g$ is convex
+* $\max(f, g)$ is convex
+
+Some examples of convex function are:
+
+* $f(x) = |x|$
+* $f(x) = x^2$
+* $f(x) = e^x$
+
+And what is interesting of convex functions is that we can apply ternary search
+on them to find its minimum value.
+
+### Examples
+
+We can use ternary search to find the minimum of:
+
+* $f(x) = |a_1 - x| + |a_2 - x| + \dots + |a_n - x|$
+* $f(x) = (a_1 - x)^2 + (a_2 - x)^2 + \dots + (a_n - x)^2$
+
+
+Now, try solving the problem at the end of [this tutorial](https://www.hackerearth.com/practice/algorithms/searching/ternary-search/tutorial/) to apply what we have learned.
+
 
 So far we have study binary and ternary search, yet the D&C paradigm does not
-reduce only to this. Next, we will show two more scenarios where D&C paradigm
+reduce only to this. Next, we will show you two more scenarios where D&C paradigm
 comes in handy.
 
 <div class="topic">Merge sort</div>
@@ -505,7 +539,458 @@ Recommended readings:
 
 You can find the contest [here](https://vjudge.net/contest/359160).
 
-The solutions will be uploaded after the contest.
+
+<!-- Begins problem A -->
+<div class="card" id="A">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">A: Creative Snap</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/1111/C" target="_blank">Creative Snap</a>
+
+Read carefully the problem, it is basically describing what to implement.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemA" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long ll;
+
+int n, k, A, B;
+vector <int> arr;
+
+int get (int l, int r) {
+  if (arr.back() < l) return 0;
+  if (arr.front() > r) return 0;
+  int it1 = lower_bound(begin(arr), end(arr), l) - begin(arr);
+  int it2 = upper_bound(begin(arr), end(arr), r) - begin(arr) - 1;
+  return it2 - it1 + 1;
+}
+
+ll dc (int l, int r) {
+  int cnt = get(l, r);
+  if (cnt == 0) return A;
+  if (l == r) return B * cnt * 1;
+  int m = (l + r) >> 1;
+  return min(1LL * B * cnt * (r - l + 1), dc(l, m) + dc(m + 1, r));
+}
+
+int main () {
+  ios::sync_with_stdio(false);
+  cin >> n >> k >> A >> B;
+  arr.resize(k);
+  for (int i = 0; i < k; i++) cin >> arr[i];
+  sort(begin(arr), end(arr));
+  cout << dc(1, (1 << n)) << endl;
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+
+
+
+<!-- Begins problem B -->
+<div class="card" id="B">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">B: Code For 1</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/contest/768/problem/B" target="_blank">Code For 1</a>
+
+You just need to count the number of element in $[l, r]$ that are one in the
+final array and we can use divide and conquer to generate it.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemB" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+typedef vector <pii> vpii;
+typedef vector <pll> vpll;
+
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  ll n, l, r;
+  cin >> n >> l >> r;
+  ll m = n;
+  ll k = 0;
+  while (m) {
+    k++;
+    m /= 2;
+  }
+  function <int(ll,ll,ll)> dc = [&] (ll n, ll x, ll y) -> int {
+    if (not (max(x, l) <= min(r, y))) return 0;
+    ll m = (x + y) / 2;
+    ll ret = 0;
+    if (l <= m and m <= r and n & 1) ret = 1;
+    ret += dc(n / 2, x, m - 1);
+    ret += dc(n / 2, m + 1, y);
+    return ret;
+  };
+  cout << dc(n, 1, (1LL << k) - 1) << '\n';
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+
+
+
+<!-- Begins problem C -->
+<div class="card" id="C">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">C: Race Time!</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://www.codechef.com/problems/AMCS03" target="_blank">Race Time!</a>
+
+We have that $f$ is a convex function, then we can find the minimum point using
+ternary search.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemC" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+typedef vector <pii> vpii;
+typedef vector <pll> vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n, k;
+  cin >> n >> k;
+  vector <pll> arr(n);
+  for (auto& pp: arr) cin >> pp.first >> pp.second;
+  double l = 0, r = k;
+  auto eval = [&] (double t) {
+    vector <double> val(n);
+    for (int i = 0; i < n; i++) {
+      val[i] = arr[i].first * t + arr[i].second;
+    }
+    return *max_element(all(val)) - *min_element(all(val));
+  };
+  for (int it = 0; it < 100; it++) {
+    double ll = (2 * l + r) / 3.0;
+    double rr = (l + 2 * r) / 3.0;
+    if (eval(ll) < eval(rr)) r = rr;
+    else l = ll;
+  }
+  cout << fixed << setprecision(6) << eval(l) << '\n';
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem C -->
+
+
+
+
+<!-- Begins problem D -->
+<div class="card" id="D">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">D: Trick or Treat</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemD" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3349" target="_blank">Trick or Treat</a>
+
+The function we want to minimize is convex, then we can apply ternary search.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemD" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+typedef vector <pii> vpii;
+typedef vector <pll> vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  while (cin >> n, n != 0) {
+    vector <pair <double, double>> arr(n);
+    for (auto& pp: arr) cin >> pp.first >> pp.second;
+    auto eval = [&] (double x) {
+      // point (x, 0)
+      double ret = 0;
+      for (auto pp: arr) {
+        double dis = sqrt(pow(pp.first - x, 2) + pow(pp.second, 2));
+        ret = max(ret, dis);
+      }
+      return ret;
+    };
+    double l = -1e9, r = 1e9;
+    for (int it = 0; it < 100; it++) {
+      double ll = (2 * l + r) / 3.0;
+      double rr = (l + 2 * r) / 3.0;
+      if (eval(ll) < eval(rr)) r = rr;
+      else l = ll;
+    }
+    cout << fixed << setprecision(10) << l << ' ' << eval(l) << '\n';
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem D -->
+
+
+
+
+<!-- Begins problem E -->
+<div class="card" id="E">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemE" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">E: Energy exchange</p>
+
+</div>
+<!-- begin body -->
+<div id="collapseProblemE" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/contest/68/problem/B" target="_blank">Energy exchange</a>
+
+Let $x$ be the final amount of energy, then you can compute the amount of enery
+that must be transfered and if it is non-negative, then it is possible to get
+that final amount of energy. Therefore, we can use binary search to get the
+maximum possible amount of energy.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemE" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemE" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+typedef vector <pii> vpii;
+typedef vector <pll> vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n, k;
+  cin >> n >> k;
+  vi arr(n);
+  for (int i = 0; i < n; i++) cin >> arr[i];
+  auto check = [&] (double x) {
+    double ret = 0;
+    for (int elem: arr) {
+      if (x <= elem) ret += 1.0 * (100.0 - k) * (elem - x) / 100.0;
+      else ret += elem - x;
+    }
+    return (ret >= 0);
+  };
+  double l = 0;
+  double r = *max_element(all(arr));
+  for (int it = 0; it < 100; it++) {
+    double m = (l + r) / 2.0;
+    if (check(m)) l = m;
+    else r = m;
+  }
+  cout << fixed << setprecision(12) << l << '\n';
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem E -->
+
+
+
+
+<!-- Begins problem F -->
+<div class="card" id="F">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemF" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">F: Monitor</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemF" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://codeforces.com/problemset/problem/16/C" target="_blank">Monitor</a>
+
+Let $g = \gcd(x, y)$, $x' = x / g$, $y' = y / g$, then we have to find $\max(m:
+m \cdot x' \leq a \land m \cdot y' \leq b)$ and we can find such $d$ using
+binary search.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemF" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemF" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+typedef vector <pii> vpii;
+typedef vector <pll> vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  ll a, b, x, y;
+  cin >> a >> b >> x >> y;
+  ll g = __gcd(x, y);
+  x /= g;
+  y /= g;
+  ll l = 0, r = 2e9;
+  while (l != r) {
+    ll m = (l + r + 1) / 2;
+    if (m * x <= a and m * y <= b) l = m;
+    else r = m - 1;
+  }
+  cout << l * x << ' ' << l * y << '\n';
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem F -->
+
+
+
 
 
 <p style="float: none; clear: both;"></p>

@@ -162,6 +162,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
   **Topics**
   + The divide and conquer paradigm 
   + Binary search
+  + Lower bound  
   + Upper bound
   + Binary search on the answer
 

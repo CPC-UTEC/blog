@@ -1,6 +1,12 @@
 ---
 title: "Class 12: Divide and Conquer II"
 date: "02-19-2020"
+output:
+  html_document:
+    includes:
+      in_header: animations/class-12/include-head.html
+      before_body: include-header.html
+      after_body: include-footer.html
 ---
 
 ```{r setup, include=FALSE}
@@ -526,6 +532,20 @@ int main () {
   return (0);
 }
 ```
+
+Here is an animation of the above problem. You can interact with it:
+
+<form class="range-field my-4 w-50">
+  n:
+  <input id="parameter_n" type="range" min="1" max="7" value="4" step="1" />
+</form>
+
+<form class="range-field my-4 w-50">
+  speed:
+  <input id="speed" type="range" min="1" max="40" value="21" step="1" />
+</form>
+
+<div id="sketch-holder" class="img-border"></div>
 
 Recommended readings:
 

@@ -27,7 +27,14 @@
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!-- Gallery library -->
 <link rel="stylesheet" type="text/css" href="lib/lightbox.min.css">
+<!-- p5.js library -->
+<script src="lib/p5.min.js"></script>
+<!-- animation -->
+<script src="animations/class-12/Rectangle.js"></script>
+<script src="animations/class-12/Cell.js"></script>
+<script src="animations/class-12/sketch.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -829,6 +836,16 @@ int main () {
   for (string&amp; row: grid) cout &lt;&lt; row &lt;&lt; &#39;\n&#39;;
   return (0);
 }</code></pre>
+<p>Here is an animation of the above problem. You can interact with it:</p>
+<form class="range-field my-4 w-50">
+n: <input id="parameter_n" type="range" min="1" max="7" value="4" step="1" />
+</form>
+<form class="range-field my-4 w-50">
+speed: <input id="speed" type="range" min="1" max="40" value="21" step="1" />
+</form>
+<div id="sketch-holder" class="img-border">
+
+</div>
 <p>Recommended readings:</p>
 <ul>
 <li><a href="https://www.csc.kth.se/~jsannemo/slask/main.pdf">Principles of Algorithmic Problem Solving, section 10.1 and 10.2</a></li>

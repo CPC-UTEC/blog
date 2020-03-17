@@ -76,7 +76,7 @@ a, a:hover, a:focus {
 
 /* Images border */
 .img-border p img {
-  border:1px solid black;
+  border: 1px solid black;
 }
 
 /**
@@ -341,6 +341,12 @@ a[aria-expanded="true"]::before {
   width: calc(100% - 90px);
 }
 
+#sketch-holder {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
+
 /* Responsive sidebar media */
 @media (max-width: 768px) {
 
@@ -417,5 +423,11 @@ a[aria-expanded="true"]::before {
   .paradigms {
     width: 100%;
   }
+
+  #sketch-holder {
+    width: 300px !important;
+    height: 300px !important;
+  }
+
 
 }

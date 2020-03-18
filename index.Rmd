@@ -107,11 +107,13 @@ These links can help you navigate through the material developed.
 - [02-24-2020] - Class 13 - Game Theory I
   + [Theory](./class-13.html)
   + [Contest](https://vjudge.net/contest/359163)
+  + [Solutions](./class-13.html#contest)
   + [Readings](./schedule.html#s-class-13)
 
 - [02-26-2020] - Class 14 - Game Theory II
   + [Theory](./class-14.html)
   + [Contest](https://vjudge.net/contest/359378)
+  + [Solutions](./class-14.html#contest)
   + [Readings](./schedule.html#s-class-14)
 
 

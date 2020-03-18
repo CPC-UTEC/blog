@@ -72,9 +72,9 @@ then player $A$ can take all the chips in a move and win. If there are $4$ chips
 no matter how many chips player $A$ takes because player $B$ can finish the game
 in the next turn. If there are $5, 6$ or $7$ chips, then player $A$ can left
 just $4$ chips, then no matter how many chips player $B$ takes in its turn, in
-the next turn player $A$ can take all the remaining chips. And so on.
+the next turn player $A$ can take all the remaining chips, and so on.
 
-From these we notice that $f(x) = n \leftrightarrow n \equiv 0 \bmod 4$. Then, we have
+From these we notice that $f(n) = L \leftrightarrow n \equiv 0 \bmod 4$. Then, we have
 solved the problem.
 
 The idea of defining a function that maps some states to $L, W$ is what is
@@ -144,7 +144,7 @@ int main () {
 ```
 
 The solution is correct, but it takes too much time doing the same
-computations, but we can memorize some results and improve the solution in this
+computations. However, we can memorize some results and improve the solution in this
 way:
 
 ```c++
@@ -208,14 +208,13 @@ We can play this game in [this link](https://www.dotsphinx.com/games/nim/).
 Now, in order to solve this problem first let's define what is 'Nim-sum'.
 
 **Def. Nim-sum:** The Nim-sum of two non-negative integers is their addition
-without carry in base 2. That is, if we have:
+without carry in base 2. In other words, let $c$ be the Nim-sum of $a$ and $b$, filling zeros to the left as necessary so that $a$ and $b$ have the same number of
+digits. Then $c_i = (a_i + b_i) \bmod 2$ and it
+is written as $c = a \oplus b$.
 
 $$a = \overline{a_na_{n-1} \dots a_1}_{(2)}$$
 $$b = \overline{b_nb_{n-1} \dots b_1}_{(2)}$$
-
-Let $c$ be the Nim-sum of $a$ and $b$ and fill zeros to the left as necessary so that $a$ and $b$ have the same number of
-digits. Then $c_i = (a_i + b_i) \bmod 2$ and it
-is written as $c = a \oplus b$.
+$$c = \overline{c_nc_{n-1} \dots c_1}_{(2)}$$
 
 That is, $a \oplus b$ is this in C++:
 
@@ -223,7 +222,13 @@ That is, $a \oplus b$ is this in C++:
 int c = a ^ b;
 ```
 
-And $\oplus$ is called the xor operator.
+The $\oplus$ operator is called the xor operator and it has some interesting
+properly, for example:
+
+* $a \oplus b = b \oplus a$
+* $a \oplus 0 = a$
+* $(a \oplus b) \oplus c = a \oplus (b \oplus c)$
+* $a \oplus a = 0$
 
 This definition is important because we can use it to characterize the set of
 winning states using the characteristic property. In fact, it is done in the
@@ -282,7 +287,7 @@ Where $state \to state'$ means that we can go from $state$ to $state'$.
 In other words, $g(state)$ is the smallest non-negative integer not found
 amoung the function $g$ evaluated in states reachable from $state$.
 
-The function $g$ is known as the **Spragre-Grundy function** and its values as **Grundy numbers** or **Nim values**. And what is nice about this function is that $g(state) = 0 \leftrightarrow state \text{ is a losing state}$.
+The function $g$ is known as the **Spragre-Grundy function** and its values as **Grundy numbers** or **Nim values**. What is nice about this function is that $g(state) = 0 \leftrightarrow state \text{ is a losing state}$.
 
 Moreover, there exists the function $mex$ (a.k.a minimum excludant) that gives
 the smallest non-negative integer not found in a set. For example:
@@ -300,7 +305,7 @@ Now, all the problems that we can solve with the characteristic property can
 also be solved using its Grundy numbers. For example, for the first problem we
 solved ('A simple take-away game') the transitions can be seen in this way:
 
-<div class="row text-center">
+<div class="row text-center img-border">
 ![](./images/class-13/graph.png)
 
 Image taken from [Game theory - Thomas S. Ferguson. Page 14](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
@@ -372,7 +377,7 @@ int main () {
 }
 ```
 
-Now, we are solving each case in $O(nm \log m)$ which is enough to get the accepted veredict. **Can be implemented in $O(nm)$?**
+Now, we are solving each case in $O(nm \log m)$ which is enough to get the accepted veredict. **Could it be implemented in $O(nm)$?**
 
 But the importante of this new interpretation of the characteristic property
 can be better seen in the next section.
@@ -400,7 +405,7 @@ Now, let's see some examples of this theorem:
 are $n$ piles of chips and in each turn a player can select a pile (**only
 one**) and removes one, two or three chips from this pile.
 
-Let $x_i$ be the number of chips in the $i$-th pile. Then, we can solve the problem using WL states or Grundy numbers. Now our state will
+Let $x_i$ be the number of chips in the $i$-th pile. Then, we can solve the problem using WL states or Grundy numbers. Now, our state will
 be $(x_1, x_2, x_3, \dots, x_n)$ and from this state we can go to these states (if possible):
 
 - $(x_1 - 1, x_2, x_3, \dots, x_n)$
@@ -436,7 +441,7 @@ knight can move only as shown in the picture below. There can be more than one
 knight on the same square at the same time. Two players take turns moving and
 in each turn a player chooses one of the knights and moves it. The player who is not able to make a move is declared the loser. If both players play optimally who will win ?
 
-<div class="row text-center">
+<div class="row text-center img-border">
 ![](./images/class-13/chess.png)
 
 Image and problem taken from [Algorithm Games - Topcoder](https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/)
@@ -516,8 +521,8 @@ int main () {
 ```
 
 We may have also solved the problem using WL states or just Grundy numbers, but
-then we would have need to analyze around $\binom{N \cdot N}{K}$ possibles
-states (which is a lot), whereas using the Sprague-Grundy theorem we solved
+then we would have needed to analyze around $\binom{N \cdot N}{K}$ possibles
+states, whereas using the Sprague-Grundy theorem we solved
 the problem in $O(N ^ 2)$.
 
 
@@ -531,7 +536,433 @@ Recommended readings:
 
 You can find the contest [here](https://vjudge.net/contest/359163).
 
-The solutions will be uploaded after the contest.
+
+<!-- Begins problem A -->
+<div class="card" id="A">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">A: The Game</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://www.spoj.com/problems/QCJ3/en/" target="_blank">The Game</a>
+
+Having $x$ stones in square $i$ is equivalent to having $x$ piles of size $i$,
+then we can reduce the problem to the game of Nim.
+
+**Extra:** What happend if you have an even number of equal size piles ?
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemA" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+typedef vector <pii> vpii;
+typedef vector <pll> vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int tc;
+  cin >> tc;
+  while (tc--) {
+    int n;
+    cin >> n;
+    int nim_sum = 0;
+    for (int i = 1; i <= n; i++) {
+      int x;
+      cin >> x;
+      while (x--) nim_sum ^= i;
+    }
+    if (nim_sum == 0) cout << "Hanks Wins\n";
+    else cout << "Tom Wins\n";
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+
+
+
+<!-- Begins problem B -->
+<div class="card" id="B">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">B: Stone Game</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://www.codechef.com/problems/RESN04" target="_blank">Stone Game</a>
+
+If there are $x$ stones in the $i$ pile, then you will play $\lfloor \frac{x}{i} \rfloor$ turns with this pile. Then, you may realize that the total number of turns is fixed, so we just need to checks its parity.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemB" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+typedef vector <pii> vpii;
+typedef vector <pll> vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int tc;
+  cin >> tc;
+  while (tc--) {
+    int n;
+    cin >> n;
+    int n_turns = 0;
+    for (int i = 1; i <= n; i++) {
+      int x;
+      cin >> x;
+      n_turns ^= (x / i);
+    }
+    if (n_turns % 2 == 0) cout << "BOB\n";
+    else cout << "ALICE\n";
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+
+
+
+<!-- Begins problem C -->
+<div class="card" id="C">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">C: Exclusively Edible</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2286" target="_blank">Exclusively Edible</a>
+
+The problem reduces to the game of Nim with four piles (the number of cell that
+there are above, below, to the left and to the right of the given position).
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemC" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+typedef vector <pii> vpii;
+typedef vector <pll> vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int tc;
+  cin >> tc;
+  while (tc--) {
+    int m, n, r, c;
+    cin >> m >> n >> r >> c;
+    int pile1 = r;
+    int pile2 = m - r - 1;
+    int pile3 = c;
+    int pile4 = n - c - 1;
+    if ((pile1 ^ pile2 ^ pile3 ^ pile4) == 0) cout << "Hansel\n";
+    else cout << "Gretel\n";
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem C -->
+
+
+
+
+<!-- Begins problem D -->
+<div class="card" id="D">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">D: Exponential Game</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemD" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://www.codechef.com/problems/EXPGAME" target="_blank">Exponential Game</a>
+
+The number of possible transitions is low, then we basically have the union of
+take away games, so we can compute the Grundy number of each pile and use the Sprage-Grundy theorem to solve the whole problem.
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemD" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector <int> take;
+vector <int> memo;
+
+const int UNVISITED = -1;
+
+int grundy (int x) {
+  if (x == 0) { // terminal state
+    return 0; // mex 0
+  }
+  if (memo[x] != UNVISITED) { // we have already compute it
+    return memo[x];
+  }
+  set <int> values;
+  for (int t: take) {
+    if (t <= x) {
+      values.insert(grundy(x - t));
+    }
+  }
+  int mex = 0;
+  while (values.count(mex)) mex++;
+  return memo[x] = mex;
+}
+
+int main () {
+  const int N = 1e5 + 1;
+  int cur = 1;
+  while (true) {
+    int power = 1;
+    for (int i = 0; i < cur; i++) {
+      power *= cur;
+    }
+    if (power >= N) break;
+    take.push_back(power);
+    cur++;
+  }
+  memo.resize(N, UNVISITED);
+  int tc;
+  cin >> tc;
+  while (tc--) {
+    int n;
+    cin >> n;
+    int nim_sum = 0;
+    for (int i = 0; i < n; i++) {
+      int x;
+      cin >> x;
+      nim_sum ^= grundy(x);
+    }
+    if (nim_sum == 0) cout << "Head Chef\n";
+    else cout << "Little Chef\n";
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem D -->
+
+
+
+
+<!-- Begins problem E -->
+<div class="card" id="E">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemE" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">E: Bob's Game</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemE" class="collapse">
+<div class="card-body solution-body">
+
+### <a href="https://www.hackerrank.com/contests/university-codesprint-3/challenges/bobs-game/problem" target="_blank">Bob's Game</a>
+
+Each king can be seen as a different game, then we can just compute its Grundy
+number and use the Sprage-Grundy theorem. Moreover, we can compute the number
+of winning moves using the Sprage-Grundy theorem when we make a move
+(xor properties comes in handy here).
+
+  <!-- begin code -->
+  <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemE" aria-expanded="false" aria-controls="collapseTwo">
+  <!-- title -->
+  <i class="fas fa-caret-right"></i> <p class="title">Code</p>
+  </div>
+  <div id="codeProblemE" class="collapse">
+
+```c++
+#include <bits/stdc++.h>
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair <int, int> pii;
+typedef pair <ll, ll> pll;
+typedef vector <int> vi;
+typedef vector <ll> vll;
+typedef vector <pii> vpii;
+typedef vector <pll> vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  const int UNVISITED = -1;
+  int q;
+  cin >> q;
+  while (q--) {
+    int n;
+    cin >> n;
+    vector <string> grid(n);
+    for (auto& s: grid) cin >> s;
+    vector <vi> memo(n, vi(n, UNVISITED));
+
+    auto get_moves = [&] (int r, int c) {
+      vpii moves;
+      if (0 <= r - 1 and grid[r - 1][c] != 'X') {
+        moves.pb(pii(r - 1, c));
+      }
+      if (0 <= c - 1 and grid[r][c - 1] != 'X') {
+        moves.pb(pii(r, c - 1));
+      }
+      if (0 <= min(c - 1, r - 1) and grid[r - 1][c - 1] != 'X') {
+        moves.pb(pii(r - 1, c - 1));
+      }
+      return moves;
+    };
+
+    function <int(int,int)> grundy = [&] (int r, int c) -> int {
+      if (memo[r][c] != UNVISITED) return memo[r][c];
+      vpii nxt = get_moves(r, c);
+      set <int> values;
+      for (auto pp: nxt) {
+        values.insert(grundy(pp.first, pp.second));        
+      }
+      int mex = 0;
+      while (values.count(mex)) mex++;
+      return memo[r][c] = mex;
+    };
+
+    int nim_sum = 0;
+    for (int r = 0; r < n; r++) {
+      for (int c = 0; c < n; c++) {
+        if (grid[r][c] != 'K') continue;
+        nim_sum ^= grundy(r, c);
+      }
+    }
+    if (nim_sum == 0) {
+      cout << "LOSE\n";
+      continue;
+    }
+    int ways = 0;
+    for (int r = 0; r < n; r++) {
+      for (int c = 0; c < n; c++) {
+        if (grid[r][c] != 'K') continue;
+        vpii nxt = get_moves(r, c);
+        for (auto pp: nxt) {
+          if ((nim_sum ^ grundy(r, c) ^ grundy(pp.first, pp.second)) == 0) {
+            ways++;
+          }
+        }
+      }
+    }
+    cout << "WIN " << ways << '\n';
+  }
+  return (0);
+}
+```
+
+  </div>
+  <!-- ends code -->
+
+</div>
+</div>
+</div>
+<!-- ends problem E -->
+
+
+
+
 
 <p style="float: none; clear: both;"></p>
 

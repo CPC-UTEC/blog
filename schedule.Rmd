@@ -6,7 +6,7 @@ title: "Schedule"
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
-[PDF version](./schedule.pdf)
+[Schedule - initial proposal](./schedule.pdf)
 
 ## Topics
   - Asymptotic Analysis

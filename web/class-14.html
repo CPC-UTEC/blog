@@ -442,7 +442,7 @@ Grundy’s games
 <p>But, if each <span class="math inline">\(s_i\)</span> can be seen as an <strong>independent</strong> game, then applying the Sprague-Grundy theorem we can compute:</p>
 <p><span class="math display">\[g(s_i) = g(a_1) \oplus g(a_2) \oplus \dots \oplus g(a_m)\]</span></p>
 <p>Where <span class="math inline">\(a_i\)</span> depends of <span class="math inline">\(s_i\)</span>.</p>
-<p>This kind of games where a move divides the game into subgames that <strong>are independent</strong> of each other are commonly found. Let’s call them Grundy’s games. Here is some examples:</p>
+<p>This kind of games where a move divides the game into subgames that <strong>are independent</strong> of each other are commonly found. Let’s call them Grundy’s games. Here are some examples:</p>
 <div id="first-problem" class="section level3">
 <h3>First problem</h3>
 <p>Problem taken from <a href="https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf">Competitive Programmer’s Handbook, chapter 25. Page 240</a>.</p>
@@ -450,10 +450,10 @@ Grundy’s games
 <p>We can solve the problem using WL-states or Grundy numbers, but the numbers of states are too much (<strong>can you compute it?</strong>). Nevertheless, we can notice that if we take pile <span class="math inline">\(s_i\)</span> and divide it into piles of size <span class="math inline">\(a_1 \land a_2 \mid a_1 + a_2 = s_i\)</span>, then we can see <span class="math inline">\(a_1 \land a_2\)</span> as independent subgames. So, we have:</p>
 <p><span class="math display">\[g(s_i) = mex(\{a_1 \oplus a_2\} \mid a_1 \not = a_2 \land a_1 + a_2 = s_i)\]</span></p>
 <p><strong>Can you implement it?</strong></p>
-<p>Problem taken from <a href="https://cp-algorithms.com/game_theory/sprague-grundy-nim.html#toc-tgt-9">E-maxx Sprague-Grundy theorem. Nim</a>.</p>
 </div>
 <div id="second-problem" class="section level3">
 <h3>Second problem</h3>
+<p>Problem taken from <a href="https://cp-algorithms.com/game_theory/sprague-grundy-nim.html#toc-tgt-9">E-maxx Sprague-Grundy theorem. Nim</a>.</p>
 <p><strong>Problem:</strong> You have <span class="math inline">\(n\)</span> rectangles in a row. There are two players, in each turn a player chooses a rectangle and writes a cross on it. It is forbidden to put two crosses next to each other (in adjacent cells). As usual, the player without a valid move loses. If both players play optimally. Who will be the winner ?</p>
 <div class="row text-center">
 <p><img src="images/class-14/cross.png" /></p>
@@ -472,11 +472,11 @@ Staircase Nim
 <p>Problem taken from <a href="https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf">Game theory - Thomas S. Ferguson. Chapter 1. Page 13</a>.</p>
 <p><strong>Problem (Staircase Nim):</strong> A staircase of <span class="math inline">\(n\)</span> steps contains chips on some of the steps. Let <span class="math inline">\((x_1, x_2, \dots, x_n)\)</span> denote the position with <span class="math inline">\(x_i\)</span> chips on step <span class="math inline">\(i \mid 1 \leq i \leq n\)</span>. A move in this game consists of moving any positive number of chips from any step <span class="math inline">\(i\)</span> to the next lower step <span class="math inline">\(i - 1\)</span>. Chips reaching the ground (step 0) are removed from play. The game ends when all chips are on the ground. Both players play optimally and alternating turns. If the last to move wins, who will be the winner ?</p>
 <p>We can solve the problem using Grundy numbers or WL states, but the complexity would be at least <span class="math inline">\(O(x_1 \cdot x_2 \cdot \dots x_n) = O(x^n)\)</span> where <span class="math inline">\(x = \max(x_1, x_2, \dots, x_n)\)</span>. We need something better.</p>
-<p>With some trial and error we can notice that if we define our state as the coins that are only in odd steps, then all the moves of chips from even positions are meaningless because let <span class="math inline">\(i\)</span> be and even number, then if a player moves <span class="math inline">\(z\)</span> chips from step <span class="math inline">\(i\)</span> to step <span class="math inline">\(i - 1\)</span>, then in the next turn the other player can move <span class="math inline">\(z\)</span> chips from step <span class="math inline">\(i - 1\)</span> to step <span class="math inline">\(i - 2\)</span>, so the number of chips in the odd steps have not changed. Therefore, we only care about the chips in odd positions if we define our state in this way. Evenmore, in the same fashion of Bouton’s theorem, we can prove that:</p>
-<p><span class="math display">\[(x_1, x_2, \dots, x_{n - [n \bmod 2 = 0]}) \in \mathbb{L} \leftrightarrow \displaystyle\bigoplus_{\substack{i = 1\\ i += 2}}^{n}x_i = 0\]</span></p>
+<p>With some trial and error we can notice that if we define our state as the chips that are only in odd steps, then all the moves of chips from even positions are meaningless because let <span class="math inline">\(i\)</span> be and even number, then if a player moves <span class="math inline">\(z\)</span> chips from step <span class="math inline">\(i\)</span> to step <span class="math inline">\(i - 1\)</span>, then in the next turn the other player can move <span class="math inline">\(z\)</span> chips from step <span class="math inline">\(i - 1\)</span> to step <span class="math inline">\(i - 2\)</span>, so the number of chips in the odd steps have not changed. Therefore, we only care about the chips in odd positions. Evenmore, in the same fashion of Bouton’s theorem, we can prove that:</p>
+<p><span class="math display">\[(x_1, x_2, \dots, x_{n}) \in \mathbb{L} \leftrightarrow \displaystyle\bigoplus_{\substack{i = 1\\ i += 2}}^{n}x_i = 0\]</span></p>
 <p>The proof of this affirmation is very similar to the proof of Bouton’s theorem, but if you need some help you can read <a href="https://math.stackexchange.com/questions/937495/relationship-between-regular-nim-and-laskers-nim?answertab=active#tab-top">this answer</a>.</p>
 <p>Now, we can solve our problem in <span class="math inline">\(O(n)\)</span>.</p>
-<p>Understanding that the definition of our state can affect the complexity of our solution is very important. Moreover, it is important to know in advance games like the Staircase Nim in order to solve some hard problems (that may require more advances techniques) like these:</p>
+<p>Understanding that the definition of our state can affect the complexity of our solution is very important. Moreover, it is good to know in advance games like the Staircase Nim in order to solve some hard problems (that may require more advances techniques) like these:</p>
 <ul>
 <li><a href="https://www.codechef.com/problems/G3">Problem: A Coin Game</a>. <a href="https://www.codechef.com/wiki/tutorial-coin-game">Editorial</a>.</li>
 <li><a href="https://www.hackerrank.com/contests/world-codesprint-april/challenges/move-the-coins">Problem: Move the Coins</a>. <a href="https://codeforces.com/blog/entry/44651">Editorial</a>.</li>
@@ -538,7 +538,7 @@ namespace Minimax {
 
 }
 </code></pre>
-<p>This idea (basically a simulation of all possible scenarios) is achieved when the first player calls <code>Minimax::maxVal(initial_state)</code>. As <code>minVal</code> calls <code>maxVal</code> and <code>maxVal</code> calls <code>minVal</code>, we need to declare the interface of these functions and we are grouping them in a namespace to keep them in order. Now, using this framework we can solve a variety of problems like chess, go, checkers, etc. The only problem is that this solution is exponential, yet it is important to understand it as this idea is the base for other solutions.</p>
+<p>This idea (basically a simulation of all possible scenarios) is achieved when the first player calls <code>Minimax::maxVal(initial_state)</code>. As <code>minVal</code> calls <code>maxVal</code> and <code>maxVal</code> calls <code>minVal</code>, we need to declare the interface of these functions and we are grouping them in a <code>namespace</code> to keep them in order. Now, using this framework we can solve a variety of problems like chess, go, checkers, etc. The only problem is that this solution is exponential, yet it is important to understand it because this idea is the base for other solutions.</p>
 <p>As an example we can solve the Tic Tac Toe game using this framework. When doing it the recursion tree may looks something like this:</p>
 <div class="row text-center img-border">
 <p><img src="images/class-14/tic-tac-toe.png" /></p>
@@ -549,7 +549,7 @@ namespace Minimax {
 <div class="topic">
 Alpha-Beta prunning
 </div>
-<p>Now, we known how to solve partizan combinatorial games in exponential time, but there is an simple, yet powerful optimization we can do. What happen if I am executing <code>maxVal</code> function and I already found the maximum possible utility ? What happen if I amd executing <code>minVal</code> function and I already found the minimum possible utility ?</p>
+<p>Now, we known how to solve partizan combinatorial games in exponential time, but there is an simple, yet powerful optimization we can do. What happen if I am executing <code>maxVal</code> function and I already found the maximum possible utility ? What happen if I am executing <code>minVal</code> function and I already found the minimum possible utility ?</p>
 <p>Well, in these scenarios there is no need to keep searching, we already know the final utility of our current state, then we can prune the search. This simple optimization will improve our solution a little, yet it may usually be enough for problems in competitive programming. For example, let’s practice this optimization solving <a href="https://www.spoj.com/problems/GAME31/">The game of 31</a>.</p>
 <p>Try it by yourself for a while. You may end up with something like this:</p>
 <pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
@@ -634,7 +634,7 @@ int main () {
   }
   return (0);
 }</code></pre>
-<p>This optimization is what is known as Alpha-Beta prunning. In fact, the Minimax and Alpha-Beta prunning have even more interesting things, yet this is out of the scope of this course.</p>
+<p>This optimization is what is known as Alpha-Beta prunning. In fact, the Minimax and Alpha-Beta prunning have even more interesting things, yet this is out of the scope of this training.</p>
 <p>You may also be interested in watching this documental of AlphaGo. <a href="https://youtu.be/8tq1C8spV_g">Here</a> is the trailer.</p>
 <p>Recommended readings:</p>
 <ul>
@@ -647,7 +647,304 @@ int main () {
 Contest
 </div>
 <p>You can find the contest <a href="https://vjudge.net/contest/359378">here</a>.</p>
-<p>The solutions will be uploaded after the contest.</p>
+<!-- Begins problem A -->
+<div id="A" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+A: Misère Nim
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div id="misère-nim" class="section level3 card-body solution-body">
+<h3><a href="https://www.hackerrank.com/challenges/misere-nim-1/problem" target="_blank">Misère Nim</a></h3>
+<p>Check the section Misère Games of this class.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemA" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+typedef pair &lt;ll, ll&gt; pll;
+typedef vector &lt;int&gt; vi;
+typedef vector &lt;ll&gt; vll;
+typedef vector &lt;pii&gt; vpii;
+typedef vector &lt;pll&gt; vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int tc;
+  cin &gt;&gt; tc;
+  while (tc--) {
+    int n;
+    cin &gt;&gt; n;
+    bool all_one = true;
+    int nim_sum = 0;
+    for (int i = 0; i &lt; n; i++) {
+      int x;
+      cin &gt;&gt; x;
+      all_one &amp;= (x == 1);
+      nim_sum ^= x;
+    }
+    if (all_one) {
+      if (n % 2 == 0) cout &lt;&lt; &quot;First\n&quot;;
+      else cout &lt;&lt; &quot;Second\n&quot;;
+    } else {
+      if (nim_sum == 0) cout &lt;&lt; &quot;Second\n&quot;;
+      else cout &lt;&lt; &quot;First\n&quot;;
+    }
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+<!-- Begins problem B -->
+<div id="B" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+B: Euclid’s Game
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div id="euclids-game" class="section level3 card-body solution-body">
+<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1309" target="_blank">Euclid’s Game</a></h3>
+<p>Simulate the game using Minimax.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemB" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define WIN   1
+#define FAIL -1
+
+using namespace std;
+
+typedef long long ll;
+
+ll num_1, num_2;
+
+int minVal(ll, ll);
+int maxVal(ll, ll);
+
+int minVal(ll _max, ll _min) {
+    if (_max % _min == 0) return FAIL;
+    int res = WIN;
+    for (ll k = (_max / _min) * _min; res != FAIL and k &gt;= 1; k -= _min)
+        res = min(res, (_max == k) ? FAIL : maxVal(max(_max - k, _min), min(_max - k, _min)));
+    return res;
+}
+
+
+int maxVal(ll _max, ll _min) {
+    if (_max % _min == 0) return WIN;
+    int res = FAIL;
+    for (ll k = (_max / _min) * _min; res != WIN and k &gt;= 1; k -= _min)
+        res = max(res, (_max == k) ? WIN : minVal(max(_max - k, _min), min(_max - k, _min)));
+    return res;
+}
+
+int minimax(ll a, ll b) {
+    return maxVal(a, b);
+}
+
+int main() {
+    while (scanf(&quot;%lld %lld&quot;, &amp;num_1, &amp;num_2), num_1 and num_2)
+        puts(minimax(max(num_1, num_2), min(num_1, num_2)) == WIN ? &quot;Stan wins&quot; : &quot;Ollie wins&quot;);
+    return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+<!-- Begins problem C -->
+<div id="C" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+C: Box Game
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div id="box-game" class="section level3 card-body solution-body">
+<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3714" target="_blank">Box Game</a></h3>
+<p>You can use Minimax to get a pattern.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemC" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+namespace Pattern {
+    int minVal(int, int);
+    int maxVal(int, int);
+    int minimax(int);
+    void getAnswers(int);
+}
+
+namespace Pattern {
+
+    const int WIN  =  1;
+    const int FAIL = -1;
+
+    int minVal(int _max, int _min) {
+        if (_max == 1 and _min == 1) return WIN;
+        int ret = WIN;
+        for (int it = 1; 2 * it &lt;= _max and ret != FAIL; it++)
+            ret = min(ret, maxVal(max(it, _max - it), min(it, _max - it)));
+        return ret;
+    }
+
+    int maxVal(int _max, int _min) {
+        if (_max == 1 and _min == 1) return FAIL;
+        int ret = FAIL;
+        for (int it = 1; 2 * it &lt;= _max and ret != WIN; it++)
+            ret = max(ret, minVal(max(it, _max - it), min(it, _max - it)));
+        return ret;
+    }
+
+    int minimax(int k) {
+        return maxVal(k, 1) == WIN;
+    }
+
+    void getAnswers(int limit) {
+        for (int k = 2; k &lt;= limit; k++)
+            printf(&quot;%3d : %s\n&quot;, k, minimax(k) ? &quot;Alice&quot; : &quot;Bob&quot;);
+    }
+
+}
+
+const int Alice = 0;
+const int Bob   = 1;
+
+int n;
+map &lt;int, int&gt; winner;
+
+void fillBobPositions() {
+    for (long long k = 3; k &lt;= 1e9; k = k * 2 + 1) winner[k] = Bob;
+}
+
+
+int main() {
+    //Pattern::getAnswers(35);
+    fillBobPositions();
+    while (scanf(&quot;%d&quot;, &amp;n), n) puts(winner[n] == Alice ? &quot;Alice&quot; : &quot;Bob&quot;);
+    return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem C -->
+<!-- Begins problem D -->
+<div id="D" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+D: Stones
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemD" class="collapse">
+<div id="stones" class="section level3 card-body solution-body">
+<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3913" target="_blank">Stones</a></h3>
+<p>Simulate the game using Minimax.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemD" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define WIN        1
+#define FAIL      -1
+#define UNVISITED -2
+
+using namespace std;
+
+const int MAX_N = 1010;
+
+int8_t memo[MAX_N][MAX_N][2];
+
+int minVal(int, int);
+int maxVal(int, int);
+
+int minVal(int limit, int n) {
+    if (n == 0) return WIN;
+    if (memo[limit][n][0] != UNVISITED) return memo[limit][n][0];
+    int ret = WIN;
+    for (int k = 1; k &lt;= limit and ret != FAIL; k++)
+        ret = min(ret, maxVal(min(2 * k, n - k), n - k));
+    return memo[limit][n][0] = ret;
+}
+
+int maxVal(int limit, int n) {
+    if (n == 0) return FAIL;
+    if (memo[limit][n][1] != UNVISITED) return memo[limit][n][1];
+    int ret = FAIL;
+    for (int k = 1; k &lt;= limit and ret != WIN; k++)
+        ret = max(ret, minVal(min(2 * k, n - k), n - k));
+    return memo[limit][n][1] = ret;
+}
+
+bool minimax(int n) {
+    return maxVal(n - 1, n) == WIN;
+}
+
+int main() {
+    int n;
+    memset(memo, UNVISITED, sizeof memo);
+    while (scanf(&quot;%d&quot;, &amp;n), n) puts(minimax(n) ? &quot;Alicia&quot; : &quot;Roberto&quot;);
+    return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem D -->
 <p style="float: none; clear: both;">
 </p>
 <div class="pt-3" style="float: right;">

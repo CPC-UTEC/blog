@@ -5,10 +5,8 @@ title: "Daily Problem"
 ```{r setup, include=FALSE}
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
-### [Daily Problem - Part II](https://vjudge.net/contest/358289)
 
-
-### [Daily Problem - Part I](https://vjudge.net/contest/351983)
+### [Contest Link](https://vjudge.net/contest/351983)
 
 
 <!-- Begins problem problem-17 -->

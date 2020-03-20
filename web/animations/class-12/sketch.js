@@ -7,7 +7,7 @@ let grid = []
 let moves = []
 let cur
 let cnt
-let limit = 60
+let limit
 let current_square
 let slider
 
@@ -16,6 +16,7 @@ function setup () {
   canvas.parent('sketch-holder')
   width = document.getElementById('sketch-holder').offsetWidth
   height = document.getElementById('sketch-holder').offsetHeight
+  limit = 141 - 20 * 4
   resizeCanvas(width, height + 50)
   createEvents()
   buildGrid()
@@ -24,7 +25,7 @@ function setup () {
 function createEvents () {
   document.getElementById('speed').addEventListener('change', () => {
     let factor = document.getElementById('speed').value
-    limit = 10 * (41 - factor)
+    limit = 1 * (141 - 20 * factor)
   })
   document.getElementById('parameter_n').addEventListener('change', () => {
     n = document.getElementById('parameter_n').value
@@ -34,8 +35,13 @@ function createEvents () {
 }
 
 function windowResized () {
-  width = document.getElementById('sketch-holder').offsetWidth
-  height = document.getElementById('sketch-holder').offsetHeight
+  let new_width = document.getElementById('sketch-holder').offsetWidth
+  let new_height = document.getElementById('sketch-holder').offsetHeight
+  if (new_width == width && new_height == height) {
+    return
+  }
+  width = new_width
+  height = new_height
   resizeCanvas(width, height)
   background('#fafafa')
   buildGrid()

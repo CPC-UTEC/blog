@@ -435,6 +435,685 @@ $(".main-container")
 
 <div id="contest-link" class="section level3">
 <h3><a href="https://vjudge.net/contest/351983">Contest Link</a></h3>
+<!-- Begins problem Z -->
+<div id="Z" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemZ" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 26: Air Conditioner
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemZ" class="collapse">
+<div id="air-conditioner" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1304/C" target="_blank">Air Conditioner</a></h3>
+<p>Sort the elements by its time, then you init with a valid range <span class="math inline">\([m, m]\)</span> and for each element update and get the new valid range. If you get an invalid range in some element there is no answer.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemZ" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemZ" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+typedef vector &lt;int&gt; vi;
+typedef vector &lt;ll&gt; vll;
+
+struct Client {
+  ll t, l, h;
+  Client () {}
+  bool operator &lt; (const Client&amp; other) {
+    if (t != other.t) return t &lt; other.t;
+    return l &lt; other.l;
+  }
+};
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int q;
+  cin &gt;&gt; q;
+  while (q--) {
+    ll n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    vector &lt;Client&gt; arr(n);
+    for (int i = 0; i &lt; n; i++) {
+      cin &gt;&gt; arr[i].t &gt;&gt; arr[i].l &gt;&gt; arr[i].h;
+    }
+    sort(all(arr));
+    pair &lt;ll, ll&gt; cur(m, m);
+    bool ok = true;
+    ll prev = 0;
+    for (auto elem: arr) {
+      ll d = elem.t - prev;
+      pair &lt;ll, ll&gt; go(cur.first - d, cur.second + d);
+      ll l = max(go.first, elem.l);
+      ll r = min(go.second, elem.h);
+      if (l &gt; r) ok = false;
+      cur.first = l;
+      cur.second = r;
+      prev = elem.t;
+    }
+    if (ok) cout &lt;&lt; &quot;YES\n&quot;;
+    else cout &lt;&lt; &quot;NO\n&quot;;
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem Z -->
+<!-- Begins problem Y -->
+<div id="Y" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemY" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 25: Longest Palindrome
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemY" class="collapse">
+<div id="longest-palindrome" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1304/B" target="_blank">Longest Palindrome</a></h3>
+<p>Let the given words be <span class="math inline">\(s_1, s_2, \dots, s_n\)</span>. Then if we have <span class="math inline">\(s_i = s_j^R\)</span> we just add them to our answer. Finally, we search if there is a word <span class="math inline">\(s_i = s_i^R\)</span> than we can put in the middle of our answer.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemY" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemY" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+typedef vector &lt;int&gt; vi;
+typedef vector &lt;ll&gt; vll;
+     
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n, m;
+  cin &gt;&gt; n &gt;&gt; m;
+  vector &lt;string&gt; s(n);
+  vector &lt;string&gt; rs(n);
+  for (int i = 0; i &lt; n; i++) {
+    cin &gt;&gt; s[i];
+    rs[i] = s[i];
+    reverse(all(rs[i]));
+  }
+  vector &lt;bool&gt; take(n, false);
+  vector &lt;pii&gt; ans;
+  for (int i = 0; i &lt; n; i++) {
+    for (int j = i + 1; j &lt; n; j++) {
+      if (take[i] or take[j]) continue;
+      if (s[i] == rs[j]) {
+        take[i] = take[j] = true;
+        ans.pb(pii(i, j));
+      }
+    }
+  }
+  string add = &quot;&quot;;
+  for (int i = 0; i &lt; n; i++) {
+    if (take[i]) continue;
+    if (s[i] == rs[i]) {
+      add = s[i];
+      break;
+    }
+  }
+  string ret = &quot;&quot;;
+  string a = &quot;&quot;, b = &quot;&quot;, c = &quot;&quot;;
+  for (auto pp: ans) {
+    a += s[pp.first];
+  }
+  b = add;
+  c = a;
+  reverse(all(c));
+  ret = a + b + c;
+  cout &lt;&lt; sz(ret) &lt;&lt; &#39;\n&#39;;
+  cout &lt;&lt; ret &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem Y -->
+<!-- Begins problem X -->
+<div id="X" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemX" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 24: The ? 1 ? 2 ? … ? n = k problem
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemX" class="collapse">
+<div id="the-1-2-n-k-problem" class="section level3 card-body solution-body">
+<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=966" target="_blank">The ? 1 ? 2 ? … ? n = k problem</a></h3>
+<p>First, if <span class="math inline">\(n = 0\)</span> the answer is <span class="math inline">\(3 (-1 -2 + 3)\)</span>, else let <span class="math inline">\(x\)</span> be the minimum value such that <span class="math inline">\(sum = 1 + 2 + 3 + \dots + x \geq n\)</span>. Then if we substract the number <span class="math inline">\(y \leq x\)</span> we will have <span class="math inline">\(sum - 2 \cdot y\)</span>. So, we need the the difference between <span class="math inline">\(sum - n\)</span> to the even, else we should keep increasing <span class="math inline">\(sum\)</span>.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemX" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemX" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+typedef pair &lt;ll, ll&gt; pll;
+typedef vector &lt;int&gt; vi;
+typedef vector &lt;ll&gt; vll;
+typedef vector &lt;pii&gt; vpii;
+typedef vector &lt;pll&gt; vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int tc;
+  cin &gt;&gt; tc;
+  bool first = true;
+  while (tc--) {
+    if (not first) cout &lt;&lt; &#39;\n&#39;;
+    first = false;
+    int n;
+    cin &gt;&gt; n;
+    if (n == 0) {
+      cout &lt;&lt; 3 &lt;&lt; &#39;\n&#39;;
+      continue;
+    }
+    n = abs(n);
+    int sum = 0;
+    int x = 1;
+    while (sum &lt; n) {
+      sum += x;
+      x++;
+    }
+    x--;
+    while ((sum - n) % 2 == 1) {
+      x++;
+      sum += x;
+    }
+    cout &lt;&lt; x &lt;&lt; &#39;\n&#39;;
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem X -->
+<!-- Begins problem W -->
+<div id="W" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemW" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 23: Assigning to Classes
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemW" class="collapse">
+<div id="assigning-to-classes" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1300/B" target="_blank">Assigning to Classes</a></h3>
+<p>Let sort the array, then in any possible partition it holds that <span class="math inline">\(ans \geq a_{n + 1} - a_n\)</span> (<strong>can you prove it?</strong>), but in we put the student <span class="math inline">\(a_n\)</span> alone in a class, then we get <span class="math inline">\(ans = a_{n + 1} - a_n\)</span>.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemW" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemW" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+typedef pair &lt;ll, ll&gt; pll;
+typedef vector &lt;int&gt; vi;
+typedef vector &lt;ll&gt; vll;
+typedef vector &lt;pii&gt; vpii;
+typedef vector &lt;pll&gt; vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int tc;
+  cin &gt;&gt; tc;
+  while (tc--) {
+    int n;
+    cin &gt;&gt; n;
+    vi a(2 * n);
+    for (int&amp; elem: a) cin &gt;&gt; elem;
+    sort(all(a));
+    cout &lt;&lt; a[n] - a[n - 1] &lt;&lt; &#39;\n&#39;;
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem W -->
+<!-- Begins problem V -->
+<div id="V" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemV" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 22: Diverse Matrix
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemV" class="collapse">
+<div id="diverse-matrix" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1266/C" target="_blank">Diverse Matrix</a></h3>
+<p>Construct the matrix in this way:</p>
+<p><span class="math display">\[
+ \begin{pmatrix}
+  2 &amp; 2 \cdot (r + 2) &amp; \cdots &amp; 2 \cdot (r + c) \\
+  3 &amp; 3 \cdot (r + 2) &amp; \cdots &amp; 3 \cdot (r + c) \\
+  \vdots  &amp; \vdots  &amp; \ddots &amp; \vdots  \\
+  r + 1 &amp; (r + 1) \cdot (r + 2) &amp; \cdots &amp; (r + 1) \cdots (r + c)
+ \end{pmatrix}
+\]</span></p>
+<p>We have that <span class="math inline">\(gcd(a, a + 1) = 1\)</span></p>
+<p>Then, for each row (from 1 to r) we get these values <span class="math inline">\(2, 3, \dots, r + 1\)</span> and for each column (from 1 to c) we get these values <span class="math inline">\(1, r + 2, r + 3, \dots, r + c\)</span>. That is, we get all the values in <span class="math inline">\([1, r + c]\)</span> and there is no better answer (<strong>why?</strong>). So, we can implement a solution in <span class="math inline">\(O(rc)\)</span> taking as special case when <span class="math inline">\(r = 1\)</span>, <span class="math inline">\(c = 1\)</span> and <span class="math inline">\(r = c = 1\)</span>.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemV" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemV" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+
+using namespace std;
+
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int r, c;
+  cin &gt;&gt; r &gt;&gt; c;
+  if (r == 1 and c == 1) {
+    cout &lt;&lt; 0 &lt;&lt; &#39;\n&#39;;
+    return (0);
+  }
+  if (r == 1) {
+    for (int j = 0; j &lt; c; j++) cout &lt;&lt; 2 + j &lt;&lt; &quot; \n&quot;[j == c - 1];
+    return (0);
+  }
+  if (c == 1) {
+    for (int i = 0; i &lt; r; i++) cout &lt;&lt; 2 + i &lt;&lt; &#39;\n&#39;;
+    return (0);
+  }
+  vector &lt;vector &lt;int&gt;&gt; mat(r, vector &lt;int&gt; (c));
+  for (int i = 0; i &lt; r; i++) mat[i][0] = 2 + i;
+  for (int i = 0; i &lt; r; i++) {
+    int p = r + 2;
+    for (int j = 1; j &lt; c; j++) {
+      mat[i][j] = mat[i][0] * p;
+      p++;
+    }
+  }
+  for (int i = 0; i &lt; r; i++) {
+    for (int j = 0; j &lt; c; j++) cout &lt;&lt; mat[i][j] &lt;&lt; &quot; \n&quot;[j == c - 1];
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem V -->
+<!-- Begins problem U -->
+<div id="U" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemU" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 21: Dice Tower
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemU" class="collapse">
+<div id="dice-tower" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1266/B" target="_blank">Dice Tower</a></h3>
+<p>The sum of opposite faces in a dice is always 7, then if we have <span class="math inline">\(x\)</span> dices, each dice contributes with <span class="math inline">\(14 \cdot x\)</span> and the top dice contributes with one more number between <span class="math inline">\(1\)</span> and <span class="math inline">\(6\)</span>. Then, we have:</p>
+<p><span class="math display">\[14 \cdot x + d = n\]</span></p>
+<p>Where <span class="math inline">\(1 \leq d \leq 6\)</span>. So, if the equation holds for some <span class="math inline">\(1 \leq x\)</span> we have and answer.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemU" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemU" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+typedef pair &lt;ll, ll&gt; pll;
+typedef vector &lt;int&gt; vi;
+typedef vector &lt;ll&gt; vll;
+typedef vector &lt;pii&gt; vpii;
+typedef vector &lt;pll&gt; vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int tc;
+  cin &gt;&gt; tc;
+  while (tc--) {
+    ll num;
+    cin &gt;&gt; num;
+    bool ok = false;
+    for (int d = 1; d &lt;= 6; d++) {
+      ll val = num - d;
+      if (val % 14 == 0 and val / 14 &gt;= 1) ok = true;
+    }
+    if (ok) cout &lt;&lt; &quot;YES\n&quot;;
+    else cout &lt;&lt; &quot;NO\n&quot;;
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem U -->
+<!-- Begins problem T -->
+<div id="T" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemT" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 20: Maximize an Expression
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemT" class="collapse">
+<div id="maximize-an-expression" class="section level3 card-body solution-body">
+<h3><a href="https://www.codechef.com/problems/MAXEXPR" target="_blank">Maximize an Expression</a></h3>
+<p>We have <span class="math inline">\(\sum k_i \cdot x_i = 0\)</span> and we want to maximize:</p>
+<p><span class="math display">\[F = \sum \sqrt{x_i + c_i}\]</span></p>
+<p>We can solve it using Cauchy-Schwarz inequality, is states that:</p>
+<p><span class="math display">\[(\sum a_1 \cdot b_i)^2 \leq (\sum a_i^2) \cdot (\sum b_i^2)\]</span></p>
+<p>And it becomes and equality when <span class="math inline">\(\frac{a_i}{b_i} = constant\)</span></p>
+<p>Then, if we take <span class="math inline">\(a_i = \sqrt{k_i (x_i + c_i)}\)</span> and <span class="math inline">\(b_i = \sqrt{\frac{1}{k_i}}\)</span> we get:</p>
+<p><span class="math display">\[(\sum \sqrt{x_i + c_i})^2 = F^2 \leq (\sum k_i (x_i + c_i)) \cdot (\sum \frac{1}{k_i})\]</span></p>
+<p>But <span class="math inline">\(\sum k_i \cdot x_i = 0\)</span>, then we get:</p>
+<p><span class="math display">\[F^2 \leq (\sum k_i \cdot c_i) \cdot (\sum \frac{1}{k_i})\]</span></p>
+<p>Using it we can get if <span class="math inline">\(F\)</span> exists. Moreover, using <span class="math inline">\(\frac{a_i}{b_i} = constant\)</span> and <span class="math inline">\(\sum k_i \cdot x_i = 0\)</span> we get that:</p>
+<p><span class="math display">\[x_i = \frac{\sum k_j \cdot c_j}{k_i^2 \cdot (\sum 1 / k_j)} - c_i\]</span></p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemT" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemT" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+typedef pair &lt;ll, ll&gt; pll;
+typedef vector &lt;int&gt; vi;
+typedef vector &lt;ll&gt; vll;
+typedef vector &lt;pii&gt; vpii;
+typedef vector &lt;pll&gt; vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int tc;
+  cin &gt;&gt; tc;
+  while (tc--) {
+    int n;
+    cin &gt;&gt; n;
+    vector &lt;double&gt; k(n);
+    for (auto&amp; elem: k) cin &gt;&gt; elem;
+    vector &lt;double&gt; c(n);
+    for (auto&amp; elem: c) cin &gt;&gt; elem;
+    double prod_sum = 0;
+    double inv_sum = 0;
+    for (int i = 0; i &lt; n; i++) {
+      prod_sum += c[i] * k[i];
+      inv_sum += 1 / k[i];
+    }
+    assert(0 &lt; inv_sum);
+    if (prod_sum &lt; 0) {
+      cout &lt;&lt; -1 &lt;&lt; &#39;\n&#39;;
+      continue;
+    }
+    double F = 0;
+    vector &lt;double&gt; x(n);
+    for (int i = 0; i &lt; n; i++) {
+      x[i] = prod_sum / (k[i] * k[i] * inv_sum) - c[i];
+      F += sqrt(x[i] + c[i]);
+    }
+    cout &lt;&lt; fixed &lt;&lt; setprecision(9);
+    cout &lt;&lt; F;
+    for (int i = 0; i &lt; n; i++) {
+      cout &lt;&lt; &#39; &#39; &lt;&lt; x[i];
+    }
+    cout &lt;&lt; &#39;\n&#39;;
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem T -->
+<!-- Begins problem S -->
+<div id="S" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemS" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 19: Jimmy’s Balls
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemS" class="collapse">
+<div id="jimmys-balls" class="section level3 card-body solution-body">
+<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2475" target="_blank">Jimmy’s Balls</a></h3>
+<p>We have <span class="math inline">\(1 \leq r &lt; b &lt; g \land r + b + g = n\)</span></p>
+<p>If we fix <span class="math inline">\(r\)</span>, we have <span class="math inline">\(b + g = n - r = m\)</span></p>
+<p>Then, these are the values that hold the equation:</p>
+<ul>
+<li><span class="math inline">\(b = 1 \to g = m - 1\)</span></li>
+<li><span class="math inline">\(b = 2 \to g = m - 2\)</span></li>
+<li><span class="math inline">\(\vdots\)</span></li>
+<li><span class="math inline">\(b = k \to g = m - k\)</span></li>
+</ul>
+<p>But <span class="math inline">\(b &lt; g \to k &lt; m - k \to 2 \cdot k &lt; m \land r &lt; k\)</span>. So, <span class="math inline">\(k = max(0, \frac{m}{2} - [m \bmod 2 = 0] - r)\)</span>. Using it we can implement a <span class="math inline">\(O(n)\)</span> solution for each case.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemS" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemS" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+typedef pair &lt;ll, ll&gt; pll;
+typedef vector &lt;int&gt; vi;
+typedef vector &lt;ll&gt; vll;
+typedef vector &lt;pii&gt; vpii;
+typedef vector &lt;pll&gt; vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int tc = 0;
+  ll n;
+  while (cin &gt;&gt; n, n != 0) {
+    ll ans = 0;
+    for (ll r = 1; r &lt; n; r++) {
+      ll m = n - r;
+      ll k = m / 2;
+      if (m % 2 == 0) k--;
+      ans += max(0LL, k - r);
+    }
+    cout &lt;&lt; &quot;Case &quot; &lt;&lt; ++tc &lt;&lt; &quot;: &quot; &lt;&lt; ans &lt;&lt; &#39;\n&#39;;
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem S -->
+<!-- Begins problem R -->
+<div id="R" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemR" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+Day 18: Consecutive Integers
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemR" class="collapse">
+<div id="consecutive-integers" class="section level3 card-body solution-body">
+<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2221" target="_blank">Consecutive Integers</a></h3>
+<p>If the answer is <span class="math inline">\(l + (l + 1) + \dots + (l + d - 1) = n\)</span></p>
+<p>Then, we have:</p>
+<p><span class="math display">\[\binom{l + d - 1}{2} - \binom{l - 1}{2} = n\]</span> <span class="math display">\[l = \frac{2 \cdot n - d^2 + d}{2 \cdot d}\]</span></p>
+<p>So, we can fix <span class="math inline">\(d\)</span> and implement a brute force solution.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemR" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemR" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+typedef pair &lt;ll, ll&gt; pll;
+typedef vector &lt;int&gt; vi;
+typedef vector &lt;ll&gt; vll;
+typedef vector &lt;pii&gt; vpii;
+typedef vector &lt;pll&gt; vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  while (cin &gt;&gt; n, n != -1) {
+    int ans_l, ans_r;
+    for (int d = 1; d * d &lt;= 2 * n; d++) {
+      int sum = 2 * n - d * d + d;
+      if (sum % (2 * d) == 0) {
+        ans_l = sum / (2 * d);
+        ans_r = ans_l + d - 1;
+      }
+    }
+    cout &lt;&lt; n &lt;&lt; &quot; = &quot; &lt;&lt; ans_l &lt;&lt; &quot; + ... + &quot; &lt;&lt; ans_r &lt;&lt; &#39;\n&#39;;
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem R -->
 <!-- Begins problem problem-17 -->
 <div id="problem-17" class="card">
 <div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemproblem-17" aria-expanded="false" aria-controls="collapseTwo">
@@ -446,9 +1125,12 @@ Day 17: GCD on Blackboard
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-17" class="collapse">
-<div id="day-17-gcd-on-blackboard" class="section level3 card-body solution-body">
-<h3><a href="https://abc125.contest.atcoder.jp/tasks/abc125_c?lang=en" target="_blank">Day 17: GCD on Blackboard</a></h3>
-<p>First try it by yourself.</p>
+<div id="gcd-on-blackboard" class="section level3 card-body solution-body">
+<h3><a href="https://abc125.contest.atcoder.jp/tasks/abc125_c?lang=en" target="_blank">GCD on Blackboard</a></h3>
+<p>If we change the <span class="math inline">\(i\)</span>-th element then, we have:</p>
+<p><span class="math display">\[g = gcd(gcd(A_1, A_2, \dots, A_{i - 1}), gcd(A_{i + 1}, A_{i + 2}, \dots, A_n))\]</span></p>
+<p>And we know that <span class="math inline">\(gcd(a, b) \leq \min(a, b) \land gcd(a, a) = a\)</span></p>
+<p>So, we can choose to replace <span class="math inline">\(a_i\)</span> with <span class="math inline">\(g\)</span> and we will get <span class="math inline">\(g = gcd(g, A_i)\)</span>. Finally, we can use the idea of prefix sums and try to replace every <span class="math inline">\(i\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-17" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title --> <i class="fas fa-caret-right"></i>
@@ -457,7 +1139,31 @@ Code
 </p>
 </div>
 <div id="codeProblemproblem-17" class="collapse">
-<pre class="cpp"><code>// TO DO</code></pre>
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+
+#define all(A) begin(A), end(A)
+#define sz(A) int(A.size())
+
+using namespace std;
+
+typedef long long ll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin &gt;&gt; n;
+  vector &lt;int&gt; arr(n);
+  vector &lt;int&gt; l(n), r(n);
+  for (int i = 0; i &lt; n; i++) cin &gt;&gt; arr[i];
+  l[0] = arr[0];
+  for (int i = 1; i &lt; n; i++) l[i] = __gcd(l[i - 1], arr[i]);
+  r[n - 1] = arr[n - 1];
+  for (int i = n - 2; i &gt;= 0; i--) r[i] = __gcd(r[i + 1], arr[i]);
+  int ans = max(l[n - 2], r[1]);
+  for (int i = 1; i + 1 &lt; n; i++) ans = max(ans, __gcd(l[i - 1], r[i + 1]));
+  cout &lt;&lt; ans &lt;&lt; endl;
+  return (0);
+}</code></pre>
 </div>
 <p><!-- ends code --></p>
 </div>
@@ -475,9 +1181,9 @@ Day 16: DivRem Number
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-16" class="collapse">
-<div id="day-16-divrem-number" class="section level3 card-body solution-body">
-<h3><a href="https://diverta2019.contest.atcoder.jp/tasks/diverta2019_d?lang=en" target="_blank">Day 16: DivRem Number</a></h3>
-<p>There is some problem in the rendering of the problem. It should say:</p>
+<div id="divrem-number" class="section level3 card-body solution-body">
+<h3><a href="https://diverta2019.contest.atcoder.jp/tasks/diverta2019_d?lang=en" target="_blank">DivRem Number</a></h3>
+<p>There is some problem in the rendering of the statement. It should say:</p>
 <p><span class="math display">\[\lfloor \frac{N}{m} \rfloor = N \bmod m\]</span></p>
 <p><strong>Solution:</strong></p>
 <p>We known from the division theorem that:</p>
@@ -541,8 +1247,8 @@ Day 15: ConneR and the A.R.C. Markland-N
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-15" class="collapse">
-<div id="day-15-conner-and-the-a.r.c.-markland-n" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1293/A" target="_blank">Day 15: ConneR and the A.R.C. Markland-N</a></h3>
+<div id="conner-and-the-a.r.c.-markland-n" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1293/A" target="_blank">ConneR and the A.R.C. Markland-N</a></h3>
 <p>There are <span class="math inline">\(k\)</span> closed restaurants, thefore we will find the answer in <span class="math inline">\(O(k)\)</span> steps, so a brute force solution in enough.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-15" aria-expanded="false" aria-controls="collapseTwo">
@@ -611,10 +1317,10 @@ Day 14: Resale
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-14" class="collapse">
-<div id="day-14-resale" class="section level3 card-body solution-body">
-<h3><a href="https://abc125.contest.atcoder.jp/tasks/abc125_b?lang=en" target="_blank">Day 14: Resale</a></h3>
+<div id="resale" class="section level3 card-body solution-body">
+<h3><a href="https://abc125.contest.atcoder.jp/tasks/abc125_b?lang=en" target="_blank">Resale</a></h3>
 <p>Each element can be added to <span class="math inline">\(X\)</span> or to <span class="math inline">\(Y\)</span>.</p>
-<p>Let <span class="math inline">\(b = b_nb_{n - 1} \dots b_1\)</span> be a bit mask where <span class="math inline">\(b_i = 1\)</span> if the <span class="math inline">\(i-th\)</span> element is taken and <span class="math inline">\(b_i = 0\)</span> if the <span class="math inline">\(i-th\)</span> is not taken, then we realize that all possible masks are <span class="math inline">\(b \in [0, 2 ^n)\)</span>. In this way, we can implement an <span class="math inline">\(O(n 2^n)\)</span> solution and that is enough.</p>
+<p>Let <span class="math inline">\(b = b_nb_{n - 1} \dots b_1\)</span> be a bit mask where <span class="math inline">\(b_i = 1\)</span> if the <span class="math inline">\(i\)</span>-th element is taken and <span class="math inline">\(b_i = 0\)</span> if the <span class="math inline">\(i-th\)</span> is not taken, then we realize that all possible masks are <span class="math inline">\(b \in [0, 2 ^n)\)</span>. In this way, we can implement an <span class="math inline">\(O(n 2^n)\)</span> solution and that is enough.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-14" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title --> <i class="fas fa-caret-right"></i>
@@ -694,7 +1400,7 @@ int main () {
 }</code></pre>
 </div>
 <p><!-- ends code --></p>
-<p>There is another solution. If we take the elements <span class="math inline">\(i_1, i_2, i_k\)</span> then we have:</p>
+<p>There is another solution. If we take the elements <span class="math inline">\(i_1, i_2, \dots, i_k\)</span> then we have:</p>
 <p><span class="math display">\[(v_{i_1} + v_{i_2} + \dots v_{i_k}) - (c_{i_1} + c_{i_2} + \dots + c_{i_k})\]</span></p>
 <p>We can write the above expression in this way:</p>
 <p><span class="math display">\[(v_{i_1} - c_{i_1}) + (v_{i_2} - c_{i_2}) + \dots + (v_{i_k} - c_{i_k})\]</span></p>
@@ -756,8 +1462,8 @@ Day 13: Exception Handling
 </div>
 <!-- begin body -->
 <div id="collapseProblem13" class="collapse">
-<div id="day-13-exception-handling" class="section level3 card-body solution-body">
-<h3><a href="https://atcoder.jp/contests/abc134/tasks/abc134_c" target="_blank">Day 13: Exception Handling</a></h3>
+<div id="exception-handling" class="section level3 card-body solution-body">
+<h3><a href="https://atcoder.jp/contests/abc134/tasks/abc134_c" target="_blank">Exception Handling</a></h3>
 <p><strong>First solution:</strong> Notice that the answer will allways be the greatest value or the second greatest value. We can find these values in <span class="math inline">\(O(n)\)</span> or in <span class="math inline">\(O(n \log n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem13" aria-expanded="false" aria-controls="collapseTwo">
@@ -803,7 +1509,7 @@ int main () {
 <p>Let:</p>
 <p><span class="math display">\[left[0] = 0\]</span> <span class="math display">\[left[i] = \max(left[i - 1], A[i])\]</span></p>
 <p><span class="math display">\[right[n + 1] = 0\]</span> <span class="math display">\[right[n] = \max(right[n + 1], A[i])\]</span></p>
-<p>Then, we need to compute: <span class="math inline">\(\max(left[i - 1], right[i + 1])\)</span>, but we can compute <span class="math inline">\(left, right\)</span> in <span class="math inline">\(O(n)\)</span> using the idea of prefix sums. Therefore, we can solve the problem in <span class="math inline">\(O(n)\)</span>.</p>
+<p>Then, we need to compute: <span class="math inline">\(\max(left[i - 1], right[i + 1])\)</span>, but we can compute <span class="math inline">\(left\)</span> and <span class="math inline">\(right\)</span> in <span class="math inline">\(O(n)\)</span> using the idea of prefix sums. Therefore, we can solve the problem in <span class="math inline">\(O(n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem13-b" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title --> <i class="fas fa-caret-right"></i>
@@ -857,9 +1563,9 @@ Day 12: Green Bin
 </div>
 <!-- begin body -->
 <div id="collapseProblem12" class="collapse">
-<div id="day-12-green-bin" class="section level3 card-body solution-body">
-<h3><a href="https://abc137.contest.atcoder.jp/tasks/abc137_c?lang=en" target="_blank">Day 12: Green Bin</a></h3>
-<p>If <span class="math inline">\(s \land t\)</span> are anagrams, then <span class="math inline">\(sort(all(a)) = sort(all(b))\)</span>. That is, if we sort the letters of a string, we have a representative of a set of anagrams. Moreover, if we have <span class="math inline">\(x\)</span> string of the same anagram class, we can choose <span class="math inline">\(\binom{x}{2}\)</span> indices such that <span class="math inline">\(s_i \land s_j\)</span> are anagrams. In this way, we can implement a solution in <span class="math inline">\(O(N \log N)\)</span>.</p>
+<div id="green-bin" class="section level3 card-body solution-body">
+<h3><a href="https://abc137.contest.atcoder.jp/tasks/abc137_c?lang=en" target="_blank">Green Bin</a></h3>
+<p>If <span class="math inline">\(s \land t\)</span> are anagrams, then <span class="math inline">\(sort(all(a)) = sort(all(b))\)</span>. That is, if we sort the letters of a string, we have a representative of a set of anagrams. Moreover, if we have <span class="math inline">\(x\)</span> strings of the same anagram class, we can choose <span class="math inline">\(\binom{x}{2}\)</span> indices such that <span class="math inline">\(s_i \land s_j\)</span> are anagrams. In this way, we can implement a solution in <span class="math inline">\(O(N \log N)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem12" aria-expanded="false" aria-controls="collapseTwo">
 <!-- title --> <i class="fas fa-caret-right"></i>
@@ -917,8 +1623,8 @@ Day 11: Blocks
 </div>
 <!-- begin body -->
 <div id="collapseProblem11" class="collapse">
-<div id="day-11-blocks" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/1271/problem/B" target="_blank">Day 11: Blocks</a></h3>
+<div id="blocks" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/contest/1271/problem/B" target="_blank">Blocks</a></h3>
 <p>Each block should end up being black or white. You can fix what color the string will be and try to change it in a loop (if you are in iteration <code>i</code> you have already change <span class="math inline">\(s[0: i - 1]\)</span>, now if <span class="math inline">\(s[i] \not = \text{the color you have fixed}\)</span>, invert <span class="math inline">\(s[i], s[i + 1]\)</span>). In this way you need at most <span class="math inline">\(n - 1\)</span> operations.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem11" aria-expanded="false" aria-controls="collapseTwo">
@@ -984,9 +1690,9 @@ Day 10: JOE is on TV!
 </div>
 <!-- begin body -->
 <div id="collapseProblem10" class="collapse">
-<div id="day-10-joe-is-on-tv" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1293/B" target="_blank">Day 10: JOE is on TV!</a></h3>
-<p>You can notice that the optimal strategy is that in each turn one opponent fail to answer. Then, our answer is</p>
+<div id="joe-is-on-tv" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1293/B" target="_blank">JOE is on TV!</a></h3>
+<p>You can notice that the optimal strategy is that in each turn one opponent fails to answer. Then, our answer is</p>
 <p><span class="math display">\[\frac{1}{n} + \frac{1}{n - 1} + \frac{1}{n - 2} + \dots + \frac{1}{1}\]</span></p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem10" aria-expanded="false" aria-controls="collapseTwo">
@@ -1040,8 +1746,8 @@ Day 09: Number of Triplets
 </div>
 <!-- begin body -->
 <div id="collapseProblem09" class="collapse">
-<div id="day-09-number-of-triplets" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/181/problem/B" target="_blank">Day 09: Number of Triplets</a></h3>
+<div id="number-of-triplets" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/contest/181/problem/B" target="_blank">Number of Triplets</a></h3>
 <p>If you fix <span class="math inline">\(A, C\)</span> with two <code>fors</code>, you can get what value of <span class="math inline">\(B\)</span> you need. Moreover, as all the points are integers, we can check if <span class="math inline">\(A_x + C_x \land A_y + C_y\)</span> are even in order to avoid working with floats. Now, we have fixed <span class="math inline">\(B = ((A_x + C_x) / 2, (A_y + C_y) / 2)\)</span> and we need to check if this point is in the input. We can do it with a set (you’ll get TLE with a map) and solve the problem in <span class="math inline">\(O(n^2 \log n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem09" aria-expanded="false" aria-controls="collapseTwo">
@@ -1097,8 +1803,8 @@ Day 08: Little Quilt
 </div>
 <!-- begin body -->
 <div id="collapseProblem08" class="collapse">
-<div id="day-08-little-quilt" class="section level3 card-body solution-body">
-<h3><a href="https://www.spoj.com/problems/QUILT/en/" target="_blank">Day 08: Little Quilt</a></h3>
+<div id="little-quilt" class="section level3 card-body solution-body">
+<h3><a href="https://www.spoj.com/problems/QUILT/en/" target="_blank">Little Quilt</a></h3>
 <p>Just simulate what the problem says.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem08" aria-expanded="false" aria-controls="collapseTwo">
@@ -1257,8 +1963,8 @@ Day 07: z-sort
 </div>
 <!-- begin body -->
 <div id="collapseProblem07" class="collapse">
-<div id="day-07-z-sort" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/652/B" target="_blank">Day 07: z-sort</a></h3>
+<div id="z-sort" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/652/B" target="_blank">z-sort</a></h3>
 <p>Sort the array and alternate taking elements (the smallest, the greater, the second smallest, the second greater, …).</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem07" aria-expanded="false" aria-controls="collapseTwo">
@@ -1303,8 +2009,8 @@ Day 06: GeT AC
 </div>
 <!-- begin body -->
 <div id="collapseProblem06" class="collapse">
-<div id="day-06-get-ac" class="section level3 card-body solution-body">
-<h3><a href="https://atcoder.jp/contests/abc122/tasks/abc122_c" target="_blank">Day 06: GeT AC</a></h3>
+<div id="get-ac" class="section level3 card-body solution-body">
+<h3><a href="https://atcoder.jp/contests/abc122/tasks/abc122_c" target="_blank">GeT AC</a></h3>
 <p>We can count how many <code>AC</code> there are in a range using prefix sums and taking care or corner cases.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem06" aria-expanded="false" aria-controls="collapseTwo">
@@ -1364,9 +2070,9 @@ Day 05: Competitive Programmer
 </div>
 <!-- begin body -->
 <div id="collapseProblem05" class="collapse">
-<div id="day-05-competitive-programmer" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/1266/problem/A" target="_blank">Day 05: Competitive Programmer</a></h3>
-<p><span class="math inline">\(60 = 3 * 5 * 2 * 2\)</span>. Then, to verify that we can construct a number multiple of <span class="math inline">\(60\)</span> it is enough to verify:</p>
+<div id="competitive-programmer" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/contest/1266/problem/A" target="_blank">Competitive Programmer</a></h3>
+<p><span class="math inline">\(60 = 3 \cdot 5 \cdot 2 \cdot 2\)</span>. Then, to verify that we can construct a number multiple of <span class="math inline">\(60\)</span> it is enough to verify:</p>
 <ul>
 <li>It is multiple of 3: the sum of digits is multiple of 3</li>
 <li>It is multiple of 5 and 2: It ends in 0</li>
@@ -1440,8 +2146,8 @@ Day 04: 0 or 1 Swap
 </div>
 <!-- begin body -->
 <div id="collapseProblem04" class="collapse">
-<div id="day-04-0-or-1-swap" class="section level3 card-body solution-body">
-<h3><a href="https://atcoder.jp/contests/abc135/tasks/abc135_b" target="_blank">Day 04: 0 or 1 Swap</a></h3>
+<div id="or-1-swap" class="section level3 card-body solution-body">
+<h3><a href="https://atcoder.jp/contests/abc135/tasks/abc135_b" target="_blank">0 or 1 Swap</a></h3>
 <p>Try every <span class="math inline">\(i, j\)</span>. This solution is <span class="math inline">\(O(N^3)\)</span> and as <span class="math inline">\(N \leq 50\)</span> it is enough.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem04" aria-expanded="false" aria-controls="collapseTwo">
@@ -1500,8 +2206,8 @@ Day 03: Brick Break
 </div>
 <!-- begin body -->
 <div id="collapseProblem03" class="collapse">
-<div id="day-03-brick-break" class="section level3 card-body solution-body">
-<h3><a href="https://atcoder.jp/contests/abc148/tasks/abc148_d" target="_blank">Day 03: Brick Break</a></h3>
+<div id="brick-break" class="section level3 card-body solution-body">
+<h3><a href="https://atcoder.jp/contests/abc148/tasks/abc148_d" target="_blank">Brick Break</a></h3>
 <p>The problem is basically to find the largest continuous segment <span class="math inline">\([l, r] \mid a[l + i] = i + 1, 0 \leq i \leq r - l\)</span>. Notice that we can do it in <span class="math inline">\(O(n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem03" aria-expanded="false" aria-controls="collapseTwo">
@@ -1557,8 +2263,8 @@ Day 02: Prime Subtraction
 </div>
 <!-- begin body -->
 <div id="collapseProblem02" class="collapse">
-<div id="day-02-prime-subtraction" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/1238/problem/A" target="_blank">Day 02: Prime Subtraction</a></h3>
+<div id="prime-subtraction" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/contest/1238/problem/A" target="_blank">Prime Subtraction</a></h3>
 <p>If <span class="math inline">\(x - y = 1\)</span> then the answer is no, else, by the fundamental theorem of arithmetic <span class="math inline">\(\exists \, p\)</span> prime <span class="math inline">\(: p | (x - y)\)</span>. So, the answer is yes.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem02" aria-expanded="false" aria-controls="collapseTwo">
@@ -1600,8 +2306,8 @@ Day 01: Superhero Transformation
 </div>
 <!-- begin body -->
 <div id="collapseProblem01" class="collapse">
-<div id="day-01-superhero-transformation" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1111/A" target="_blank">Day 01: Superhero Transformation</a></h3>
+<div id="superhero-transformation" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1111/A" target="_blank">Superhero Transformation</a></h3>
 <p>Let <span class="math inline">\(f(c) = 1\)</span> if <code>c</code> is as vowel and <span class="math inline">\(f(c) = 0\)</span> otherwise. Then, the answer is true iff <span class="math inline">\(|s| = |t| \land f(s[i]) = f(t[i]) \quad \forall i \in [0, n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem01" aria-expanded="false" aria-controls="collapseTwo">

@@ -362,6 +362,9 @@ $(document).ready(function () {
       <li id="class-15">
         <a href="./class-15.html">15. Contest II</a>
       </li>
+      <li id="class-16">
+        <a href="./class-15.html">16. Contest UTEC-UNI-UPC II</a>
+      </li>
     </ul>
   </li>
 
@@ -438,17 +441,416 @@ $(".main-container")
 Contest
 </div>
 <p>You can find the contest <a href="https://vjudge.net/contest/360361">here</a>.</p>
-<p>The solutions will be uploaded after the contest.</p>
+<!-- Begins problem A -->
+<div id="A" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+A: Bouquet
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemA" class="collapse">
+<div id="bouquet" class="section level3 card-body solution-body">
+<h3><a href="https://abc156.contest.atcoder.jp/tasks/abc156_d" target="_blank">Bouquet</a></h3>
+<p>First, notice that the total number of different bouquets is <span class="math inline">\(2^n - 1\)</span> (the <span class="math inline">\(-1\)</span> is for not considering the case of taking nothing). Then, if we subtract the number of bouquets with <span class="math inline">\(a\)</span> flowers and the number of bouquets with <span class="math inline">\(b\)</span> flowers, we have the answer. But, we can find the number of bouquets with <span class="math inline">\(x\)</span> flowers using binomial coefficients, so we get this formula:</p>
+<p><span class="math display">\[ans = 2^n - 1 - \binom{n}{a} - \binom{n}{b}\]</span></p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemA" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+typedef pair &lt;ll, ll&gt; pll;
+typedef vector &lt;int&gt; vi;
+typedef vector &lt;ll&gt; vll;
+typedef vector &lt;pii&gt; vpii;
+typedef vector &lt;pll&gt; vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  // Preprocess
+  const int mod = 1e9 + 7;
+  auto add = [&amp;] (int a, int b) { return (a + b) % mod; };
+  auto sub = [&amp;] (int a, int b) { return (a - b + mod) % mod; };
+  auto mul = [&amp;] (int a, int b) { return (1LL * a * b) % mod; };
+  auto mod_pow = [&amp;] (int a, int b) {
+    int ret = 1;
+    while (b) {
+      if (b &amp; 1) ret = mul(ret, a);
+      a = mul(a, a);
+      b &gt;&gt;= 1;
+    }
+    return ret;
+  };
+  auto inv = [&amp;] (int a) { return mod_pow(a, mod - 2); };
+  const int N = 2e5 + 1;
+  vi fact(N);
+  fact[0] = 1;
+  for (int i = 1; i &lt; N; i++) fact[i] = mul(fact[i - 1], i);
+  auto comb = [&amp;] (int x, int y) {
+    int ret = 1;
+    for (int i = x - y + 1; i &lt;= x; i++) {
+      ret = mul(ret, i);
+    }
+    ret = mul(ret, inv(fact[y]));
+    return ret;
+  };
+  // Solution
+  int n, a, b;
+  cin &gt;&gt; n &gt;&gt; a &gt;&gt; b;
+  int ans = sub(mod_pow(2, n), 1);
+  ans = sub(ans, comb(n, a));
+  ans = sub(ans, comb(n, b));
+  cout &lt;&lt; ans &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem A -->
+<!-- Begins problem B -->
+<div id="B" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+B: Digit Subsequence
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemB" class="collapse">
+<div id="digit-subsequence" class="section level3 card-body solution-body">
+<h3><a href="https://www.spoj.com/problems/YOSEQ/en/" target="_blank">Digit Subsequence</a></h3>
+<p>The maximum possible answer is low (<strong>can you prove it?</strong>), then we can just brute force on the answer.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemB" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+ 
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+ 
+using namespace std;
+ 
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+typedef vector &lt;int&gt; vi;
+typedef vector &lt;ll&gt; vll;
+ 
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  string s;
+  cin &gt;&gt; s;
+  vi vis;
+  for (int i = 0; i &lt; sz(s); i++) {
+    int num = 0;
+    for (int j = 0; i + j &lt; sz(s) and j &lt; 5; j++) {
+      num = num * 10 + (s[i + j] - &#39;0&#39;);
+      vis.pb(num);
+    }
+  }
+  sort(all(vis));
+  vis.erase(unique(all(vis)), end(vis));
+  int ans = 0;
+  for (int elem: vis) {
+    if (elem != ans) break;
+    ans++;
+  }
+  cout &lt;&lt; ans &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem B -->
+<!-- Begins problem C -->
+<div id="C" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+C: Duplex Printing
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemC" class="collapse">
+<div id="c-duplex-printing" class="section level3 card-body solution-body">
+<h3><a href="https://abc157.contest.atcoder.jp/tasks/abc157_a?lang=en" target="_blank">C: Duplex Printing</a></h3>
+<p>Just analyze by parity.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemC" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+typedef pair &lt;ll, ll&gt; pll;
+typedef vector &lt;int&gt; vi;
+typedef vector &lt;ll&gt; vll;
+typedef vector &lt;pii&gt; vpii;
+typedef vector &lt;pll&gt; vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin &gt;&gt; n;
+  cout &lt;&lt; (n + 1) / 2 &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem C -->
+<!-- Begins problem D -->
+<div id="D" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+D: Journey Planning
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemD" class="collapse">
+<div id="journey-planning" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1321/B" target="_blank">Journey Planning</a></h3>
+<p><span class="math display">\[c_{i + 1} - c_i = b_{c_{i + 1}} - b_{c_i}\]</span> <span class="math display">\[c_{i + 1} - b_{c_{i + 1}} = c_i - b_{c_i}\]</span></p>
+<p>Let <span class="math inline">\(x_i = c_i - b_{c_i}\)</span></p>
+<p>Then, we have:</p>
+<p><span class="math display">\[x_{i + 1} = x_i\]</span></p>
+<p>So, for each <span class="math inline">\(i\)</span> we can compute <span class="math inline">\(x_i\)</span> and get the maximum possible sum for each <span class="math inline">\(i\)</span>.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemD" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+typedef vector &lt;int&gt; vi;
+typedef vector &lt;ll&gt; vll;
+     
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin &gt;&gt; n;
+  map &lt;int, ll&gt; sum;
+  ll ans = 0;
+  for (int i = 1; i &lt;= n; i++) {
+    int b;
+    cin &gt;&gt; b;
+    sum[i - b] += b;
+  }
+  for (auto pp: sum) {
+    ans = max(ans, pp.second);
+  }
+  cout &lt;&lt; ans &lt;&lt; &#39;\n&#39;;
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem D -->
+<!-- Begins problem E -->
+<div id="E" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemE" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+E: Contest for Robots
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemE" class="collapse">
+<div id="contest-for-robots" class="section level3 card-body solution-body">
+<h3><a href="https://codeforces.com/problemset/problem/1321/A" target="_blank">Contest for Robots</a></h3>
+<p>If <span class="math inline">\(a_i = b_i = 1 \lor a_i = b_i = 0\)</span> there is nothing we can do. Now, let <span class="math inline">\(x = |\{i: a_i = 1 \land b_j = 0\}|\)</span> and <span class="math inline">\(y = |\{i: a_i = 0 \land b_i = 1\}|\)</span>.</p>
+<p>Then, the problem reduce to find <span class="math inline">\(min(p: 1 \leq p \land x \cdot p &gt; y)\)</span>.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemE" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemE" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+typedef vector &lt;int&gt; vi;
+typedef vector &lt;ll&gt; vll;
+     
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  int n;
+  cin &gt;&gt; n;
+  vector &lt;int&gt; a(n);
+  vector &lt;int&gt; b(n);
+  for (int&amp; elem: a) cin &gt;&gt; elem;
+  for (int&amp; elem: b) cin &gt;&gt; elem;
+  int x = 0, y = 0;
+  for (int i = 0; i &lt; n; i++) {
+    if (a[i] and b[i]) continue;
+    if (a[i] == 0 and b[i] == 0) continue;
+    if (a[i]) x++;
+    if (b[i]) y++;
+  }
+  if (x == 0) {
+    cout &lt;&lt; -1 &lt;&lt; &#39;\n&#39;;
+  } else {
+    for (int p = 1; ; p++) {
+      if (p * x &gt; y) {
+        cout &lt;&lt; p &lt;&lt; &#39;\n&#39;;
+        return (0);
+      }
+    }
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem E -->
+<!-- Begins problem F -->
+<div id="F" class="card">
+<div class="collapsed solution-title" type="button" data-toggle="collapse" data-target="#collapseProblemF" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title -->
+<i class="fas fa-caret-right"></i>
+<p class="title">
+F: Friendship
+</p>
+</div>
+<!-- begin body -->
+<div id="collapseProblemF" class="collapse">
+<div id="friendship" class="section level3 card-body solution-body">
+<h3><a href="https://www.spoj.com/problems/FRNDAM/en/" target="_blank">Friendship</a></h3>
+<p>Just implement what the problem says.</p>
+<!-- begin code -->
+<div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemF" aria-expanded="false" aria-controls="collapseTwo">
+<!-- title --> <i class="fas fa-caret-right"></i>
+<p class="title">
+Code
+</p>
+</div>
+<div id="codeProblemF" class="collapse">
+<pre class="cpp"><code>#include &lt;bits/stdc++.h&gt;
+     
+#define all(A) begin(A), end(A)
+#define rall(A) rbegin(A), rend(A)
+#define sz(A) int(A.size())
+#define pb push_back
+#define mp make_pair
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair &lt;int, int&gt; pii;
+typedef pair &lt;ll, ll&gt; pll;
+typedef vector &lt;int&gt; vi;
+typedef vector &lt;ll&gt; vll;
+typedef vector &lt;pii&gt; vpii;
+typedef vector &lt;pll&gt; vpll;
+
+int main () {
+  ios::sync_with_stdio(false); cin.tie(0);
+  const int N = 1e6 + 1;
+  vi val(N);
+  for (int i = 1; i &lt; N; i++) {
+    for (int j = i + i; j &lt; N; j += i) {
+      val[j] += i;
+    }
+  }
+  int tc;
+  cin &gt;&gt; tc;
+  while (tc--) {
+    int x, y;
+    cin &gt;&gt; x &gt;&gt; y;
+    bool ok = (val[x] == y and val[y] == x);
+    if (ok) cout &lt;&lt; &quot;Friendship is ideal\n&quot;;
+    else cout &lt;&lt; &quot;Friendship is not ideal\n&quot;;
+  }
+  return (0);
+}</code></pre>
+</div>
+<p><!-- ends code --></p>
+</div>
+</div>
+</div>
+<!-- ends problem F -->
 <p style="float: none; clear: both;">
 </p>
-<!--
-<div style="float: right;" class="pt-3">
-  <a class="continue-link" href="./class-11.html" 
-     data-toggle="tooltip" title="Divide and Conquer I">
-  Next
-  </a>
+<div class="pt-3" style="float: right;">
+<p><a class="continue-link" href="./class-16.html" 
+     data-toggle="tooltip" title="Contest UTEC-UNI-UPC II"> Next </a></p>
 </div>
--->
 <div class="pt-3">
 <p><a class="continue-link" href="./class-14.html"
      data-toggle="tooltip" title="Game Theory II"> Previous </a></p>

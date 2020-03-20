@@ -98,6 +98,11 @@ title: "Classes"
 - [03-02-2020] - Class 15 - Contest II
   + [Theory](./class-15.html)
   + [Contest](https://vjudge.net/contest/360361)
+  + [Solutions](./class-15.html#contest)
+
+- [03-04-2020] - Class 16 - Contest UTEC-UNI-UPC II
+  + [Theory](./class-16.html)
+  + [Contest](https://codeforces.com/group/qWRAoRrTOT/contest/271109)
 
 
 The repository of this page can be found [here](https://github.com/CP-UTEC/Lessons).

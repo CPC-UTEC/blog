@@ -1,0 +1,186 @@
+---
+title: "Class 17: Graphs I"
+date: "04-09-2021"
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+> "One needs to do a serious amount of reading and writing, and not just thinking, in order to get anywhere serious in mathematics."
+
+<div class="topic">Introduction</div>
+
+Many situations in mathematics and computer science can be expresed by two things:
+
+1. A set of points
+2. Lines joining some pairs of points
+
+And if we disregard the properties of the joins (length, shape, etc) and we only pay attention to which pairs are joined and which are not, then
+we arrive at the mathematical notion of a graph. Formally, we have:
+
+**Definition 1.** A graph $G$ is and ordered pair $(V, E)$, where $V$ is some set and $E$ is a set of 2-point subsets of $V$.
+The elements of $V$ are called vertices of the graph $G$ and the elements of $E$ edges of $G$.
+
+**Definition 2.** A directed graph $G$ is and ordered pair $(V, E)$, where $V$ is some set and $E$ is a set pairs of elements of $V$.
+
+Now, we can express different situations using the definition of a graph and directed graph. For example.
+
+* The statement "Descartes loves Sofia and Sofia loves Descartes" can be expresed as a graph 
+
+  $G_1 = (V_1, E_1)$ where $V_1 = \{\text{Descartes}, \text{Sofia}\}$ and 
+  $E_1 = \{\{\text{Descartes}, \text{Sofia}\}\}$
+
+* Similarly, it can be expresed as a directed graph
+
+  $G_2 = (V_2, E_2)$ where $V_2 = \{\text{Descartes}, \text{Sofia}\}$ and 
+  $E_2 = \{(\text{Descartes}, \text{Sofia}), (\text{Sofia}, \text{Descartes})\}$
+
+Here $E_{G}$ represents a relationship of love. In the same manner, we can define a graph to express some relationship between a set of elements.
+
+**Observation 1.** If $(u, v) \in E_{G}$. It does not imply that $(v, u) \in E_{G}$
+
+Now, we understand the definition of a graph. Next, we need to known some popular graphs.
+
+* Complete graph $K_n$
+
+$V = \{1, 2, \dots, n\}$
+
+$E = V \times V \setminus \{\{u, u\}, u \in V\}$
+
+* Cycle $C_n$
+
+$V = \{1, 2, \dots, n\}$
+
+$E = \{\{i, i + 1\}: i = 1, 2, \dots, n - 1\} \cup \{\{1, n\}\}$
+
+* Path $P_n$
+
+$V = \{0, 1, \dots, n\}$
+
+$E = \{\{i - 1, i\}: i = 1, 2, \dots, n\}$
+
+
+* Complete bipartite graph $K_{n, m}$
+
+$V = \{u_1, \dots, u_n\} \cup \{v_1, \dots, v_m\}$
+
+$E = \{\{u_i, v_j\}: i = 1, 2, \dots, n, j = 1, 2, \dots, m \}$
+
+
+<div class="row text-center">
+![](./images/class-17/graphs.png)
+
+Images taken from [Invitation to Discrete Mathematics, pages 112, 113](https://www.amazon.com/-/es/Jiri-Matousek/dp/0198570422)
+</div>
+
+<div class="topic">Graph representation</div>
+
+Adjacency matrix
+List of adjacency
+Meaning of exponenciation of matrix
+
+<div class"topic">Distance in graphs</div>
+
+Axiom of a metric
+Matrix exponenciation to find the distance in a graph
+
+<div class="topic">Graph isomorphism</div>
+
+Definition
+
+Examples
+
+Mention the isomorphic is a equivalence relation 
+
+Multiplication to find isomorphism (exercise 12 of section 4.2)
+
+<div class="topic">Graph score</div>
+
+Define the degree of a vertex
+
+Handshake Lemma
+
+Formulate the question to the score theorem (Theorem 4.3.3)
+
+<div class="topic">Trees</div>
+
+Definition
+
+Important properties
+
+<div class="topic">BFS</div>
+
+Algorithm
+
+Image of Cormen
+
+Interesting properties-applications
+
+<div class="topic">DFS</div>
+
+Algorithm
+
+Image of Cormen
+
+Edges classsification
+
+Interesting properties-applications
+
+<div class="topic">Diameter of a tree</div>
+
+Definition of the diameter
+Algorithm to find the diameter in greedy way
+
+Problem: Number of diameters of a tree
+
+Center definition
+
+Statement: The center lies on diameter
+
+Problem solution
+
+<div class="topic">Isomorphism of trees</div>
+
+Definition of rooted trees and the kind of isomorphism
+
+Canonical representation of a tree
+
+Usage
+
+Recommended readings:
+
+- [Introduction to Algorithms - Sections 22.1, 22.2, 22.3](https://www.amazon.com/-/es/Thomas-H-Cormen/dp/0262033844)
+- [Invitation to Discrete Mathematics, chapter 4 and and sections 5.1, 5.2](https://www.amazon.com/-/es/Jiri-Matousek/dp/0198570422)
+- [Algorithms Live! - Episode 1 - Trees and Diameters](https://www.youtube.com/watch?v=2PFl93WM_ao)
+- [E-maxx Breadth-first search](https://cp-algorithms.com/graph/breadth-first-search.html)
+- [E-maxx Depth First Search](https://cp-algorithms.com/graph/depth-first-search.html)
+- [The () Canonical Form of a Tree](http://webhome.cs.uvic.ca/~wendym/courses/582/16/notes/582_12_tree_can_form.pdf)
+
+<p style="float: none; clear: both;"></p>
+
+<!--
+<div style="float: right;" class="pt-3">
+  <a class="continue-link" href="./class-15.html" 
+     data-toggle="tooltip" title="Contest II">
+  Next
+  </a>
+</div>
+-->
+
+<div class="pt-3">
+  <a class="continue-link" href="./class-16.html"
+     data-toggle="tooltip" title="Contest UTEC-UNI-UPC II">
+  Previous
+  </a>
+</div>
+
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-17').addClass('active');
+  const cur_class = document.getElementById('class-17');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+</script>

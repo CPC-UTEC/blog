@@ -6,13 +6,14 @@ title: "Schedule"
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
-[Schedule - initial proposal](./schedule.pdf)
+[Schedule - initial proposal](./files/schedule.pdf)
 
 ## Topics
   - Introduction
   - Complete Search
   - Divide and Conquer
   - Game Theory
+  - Graph Theory
 
 ### Introduction
 
@@ -212,6 +213,21 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 * <div id="s-class-15">[**Class 15: Contest II**](./class-15.html)</div>
 
 * <div id="s-class-16">[**Class 16: Contest UTEC-UNI-UPC II**](./class-16.html)</div>
+
+
+### Graph Theory
+
+* <div id="s-class-17">[**Class 17: Graph Theory I**](./class-13.html)</div>
+  **Topics**
+  + Topic I
+
+  **Readings**
+  + [Introduction to Algorithms - Sections 22.1, 22.2, 22.3](https://www.amazon.com/-/es/Thomas-H-Cormen/dp/0262033844)
+  + [Invitation to Discrete Mathematics, chapter 4 and and sections 5.1, 5.2](https://www.amazon.com/-/es/Jiri-Matousek/dp/0198570422)
+  + [Algorithms Live! - Episode 1 - Trees and Diameters](https://www.youtube.com/watch?v=2PFl93WM_ao)
+  + [E-maxx Breadth-first search](https://cp-algorithms.com/graph/breadth-first-search.html)
+  + [E-maxx Depth First Search](https://cp-algorithms.com/graph/depth-first-search.html)
+  + [The () Canonical Form of a Tree](http://webhome.cs.uvic.ca/~wendym/courses/582/16/notes/582_12_tree_can_form.pdf)
 
 
 <div id="final"></div>

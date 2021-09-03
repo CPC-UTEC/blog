@@ -22,21 +22,17 @@ The statements in PDF can be found in [English](./files/class-16/statements-Engl
 The solutions are in [this blog](https://codeforces.com/group/qWRAoRrTOT/blog/entry/5475).
 -->
 
-The solutions will be uploaded soon.
-
 You need to be in the Codeforces Group to be able to see the contest and
 solutions. Try joining the group or write us if you have any problem.
 
 <p style="float: none; clear: both;"></p>
 
-<!--
 <div style="float: right;" class="pt-3">
-  <a class="continue-link" href="./class-11.html" 
-     data-toggle="tooltip" title="Divide and Conquer I">
+  <a class="continue-link" href="./class-17.html" 
+     data-toggle="tooltip" title="Graph Theory I">
   Next
   </a>
 </div>
--->
 
 <div class="pt-3">
   <a class="continue-link" href="./class-15.html"

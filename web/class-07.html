@@ -14,7 +14,6 @@
 <title>Class 07: Complete Search IV</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -735,8 +734,8 @@ A: Nice Garland
 </div>
 <!-- begin body -->
 <div id="collapseProblemA" class="collapse">
-<div id="nice-garland" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1108/C" target="_blank">Nice Garland</a></h3>
+<div class="card-body solution-body">
+<h3 id="nice-garland"><a href="https://codeforces.com/problemset/problem/1108/C" target="_blank">Nice Garland</a></h3>
 <p>If we fix the first three elements, we can know how all the sequence should be. Then we can try to find the answer in all the permutations of the string “RGB”.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
@@ -798,8 +797,8 @@ B: Petr and a Combination Lock
 </div>
 <!-- begin body -->
 <div id="collapseProblemB" class="collapse">
-<div id="petr-and-a-combination-lock" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1097/B" target="_blank">Petr and a Combination Lock</a></h3>
+<div class="card-body solution-body">
+<h3 id="petr-and-a-combination-lock"><a href="https://codeforces.com/problemset/problem/1097/B" target="_blank">Petr and a Combination Lock</a></h3>
 <p>Each angle can be used to rotate in a clockwise or counterclockwise direction (i.e each angle have two options), then we can use a mask with <span class="math inline">\(n\)</span> bits to simulate all possible states.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
@@ -851,8 +850,8 @@ C: Splitting Numbers
 </div>
 <!-- begin body -->
 <div id="collapseProblemC" class="collapse">
-<div id="splitting-numbers" class="section level3 card-body solution-body">
-<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3084" target="_blank">Splitting Numbers</a></h3>
+<div class="card-body solution-body">
+<h3 id="splitting-numbers"><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3084" target="_blank">Splitting Numbers</a></h3>
 <p>Just simulate what the problem says.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
@@ -899,8 +898,8 @@ D: Number of Parallelograms
 </div>
 <!-- begin body -->
 <div id="collapseProblemD" class="collapse">
-<div id="number-of-parallelograms" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/660/D" target="_blank">Number of Parallelograms</a></h3>
+<div class="card-body solution-body">
+<h3 id="number-of-parallelograms"><a href="https://codeforces.com/problemset/problem/660/D" target="_blank">Number of Parallelograms</a></h3>
 <p>We can say that <span class="math inline">\(\square ABCD\)</span> is a parallelogram if and only if <span class="math inline">\(\overrightarrow{AB} = \overrightarrow{CD}\)</span>. Then, you can store all the possible vectors that you can form with these points, now if there are <span class="math inline">\(x\)</span> vectors <span class="math inline">\(\overrightarrow{AB}\)</span>, you can form <span class="math inline">\(\binom{x}{2} / 4\)</span> parallelograms.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">

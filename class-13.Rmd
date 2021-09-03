@@ -529,6 +529,7 @@ the problem in $O(N ^ 2)$.
 Recommended readings:
 
 * [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
+* [Ali Ibrahim Site - Game Theory](https://ali-ibrahim137.github.io/competitive/programming/2020/02/26/Game-Theory.html)
 * [Algorithm Games - Topcoder](https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/)
 * [Game Theory For Competitive Programming](https://stepupanalytics.com/game-theory-for-competitive-programming/)
 
@@ -981,6 +982,7 @@ int main () {
 </div>
 
 <script>
+  $('#all-summer').collapse('show');
   $('#all-classes').collapse('show');
   $('#class-13').addClass('active');
   const cur_class = document.getElementById('class-13');

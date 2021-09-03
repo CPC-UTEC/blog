@@ -14,7 +14,6 @@
 <title>Class 12: Divide and Conquer II</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -872,8 +871,8 @@ A: Creative Snap
 </div>
 <!-- begin body -->
 <div id="collapseProblemA" class="collapse">
-<div id="creative-snap" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1111/C" target="_blank">Creative Snap</a></h3>
+<div class="card-body solution-body">
+<h3 id="creative-snap"><a href="https://codeforces.com/problemset/problem/1111/C" target="_blank">Creative Snap</a></h3>
 <p>Read carefully the problem, it is basically describing what to implement.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
@@ -934,8 +933,8 @@ B: Code For 1
 </div>
 <!-- begin body -->
 <div id="collapseProblemB" class="collapse">
-<div id="code-for-1" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/768/problem/B" target="_blank">Code For 1</a></h3>
+<div class="card-body solution-body">
+<h3 id="code-for-1"><a href="https://codeforces.com/contest/768/problem/B" target="_blank">Code For 1</a></h3>
 <p>You just need to count the number of element in <span class="math inline">\([l, r]\)</span> that are one in the final array and we can use divide and conquer to generate it.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
@@ -1003,8 +1002,8 @@ C: Race Time!
 </div>
 <!-- begin body -->
 <div id="collapseProblemC" class="collapse">
-<div id="race-time" class="section level3 card-body solution-body">
-<h3><a href="https://www.codechef.com/problems/AMCS03" target="_blank">Race Time!</a></h3>
+<div class="card-body solution-body">
+<h3 id="race-time"><a href="https://www.codechef.com/problems/AMCS03" target="_blank">Race Time!</a></h3>
 <p>We have that <span class="math inline">\(f\)</span> is a convex function, then we can find the minimum point using ternary search.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
@@ -1072,8 +1071,8 @@ D: Trick or Treat
 </div>
 <!-- begin body -->
 <div id="collapseProblemD" class="collapse">
-<div id="trick-or-treat" class="section level3 card-body solution-body">
-<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3349" target="_blank">Trick or Treat</a></h3>
+<div class="card-body solution-body">
+<h3 id="trick-or-treat"><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3349" target="_blank">Trick or Treat</a></h3>
 <p>The function we want to minimize is convex, then we can apply ternary search.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
@@ -1144,8 +1143,8 @@ E: Energy exchange
 </div>
 <!-- begin body -->
 <div id="collapseProblemE" class="collapse">
-<div id="energy-exchange" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/68/problem/B" target="_blank">Energy exchange</a></h3>
+<div class="card-body solution-body">
+<h3 id="energy-exchange"><a href="https://codeforces.com/contest/68/problem/B" target="_blank">Energy exchange</a></h3>
 <p>Let <span class="math inline">\(x\)</span> be the final amount of energy, then you can compute the amount of enery that must be transfered and if it is non-negative, then it is possible to get that final amount of energy. Therefore, we can use binary search to get the maximum possible amount of energy.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemE" aria-expanded="false" aria-controls="collapseTwo">
@@ -1214,8 +1213,8 @@ F: Monitor
 </div>
 <!-- begin body -->
 <div id="collapseProblemF" class="collapse">
-<div id="monitor" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/16/C" target="_blank">Monitor</a></h3>
+<div class="card-body solution-body">
+<h3 id="monitor"><a href="https://codeforces.com/problemset/problem/16/C" target="_blank">Monitor</a></h3>
 <p>Let <span class="math inline">\(g = \gcd(x, y)\)</span>, <span class="math inline">\(x&#39; = x / g\)</span>, <span class="math inline">\(y&#39; = y / g\)</span>, then we have to find <span class="math inline">\(\max(m: m \cdot x&#39; \leq a \land m \cdot y&#39; \leq b)\)</span> and we can find such <span class="math inline">\(d\)</span> using binary search.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemF" aria-expanded="false" aria-controls="collapseTwo">

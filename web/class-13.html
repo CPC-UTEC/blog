@@ -14,7 +14,6 @@
 <title>Class 13: Game Theory I</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -723,18 +722,18 @@ Sprague-Grundy theorem
 <p><strong>Problem:</strong> The problem is the same of ‘A simple take-away game’, but now there are <span class="math inline">\(n\)</span> piles of chips and in each turn a player can select a pile (<strong>only one</strong>) and removes one, two or three chips from this pile.</p>
 <p>Let <span class="math inline">\(x_i\)</span> be the number of chips in the <span class="math inline">\(i\)</span>-th pile. Then, we can solve the problem using WL states or Grundy numbers. Now, our state will be <span class="math inline">\((x_1, x_2, x_3, \dots, x_n)\)</span> and from this state we can go to these states (if possible):</p>
 <ul>
-<li><p><span class="math inline">\((x_1 - 1, x_2, x_3, \dots, x_n)\)</span></p></li>
-<li><p><span class="math inline">\((x_1 - 2, x_2, x_3, \dots, x_n)\)</span></p></li>
-<li><p><span class="math inline">\((x_1 - 3, x_2, x_3, \dots, x_n)\)</span></p></li>
-<li><p><span class="math inline">\((x_1, x_2 - 1, x_3, \dots, x_n)\)</span></p></li>
-<li><p><span class="math inline">\((x_1, x_2 - 2, x_3, \dots, x_n)\)</span></p></li>
-<li><p><span class="math inline">\((x_1, x_2 - 3, x_3, \dots, x_n)\)</span></p></li>
-<li><p><span class="math inline">\((x_1, x_2, x_3 - 1, \dots, x_n)\)</span></p></li>
-<li><p><span class="math inline">\((x_1, x_2, x_3 - 2, \dots, x_n)\)</span></p></li>
+<li><span class="math inline">\((x_1 - 1, x_2, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1 - 2, x_2, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1 - 3, x_2, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1, x_2 - 1, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1, x_2 - 2, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1, x_2 - 3, x_3, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1, x_2, x_3 - 1, \dots, x_n)\)</span></li>
+<li><span class="math inline">\((x_1, x_2, x_3 - 2, \dots, x_n)\)</span></li>
 <li><p><span class="math inline">\((x_1, x_2, x_3 - 3, \dots, x_n)\)</span></p>
 <p><span class="math inline">\(\vdots\)</span></p></li>
-<li><p><span class="math inline">\((x_1, x_2, x_3, \dots, x_n - 1)\)</span></p></li>
-<li><p><span class="math inline">\((x_1, x_2, x_3, \dots, x_n - 2)\)</span></p></li>
+<li><span class="math inline">\((x_1, x_2, x_3, \dots, x_n - 1)\)</span></li>
+<li><span class="math inline">\((x_1, x_2, x_3, \dots, x_n - 2)\)</span></li>
 <li><p><span class="math inline">\((x_1, x_2, x_3, \dots, x_n - 3)\)</span></p></li>
 </ul>
 <p>That is, from every state there are <span class="math inline">\(O(3n) = O(n)\)</span> possible transitions. So, we can calculate the Grundy number of the state <span class="math inline">\((x_1, x_2, x_3, \dots, x_n)\)</span> in <span class="math inline">\(O(n \cdot x_1 \cdot x_2 \cdot \dots \cdot x_n) = O(n x^n)\)</span> where <span class="math inline">\(x = \max(x_1, x_2, \dots, x_n)\)</span>.</p>
@@ -819,6 +818,7 @@ int main () {
 <p>Recommended readings:</p>
 <ul>
 <li><a href="https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf">Game theory - Thomas S. Ferguson. Chapter 1-4</a></li>
+<li><a href="https://ali-ibrahim137.github.io/competitive/programming/2020/02/26/Game-Theory.html">Ali Ibrahim Site - Game Theory</a></li>
 <li><a href="https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/">Algorithm Games - Topcoder</a></li>
 <li><a href="https://stepupanalytics.com/game-theory-for-competitive-programming/">Game Theory For Competitive Programming</a></li>
 </ul>
@@ -837,8 +837,8 @@ A: The Game
 </div>
 <!-- begin body -->
 <div id="collapseProblemA" class="collapse">
-<div id="the-game" class="section level3 card-body solution-body">
-<h3><a href="https://www.spoj.com/problems/QCJ3/en/" target="_blank">The Game</a></h3>
+<div class="card-body solution-body">
+<h3 id="the-game"><a href="https://www.spoj.com/problems/QCJ3/en/" target="_blank">The Game</a></h3>
 <p>Having <span class="math inline">\(x\)</span> stones in square <span class="math inline">\(i\)</span> is equivalent to having <span class="math inline">\(x\)</span> piles of size <span class="math inline">\(i\)</span>, then we can reduce the problem to the game of Nim.</p>
 <p><strong>Extra:</strong> What happend if you have an even number of equal size piles ?</p>
 <!-- begin code -->
@@ -902,8 +902,8 @@ B: Stone Game
 </div>
 <!-- begin body -->
 <div id="collapseProblemB" class="collapse">
-<div id="stone-game" class="section level3 card-body solution-body">
-<h3><a href="https://www.codechef.com/problems/RESN04" target="_blank">Stone Game</a></h3>
+<div class="card-body solution-body">
+<h3 id="stone-game"><a href="https://www.codechef.com/problems/RESN04" target="_blank">Stone Game</a></h3>
 <p>If there are <span class="math inline">\(x\)</span> stones in the <span class="math inline">\(i\)</span> pile, then you will play <span class="math inline">\(\lfloor \frac{x}{i} \rfloor\)</span> turns with this pile. Then, you may realize that the total number of turns is fixed, so we just need to checks its parity.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemB" aria-expanded="false" aria-controls="collapseTwo">
@@ -966,8 +966,8 @@ C: Exclusively Edible
 </div>
 <!-- begin body -->
 <div id="collapseProblemC" class="collapse">
-<div id="exclusively-edible" class="section level3 card-body solution-body">
-<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2286" target="_blank">Exclusively Edible</a></h3>
+<div class="card-body solution-body">
+<h3 id="exclusively-edible"><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2286" target="_blank">Exclusively Edible</a></h3>
 <p>The problem reduces to the game of Nim with four piles (the number of cell that there are above, below, to the left and to the right of the given position).</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
@@ -1028,8 +1028,8 @@ D: Exponential Game
 </div>
 <!-- begin body -->
 <div id="collapseProblemD" class="collapse">
-<div id="exponential-game" class="section level3 card-body solution-body">
-<h3><a href="https://www.codechef.com/problems/EXPGAME" target="_blank">Exponential Game</a></h3>
+<div class="card-body solution-body">
+<h3 id="exponential-game"><a href="https://www.codechef.com/problems/EXPGAME" target="_blank">Exponential Game</a></h3>
 <p>The number of possible transitions is low, then we basically have the union of take away games, so we can compute the Grundy number of each pile and use the Sprage-Grundy theorem to solve the whole problem.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">
@@ -1112,8 +1112,8 @@ E: Bob’s Game
 </div>
 <!-- begin body -->
 <div id="collapseProblemE" class="collapse">
-<div id="bobs-game" class="section level3 card-body solution-body">
-<h3><a href="https://www.hackerrank.com/contests/university-codesprint-3/challenges/bobs-game/problem" target="_blank">Bob’s Game</a></h3>
+<div class="card-body solution-body">
+<h3 id="bobs-game"><a href="https://www.hackerrank.com/contests/university-codesprint-3/challenges/bobs-game/problem" target="_blank">Bob’s Game</a></h3>
 <p>Each king can be seen as a different game, then we can just compute its Grundy number and use the Sprage-Grundy theorem. Moreover, we can compute the number of winning moves using the Sprage-Grundy theorem when we make a move (xor properties comes in handy here).</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemE" aria-expanded="false" aria-controls="collapseTwo">
@@ -1223,6 +1223,7 @@ int main () {
      data-toggle="tooltip" title="Divide and Conquer II"> Previous </a></p>
 </div>
 <script>
+  $('#all-summer').collapse('show');
   $('#all-classes').collapse('show');
   $('#class-13').addClass('active');
   const cur_class = document.getElementById('class-13');

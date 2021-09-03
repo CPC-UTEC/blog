@@ -14,7 +14,6 @@
 <title>Class 04: Complete Search I</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -613,8 +612,8 @@ A: Simple Equations
 </div>
 <!-- begin body -->
 <div id="collapseProblemA" class="collapse">
-<div id="simple-equations" class="section level3 card-body solution-body">
-<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2612" target="_blank">Simple Equations</a></h3>
+<div class="card-body solution-body">
+<h3 id="simple-equations"><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2612" target="_blank">Simple Equations</a></h3>
 <p><span class="math display">\[0 \leq x^2 \quad \forall x \in \mathbb{N}\]</span> <span class="math display">\[\to x^2 \leq x^2 + y^2 + z^2 = C\]</span> <span class="math display">\[x^2 \leq C\]</span> <span class="math display">\[|x| \leq \sqrt{C}\]</span> <span class="math display">\[-\sqrt{C} \leq x \leq \sqrt{C}\]</span> The same hold for <span class="math inline">\(x, y, z\)</span>. Moreover if we have fixed <span class="math inline">\(x, y\)</span>, then <span class="math inline">\(z = A - x - y\)</span>. So, we can fix <span class="math inline">\(x, y\)</span> in <span class="math inline">\(O(\sqrt{C}^2) = O(C)\)</span> and verify if <span class="math inline">\(x, y, z\)</span> holds the equations in <span class="math inline">\(O(1)\)</span>. Don’t forget <span class="math inline">\(x, y, z\)</span> must be different.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemA" aria-expanded="false" aria-controls="collapseTwo">
@@ -672,8 +671,8 @@ B: Common Divisors
 </div>
 <!-- begin body -->
 <div id="collapseProblemB" class="collapse">
-<div id="common-divisors" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1203/C" target="_blank">Common Divisors</a></h3>
+<div class="card-body solution-body">
+<h3 id="common-divisors"><a href="https://codeforces.com/problemset/problem/1203/C" target="_blank">Common Divisors</a></h3>
 <p><span class="math inline">\(S = \{x: x | a_i \quad \forall i \in [1, n] \}\)</span></p>
 <p>Let <span class="math inline">\(g = \gcd(a_1, a_2, \dots, a_n)\)</span>.</p>
 <p><strong>Affirmation:</strong> <span class="math inline">\(S = \{x: x | g \}\)</span>. (The proof is left to the reader)</p>
@@ -733,8 +732,8 @@ C: 2Char
 </div>
 <!-- begin body -->
 <div id="collapseProblemC" class="collapse">
-<div id="char" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/593/A" target="_blank">2Char</a></h3>
+<div class="card-body solution-body">
+<h3 id="char"><a href="https://codeforces.com/problemset/problem/593/A" target="_blank">2Char</a></h3>
 <p>The key of the problem is to notice what the search space is. As every valid text would have at most two characters and maximum length, then we can fix what would be the two characters and take all the strings that just have these characters.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemC" aria-expanded="false" aria-controls="collapseTwo">
@@ -794,8 +793,8 @@ D: Hyperset
 </div>
 <!-- begin body -->
 <div id="collapseProblemD" class="collapse">
-<div id="hyperset" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1287/B" target="_blank">Hyperset</a></h3>
+<div class="card-body solution-body">
+<h3 id="hyperset"><a href="https://codeforces.com/problemset/problem/1287/B" target="_blank">Hyperset</a></h3>
 <p>If we have fixed two cards, we can compute what card do we need to make a set. Take care of your implementation.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemD" aria-expanded="false" aria-controls="collapseTwo">

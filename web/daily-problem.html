@@ -14,7 +14,6 @@
 <title>Daily Problem</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<script src="site_libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -446,8 +445,8 @@ Day 26: Air Conditioner
 </div>
 <!-- begin body -->
 <div id="collapseProblemZ" class="collapse">
-<div id="air-conditioner" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1304/C" target="_blank">Air Conditioner</a></h3>
+<div class="card-body solution-body">
+<h3 id="air-conditioner"><a href="https://codeforces.com/problemset/problem/1304/C" target="_blank">Air Conditioner</a></h3>
 <p>Sort the elements by its time, then you init with a valid range <span class="math inline">\([m, m]\)</span> and for each element update and get the new valid range. If you get an invalid range in some element there is no answer.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemZ" aria-expanded="false" aria-controls="collapseTwo">
@@ -528,8 +527,8 @@ Day 25: Longest Palindrome
 </div>
 <!-- begin body -->
 <div id="collapseProblemY" class="collapse">
-<div id="longest-palindrome" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1304/B" target="_blank">Longest Palindrome</a></h3>
+<div class="card-body solution-body">
+<h3 id="longest-palindrome"><a href="https://codeforces.com/problemset/problem/1304/B" target="_blank">Longest Palindrome</a></h3>
 <p>Let the given words be <span class="math inline">\(s_1, s_2, \dots, s_n\)</span>. Then if we have <span class="math inline">\(s_i = s_j^R\)</span> we just add them to our answer. Finally, we search if there is a word <span class="math inline">\(s_i = s_i^R\)</span> than we can put in the middle of our answer.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemY" aria-expanded="false" aria-controls="collapseTwo">
@@ -614,8 +613,8 @@ Day 24: The ? 1 ? 2 ? … ? n = k problem
 </div>
 <!-- begin body -->
 <div id="collapseProblemX" class="collapse">
-<div id="the-1-2-n-k-problem" class="section level3 card-body solution-body">
-<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=966" target="_blank">The ? 1 ? 2 ? … ? n = k problem</a></h3>
+<div class="card-body solution-body">
+<h3 id="the-1-2-n-k-problem"><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=966" target="_blank">The ? 1 ? 2 ? … ? n = k problem</a></h3>
 <p>First, if <span class="math inline">\(n = 0\)</span> the answer is <span class="math inline">\(3 (-1 -2 + 3)\)</span>, else let <span class="math inline">\(x\)</span> be the minimum value such that <span class="math inline">\(sum = 1 + 2 + 3 + \dots + x \geq n\)</span>. Then if we substract the number <span class="math inline">\(y \leq x\)</span> we will have <span class="math inline">\(sum - 2 \cdot y\)</span>. So, we need the the difference between <span class="math inline">\(sum - n\)</span> to the even, else we should keep increasing <span class="math inline">\(sum\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemX" aria-expanded="false" aria-controls="collapseTwo">
@@ -690,8 +689,8 @@ Day 23: Assigning to Classes
 </div>
 <!-- begin body -->
 <div id="collapseProblemW" class="collapse">
-<div id="assigning-to-classes" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1300/B" target="_blank">Assigning to Classes</a></h3>
+<div class="card-body solution-body">
+<h3 id="assigning-to-classes"><a href="https://codeforces.com/problemset/problem/1300/B" target="_blank">Assigning to Classes</a></h3>
 <p>Let sort the array, then in any possible partition it holds that <span class="math inline">\(ans \geq a_{n + 1} - a_n\)</span> (<strong>can you prove it?</strong>), but in we put the student <span class="math inline">\(a_n\)</span> alone in a class, then we get <span class="math inline">\(ans = a_{n + 1} - a_n\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemW" aria-expanded="false" aria-controls="collapseTwo">
@@ -750,8 +749,8 @@ Day 22: Diverse Matrix
 </div>
 <!-- begin body -->
 <div id="collapseProblemV" class="collapse">
-<div id="diverse-matrix" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1266/C" target="_blank">Diverse Matrix</a></h3>
+<div class="card-body solution-body">
+<h3 id="diverse-matrix"><a href="https://codeforces.com/problemset/problem/1266/C" target="_blank">Diverse Matrix</a></h3>
 <p>Construct the matrix in this way:</p>
 <p><span class="math display">\[
  \begin{pmatrix}
@@ -831,8 +830,8 @@ Day 21: Dice Tower
 </div>
 <!-- begin body -->
 <div id="collapseProblemU" class="collapse">
-<div id="dice-tower" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1266/B" target="_blank">Dice Tower</a></h3>
+<div class="card-body solution-body">
+<h3 id="dice-tower"><a href="https://codeforces.com/problemset/problem/1266/B" target="_blank">Dice Tower</a></h3>
 <p>The sum of opposite faces in a dice is always 7, then if we have <span class="math inline">\(x\)</span> dices, each dice contributes with <span class="math inline">\(14 \cdot x\)</span> and the top dice contributes with one more number between <span class="math inline">\(1\)</span> and <span class="math inline">\(6\)</span>. Then, we have:</p>
 <p><span class="math display">\[14 \cdot x + d = n\]</span></p>
 <p>Where <span class="math inline">\(1 \leq d \leq 6\)</span>. So, if the equation holds for some <span class="math inline">\(1 \leq x\)</span> we have and answer.</p>
@@ -896,8 +895,8 @@ Day 20: Maximize an Expression
 </div>
 <!-- begin body -->
 <div id="collapseProblemT" class="collapse">
-<div id="maximize-an-expression" class="section level3 card-body solution-body">
-<h3><a href="https://www.codechef.com/problems/MAXEXPR" target="_blank">Maximize an Expression</a></h3>
+<div class="card-body solution-body">
+<h3 id="maximize-an-expression"><a href="https://www.codechef.com/problems/MAXEXPR" target="_blank">Maximize an Expression</a></h3>
 <p>We have <span class="math inline">\(\sum k_i \cdot x_i = 0\)</span> and we want to maximize:</p>
 <p><span class="math display">\[F = \sum \sqrt{x_i + c_i}\]</span></p>
 <p>We can solve it using Cauchy-Schwarz inequality, is states that:</p>
@@ -989,8 +988,8 @@ Day 19: Jimmy’s Balls
 </div>
 <!-- begin body -->
 <div id="collapseProblemS" class="collapse">
-<div id="jimmys-balls" class="section level3 card-body solution-body">
-<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2475" target="_blank">Jimmy’s Balls</a></h3>
+<div class="card-body solution-body">
+<h3 id="jimmys-balls"><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2475" target="_blank">Jimmy’s Balls</a></h3>
 <p>We have <span class="math inline">\(1 \leq r &lt; b &lt; g \land r + b + g = n\)</span></p>
 <p>If we fix <span class="math inline">\(r\)</span>, we have <span class="math inline">\(b + g = n - r = m\)</span></p>
 <p>Then, these are the values that hold the equation:</p>
@@ -1060,8 +1059,8 @@ Day 18: Consecutive Integers
 </div>
 <!-- begin body -->
 <div id="collapseProblemR" class="collapse">
-<div id="consecutive-integers" class="section level3 card-body solution-body">
-<h3><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2221" target="_blank">Consecutive Integers</a></h3>
+<div class="card-body solution-body">
+<h3 id="consecutive-integers"><a href="https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2221" target="_blank">Consecutive Integers</a></h3>
 <p>If the answer is <span class="math inline">\(l + (l + 1) + \dots + (l + d - 1) = n\)</span></p>
 <p>Then, we have:</p>
 <p><span class="math display">\[\binom{l + d - 1}{2} - \binom{l - 1}{2} = n\]</span> <span class="math display">\[l = \frac{2 \cdot n - d^2 + d}{2 \cdot d}\]</span></p>
@@ -1125,8 +1124,8 @@ Day 17: GCD on Blackboard
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-17" class="collapse">
-<div id="gcd-on-blackboard" class="section level3 card-body solution-body">
-<h3><a href="https://abc125.contest.atcoder.jp/tasks/abc125_c?lang=en" target="_blank">GCD on Blackboard</a></h3>
+<div class="card-body solution-body">
+<h3 id="gcd-on-blackboard"><a href="https://abc125.contest.atcoder.jp/tasks/abc125_c?lang=en" target="_blank">GCD on Blackboard</a></h3>
 <p>If we change the <span class="math inline">\(i\)</span>-th element then, we have:</p>
 <p><span class="math display">\[g = gcd(gcd(A_1, A_2, \dots, A_{i - 1}), gcd(A_{i + 1}, A_{i + 2}, \dots, A_n))\]</span></p>
 <p>And we know that <span class="math inline">\(gcd(a, b) \leq \min(a, b) \land gcd(a, a) = a\)</span></p>
@@ -1181,8 +1180,8 @@ Day 16: DivRem Number
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-16" class="collapse">
-<div id="divrem-number" class="section level3 card-body solution-body">
-<h3><a href="https://diverta2019.contest.atcoder.jp/tasks/diverta2019_d?lang=en" target="_blank">DivRem Number</a></h3>
+<div class="card-body solution-body">
+<h3 id="divrem-number"><a href="https://diverta2019.contest.atcoder.jp/tasks/diverta2019_d?lang=en" target="_blank">DivRem Number</a></h3>
 <p>There is some problem in the rendering of the statement. It should say:</p>
 <p><span class="math display">\[\lfloor \frac{N}{m} \rfloor = N \bmod m\]</span></p>
 <p><strong>Solution:</strong></p>
@@ -1247,8 +1246,8 @@ Day 15: ConneR and the A.R.C. Markland-N
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-15" class="collapse">
-<div id="conner-and-the-a.r.c.-markland-n" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1293/A" target="_blank">ConneR and the A.R.C. Markland-N</a></h3>
+<div class="card-body solution-body">
+<h3 id="conner-and-the-a.r.c.-markland-n"><a href="https://codeforces.com/problemset/problem/1293/A" target="_blank">ConneR and the A.R.C. Markland-N</a></h3>
 <p>There are <span class="math inline">\(k\)</span> closed restaurants, thefore we will find the answer in <span class="math inline">\(O(k)\)</span> steps, so a brute force solution in enough.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblemproblem-15" aria-expanded="false" aria-controls="collapseTwo">
@@ -1317,8 +1316,8 @@ Day 14: Resale
 </div>
 <!-- begin body -->
 <div id="collapseProblemproblem-14" class="collapse">
-<div id="resale" class="section level3 card-body solution-body">
-<h3><a href="https://abc125.contest.atcoder.jp/tasks/abc125_b?lang=en" target="_blank">Resale</a></h3>
+<div class="card-body solution-body">
+<h3 id="resale"><a href="https://abc125.contest.atcoder.jp/tasks/abc125_b?lang=en" target="_blank">Resale</a></h3>
 <p>Each element can be added to <span class="math inline">\(X\)</span> or to <span class="math inline">\(Y\)</span>.</p>
 <p>Let <span class="math inline">\(b = b_nb_{n - 1} \dots b_1\)</span> be a bit mask where <span class="math inline">\(b_i = 1\)</span> if the <span class="math inline">\(i\)</span>-th element is taken and <span class="math inline">\(b_i = 0\)</span> if the <span class="math inline">\(i-th\)</span> is not taken, then we realize that all possible masks are <span class="math inline">\(b \in [0, 2 ^n)\)</span>. In this way, we can implement an <span class="math inline">\(O(n 2^n)\)</span> solution and that is enough.</p>
 <!-- begin code -->
@@ -1462,8 +1461,8 @@ Day 13: Exception Handling
 </div>
 <!-- begin body -->
 <div id="collapseProblem13" class="collapse">
-<div id="exception-handling" class="section level3 card-body solution-body">
-<h3><a href="https://atcoder.jp/contests/abc134/tasks/abc134_c" target="_blank">Exception Handling</a></h3>
+<div class="card-body solution-body">
+<h3 id="exception-handling"><a href="https://atcoder.jp/contests/abc134/tasks/abc134_c" target="_blank">Exception Handling</a></h3>
 <p><strong>First solution:</strong> Notice that the answer will allways be the greatest value or the second greatest value. We can find these values in <span class="math inline">\(O(n)\)</span> or in <span class="math inline">\(O(n \log n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem13" aria-expanded="false" aria-controls="collapseTwo">
@@ -1563,8 +1562,8 @@ Day 12: Green Bin
 </div>
 <!-- begin body -->
 <div id="collapseProblem12" class="collapse">
-<div id="green-bin" class="section level3 card-body solution-body">
-<h3><a href="https://abc137.contest.atcoder.jp/tasks/abc137_c?lang=en" target="_blank">Green Bin</a></h3>
+<div class="card-body solution-body">
+<h3 id="green-bin"><a href="https://abc137.contest.atcoder.jp/tasks/abc137_c?lang=en" target="_blank">Green Bin</a></h3>
 <p>If <span class="math inline">\(s \land t\)</span> are anagrams, then <span class="math inline">\(sort(all(a)) = sort(all(b))\)</span>. That is, if we sort the letters of a string, we have a representative of a set of anagrams. Moreover, if we have <span class="math inline">\(x\)</span> strings of the same anagram class, we can choose <span class="math inline">\(\binom{x}{2}\)</span> indices such that <span class="math inline">\(s_i \land s_j\)</span> are anagrams. In this way, we can implement a solution in <span class="math inline">\(O(N \log N)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem12" aria-expanded="false" aria-controls="collapseTwo">
@@ -1623,8 +1622,8 @@ Day 11: Blocks
 </div>
 <!-- begin body -->
 <div id="collapseProblem11" class="collapse">
-<div id="blocks" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/1271/problem/B" target="_blank">Blocks</a></h3>
+<div class="card-body solution-body">
+<h3 id="blocks"><a href="https://codeforces.com/contest/1271/problem/B" target="_blank">Blocks</a></h3>
 <p>Each block should end up being black or white. You can fix what color the string will be and try to change it in a loop (if you are in iteration <code>i</code> you have already change <span class="math inline">\(s[0: i - 1]\)</span>, now if <span class="math inline">\(s[i] \not = \text{the color you have fixed}\)</span>, invert <span class="math inline">\(s[i], s[i + 1]\)</span>). In this way you need at most <span class="math inline">\(n - 1\)</span> operations.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem11" aria-expanded="false" aria-controls="collapseTwo">
@@ -1690,8 +1689,8 @@ Day 10: JOE is on TV!
 </div>
 <!-- begin body -->
 <div id="collapseProblem10" class="collapse">
-<div id="joe-is-on-tv" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1293/B" target="_blank">JOE is on TV!</a></h3>
+<div class="card-body solution-body">
+<h3 id="joe-is-on-tv"><a href="https://codeforces.com/problemset/problem/1293/B" target="_blank">JOE is on TV!</a></h3>
 <p>You can notice that the optimal strategy is that in each turn one opponent fails to answer. Then, our answer is</p>
 <p><span class="math display">\[\frac{1}{n} + \frac{1}{n - 1} + \frac{1}{n - 2} + \dots + \frac{1}{1}\]</span></p>
 <!-- begin code -->
@@ -1746,8 +1745,8 @@ Day 09: Number of Triplets
 </div>
 <!-- begin body -->
 <div id="collapseProblem09" class="collapse">
-<div id="number-of-triplets" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/181/problem/B" target="_blank">Number of Triplets</a></h3>
+<div class="card-body solution-body">
+<h3 id="number-of-triplets"><a href="https://codeforces.com/contest/181/problem/B" target="_blank">Number of Triplets</a></h3>
 <p>If you fix <span class="math inline">\(A, C\)</span> with two <code>fors</code>, you can get what value of <span class="math inline">\(B\)</span> you need. Moreover, as all the points are integers, we can check if <span class="math inline">\(A_x + C_x \land A_y + C_y\)</span> are even in order to avoid working with floats. Now, we have fixed <span class="math inline">\(B = ((A_x + C_x) / 2, (A_y + C_y) / 2)\)</span> and we need to check if this point is in the input. We can do it with a set (you’ll get TLE with a map) and solve the problem in <span class="math inline">\(O(n^2 \log n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem09" aria-expanded="false" aria-controls="collapseTwo">
@@ -1803,8 +1802,8 @@ Day 08: Little Quilt
 </div>
 <!-- begin body -->
 <div id="collapseProblem08" class="collapse">
-<div id="little-quilt" class="section level3 card-body solution-body">
-<h3><a href="https://www.spoj.com/problems/QUILT/en/" target="_blank">Little Quilt</a></h3>
+<div class="card-body solution-body">
+<h3 id="little-quilt"><a href="https://www.spoj.com/problems/QUILT/en/" target="_blank">Little Quilt</a></h3>
 <p>Just simulate what the problem says.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem08" aria-expanded="false" aria-controls="collapseTwo">
@@ -1963,8 +1962,8 @@ Day 07: z-sort
 </div>
 <!-- begin body -->
 <div id="collapseProblem07" class="collapse">
-<div id="z-sort" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/652/B" target="_blank">z-sort</a></h3>
+<div class="card-body solution-body">
+<h3 id="z-sort"><a href="https://codeforces.com/problemset/problem/652/B" target="_blank">z-sort</a></h3>
 <p>Sort the array and alternate taking elements (the smallest, the greater, the second smallest, the second greater, …).</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem07" aria-expanded="false" aria-controls="collapseTwo">
@@ -2009,8 +2008,8 @@ Day 06: GeT AC
 </div>
 <!-- begin body -->
 <div id="collapseProblem06" class="collapse">
-<div id="get-ac" class="section level3 card-body solution-body">
-<h3><a href="https://atcoder.jp/contests/abc122/tasks/abc122_c" target="_blank">GeT AC</a></h3>
+<div class="card-body solution-body">
+<h3 id="get-ac"><a href="https://atcoder.jp/contests/abc122/tasks/abc122_c" target="_blank">GeT AC</a></h3>
 <p>We can count how many <code>AC</code> there are in a range using prefix sums and taking care or corner cases.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem06" aria-expanded="false" aria-controls="collapseTwo">
@@ -2070,8 +2069,8 @@ Day 05: Competitive Programmer
 </div>
 <!-- begin body -->
 <div id="collapseProblem05" class="collapse">
-<div id="competitive-programmer" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/1266/problem/A" target="_blank">Competitive Programmer</a></h3>
+<div class="card-body solution-body">
+<h3 id="competitive-programmer"><a href="https://codeforces.com/contest/1266/problem/A" target="_blank">Competitive Programmer</a></h3>
 <p><span class="math inline">\(60 = 3 \cdot 5 \cdot 2 \cdot 2\)</span>. Then, to verify that we can construct a number multiple of <span class="math inline">\(60\)</span> it is enough to verify:</p>
 <ul>
 <li>It is multiple of 3: the sum of digits is multiple of 3</li>
@@ -2146,8 +2145,8 @@ Day 04: 0 or 1 Swap
 </div>
 <!-- begin body -->
 <div id="collapseProblem04" class="collapse">
-<div id="or-1-swap" class="section level3 card-body solution-body">
-<h3><a href="https://atcoder.jp/contests/abc135/tasks/abc135_b" target="_blank">0 or 1 Swap</a></h3>
+<div class="card-body solution-body">
+<h3 id="or-1-swap"><a href="https://atcoder.jp/contests/abc135/tasks/abc135_b" target="_blank">0 or 1 Swap</a></h3>
 <p>Try every <span class="math inline">\(i, j\)</span>. This solution is <span class="math inline">\(O(N^3)\)</span> and as <span class="math inline">\(N \leq 50\)</span> it is enough.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem04" aria-expanded="false" aria-controls="collapseTwo">
@@ -2206,8 +2205,8 @@ Day 03: Brick Break
 </div>
 <!-- begin body -->
 <div id="collapseProblem03" class="collapse">
-<div id="brick-break" class="section level3 card-body solution-body">
-<h3><a href="https://atcoder.jp/contests/abc148/tasks/abc148_d" target="_blank">Brick Break</a></h3>
+<div class="card-body solution-body">
+<h3 id="brick-break"><a href="https://atcoder.jp/contests/abc148/tasks/abc148_d" target="_blank">Brick Break</a></h3>
 <p>The problem is basically to find the largest continuous segment <span class="math inline">\([l, r] \mid a[l + i] = i + 1, 0 \leq i \leq r - l\)</span>. Notice that we can do it in <span class="math inline">\(O(n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem03" aria-expanded="false" aria-controls="collapseTwo">
@@ -2263,8 +2262,8 @@ Day 02: Prime Subtraction
 </div>
 <!-- begin body -->
 <div id="collapseProblem02" class="collapse">
-<div id="prime-subtraction" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/contest/1238/problem/A" target="_blank">Prime Subtraction</a></h3>
+<div class="card-body solution-body">
+<h3 id="prime-subtraction"><a href="https://codeforces.com/contest/1238/problem/A" target="_blank">Prime Subtraction</a></h3>
 <p>If <span class="math inline">\(x - y = 1\)</span> then the answer is no, else, by the fundamental theorem of arithmetic <span class="math inline">\(\exists \, p\)</span> prime <span class="math inline">\(: p | (x - y)\)</span>. So, the answer is yes.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem02" aria-expanded="false" aria-controls="collapseTwo">
@@ -2306,8 +2305,8 @@ Day 01: Superhero Transformation
 </div>
 <!-- begin body -->
 <div id="collapseProblem01" class="collapse">
-<div id="superhero-transformation" class="section level3 card-body solution-body">
-<h3><a href="https://codeforces.com/problemset/problem/1111/A" target="_blank">Superhero Transformation</a></h3>
+<div class="card-body solution-body">
+<h3 id="superhero-transformation"><a href="https://codeforces.com/problemset/problem/1111/A" target="_blank">Superhero Transformation</a></h3>
 <p>Let <span class="math inline">\(f(c) = 1\)</span> if <code>c</code> is as vowel and <span class="math inline">\(f(c) = 0\)</span> otherwise. Then, the answer is true iff <span class="math inline">\(|s| = |t| \land f(s[i]) = f(t[i]) \quad \forall i \in [0, n)\)</span>.</p>
 <!-- begin code -->
 <div class="collapsed code-title" type="button" data-toggle="collapse" data-target="#codeProblem01" aria-expanded="false" aria-controls="collapseTwo">

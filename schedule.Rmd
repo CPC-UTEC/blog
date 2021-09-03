@@ -9,15 +9,12 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 [Schedule - initial proposal](./schedule.pdf)
 
 ## Topics
-  - Asymptotic Analysis
-  - Standard Template Library
-  - Brute Force
+  - Introduction
+  - Complete Search
   - Divide and Conquer
   - Game Theory
 
-## Weekly plan
-
-### *Week 1*
+### Introduction
 
 * <div id="s-class-01">[**Class 1: Introduction**](./class-01.html)</div>
   **Topics**
@@ -49,8 +46,6 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
   + [Learn Data Structures and Algorithms, section Asymptotic analysis](https://www.codechef.com/certification/data-structures-and-algorithms/prepare)
 
 
-### *Week 2*
-
 * <div id="s-class-03">[**Class 3: Standard Template Library**](./class-03.html)</div>
   **Topics**
   + Standard Template Library (STL) 
@@ -66,6 +61,10 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
   + [Competitive C++ Manifesto: A Style Guide](https://codeforces.com/blog/entry/64218)
   + [TopCoder - Power up C++ with the Standard Template Library - Part I](https://www.topcoder.com/community/competitive-programming/tutorials/power-up-c-with-the-standard-template-library-part-1/)
  
+
+
+### Complete Search
+
 * <div id="s-class-04">[**Class 4: Complete Search I**](./class-04.html)</div>
   **Topics**
   + Problem solving paradigms
@@ -81,8 +80,6 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
   + [Codeforces - Amount of divisors of N](https://codeforces.com/blog/entry/13585)
   + [Codeforces - Counting Divisors of a Number in $O(\sqrt[3]{n})$ - Tutorial](https://codeforces.com/blog/entry/22317)
 
-
-### *Week 3*
 
 * <div id="s-class-05">[**Class 5: Complete Search II**](./class-05.html)</div>
   **Topics**
@@ -115,8 +112,6 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
   + [E-maxx Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)
 
 
-### *Week 4*
-
 * <div id="s-class-07">[**Class 7: Complete Search IV**](./class-07.html)</div>
   **Topics**
   + Contribution technique
@@ -147,17 +142,13 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
   + Competitive Programming 3, section 3.2.2, 8.2.1 and 8.2.2.
   + [GeekForGeeks - Backtracking Algorithms](https://www.geeksforgeeks.org/backtracking-algorithms/)
 
-### *Week 5*
 * <div id="s-class-09">[**Class 9: Contest I**](./class-09.html)</div>
-  **Topics**
-  + Complete search
 
-### *Week 6*
 * <div id="s-class-10">[**Class 10: Contest UTEC-UNI-UPC I**](./class-10.html)</div>
-  **Topics**
-  + Complete search
 
-### *Week 7*
+
+### Divide and Conquer
+
 * <div id="s-class-11">[**Class 11: Divide and Conquer I**](./class-11.html)</div>
   **Topics**
   + The divide and conquer paradigm 
@@ -187,7 +178,8 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
   + [Topcoder - Binary stride a variant on binary search](https://www.topcoder.com/binary-stride-a-variant-on-binary-search/)
 
 
-### *Week 8*
+### Game Theory
+
 * <div id="s-class-13">[**Class 13: Game Theory I**](./class-13.html)</div>
   **Topics**
   + Introduction
@@ -198,6 +190,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
   **Readings**
   + [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
+  + [Ali Ibrahim Site - Game Theory](https://ali-ibrahim137.github.io/competitive/programming/2020/02/26/Game-Theory.html)
   + [Algorithm Games - Topcoder](https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/)
   + [Game Theory For Competitive Programming](https://stepupanalytics.com/game-theory-for-competitive-programming/)
 
@@ -216,9 +209,15 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
   + [E-maxx Sprague-Grundy theorem. Nim](https://cp-algorithms.com/game_theory/sprague-grundy-nim.html)
   + [Search: Games, Minimax, and Alpha-Beta](https://youtu.be/STjW3eH0Cik)
 
+* <div id="s-class-15">[**Class 15: Contest II**](./class-15.html)</div>
+
+* <div id="s-class-16">[**Class 16: Contest UTEC-UNI-UPC II**](./class-16.html)</div>
+
+
 <div id="final"></div>
 
 <script>
+$('#all-summer').collapse('show');
 $("#schedule-page")
   .addClass("active");
 </script>

@@ -459,11 +459,60 @@ Image taken from [Algorithms Live! - Episode 1 - Trees and Diameters](https://ww
 
 <div class="topic">Isomorphism of trees</div>
 
-Definition of rooted trees and the kind of isomorphism
+Previously, we say that graph isomorphism checking is a difficult problem, but the case is different when the graph is a tree.
 
-Canonical representation of a tree
+First, let's define some concepts.
 
-Usage
+**Definition 16.** A planted tree is a rooted tree $(T, r, \nu)$ plus a drawing of $T$ in the plane. Here $\nu$ represents an ordering of the vertices by how they appear (left-to-right order).
+
+**Definition 17.** Let $(T, r), (T', r')$ be two rooted trees, then $f: V(T) \to V(T')$ is an isomorphism of the rooted tres if 
+$f$ is an isomorphism of trees $T$ and $T'$ and $f(r) = r'$. This is denoted by $(T, r) \cong' (T', r')$.
+
+**Definition 18.** Let $(T, r, \nu), (T', r', \nu')$ be two planted trees, then $f: V(T) \to V(T')$ is an isomorphism of the planted tres if 
+$f$ is an isomorphism of rooted trees $(T, r)$ and $(T', r')$ and it preserves the left-to-right ordering. This is denoted by $(T, r, \nu) \cong'' (T', r', \nu')$.
+
+<div class="row text-center">
+![](./images/class-17/tree-isomorphism.png)
+
+Examples taken from [Invitation to Discrete Mathematics, page 161](https://www.amazon.com/-/es/Jiri-Matousek/dp/0198570422).
+ 
+</div>
+
+
+Now, we can define the coding of a planted tree as follow:
+
+1. Each end-vertex distinct from the root is assigned the code $01$.
+
+2. Let $v$ be the vertex with sons $v_1, v_2, \dots, v_t$ (written in left-to-right order). If $A_i$ is the code of the son $v_i$, then the 
+   vertex $v$ receives the code $0 A_1 A_2 \dots A_t 1$.
+
+<div class="row text-center">
+![](./images/class-17/tree-coding.png)
+
+Examples taken from [Invitation to Discrete Mathematics, page 161](https://www.amazon.com/-/es/Jiri-Matousek/dp/0198570422).
+ 
+</div>
+
+
+Here, we can observe that the coding of a planted tree has length $2 |V|$ and two planted trees are isomorphic if their coding are equal.
+
+Next, we can extend this solution to work for rooted trees using the following enconding.
+
+
+1. Each end-vertex distinct from the root is assigned the code $01$.
+
+2. Let $v$ be the vertex with sons $v_1, v_2, \dots, v_t$, such that $A(v_1) \leq A(v_2) \leq \dots A(v_t)$ where $A(x)$ represent the code of the son $x$, then the  vertex $v$ receives the code $0 A_1 A_2 \dots A_t 1$.
+
+
+Now, it holds that two rooted trees are isomorphic if their coding (using the last enconding) are equal.
+
+Finally, we can focus in solving the problem for a tree. From the previous achievements we realize that we can solve the problem if we
+find a vertex $v$ to be used as the root that preserves the isomorphism and actually such a vertex is the center of the tree. Then, we can define the coding of a tree $T$ as follow:
+
+* Case 1. If $C(T) = \{c\}$, then the coding of $T$ is the coding of $(T, c)$.
+
+* Case 2. If $C(T) = \{c_1, c_2\}$, then the coding of $T$ the minimum of the coding of $(T, c_1)$ and the coding of $(T, c_2)$.
+
 
 Recommended readings:
 

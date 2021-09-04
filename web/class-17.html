@@ -487,40 +487,209 @@ Introduction
 <div class="topic">
 Graph representation
 </div>
-<p>Adjacency matrix List of adjacency Meaning of exponenciation of matrix</p>
-<div class"topic">Distance in graphs</div>
-<p>Axiom of a metric Matrix exponenciation to find the distance in a graph</p>
+<p>There are different ways how we can represent a graph <span class="math inline">\(G = (V, E)\)</span>. Here we mention two:</p>
+<ol style="list-style-type: decimal">
+<li>Adjacency matrix</li>
+</ol>
+<p>It is a matrix <span class="math inline">\(A_G = (a_{ij})_{i,j=1}^n\)</span> where</p>
+<p><span class="math display">\[ a_{ij} =
+  \begin{cases}
+    1       &amp; \quad \text{if } \{v_i, v_j\} \in E \\
+    0  &amp; \quad \text{otherwise}
+  \end{cases}
+\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Adjacency list</li>
+</ol>
+<p>It is a computational representation using a list for each vertex to save the adjacent element of each vertex.</p>
+<div class="row text-center">
+<p><img src="images/class-17/representation.png" /></p>
+<p>Images taken from <a href="https://www.amazon.com/-/es/Thomas-H-Cormen/dp/0262033844">Introduction to Algorithms - page 590</a></p>
+</div>
+<p>Obviously, the representation to use depends on the problem (consider space complexity, time access complexity, etc).</p>
+<p>Now, let’s study an interesting advantage gained by using <span class="math inline">\(A_G\)</span>.</p>
+<p><strong>Definition 3.</strong> Let <span class="math inline">\(G = (V, E)\)</span> be a graph. A path in <span class="math inline">\(G\)</span> is a sequence:</p>
+<p><span class="math display">\[(v_0, e_1, v_1, \dots, e_t, v_t)\]</span></p>
+<p>where <span class="math inline">\(v_0, v_1, \dots, v_t\)</span> are mutually distinct vertices of <span class="math inline">\(G\)</span> and <span class="math inline">\(e_i = \{v_{i - 1}, v_i\} \in E(G): i = 1, 2, \dots, t\)</span>. Here we say that we have a path from <span class="math inline">\(v_0\)</span> to <span class="math inline">\(v_t\)</span> of length <span class="math inline">\(t\)</span>.</p>
+<p>Similarly, we have:</p>
+<p><strong>Definition 4.</strong> Let <span class="math inline">\(G = (V, E)\)</span> be a graph. A cycle in <span class="math inline">\(G\)</span> is a sequence:</p>
+<p><span class="math display">\[(v_0, e_1, v_1, \dots, e_{t-1}, v_{t-1}, e_t, v_0)\]</span></p>
+<p>where <span class="math inline">\(v_0, v_1, \dots, v_{t-1}\)</span> are mutually distinct vertices of <span class="math inline">\(G\)</span>, <span class="math inline">\(e_i = \{v_{i - 1}, v_i\} \in E(G): i = 1, 2, \dots, t-1\)</span> and <span class="math inline">\(e_t = \{v_{t-1}, v_0\} \in E(G)\)</span>. Here we say that we have a cycle of length <span class="math inline">\(t\)</span>.</p>
+<p><strong>Proposition 1.</strong> Let <span class="math inline">\(G = (V, E)\)</span> be a graph with <span class="math inline">\(V = \{v_1, v_2, \dots, v_n\}\)</span>. Let <span class="math inline">\(A = A_{G}\)</span> be its adjacency matrix. Let <span class="math inline">\(A^k\)</span> denothe the <span class="math inline">\(k\)</span>th power of <span class="math inline">\(A\)</span>. Let <span class="math inline">\(a_{ij}^{(k)}\)</span> denote the element at position <span class="math inline">\((i, j)\)</span> of <span class="math inline">\(A^k\)</span>. Then, <span class="math inline">\(a_{ij}^{(k)}\)</span> is the number of walks of length exactly <span class="math inline">\(k\)</span> from vertex <span class="math inline">\(v_i\)</span> to vertex <span class="math inline">\(v_j\)</span> in the graph <span class="math inline">\(G\)</span>.</p>
+<p><strong>Proof:</strong> Left to the reader (use induction).</p>
+<div class="topic">
+Distance in graphs
+</div>
+<p><strong>Definition 4.</strong> A graph <span class="math inline">\(G = (V, E)\)</span> is connected if <span class="math inline">\(\forall x, y \in V(G)\)</span>, <span class="math inline">\(G\)</span> contains a path from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span>.</p>
+<p><strong>Property 1.</strong> The complement of a connected graph is connected.</p>
+<p><strong>Proof.</strong> Left to the reader.</p>
+<p><strong>Definition 5.</strong> Let <span class="math inline">\(G = (V, E)\)</span> be a connected graph. We define the distance of two vertices <span class="math inline">\(v_1, v_2 \in V(G)\)</span>, denoted by <span class="math inline">\(d_G(v_1, v_2)\)</span>, as the length of the shortest path from <span class="math inline">\(v_1\)</span> to <span class="math inline">\(v_2\)</span> in <span class="math inline">\(G\)</span>. Hence <span class="math inline">\(d_G\)</span> is a function, <span class="math inline">\(d_G: V \times V \to \mathbb{R}\)</span>, and it is called the distance function or the metric of the graph <span class="math inline">\(G\)</span>. It has the following properties:</p>
+<ol style="list-style-type: lower-roman">
+<li><p><span class="math inline">\(d_G(v, v) \geq 0\)</span> and <span class="math inline">\(d_G(v_1, v_2) = 0 \leftrightarrow v_1 = v_2\)</span></p></li>
+<li><p><span class="math inline">\(d_G(v_1, v_2) = d_G(v_2, v_1) \, \forall v_1, v_2 \in V(G)\)</span></p></li>
+<li><p><span class="math inline">\(d_G(v_1, v_2) \leq d_G(v_1, v_3) + d_G(v_3, v_2) \, \forall v_1, v_2, v_3 \in V(G)\)</span></p></li>
+</ol>
+<p>Now, using definition 5 and proposition 1, we have the following corollaly.</p>
+<p><strong>Corollary 1.</strong> <span class="math inline">\(\forall v_i, v_j \in V(G), d_G(v_i, v_j) = \min(k \geq 0: a_{ij}^{(k)} \not = 0)\)</span></p>
+<p>This corollaly is really important. First, notice how we have reduced the computation of <span class="math inline">\(d_G\)</span> to matrix multiplication. One application of this idea is the following:</p>
+<p><strong>Property 2.</strong> A graph <span class="math inline">\(G\)</span> contains a triangle (i.e. a <span class="math inline">\(K_3\)</span>) <span class="math inline">\(\leftrightarrow \exists \, i, j \mid a_{ij}^{(1)} \not = 0 \land a_{ij}^{(2)} \not = 0\)</span>.</p>
 <div class="topic">
 Graph isomorphism
 </div>
-<p>Definition</p>
-<p>Examples</p>
-<p>Mention the isomorphic is a equivalence relation</p>
-<p>Multiplication to find isomorphism (exercise 12 of section 4.2)</p>
+<p>What if two graph have the same structure, but its vertices are named differently? We need a way to express this notion. That is the reason of the following definition.</p>
+<p><strong>Definition 6.</strong> Two graphs <span class="math inline">\(G = (V, E) \land G&#39; = (V&#39;, E&#39;)\)</span> are called isomorphic if a bijection <span class="math inline">\(f: V \to V&#39;\)</span> exists such that</p>
+<p><span class="math display">\[\{x, y\} \in E \leftrightarrow \{f(x), f(y)\} \in E&#39;\]</span></p>
+<p>holds for all <span class="math inline">\(x, y \in V, x \not = y\)</span>. Such an <span class="math inline">\(f\)</span> is called an isomorphism of the graphs <span class="math inline">\(G\)</span> and <span class="math inline">\(G&#39;\)</span>. The fact that <span class="math inline">\(G\)</span> and <span class="math inline">\(G&#39;\)</span> are isomorphic is written as <span class="math inline">\(G \cong G&#39;\)</span>.</p>
+<p><strong>Observation 2.</strong> The relation <span class="math inline">\(\cong\)</span> (“to be isomorphic”) is a class of equivalence on any set of graphs.</p>
+<div class="row text-center">
+<p><img src="images/class-17/isomorphism.png" /></p>
+<p>Examples of isomorphic graphs taken from <a href="https://www.amazon.com/-/es/Jiri-Matousek/dp/0198570422">Invitation to Discrete Mathematics, page 114</a></p>
+</div>
+<p>Determining if two graphs are isomorphic is not at all an easy problem. It is suspected that no efficient algorithm exists, but for small graphs a brute force approach can be enough. In order to do it just check all the <span class="math inline">\(n!\)</span> possible bijections. The implementation of this idea is simple using the following property:</p>
+<p><strong>Property 3.</strong> Two graphs <span class="math inline">\(G, G&#39;\)</span> are isomorphic if and only if a permutation matrix <span class="math inline">\(P\)</span> exists such that <span class="math inline">\(A_G&#39; = P A_G P^T\)</span>.</p>
+<p>A matrix <span class="math inline">\(P\)</span> is called a permutation matrix if its entries are 0 and 1 and each row and column contain preciely one 1.</p>
+<p><strong>Proof.</strong> Left to the reader.</p>
 <div class="topic">
 Graph score
 </div>
-<p>Define the degree of a vertex</p>
-<p>Handshake Lemma</p>
-<p>Formulate the question to the score theorem (Theorem 4.3.3)</p>
+<p><strong>Definition 7.</strong> Let <span class="math inline">\(G\)</span> be a graph and <span class="math inline">\(v \in G(V)\)</span>. The degree of vertex <span class="math inline">\(v\)</span> is defines as <span class="math inline">\(deg_G(v) = |e \in E(V), v \in e|\)</span>.</p>
+<p>Now, we can formulate this famous statement:</p>
+<p><strong>Proposition 2.</strong> For each graph <span class="math inline">\(G = (V, E)\)</span> we have:</p>
+<p><span class="math display">\[\displaystyle\sum_{v \in V} deg_{G}(v) = 2 |E|\]</span></p>
+<p><strong>Proof.</strong> Exercise for the reader.</p>
+<p>From the aboive proposition, we get a direct corollary.</p>
+<p><strong>Corollary 2 (Handshake lemma).</strong> The number of odd-degree vertices is even in any graph.</p>
+<p>There are a lot of important properties about the topic. For instance.</p>
+<p><strong>Property 4.</strong> Let <span class="math inline">\(G\)</span> be a graph in which all vertices have degree at least <span class="math inline">\(d\)</span>. Then, <span class="math inline">\(G\)</span> contains a path of length <span class="math inline">\(d\)</span>.</p>
+<p><strong>Proof.</strong> Excercise for the reader.</p>
+<p><strong>Property 5.</strong> Let <span class="math inline">\(G\)</span> be a graph with all vertices at least 3. Then <span class="math inline">\(G\)</span> contains a cycle.</p>
+<p><strong>Proof.</strong> Excercise for the reader :D.</p>
+<p><strong>Definition 8.</strong> Let the vertices of a graph <span class="math inline">\(G\)</span> be <span class="math inline">\(v_1, v_2, \dots, v_n\)</span>. The sequence</p>
+<p><span class="math display">\[(deg_G(v_1), deg_G(v_2), \dots, deg_G(v_n))\]</span></p>
+<p>is called the degree sequence of the graph <span class="math inline">\(G\)</span>, or a score of <span class="math inline">\(G\)</span>.</p>
+<p>Next, a valid question to ask is: How can we known if a sequence of integers is a graph score or not?</p>
+<p>Fortunately, we can answer the above question with the following theorem.</p>
+<p><strong>Theorem 1 (Score theorem).</strong> Let <span class="math inline">\(D = (d_1, d_2, \dots, d_n)\)</span> de a sequence of natural numbers, <span class="math inline">\(n &gt; 1\)</span>. Suppose that</p>
+<p><span class="math display">\[d_1 \leq d_2 \leq \dots \leq d_n\]</span></p>
+<p>Let <span class="math inline">\(D&#39;\)</span> denote the sequence <span class="math inline">\((d_1&#39;, d_2&#39;, \dots, d_{n-1}&#39;)\)</span>, where</p>
+<p><span class="math display">\[ d&#39;_i =
+  \begin{cases}
+  d_i &amp; \quad \text{for } i &lt; n - d_n\\
+  d_i - 1 &amp; \quad \text{for } i \geq n - d_n
+  \end{cases}
+\]</span></p>
+<p>Then <span class="math inline">\(D\)</span> is a graph score if and only if <span class="math inline">\(D&#39;\)</span> is a graph score.</p>
+<p><strong>Proof.</strong> Read <a href="https://www.amazon.com/-/es/Jiri-Matousek/dp/0198570422">Invitation to Discrete Mathematics, section 4.3</a>.</p>
 <div class="topic">
 Trees
 </div>
-<p>Definition</p>
-<p>Important properties</p>
+<p>There is a kind of graphs where problems become easier: trees. Let’s study them!</p>
+<p><strong>Definition 9.</strong> A tree is a connected graph containing no cycle.</p>
+<p>This is the definition we will be using, but there are different ways how we can define them.</p>
+<p><strong>Theorem 2 (Tree characterization).</strong> The following conditions are all equivalent for a graph <span class="math inline">\(G = (V, E):\)</span></p>
+<ol style="list-style-type: lower-roman">
+<li><p>G is a tree.</p></li>
+<li><p>(Path uniqueness) <span class="math inline">\(\forall x, y \in V(G),\)</span> there exists exactly one path from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span>.</p></li>
+<li><p>(Minimal connected graph) <span class="math inline">\(G\)</span> is connected and deleting any of its edges gives rise to a disconnected graph.</p></li>
+<li><p>(Maximal graph without cycles) <span class="math inline">\(G\)</span> contains no cycle and any graph arising from <span class="math inline">\(G\)</span> by adding and edge already contains a cycle</p></li>
+<li><p>(Euler’s formula) <span class="math inline">\(G\)</span> is connected and <span class="math inline">\(|V| = |E| + 1\)</span>.</p></li>
+</ol>
+<p><strong>Proof.</strong> Left as exercise to the reader.</p>
+<p><strong>Definition 10.</strong> Let <span class="math inline">\(v\)</span> be a vertex of a graph <span class="math inline">\(G = (V, E)\)</span> with <span class="math inline">\(deg_G(v) = 1\)</span>. Then <span class="math inline">\(v\)</span> is a end-vertex of <span class="math inline">\(G\)</span> (a.k.a. leaf).</p>
+<p>Some important properties of a graph are the following:</p>
+<p><strong>Property 6.</strong> Let <span class="math inline">\(G\)</span> be a tree and <span class="math inline">\(v\)</span> a leaf of <span class="math inline">\(G\)</span>, then <span class="math inline">\(G - v\)</span> is a tree.</p>
+<p><strong>Proof.</strong> Left to the reader as exercise.</p>
+<p><strong>Property 7.</strong> Let <span class="math inline">\(G\)</span> be a tree containing a vertex of degree <span class="math inline">\(k\)</span>, then <span class="math inline">\(G\)</span> has at least <span class="math inline">\(k\)</span> end-vertices.</p>
+<p><strong>Proof.</strong> Left to the reader as exercise.</p>
+<p>Finally, we define the following two concepts:</p>
+<p><strong>Definition 11.</strong> A graph <span class="math inline">\(G\)</span> where each component is a tree is called a forest.</p>
+<p>This definition will be useful in next sections.</p>
+<p><strong>Definition 12.</strong> A graph <span class="math inline">\(G\)</span> is called bipartite if the set <span class="math inline">\(V(G)\)</span> can be divided into two disjoint sets <span class="math inline">\(V_1\)</span> and <span class="math inline">\(V_2\)</span> in such a way that each edge of <span class="math inline">\(G\)</span> connects a vertex from <span class="math inline">\(V_1\)</span> to a vertex of <span class="math inline">\(V_2\)</span>.</p>
+<p><strong>Observation 3.</strong> A tree is bipartite.</p>
+<p>Moreover, we have this simple but useful property.</p>
+<p><strong>Property 8.</strong> A graph is bipartite is and only if it contains no cycle of odd length.</p>
+<p><strong>Proof.</strong> Left to the reader as exercise.</p>
+<p>Now, we need a computational way to explore our graph and to find properties of them. So, let’s study two simple and powerful algorithms: BFS and DFS.</p>
 <div class="topic">
 BFS
 </div>
-<p>Algorithm</p>
-<p>Image of Cormen</p>
-<p>Interesting properties-applications</p>
+<p>The idea is to start with a vertex an put it to a queue, then add its adjacents, then the adjacents of its adjacents, and so on.</p>
+<p>The algorithm maintains the following properties for each vertex:</p>
+<ul>
+<li>Color: It describes the state of the vertex.
+<ul>
+<li>WHITE: Not visited.</li>
+<li>BLACK: Visited.</li>
+<li>GRAY: Processing.</li>
+</ul></li>
+<li>d: The distance from the center.</li>
+<li><span class="math inline">\(\pi\)</span>: The predecesor of the vertex (the one who put it to the queue).</li>
+</ul>
+<div class="row text-center">
+<p><img src="images/class-17/bfs.png" /></p>
+<p>BFS pseudocode. Taken from <a href="https://www.amazon.com/-/es/Thomas-H-Cormen/dp/0262033844">Introduction to Algorithms - page 595</a></p>
+</div>
+<div class="row text-center">
+<p><img src="images/class-17/bfs-example.png" /></p>
+<p>Example operation of BFS. Taken from <a href="https://www.amazon.com/-/es/Thomas-H-Cormen/dp/0262033844">Introduction to Algorithms - page 596</a></p>
+</div>
+<p><strong>Observation 4.</strong> It we start a BFS from vertex <span class="math inline">\(s\)</span> in a graph <span class="math inline">\(G\)</span>. Then, it holds that for any edge <span class="math inline">\((u, v) \in E(V), d_G(s, u) \leq d_G(s, v) + 1\)</span></p>
+<p><strong>Observation 5.</strong> Suppose that we run a BFS on a graph <span class="math inline">\(G\)</span> from vertex <span class="math inline">\(s\)</span> and the order of vertices added to the queue are <span class="math inline">\((v_1, v_2, \dots, v_n)\)</span>. Then it holds:</p>
+<p><span class="math display">\[d_G(s, v_1) \leq d_G(s, v_2) \leq \dots \leq d_G(s, v_n)\]</span></p>
+<p><span class="math display">\[d_G(s, v_{i+1}) - d_G(s, v_i) \leq 1: i = 1, 2, 3, \dots, n - 1\]</span></p>
+<p><strong>Observation 6.</strong> If we run a BFS on a graph <span class="math inline">\(G\)</span> from vertex <span class="math inline">\(s\)</span>, we can build a graph <span class="math inline">\(G_{\pi} = (V, E&#39;)\)</span> where <span class="math inline">\(E&#39; = \{(u.\pi, u): \, \forall u \in V(G), u \not = s\}\)</span>. <span class="math inline">\(G_{\pi}\)</span> is known as the BFS tree and it represent the shortest path distance from <span class="math inline">\(s\)</span> to the other vertices.</p>
+<p><strong>Observation 7.</strong> The running time of BFS algorithm is <span class="math inline">\(O(|V| + |E|)\)</span> and its space complexity is <span class="math inline">\(O(|V|)\)</span>.</p>
+<p>Here we present some common applications of BFS algorithm:</p>
+<ol style="list-style-type: decimal">
+<li><p>Find the connected components. Just run a BFS from every vertex if it has not been visited.</p></li>
+<li><p>Check if a graph is bipartite. After the execution of the algorithm, there must not be an edge <span class="math inline">\((u, v)\)</span> such that <span class="math inline">\(u.color = v.color\)</span>.</p></li>
+<li><p>Find the shortest path from to vertex <span class="math inline">\(u\)</span> to vertex <span class="math inline">\(v\)</span>. Run a BFS from <span class="math inline">\(u\)</span>, then find the unique path from <span class="math inline">\(u\)</span> to <span class="math inline">\(v\)</span> in the BFS tree.</p></li>
+<li><p>Find the shortest cycle. Run a BFS from each vertex <span class="math inline">\(u \in V(G)\)</span>, then if during the exploration you find a vertex <span class="math inline">\(v\)</span> such that <span class="math inline">\(v.color = GRAY\)</span>, then you have the shortest cycle from vertex <span class="math inline">\(u\)</span>.</p></li>
+</ol>
 <div class="topic">
 DFS
 </div>
-<p>Algorithm</p>
-<p>Image of Cormen</p>
-<p>Edges classsification</p>
-<p>Interesting properties-applications</p>
+<p>The idea is to start with a vertex and explore recursively by each of its neighbors.</p>
+<p>The algorithm maintains the following properties for each vertex:</p>
+<ul>
+<li>Color: It describes the state of the vertex.
+<ul>
+<li>WHITE: Not visited.</li>
+<li>BLACK: Visited.</li>
+<li>GRAY: Processing.</li>
+</ul></li>
+<li>d: The discovered time of the vertex.</li>
+<li>f: The finished time of exploration of the vertex.</li>
+<li><span class="math inline">\(\pi\)</span>: The predecesor of the vertex (the one who put it to the queue).</li>
+</ul>
+<div class="row text-center">
+<p><img src="images/class-17/dfs.png" /></p>
+<p>DFS pseudocode. Taken from <a href="https://www.amazon.com/-/es/Thomas-H-Cormen/dp/0262033844">Introduction to Algorithms - page 604</a></p>
+</div>
+<div class="row text-center">
+<p><img src="images/class-17/dfs-example.png" /></p>
+<p>Example operation of DFS. Taken from <a href="https://www.amazon.com/-/es/Thomas-H-Cormen/dp/0262033844">Introduction to Algorithms - page 605</a></p>
+</div>
+<p>Moreover, if we run DFS algorithm on a graph <span class="math inline">\(G\)</span>, we can build a graph <span class="math inline">\(G_{\pi} = (V, E&#39;)\)</span> where <span class="math inline">\(E&#39; = \{(u.\pi, u): \, \forall u \in V(G), u.\pi \not = NIL\}\)</span>. <span class="math inline">\(G_{\pi}\)</span> is known as the DFS tree or DFS forest if <span class="math inline">\(G\)</span> has more than one component.</p>
+<p><strong>Observation 8.</strong> The running time of DFS algorithm is <span class="math inline">\(O(|V| + |E|)\)</span> and its space complexity is <span class="math inline">\(O(|V|)\)</span>.</p>
+<p><strong>Definition 13.</strong> A rooted tree is a pair <span class="math inline">\((T, r)\)</span>, where <span class="math inline">\(T\)</span> is a tree and <span class="math inline">\(r \in V(T)\)</span> is a distinguished vertex of <span class="math inline">\(T\)</span> called the root.</p>
+<p><strong>IMPORTANT.</strong> When you have a problem with trees, the very first idea is to root it.</p>
+<p><strong>Definition 14.</strong> If we run a DFS on a rooted tree <span class="math inline">\((T, r)\)</span>, we get a directed tree <span class="math inline">\(T_{\pi}\)</span>. Then, for two vertices <span class="math inline">\(x, y \in V(T)\)</span>, we say that <span class="math inline">\(x\)</span> is an ancestor of <span class="math inline">\(y\)</span> and <span class="math inline">\(y\)</span> is a descendant of <span class="math inline">\(x\)</span>.</p>
+<p><strong>Observation 9.</strong> If we run DFS algorithm in a graph <span class="math inline">\(G = (V, E)\)</span> for any two vertices <span class="math inline">\(u, v\)</span>, exactly one of the following three conditions holds:</p>
+<ol style="list-style-type: lower-roman">
+<li><p><span class="math inline">\([u.d, u.f]\)</span> and <span class="math inline">\([v.d, v.f]\)</span> are disjoint, and neither <span class="math inline">\(u\)</span> nor <span class="math inline">\(v\)</span> is a descendant of the other in <span class="math inline">\(G_{\pi}\)</span>.</p></li>
+<li><p><span class="math inline">\([u.d, u.f]\)</span> is entirely contained in <span class="math inline">\([v.d, v.f]\)</span>, and <span class="math inline">\(u\)</span> is a descendant of <span class="math inline">\(v\)</span> in <span class="math inline">\(G_{\pi}\)</span>.</p></li>
+<li><p><span class="math inline">\([v.d, v.f]\)</span> is entirely contained in <span class="math inline">\([u.d, u.f]\)</span>, and <span class="math inline">\(v\)</span> is a descendant of <span class="math inline">\(u\)</span> in <span class="math inline">\(G_{\pi}\)</span>.</p></li>
+</ol>
+<p>Furthermore, we can use the DFS algorithm to classify the edges of a graph <span class="math inline">\(G\)</span>. We have:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Tree edges</strong> are the edges in <span class="math inline">\(G.{\pi}\)</span>.</p></li>
+<li><p><strong>Back edges</strong> are the edges <span class="math inline">\((u, v) \in E(G)\)</span> that connect <span class="math inline">\(u\)</span> to an <strong>ancestor</strong> of <span class="math inline">\(v\)</span> in <span class="math inline">\(G_{\pi}\)</span>.</p></li>
+<li><p><strong>Forward edges</strong> are the edges <span class="math inline">\((u, v) \in E(G)\)</span> that connect <span class="math inline">\(u\)</span> to a <strong>descendant</strong> of <span class="math inline">\(v\)</span> in <span class="math inline">\(G_{\pi}\)</span>.</p></li>
+<li><p><strong>Cross edges</strong> are the edges <span class="math inline">\((u, v) \in E(G)\)</span> that connect different components in <span class="math inline">\(G_{\pi}\)</span>.</p></li>
+</ol>
+<p><strong>Observation 10.</strong> If we run DFS algorithm in a tree <span class="math inline">\(G = (V, E)\)</span>, then every edge is a tree edge or a back edge.</p>
+<p>The common applications of DFS algorithm will be study in another class in more depth.</p>
 <div class="topic">
 Diameter of a tree
 </div>

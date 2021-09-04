@@ -219,7 +219,16 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 * <div id="s-class-17">[**Class 17: Graph Theory I**](./class-13.html)</div>
   **Topics**
-  + Topic I
+  + Introduction
+  + Graph representation
+  + Distance in graphs
+  + Graph isomorphism
+  + Graph score
+  + Trees
+  + BFS
+  + DFS
+  + Diameter of a tree
+  + Isomorphism of trees
 
   **Readings**
   + [Introduction to Algorithms - Sections 22.1, 22.2, 22.3](https://www.amazon.com/-/es/Thomas-H-Cormen/dp/0262033844)

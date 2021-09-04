@@ -693,11 +693,33 @@ DFS
 <div class="topic">
 Diameter of a tree
 </div>
-<p>Definition of the diameter Algorithm to find the diameter in greedy way</p>
-<p>Problem: Number of diameters of a tree</p>
-<p>Center definition</p>
-<p>Statement: The center lies on diameter</p>
-<p>Problem solution</p>
+<p><strong>Definition 15.</strong> For a vertex <span class="math inline">\(v\)</span> in a graph <span class="math inline">\(G\)</span>, let the symbol <span class="math inline">\(ex_G(v) = \max(dis(v, u), u \in V(G))\)</span>. The number <span class="math inline">\(ex_G(v)\)</span> is called the excentricity of the vertex <span class="math inline">\(v\)</span> in the graph <span class="math inline">\(G\)</span> and we have:</p>
+<ol style="list-style-type: lower-roman">
+<li><p>The diameter of a graph is defines as the maximum value of <span class="math inline">\(ex_G(v), \forall v \in V(G)\)</span>.</p></li>
+<li><p><span class="math inline">\(C(G) = \{v \in V(G): v = \min(ex_G(u), \forall u \in V(G)) \}\)</span> is called the center of <span class="math inline">\(G\)</span>.</p></li>
+</ol>
+<p>Now, how we can find the diameter of a graph?</p>
+<p>Well, for a general graph we will study the solution in the next class. Now, we can study an <span class="math inline">\(O(|V| + |E|)\)</span> solution for a tree.</p>
+<p>It is possible to solve the problem using dynamic programming on trees, but there exists an easier greedy solution.</p>
+<div class="row text-center">
+<p><img src="images/class-17/diameter.png" /></p>
+<p>Image taken from <a href="https://www.youtube.com/watch?v=2PFl93WM_ao">Algorithms Live! - Episode 1 - Trees and Diameters</a>. The proof can also be found in the video.</p>
+</div>
+<p>Now, we can try to solve a more interesting problem. How many unordered pairs <span class="math inline">\(\{u, v\}\)</span> exists such that <span class="math inline">\(d_G(u, v)\)</span> is the diameter of a tree?</p>
+<p>The key idea to solve this problem is the following ideas:</p>
+<p><strong>Proposition 3.</strong> For any tree <span class="math inline">\(T\)</span>, <span class="math inline">\(C(T)\)</span> has at most 2 vertices. If <span class="math inline">\(C(T)\)</span> consists of 2 vertices <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> then <span class="math inline">\(\{x, y\} \in E(T)\)</span>.</p>
+<p><strong>Proof.</strong> Idea: Run a multi-source BFS from each leaf of the tree, the furthest vertices are <span class="math inline">\(C(T)\)</span> (at most two). A formal proof can be found in <a href="https://www.amazon.com/-/es/Jiri-Matousek/dp/0198570422">Invitation to Discrete Mathematics, section 5.2</a>.</p>
+<p><strong>Theorem 3.</strong> Let <span class="math inline">\(T\)</span> be a tree and <span class="math inline">\(c \in C(T)\)</span>, then all vertices <span class="math inline">\(u, v\)</span> that have a path <span class="math inline">\(P\)</span> of length equal to the diameter of <span class="math inline">\(T\)</span> hold that <span class="math inline">\(c \in P\)</span>.</p>
+<p><strong>Proof.</strong> Watch <a href="https://www.youtube.com/watch?v=2PFl93WM_ao">Algorithms Live! - Episode 1 - Trees and Diameters</a>.</p>
+<p>Now, we can solve the problem. First, lets separate the solution in two cases:</p>
+<div class="row text-center">
+<p><img src="images/class-17/all-diameter1.png" /></p>
+<p>Image taken from <a href="https://www.youtube.com/watch?v=2PFl93WM_ao">Algorithms Live! - Episode 1 - Trees and Diameters</a>.</p>
+</div>
+<div class="row text-center">
+<p><img src="images/class-17/all-diameter2.png" /></p>
+<p>Image taken from <a href="https://www.youtube.com/watch?v=2PFl93WM_ao">Algorithms Live! - Episode 1 - Trees and Diameters</a>.</p>
+</div>
 <div class="topic">
 Isomorphism of trees
 </div>

@@ -405,16 +405,57 @@ The common applications of DFS algorithm will be study in another class in more 
 
 <div class="topic">Diameter of a tree</div>
 
-Definition of the diameter
-Algorithm to find the diameter in greedy way
+**Definition 15.** For a vertex $v$ in a graph $G$, let the symbol $ex_G(v) = \max(dis(v, u), u \in V(G))$. The number $ex_G(v)$ is called the excentricity of the vertex $v$ in the graph $G$ and we have:
 
-Problem: Number of diameters of a tree
+i) The diameter of a graph is defines as the maximum value of $ex_G(v), \forall v \in V(G)$.
 
-Center definition
+ii) $C(G) = \{v \in V(G): v = \min(ex_G(u), \forall u \in V(G)) \}$ is called the center of $G$.
 
-Statement: The center lies on diameter
+Now, how we can find the diameter of a graph?
 
-Problem solution
+Well, for a general graph we will study the solution in the next class. Now, we can study an $O(|V| + |E|)$ solution for a tree.
+
+It is possible to solve the problem using dynamic programming on trees, but there exists an easier greedy solution.
+
+<div class="row text-center">
+![](./images/class-17/diameter.png)
+
+Image taken from [Algorithms Live! - Episode 1 - Trees and Diameters](https://www.youtube.com/watch?v=2PFl93WM_ao). The proof can also be found
+in the video.
+ 
+</div>
+
+
+Now, we can try to solve a more interesting problem. How many unordered pairs $\{u, v\}$ exists such that $d_G(u, v)$ is the diameter of a tree?
+
+
+The key idea to solve this problem is the following ideas:
+
+**Proposition 3.** For any tree $T$, $C(T)$ has at most 2 vertices. If $C(T)$ consists of 2 vertices $x$ and $y$ then $\{x, y\} \in E(T)$.
+
+**Proof.** Idea: Run a multi-source BFS from each leaf of the tree, the furthest vertices are $C(T)$ (at most two).
+A formal proof can be found in [Invitation to Discrete Mathematics, section 5.2](https://www.amazon.com/-/es/Jiri-Matousek/dp/0198570422).
+
+
+**Theorem 3.** Let $T$ be a tree and $c \in C(T)$, then all vertices $u, v$ that have a path $P$ of length equal to the diameter of $T$ hold that $c \in P$.
+
+**Proof.** Watch [Algorithms Live! - Episode 1 - Trees and Diameters](https://www.youtube.com/watch?v=2PFl93WM_ao). 
+
+Now, we can solve the problem. First, lets separate the solution in two cases:
+
+<div class="row text-center">
+![](./images/class-17/all-diameter1.png)
+
+Image taken from [Algorithms Live! - Episode 1 - Trees and Diameters](https://www.youtube.com/watch?v=2PFl93WM_ao).
+ 
+</div>
+
+<div class="row text-center">
+![](./images/class-17/all-diameter2.png)
+
+Image taken from [Algorithms Live! - Episode 1 - Trees and Diameters](https://www.youtube.com/watch?v=2PFl93WM_ao).
+ 
+</div>
 
 <div class="topic">Isomorphism of trees</div>
 

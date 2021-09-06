@@ -256,7 +256,8 @@ The material developed by CPC UTEC in its activities can be found in [this repos
 
 <div>
 <a href="http://github.com/CPC-UTEC" target="_blank" style="margin-right: 20px;"><i class="icon ion-social-github" style="font-size:40px;"></i></a>
-<a href="https://www.facebook.com/CPC.UTEC/" target="_blank"><i class="icon ion-social-facebook" style="font-size:40px;"></i></a>
+<a href="https://www.facebook.com/CPC.UTEC/" target="_blank" style="margin-right: 20px;"><i class="icon ion-social-facebook" style="font-size:40px;"></i></a>
+<a href="mailto:cpc@utec.edu.pe" target="_blank"><i class="icon ion-android-mail" style="font-size:40px;"></i></a>
 </div>
 
 <p>Copyright &copy; 2021 CPC UTEC. All rights reserved.</p>

@@ -1,134 +1,269 @@
 ---
-title: "UTEC Competitive programming training - Summer 2020"
+title: "Competitive Programming Club UTEC (CPC UTEC)"
 ---
 
-Here you can find the material developed in this training and a [collection of
-images](./gallery.html).
+> "Perseverance, competitiveness and resilience "
 
-## **Couches**
-- José Leonidas García Gonzales - [\@TISparta](https://github.com/TISparta/) - jose.garcia@utec.edu.pe
-- Giordano Mitchell Alvitez Falcon - [\@GioCS17](https://github.com/GioCS17) - giordano.alvitez@utec.edu.pe
-- Jorge Ignacio Fiestas Lavezzolo - [\@Jorgefiestas](https://github.com/Jorgefiestas) - jorge.fiestas@utec.edu.pe
+It is a student organization at UTEC, Peru. We do activities related to competitive programming. We have two types of training:
 
-## **Classes**
+* Beginner training. Here we assume a minimal experience with programming and we assume zero knowledge of competitive programming.
 
-Each class lasts two hours. Classes have a theorical and practical part. The
-theorical part consists of a lecture-style class. The practical part is a set
-of problems in a contest using [vjudge](https://vjudge.net/). The solutions of the problems are
-posted when the contest finishes. Moreover, each class have some recommended readings. Furthermore, from Monday to Friday there is a daily problem to practice, you can find them [here](./daily-problem.html).
+* Advanced training. Here we assume that you have taken the beginner training or you have experience in competitive programming.
 
-The classes are on Monday and Wednesday in UTEC at A801 from 17:00 to 19:00.
+The beginner training is open to all student at UTEC with the will to learn about competitive programming.
 
-We are following this [schedule](./schedule.html).
+The advanced training is just for the official members of the organization. You can join us taking the entrance contest. 
+Just register in [this form](https://forms.gle/QUFZsWzTE5YRdEYv7) to take the contest on september 11, 4-7pm.
 
-These links can help you navigate through the material developed.
+Moreover, you can find a [collection of images](./gallery.html) of some previous actividades.
 
-<div id="classes"></div>
+<div class="topic">Study material</div>
 
-### *Week 1*
-- [01-06-2020] - Class 01 - Introduction 
-  + [Theory](./class-01.html)
-  + [Contest](https://vjudge.net/contest/350658)
-  + [Solutions](./class-01.html#contest)
-  + [Readings](./schedule.html#s-class-01)
+The material developed by CPC UTEC in its activities can be found in [this repository](https://github.com/CPC-UTEC/theory) and in this page.
 
-- [01-08-2020] - Class 02 - Asymptotic Analysis
-  + [Theory](./class-02.html)
-  + [Contest](https://vjudge.net/contest/350901)
-  + [Solutions](./class-02.html#contest)
-  + [Readings](./schedule.html#s-class-02)
+## Topics
+  - Introduction
+  - Complete Search
+  - Divide and Conquer
+  - Game Theory
+  - Graph Theory
 
-### *Week 2*
-- [01-13-2020] - Class 03 - STL
-  + [Theory](./class-03.html)
-  + [Contest](https://vjudge.net/contest/351569)
-  + [Solutions](./class-03.html#contest)
-  + [Readings](./schedule.html#s-class-03)
+### Introduction
 
-- [01-15-2020] - Class 04 - Complete Search I
-  + [Theory](./class-04.html)
-  + [Contest](https://vjudge.net/contest/352372)
-  + [Solutions](./class-04.html#contest)
-  + [Readings](./schedule.html#s-class-04)
+* <div id="s-class-01">[**Class 1: Introduction**](./class-01.html)</div>
+  **Topics**
+  + What is competitive programming?
+  + Topics of the course
+  + Virtual Judges
+  + Problem structure
+  + Veredicts information
+  + Environment setup
+  
+  **Readings**
+  + [Training Camp Argentina 2019. Nivel Inicial. E/S + Intro](https://tc-arg.tk/pdfs/2019/ipc.pdf)
+  + [Competitive Programming 3, chapter 1](https://cpbook.net/)
+  + [Errichto - How to test your solutions in Competitive Programming, on
+    Linux](https://www.youtube.com/watch?v=JXTVOyQpSGM)
+  + [An awesome list for competitive programming](https://codeforces.com/blog/entry/23054)
 
-### *Week 3*
-- [01-20-2020] - Class 05 - Complete Search II
-  + [Theory](./class-05.html)
-  + [Contest](https://vjudge.net/contest/353073)
-  + [Solutions](./class-05.html#contest)
-  + [Readings](./schedule.html#s-class-05)
+* <div id="s-class-02">[**Class 2: Asymptotic Analysis**](./class-02.html)</div>
+  **Topics:**
+  - Motivation
+  - Sampling an extrapolation
+  - Big Oh notation
+  - Asymptotic Analysis
+  - Space and Time Complexity
 
-- [01-22-2020] - Class 06 - Complete Search III
-  + [Theory](./class-06.html)
-  + [Contest](https://vjudge.net/contest/353470)
-  + [Solutions](./class-06.html#contest)
-  + [Readings](./schedule.html#s-class-06)
-
-### *Week 4*
-- [01-27-2020] - Class 07 - Complete Search IV
-  + [Theory](./class-07.html)
-  + [Contest](https://vjudge.net/contest/354002)
-  + [Solutions](./class-07.html#contest)
-  + [Readings](./schedule.html#s-class-07)
-
-- [01-29-2020] - Class 08 - Complete Search V
-  + [Theory](./class-08.html)
-  + [Contest](https://vjudge.net/contest/354334)
-  + [Solutions](./class-08.html#contest)
-  + [Readings](./schedule.html#s-class-08)
-
-### *Week 5*
-- [02-03-2020] - Class 09 - Contest I
-  + [Theory](./class-09.html)
-  + [Contest](https://vjudge.net/contest/355171)
-  + [Upsolving](https://vjudge.net/contest/355256)
-  + [Solutions](./class-09.html#contest)
-
-### *Week 6*
-- [02-10-2020] - Class 10 - Contest UTEC-UNI-UPC I
-  + [Theory](./class-10.html)
-  + [Contest](https://codeforces.com/group/qWRAoRrTOT/contest/268759)
-  + [Solutions](https://codeforces.com/group/qWRAoRrTOT/blog/entry/5475)
-
-### *Week 7*
-- [02-17-2020] - Class 11 - Divide and Conquer I
-  + [Theory](./class-11.html)
-  + [Contest](https://vjudge.net/contest/357719)
-  + [Solutions](./class-11.html#contest)
-  + [Readings](./schedule.html#s-class-11)
-
-- [02-19-2020] - Class 12 - Divide and Conquer II
-  + [Theory](./class-12.html)
-  + [Contest](https://vjudge.net/contest/359160)
-  + [Solutions](./class-12.html#contest)
-  + [Readings](./schedule.html#s-class-12)
-
-### *Week 8*
-- [02-24-2020] - Class 13 - Game Theory I
-  + [Theory](./class-13.html)
-  + [Contest](https://vjudge.net/contest/359163)
-  + [Solutions](./class-13.html#contest)
-  + [Readings](./schedule.html#s-class-13)
-
-- [02-26-2020] - Class 14 - Game Theory II
-  + [Theory](./class-14.html)
-  + [Contest](https://vjudge.net/contest/359378)
-  + [Solutions](./class-14.html#contest)
-  + [Readings](./schedule.html#s-class-14)
+  **Readings**
+  + [Antti  Laaksonen.Competitive  programmer’s  handbook - chapter 1 and 4](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+  + [Competitive Programmer's Handbook, chapter 2](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+  + [Learn Data Structures and Algorithms, section Asymptotic analysis](https://www.codechef.com/certification/data-structures-and-algorithms/prepare)
 
 
-### *Week 9*
-- [03-02-2020] - Class 15 - Contest II
-  + [Theory](./class-15.html)
-  + [Contest](https://vjudge.net/contest/360361)
-  + [Solutions](./class-15.html#contest)
+* <div id="s-class-03">[**Class 3: Standard Template Library**](./class-03.html)</div>
+  **Topics**
+  + Standard Template Library (STL) 
+  + Numeric data types and its operations 
+  + String
+  + Vector
+  + Set 
+  + Map
+  + Struct 
+  
+  **Readings**
+  + [Antti  Laaksonen.Competitive  programmer’s  handbook - chapter 1 y 4](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+  + [Competitive C++ Manifesto: A Style Guide](https://codeforces.com/blog/entry/64218)
+  + [TopCoder - Power up C++ with the Standard Template Library - Part I](https://www.topcoder.com/community/competitive-programming/tutorials/power-up-c-with-the-standard-template-library-part-1/)
+ 
 
-- [03-04-2020] - Class 16 - Contest UTEC-UNI-UPC II
-  + [Theory](./class-16.html)
-  + [Contest](https://codeforces.com/group/qWRAoRrTOT/contest/271109)
+
+### Complete Search
+
+* <div id="s-class-04">[**Class 4: Complete Search I**](./class-04.html)</div>
+  **Topics**
+  + Problem solving paradigms
+  + Pythagorean triples
+  + Primality Test
+  + Sieve of Eratosthenes
+  + Finding the number of divisors of a number
+  + $\sigma_{0}(n) = O(\sqrt[3]{n})$
+
+  **Readings**
+  + Competitive Programming 3, section 3.2 y 5.5.1
+  + [Codeforces - How to come up with the solutions: techniques](https://codeforces.com/blog/entry/20548)
+  + [Codeforces - Amount of divisors of N](https://codeforces.com/blog/entry/13585)
+  + [Codeforces - Counting Divisors of a Number in $O(\sqrt[3]{n})$ - Tutorial](https://codeforces.com/blog/entry/22317)
 
 
-The repository of this page can be found [here](https://github.com/CP-UTEC/Lessons).
+* <div id="s-class-05">[**Class 5: Complete Search II**](./class-05.html)</div>
+  **Topics**
+  + Fixing variables
+  + Simulation with brute force
+  + Weak constraints
+  + Case analysis
+  + Extra: Prefix sums
+
+  **Readings**
+  + [Notas de fuerza bruta](https://gist.github.com/miguelAlessandro/f588d159a768dc43cc1ec9b81b27bd57)
+  + [PCUNI-2019 Clase 05](https://nbviewer.jupyter.org/github/TISparta/pcuni-2019/blob/master/clase-05/clase-05.ipynb)
+  + [Topcoder - Representation of integers and reals section 1](https://www.topcoder.com/community/competitive-programming/tutorials/representation-of-integers-and-reals-section-1/)
+  + [Topcoder - Representation of integers and reals section 2](https://www.topcoder.com/community/competitive-programming/tutorials/representation-of-integers-and-reals-section-2/)
+
+
+* <div id="s-class-06">[**Class 6: Complete Search III**](./class-06.html)</div>
+  **Topics**
+  + Two pointers
+  + Recursion
+  + Modular arithmetic
+  + Binary exponenciation
+
+  **Readings**
+  + Concrete Mathematics - Knuth. Chapter 1
+  + [Modular Arithmetic for Beginners](https://codeforces.com/blog/entry/72527)
+  + [Competitive Programmer’s Handbook, chapters 5, 8 y 21](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+  + Principles of Algorithmic Problem Solving, sections 15.6 y 15.7
+  + [Learn Data Structures and Algorithms, section Basic Recursion](https://www.codechef.com/certification/data-structures-and-algorithms/prepare)
+  + [E-maxx Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)
+
+
+* <div id="s-class-07">[**Class 7: Complete Search IV**](./class-07.html)</div>
+  **Topics**
+  + Contribution technique
+  + Seaching over all the permutations
+  + Binary representation
+  + Bitwise operations
+  + Brute force on bitmasks
+
+  **Readings**
+  + Competitive Programming 3, section 2.1 and 2.2.
+  + [Competitive Programmer’s Handbook, chapter 10](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+  + [GPC-UNI Clase 4](https://nbviewer.jupyter.org/github/GPC-UNI/Programacion-Competitiva/blob/master/uni-no-fiis/clase-04/clase-04.ipynb)
+  + [GPC-UNI Clase 5](https://nbviewer.jupyter.org/github/GPC-UNI/Programacion-Competitiva/blob/master/uni-no-fiis/clase-05/clase-05.ipynb)
+  + [PCUNI-2019 Clase 7](https://nbviewer.jupyter.org/github/TISparta/pcuni-2019/blob/master/clase-07/clase-07.ipynb)
+  + [Principles of Algorithmic Problem Solving, chapter 7](https://www.csc.kth.se/~jsannemo/slask/main.pdf)
+
+
+* <div id="s-class-08">[**Class 8: Complete Search V**](./class-08.html)</div>
+  **Topics**
+  + Power set
+  + 0-1 Knapsack problem
+  + Permutations
+  + Sudoku
+  + N-queen problem
+
+  **Readings**
+  + [HackerEarth - Recursion and Backtracking](https://www.hackerearth.com/practice/basic-programming/recursion/recursion-and-backtracking/tutorial/)
+  + Competitive Programming 3, section 3.2.2, 8.2.1 and 8.2.2.
+  + [GeekForGeeks - Backtracking Algorithms](https://www.geeksforgeeks.org/backtracking-algorithms/)
+
+* <div id="s-class-09">[**Class 9: Contest I**](./class-09.html)</div>
+
+* <div id="s-class-10">[**Class 10: Contest UTEC-UNI-UPC I**](./class-10.html)</div>
+
+
+### Divide and Conquer
+
+* <div id="s-class-11">[**Class 11: Divide and Conquer I**](./class-11.html)</div>
+  **Topics**
+  + The divide and conquer paradigm 
+  + Binary search
+  + Lower bound  
+  + Upper bound
+  + Binary search on the answer
+
+  **Readings**
+  + [Errichto - Binary search lecture (C++ and Python)](https://www.youtube.com/watch?v=GU7DpgHINWQ)
+  + [Topcoder - Binary search](https://www.topcoder.com/community/competitive-programming/tutorials/binary-search/)
+  + [Competitive Programmer's Handbook, chapter 3](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+  + [Principles of Algorithmic Problem Solving, section 10.3](https://www.csc.kth.se/~jsannemo/slask/main.pdf)
+
+* <div id="s-class-12">[**Class 12: Divide and Conquer II**](./class-11.html)</div>
+  **Topics**
+  + Generalized binary search
+  + Ternary search
+  + Merge sort
+  + Inductive constructions
+
+  **Readings**
+  + [Principles of Algorithmic Problem Solving, section 10.1 and 10.2](https://www.csc.kth.se/~jsannemo/slask/main.pdf)
+  + [E-maxx - Ternary search](https://cp-algorithms.com/num_methods/ternary_search.html)
+  + [HackerEarth - Searching [Tutorial]](https://www.hackerearth.com/practice/algorithms/searching/linear-search/tutorial/)
+  + [PCUNI-2019 clase 16](https://nbviewer.jupyter.org/github/TISparta/pcuni-2019/blob/master/clase-16/clase-16.ipynb)
+  + [Topcoder - Binary stride a variant on binary search](https://www.topcoder.com/binary-stride-a-variant-on-binary-search/)
+
+
+### Game Theory
+
+* <div id="s-class-13">[**Class 13: Game Theory I**](./class-13.html)</div>
+  **Topics**
+  + Introduction
+  + WL states
+  + The game of Nim
+  + Grundy numbers
+  + Sprague-Grundy theorem
+
+  **Readings**
+  + [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
+  + [Ali Ibrahim Site - Game Theory](https://ali-ibrahim137.github.io/competitive/programming/2020/02/26/Game-Theory.html)
+  + [Algorithm Games - Topcoder](https://www.topcoder.com/community/competitive-programming/tutorials/algorithm-games/)
+  + [Game Theory For Competitive Programming](https://stepupanalytics.com/game-theory-for-competitive-programming/)
+
+* <div id="s-class-14">[**Class 14: Game Theory II**](./class-14.html)</div>
+  **Topics**
+  + Grundy’s games
+  + Staircase Nim
+  + Misère games
+  + Minimax
+  + Alpha-Beta prunning
+
+  **Readings**
+
+  + [Game theory - Thomas S. Ferguson. Chapter 1-4](https://www.math.ucla.edu/~tom/Game_Theory/comb.pdf)
+  + [Competitive Programmer's Handbook, chapter 25](https://jadi.net/wp-content/uploads/2017/07/competetive-programmers-handbook.pdf)
+  + [E-maxx Sprague-Grundy theorem. Nim](https://cp-algorithms.com/game_theory/sprague-grundy-nim.html)
+  + [Search: Games, Minimax, and Alpha-Beta](https://youtu.be/STjW3eH0Cik)
+
+* <div id="s-class-15">[**Class 15: Contest II**](./class-15.html)</div>
+
+* <div id="s-class-16">[**Class 16: Contest UTEC-UNI-UPC II**](./class-16.html)</div>
+
+
+### Graph Theory
+
+* <div id="s-class-17">[**Class 17: Graph Theory I**](./class-17.html)</div>
+  **Topics**
+  + Introduction
+  + Graph representation
+  + Distance in graphs
+  + Graph isomorphism
+  + Graph score
+  + Trees
+  + BFS
+  + DFS
+  + Diameter of a tree
+  + Isomorphism of trees
+
+  **Readings**
+  + [Introduction to Algorithms - Sections 22.1, 22.2, 22.3](https://www.amazon.com/-/es/Thomas-H-Cormen/dp/0262033844)
+  + [Invitation to Discrete Mathematics, chapter 4 and and sections 5.1, 5.2](https://www.amazon.com/-/es/Jiri-Matousek/dp/0198570422)
+  + [Algorithms Live! - Episode 1 - Trees and Diameters](https://www.youtube.com/watch?v=2PFl93WM_ao)
+  + [E-maxx Breadth-first search](https://cp-algorithms.com/graph/breadth-first-search.html)
+  + [E-maxx Depth First Search](https://cp-algorithms.com/graph/depth-first-search.html)
+  + [The () Canonical Form of a Tree](http://webhome.cs.uvic.ca/~wendym/courses/582/16/notes/582_12_tree_can_form.pdf)
+
+
+<div class="row text-center">
+
+<div>
+<a href="http://github.com/CPC-UTEC" target="_blank" style="margin-right: 20px;"><i class="icon ion-social-github" style="font-size:40px;"></i></a>
+<a href="https://www.facebook.com/CPC.UTEC/" target="_blank"><i class="icon ion-social-facebook" style="font-size:40px;"></i></a>
+</div>
+
+<p>Copyright &copy; 2021 CPC UTEC. All rights reserved.</p>
+
+</div>
+
+
 
 <script>
 $("#index-page")

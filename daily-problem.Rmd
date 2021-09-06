@@ -6,9 +6,9 @@ title: "Daily Problem"
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
+If you are a beginner reading the material, you can start with a 26-day training of solving one problem per day.
+
 ### [Contest Link](https://vjudge.net/contest/351983)
-
-
 
 <!-- Begins problem Z -->
 <div class="card" id="Z">

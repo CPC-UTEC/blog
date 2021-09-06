@@ -19,10 +19,10 @@ Many situations in mathematics and computer science can be expresed by two thing
 And if we disregard the properties of the joins (length, shape, etc) and we only pay attention to which pairs are joined and which are not, then
 we arrive at the mathematical notion of a graph. Formally, we have:
 
-**Definition 1.** A graph $G$ is and ordered pair $(V, E)$, where $V$ is some set and $E$ is a set of 2-point subsets of $V$.
+**Definition 1.** A graph $G$ is an ordered pair $(V, E)$, where $V$ is some set and $E$ is a set of 2-point subsets of $V$.
 The elements of $V$ are called vertices of the graph $G$ and the elements of $E$ edges of $G$.
 
-**Definition 2.** A directed graph $G$ is and ordered pair $(V, E)$, where $V$ is some set and $E$ is a set pairs of elements of $V$.
+**Definition 2.** A directed graph $G$ is an ordered pair $(V, E)$, where $V$ is some set and $E$ is a set pairs of elements of $V$.
 
 Now, we can express different situations using the definition of a graph and directed graph. For example.
 
@@ -130,7 +130,7 @@ is the number of walks of length exactly $k$ from vertex $v_i$ to vertex $v_j$ i
 
 **Definition 4.** A graph $G = (V, E)$ is connected if $\forall x, y \in V(G)$, $G$ contains a path from $x$ to $y$.
 
-**Property 1.** The complement of a connected graph is connected.
+**Property 1.** The complement of a disconnected graph is connected.
 
 **Proof.** Left to the reader.
 
@@ -187,7 +187,7 @@ A matrix $P$ is called a permutation matrix if its entries are 0 and 1 and each 
 
 <div class="topic">Graph score</div>
 
-**Definition 7.** Let $G$ be a graph and $v \in G(V)$. The degree of vertex $v$ is defines as $deg_G(v) = |e \in E(V), v \in e|$.
+**Definition 7.** Let $G$ be a graph and $v \in G(V)$. The degree of vertex $v$ is defines as $deg_G(v) = |\{e \in E(V), v \in e\}|$.
 
 Now, we can formulate this famous statement:
 
@@ -522,6 +522,11 @@ Recommended readings:
 - [E-maxx Breadth-first search](https://cp-algorithms.com/graph/breadth-first-search.html)
 - [E-maxx Depth First Search](https://cp-algorithms.com/graph/depth-first-search.html)
 - [The () Canonical Form of a Tree](http://webhome.cs.uvic.ca/~wendym/courses/582/16/notes/582_12_tree_can_form.pdf)
+
+
+<div class="topic" id="contest">Contest</div>
+
+You can find the contest [here](https://vjudge.net/contest/456931).
 
 <p style="float: none; clear: both;"></p>
 

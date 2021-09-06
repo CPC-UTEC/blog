@@ -451,8 +451,8 @@ Introduction
 <li>Lines joining some pairs of points</li>
 </ol>
 <p>And if we disregard the properties of the joins (length, shape, etc) and we only pay attention to which pairs are joined and which are not, then we arrive at the mathematical notion of a graph. Formally, we have:</p>
-<p><strong>Definition 1.</strong> A graph <span class="math inline">\(G\)</span> is and ordered pair <span class="math inline">\((V, E)\)</span>, where <span class="math inline">\(V\)</span> is some set and <span class="math inline">\(E\)</span> is a set of 2-point subsets of <span class="math inline">\(V\)</span>. The elements of <span class="math inline">\(V\)</span> are called vertices of the graph <span class="math inline">\(G\)</span> and the elements of <span class="math inline">\(E\)</span> edges of <span class="math inline">\(G\)</span>.</p>
-<p><strong>Definition 2.</strong> A directed graph <span class="math inline">\(G\)</span> is and ordered pair <span class="math inline">\((V, E)\)</span>, where <span class="math inline">\(V\)</span> is some set and <span class="math inline">\(E\)</span> is a set pairs of elements of <span class="math inline">\(V\)</span>.</p>
+<p><strong>Definition 1.</strong> A graph <span class="math inline">\(G\)</span> is an ordered pair <span class="math inline">\((V, E)\)</span>, where <span class="math inline">\(V\)</span> is some set and <span class="math inline">\(E\)</span> is a set of 2-point subsets of <span class="math inline">\(V\)</span>. The elements of <span class="math inline">\(V\)</span> are called vertices of the graph <span class="math inline">\(G\)</span> and the elements of <span class="math inline">\(E\)</span> edges of <span class="math inline">\(G\)</span>.</p>
+<p><strong>Definition 2.</strong> A directed graph <span class="math inline">\(G\)</span> is an ordered pair <span class="math inline">\((V, E)\)</span>, where <span class="math inline">\(V\)</span> is some set and <span class="math inline">\(E\)</span> is a set pairs of elements of <span class="math inline">\(V\)</span>.</p>
 <p>Now, we can express different situations using the definition of a graph and directed graph. For example.</p>
 <ul>
 <li><p>The statement “Descartes loves Sofia and Sofia loves Descartes” can be expresed as a graph</p>
@@ -524,7 +524,7 @@ Graph representation
 Distance in graphs
 </div>
 <p><strong>Definition 4.</strong> A graph <span class="math inline">\(G = (V, E)\)</span> is connected if <span class="math inline">\(\forall x, y \in V(G)\)</span>, <span class="math inline">\(G\)</span> contains a path from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span>.</p>
-<p><strong>Property 1.</strong> The complement of a connected graph is connected.</p>
+<p><strong>Property 1.</strong> The complement of a disconnected graph is connected.</p>
 <p><strong>Proof.</strong> Left to the reader.</p>
 <p><strong>Definition 5.</strong> Let <span class="math inline">\(G = (V, E)\)</span> be a connected graph. We define the distance of two vertices <span class="math inline">\(v_1, v_2 \in V(G)\)</span>, denoted by <span class="math inline">\(d_G(v_1, v_2)\)</span>, as the length of the shortest path from <span class="math inline">\(v_1\)</span> to <span class="math inline">\(v_2\)</span> in <span class="math inline">\(G\)</span>. Hence <span class="math inline">\(d_G\)</span> is a function, <span class="math inline">\(d_G: V \times V \to \mathbb{R}\)</span>, and it is called the distance function or the metric of the graph <span class="math inline">\(G\)</span>. It has the following properties:</p>
 <ol style="list-style-type: lower-roman">
@@ -555,7 +555,7 @@ Graph isomorphism
 <div class="topic">
 Graph score
 </div>
-<p><strong>Definition 7.</strong> Let <span class="math inline">\(G\)</span> be a graph and <span class="math inline">\(v \in G(V)\)</span>. The degree of vertex <span class="math inline">\(v\)</span> is defines as <span class="math inline">\(deg_G(v) = |e \in E(V), v \in e|\)</span>.</p>
+<p><strong>Definition 7.</strong> Let <span class="math inline">\(G\)</span> be a graph and <span class="math inline">\(v \in G(V)\)</span>. The degree of vertex <span class="math inline">\(v\)</span> is defines as <span class="math inline">\(deg_G(v) = |\{e \in E(V), v \in e\}|\)</span>.</p>
 <p>Now, we can formulate this famous statement:</p>
 <p><strong>Proposition 2.</strong> For each graph <span class="math inline">\(G = (V, E)\)</span> we have:</p>
 <p><span class="math display">\[\displaystyle\sum_{v \in V} deg_{G}(v) = 2 |E|\]</span></p>
@@ -765,6 +765,10 @@ Isomorphism of trees
 <li><a href="https://cp-algorithms.com/graph/depth-first-search.html">E-maxx Depth First Search</a></li>
 <li><a href="http://webhome.cs.uvic.ca/~wendym/courses/582/16/notes/582_12_tree_can_form.pdf">The () Canonical Form of a Tree</a></li>
 </ul>
+<div id="contest" class="topic">
+Contest
+</div>
+<p>You can find the contest <a href="https://vjudge.net/contest/456931">here</a>.</p>
 <p style="float: none; clear: both;">
 </p>
 <!--

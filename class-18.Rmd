@@ -1,0 +1,76 @@
+---
+title: "Class 18: Graphs II"
+date: "XX-09-2021"
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+> "[Inser the quote here]"
+
+<div class="topic">Single Source Shortest Path</div>
+
+- Dijkstra
+
+- Bellmand Ford
+
+<div class="topic">All Pairs Shortest Path</div>
+
+- Floyd Warshall
+
+<div class="topic">Bridges</div>
+
+<div class="topic">Articulation Points</div>
+
+<div class="topic">Topological Sort</div>
+
+<div class="topic">Strongly Connected Components</div>
+
+<div class="topic">Maybe add some more topics</div>
+
+Example of how to insert an image
+
+<div class="row text-center">
+![](./images/class-17/representation.png)
+
+Images taken from [Introduction to Algorithms - page 590](https://www.amazon.com/-/es/Thomas-H-Cormen/dp/0262033844)
+</div>
+
+
+Recommended readings:
+
+- [Text 1](Link 1)
+- [Text 2](Link 2)
+
+<div class="topic" id="contest">Contest</div>
+
+You can find the contest [here](VJUDGE Link).
+
+<p style="float: none; clear: both;"></p>
+
+<!--
+<div style="float: right;" class="pt-3">
+  <a class="continue-link" href="./class-15.html" 
+     data-toggle="tooltip" title="Contest II">
+  Next
+  </a>
+</div>
+-->
+
+<div class="pt-3">
+  <a class="continue-link" href="./class-17.html"
+     data-toggle="tooltip" title="Graph Theory I">
+  Previous
+  </a>
+</div>
+
+<script>
+  $('#all-classes').collapse('show');
+  $('#class-18').addClass('active');
+  const cur_class = document.getElementById('class-18');
+  cur_class.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+</script>

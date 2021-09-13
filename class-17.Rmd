@@ -530,14 +530,12 @@ You can find the contest [here](https://vjudge.net/contest/456931).
 
 <p style="float: none; clear: both;"></p>
 
-<!--
 <div style="float: right;" class="pt-3">
-  <a class="continue-link" href="./class-15.html" 
-     data-toggle="tooltip" title="Contest II">
+  <a class="continue-link" href="./class-18.html" 
+     data-toggle="tooltip" title="Graph Theory II">
   Next
   </a>
 </div>
--->
 
 <div class="pt-3">
   <a class="continue-link" href="./class-16.html"
